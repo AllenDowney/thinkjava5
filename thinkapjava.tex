@@ -1850,7 +1850,7 @@ that were not integers.  We worked around the problem by measuring
 percentages instead of fractions, but a more general solution is
 to use floating-point numbers, which can represent fractions
 as well as integers.  In Java, the floating-point type is
-called {\tt double}.
+called {\tt double}, which is short for ``double-precision.''
 
 You can create floating-point variables and assign values to them
 using the same syntax we used for the other types.  For example:
@@ -1869,18 +1869,17 @@ same time:
     double pi = 3.14159;
 \end{verbatim}
 %
-In fact, this syntax is quite common.  A combined declaration
+This syntax is common; a combined declaration
 and assignment is sometimes called an {\bf initialization}.
-
 \index{initialization}
 
 Although floating-point numbers are useful, they are
-often a source of confusion because there seems to be an
+a source of confusion because there seems to be an
 overlap between integers and floating-point numbers.  For
 example, if you have the value {\tt 1}, is that an integer,
 a floating-point number, or both?
 
-Strictly speaking, Java distinguishes the integer value {\tt 1}
+Java distinguishes the integer value {\tt 1}
 from the floating-point value {\tt 1.0}, even though they
 seem to be the same number.  They belong to
 different types, and strictly speaking, you are not allowed
@@ -1909,15 +1908,15 @@ convenient, but it can cause problems; for example:
     double y = 1 / 3;
 \end{verbatim}
 %
-You might expect the variable {\tt y} to be given the value
+You might expect the variable {\tt y} to get the value
 {\tt 0.333333}, which is a legal floating-point value, but in
-fact it will get the value {\tt 0.0}.  The reason is that the
-expression on the right appears to be the ratio of two integers,
+fact it gets {\tt 0.0}.  The reason is that the
+expression on the right is the ratio of two integers,
 so Java does {\em integer} division, which yields the integer
 value {\tt 0}.  Converted to floating-point, the result is
 {\tt 0.0}.
 
-One way to solve this problem(once you figure out what
+One way to solve this problem (once you figure out what
 it is) is to make the right-hand side a floating-point
 expression:
 
@@ -1929,11 +1928,12 @@ This sets {\tt y} to {\tt 0.333333}, as expected.
 
 \index{arithmetic!floating-point}
 
-All the operations we have seen so far---addition, subtraction,
+The operations we have seen so far---addition, subtraction,
 multiplication, and division---also work on floating-point values,
 although you might be interested to know that the underlying mechanism
 is completely different.  In fact, most processors have special
 hardware just for performing floating-point operations.
+
 
 \section{Converting from {\tt double} to {\tt int}}
 \label{rounding}
@@ -1951,30 +1951,32 @@ of the loss of the fractional part of the number.
 The simplest way to convert a floating-point value to an integer is to
 use a {\bf typecast}.  Typecasting is so called because it allows you
 to take a value that belongs to one type and ``cast'' it into another
-type(in the sense of molding or reforming, not throwing).
+type (in the sense of molding or reforming).
 
-Unfortunately, the syntax for typecasting is ugly: you put
+The syntax for typecasting is to put
 the name of the type in parentheses and use it as an operator.
 For example,
 
 \begin{verbatim}
-    int x =(int) Math.PI;
+    double pi = 3.14159;
+    int x = (int) pi;
 \end{verbatim}
 %
 The {\tt(int)} operator has the effect of converting what
 follows into an integer, so {\tt x} gets the value 3.
 
 Typecasting takes precedence over arithmetic operations,
-so in the following example, the value of {\tt PI} gets
+so in the following example, the value of {\tt pi} gets
 converted to an integer first, and the result
 is 60.0, not 62.
 
 \begin{verbatim}
-    double x =(int) Math.PI * 20.0;
+    double pi = 3.14159;
+    double x = (int) pi * 20.0;
 \end{verbatim}
 % 
 Converting to an integer always rounds down, even if the fraction
-part is 0.99999999.  These two properties(precedence and rounding)
+part is 0.99999999.  These behaviors (precedence and rounding)
 can make typecasting error-prone.
 
 
@@ -1988,21 +1990,17 @@ In mathematics, you have probably seen functions like $\sin$ and
 $\log$, and you have learned to evaluate expressions like
 $\sin(\pi/2)$ and $\log(1/x)$.  First, you evaluate the
 expression in parentheses, which is called the {\bf argument} of the
-function.  For example, $\pi/2$ is approximately 1.571, and $1/x$ is
-0.1(assuming that $x$ is 10).
-
+function.
 Then you can evaluate the function itself, either by looking it up in
-a table or by performing various computations.  The $\sin$ of 1.571 is
-1, and the $\log$ of 0.1 is -1(assuming that $\log$ indicates the
-logarithm base 10).
+a table or by performing various computations.
 
 This process can be applied repeatedly to evaluate more complicated
 expressions like $\log(1/\sin(\pi/2))$.  First we evaluate the
 argument of the innermost function, then evaluate the function,
 and so on.
 
-Java provides a set of built-in functions that includes most
-of the mathematical operations you can think of.  These functions
+Java provides a set of built-in functions that includes the most
+common mathematical operations.  These functions
 are called {\bf methods}.  Most math methods operate on
 {\tt double}s.
 
@@ -2016,12 +2014,12 @@ the {\tt print} statements we have already seen:
 \end{verbatim}
 %
 The first example sets {\tt root} to the square root of 17.
-The second example finds the sine of {\tt 1.5}, which is the
-value of the variable {\tt angle}.  Java assumes that the
+The second example finds the sine of the value of {\tt angle},
+which is {\tt 1.5}.  Java assumes that the
 values you use with {\tt sin} and the other trigonometric functions
 ({\tt cos}, {\tt tan}) are in {\em radians}.  To
 convert from degrees to radians, you can divide by 360
-and multiply by $2 \pi$.  Conveniently, Java provides $\pi$
+and multiply by $2 \pi$.  Conveniently, Java provides {\tt Math.PI}
 as a built-in value:
 
 \begin{verbatim}
@@ -2041,7 +2039,7 @@ and returns an {\tt int}.
 \end{verbatim}
 %
 In this case the multiplication happens first, before the
-method is invoked.  The result is 63(rounded up from 62.8319).
+method is invoked.  The result is 63 (rounded up from 62.8319).
 
 
 \section {Composition}
@@ -2059,7 +2057,7 @@ For example, you can use any expression as an argument to a method:
 %
 This statement takes the value {\tt Math.PI}, divides it by two and
 adds the result to the value of the variable {\tt angle}.  The sum is
-then passed as an argument to the {\tt cos} method. (Notice that {\tt
+then passed as an argument to {\tt cos}. ({\tt
 PI} is the name of a variable, not a method, so there are no
 arguments, not even the empty argument {\tt()}).
 
@@ -2080,12 +2078,10 @@ is.
 \index{main}
 \index{method!main}
 
-So far we have only been using the methods that are built into Java,
-but it is also possible to add new methods.  Actually, we have already
+So far we have used methods that are built into Java,
+but it is also possible to add new methods.  We have already
 seen one method definition: {\tt main}.  The method named {\tt main}
-is special in that it indicates where the execution of the program
-begins, but the syntax for {\tt main} is the same as for other
-method definitions:
+is special, but the syntax is the same for other methods:
 
 \begin{verbatim}
   public static void NAME( LIST OF PARAMETERS ) {
@@ -2095,15 +2091,19 @@ method definitions:
 %
 You can make up any name you want for your method, except
 that you can't call it {\tt main} or any other
-Java keyword.  The list of
+Java keyword.  By convention, Java methods start with a lower
+case letter and use ``camel caps,'' which is a cute name for
+{\tt jammingWordsTogetherLikeThis}.
+
+The list of
 parameters specifies what information, if any, you have to
-provide in order to use(or {\bf invoke}) the new function.
+provide in order to use (or {\bf invoke}) the new function.
 
 \index{body!method}
 
-The single parameter for {\tt main} is {\tt String[] args}, which
-indicates that whoever invokes {\tt main} has to provide an array of
-Strings(we'll get to arrays in Chapter~\ref{arrays}).  The first
+The parameter for {\tt main} is {\tt String[] args}, which
+means that whoever invokes {\tt main} has to provide an array of
+Strings (we'll get to arrays in Chapter~\ref{arrays}).  The first
 couple of methods we are going to write have no parameters, so the
 syntax looks like this:
 
@@ -2114,15 +2114,14 @@ syntax looks like this:
 \end{verbatim}
 %
 This method is named {\tt newLine}, and the empty parentheses
-indicate that it takes no parameters.  It contains only a single
+mean that it takes no parameters.  It contains one
 statement, which prints an empty {\tt String}, indicated by {\tt ""}.
 Printing a {\tt String} with no letters in it may not seem all that
-useful, except remember that {\tt println} skips to the next
-line after it prints, so this statement has the effect of
-skipping to the next line.
+useful, but {\tt println} skips to the next
+line after it prints, so this statement skips to the next line.
 
-In {\tt main} we can invoke this new method using syntax that
-is similar to the way we invoke the built-in Java methods:
+In {\tt main} we invoke this new method the same way we invoke the
+built-in Java methods:
 
 \begin{verbatim}
   public static void main(String[] args) {
@@ -2140,7 +2139,7 @@ First line.
 Second line.
 \end{verbatim}
 %
-Notice the extra space between the two lines.  What if we wanted
+Notice the extra space between the lines.  What if we wanted
 more space between the lines?  We could invoke the same
 method repeatedly:
 
@@ -2173,25 +2172,23 @@ You should notice a few things about this program:
 
 \begin{itemize}
 
-\item You can invoke the same procedure repeatedly.  In
-fact, it is quite common and useful to do so.
+\item You can invoke the same procedure more than once.
 
 \item You can have one method invoke another method.  In this
 case, {\tt main} invokes {\tt threeLine} and {\tt threeLine}
-invokes {\tt newLine}.  Again, this is common and useful.
+invokes {\tt newLine}.
 
-\item In {\tt threeLine} I wrote three statements all on the
-same line, which is syntactically legal(remember that spaces
-and new lines usually don't change the meaning of a program).
-On the other hand, it is usually a better idea to put each
-statement on a line by itself, to make your program easy to
-read.  I sometimes break that rule in this book to save space.
+\item In {\tt threeLine} I wrote three statements all on the same
+  line, which is syntactically legal (remember that spaces and new
+  lines usually don't change the meaning of a program).  It is usually
+  a good idea to put each statement on its own line, but I sometimes
+  break that rule.
 
 \end{itemize}
 
 So far, it may not be clear why it is worth the trouble to
-create all these new methods.  Actually, there are a lot
-of reasons, but this example only demonstrates two:
+create all these new methods.  There are several
+reasons; this example demonstrates two:
 
 \begin{enumerate}
 
@@ -2202,17 +2199,18 @@ English words in place of arcane code.  Which is clearer, {\tt
 newLine} or {\tt System.out.println("")}?
 
 \item Creating a new method can make a program smaller by eliminating
-repetitive code.  For example, how would you print nine consecutive
-new lines?  You could just invoke {\tt threeLine} three times.
+repetitive code.  For example, to print nine consecutive
+new lines, you could invoke {\tt threeLine} three times.
 
 \end{enumerate}
+
 
 \section{Classes and methods}
 \index{class}
 \index{method}
 
-Pulling together all the code fragments from the previous
-section, the whole class definition looks like this:
+Pulling together the code fragments from the previous
+section, the class definition looks like this:
 
 \begin{verbatim}
 class NewLine {
@@ -2239,7 +2237,7 @@ methods.  In this case, the class named {\tt NewLine} contains three
 methods, named {\tt newLine}, {\tt threeLine}, and {\tt main}.
 
 The other class we've seen is the {\tt Math} class.  It contains
-methods named {\tt sqrt}, {\tt sin}, and many others.  When
+methods named {\tt sqrt}, {\tt sin}, and others.  When
 we invoke a mathematical function, we have to specify
 the name of the class({\tt Math}) and the name of the function.
 That's why the syntax is slightly different for built-in
@@ -2251,9 +2249,9 @@ methods and the methods that we write:
 \end{verbatim}
 %
 The first statement invokes the {\tt pow} method in
-the {\tt Math class}(which raises the first argument to the
+the {\tt Math class} (which raises the first argument to the
 power of the second argument).  The second statement invokes
-the {\tt newLine} method, which Java assumes(correctly)
+the {\tt newLine} method, which Java assumes 
 is in the {\tt NewLine} class, which is what we are writing.
 
 If you try to invoke a method from the wrong class, the
@@ -2269,6 +2267,7 @@ named {\tt pow} in class {\tt NewLine}.''  If you have
 seen this message, you might have wondered why it was looking
 for {\tt pow} in your class definition.  Now you know.
 
+
 \section {Programs with multiple methods}
 
 When you look at a class definition that contains several methods, it
@@ -2277,7 +2276,7 @@ confusing, because that is not the {\bf order of execution} of the
 program.
 
 Execution always begins at the first statement of {\tt main},
-regardless of where it is in the program(in this case I deliberately
+regardless of where it is in the program (in this example I deliberately
 put it at the bottom).  Statements are executed one at a time, in
 order, until you reach a method invocation.  Method invocations are
 like a detour in the flow of execution.  Instead of going to the next
@@ -2293,12 +2292,12 @@ interrupted three times to go off and execute {\tt newLine}.
 
 For its part, {\tt newLine} invokes the built-in method
 {\tt println}, which causes yet another detour.  Fortunately,
-Java is quite adept at keeping track of where it is, so when
+Java is adept at keeping track of where it is, so when
 {\tt println} completes, it picks up where it left off in
 {\tt newLine}, and then gets back to {\tt threeLine}, and then
 finally gets back to {\tt main} so the program can terminate.
 
-Actually, technically, the program does not terminate at the
+Technically, the program does not terminate at the
 end of {\tt main}.  Instead, execution picks up where it left
 off in the program that invoked {\tt main}, which is the
 Java interpreter.  The Java interpreter takes care of things
@@ -2309,6 +2308,7 @@ What's the moral of this sordid tale?  When you
 read a program, don't read from top to bottom.  Instead,
 follow the flow of execution.
 
+
 \section {Parameters and arguments}
 \index{parameter}
 \index{argument}
@@ -2316,33 +2316,32 @@ follow the flow of execution.
 Some of the built-in methods we have used have {\bf parameters},
 which are values that you provide to let the method do its
 job.  For example, if you want to find the sine of a number,
-you have to indicate what the number is.  Thus, {\tt sin}
-takes a {\tt double} value as a parameter.  To print a string,
+you have to provide the number.  So {\tt sin}
+takes a {\tt double} as a parameter.  To print a string,
 you have to provide the string, which is why {\tt println}
 takes a {\tt String} as a parameter.
 
 Some methods take more than one parameter, like {\tt pow},
 which takes two {\tt doubles}, the base and the exponent.
 
-Notice that in each of these cases we have to specify not
+We have to specify not
 only how many parameters there are, but also what type they
 are.  So it shouldn't surprise you that when you write a
 class definition, the parameter list indicates the type of
 each parameter.  For example:
 
 \begin{verbatim}
-  public static void printTwice(String phil) {
-    System.out.println(phil);
-    System.out.println(phil);
+  public static void printTwice(String s) {
+    System.out.println(s);
+    System.out.println(s);
   }
 \end{verbatim}
 %
-This method takes a single parameter, named {\tt phil}, that
+This method takes a single parameter, named {\tt s}, that
 has type {\tt String}.  Whatever that parameter is(and at
 this point we have no idea what it is), it gets printed
-twice.  I chose the name {\tt phil} to suggest that the name
-you give a parameter is up to you, but in general you want to
-choose something more illustrative than {\tt phil}.
+twice.  I chose the name {\tt s} as a hint that the parameter
+is a string, but in general you can choose any name you want.
 
 In order to invoke this method, we have to provide a {\tt String}.
 For example, we might have a {\tt main} method like this:
@@ -2370,9 +2369,9 @@ use it as an argument instead:
   }
 \end{verbatim}
 %
-Notice something very important here: the name of the variable we pass
-as an argument({\tt argument}) has nothing to do with the name of the
-parameter({\tt phil}).  Let me say that again:
+Notice something very important: the name of the variable we pass
+as an argument ({\tt argument}) has nothing to do with the name of the
+parameter ({\tt s}).  Let me say that again:
 
 \begin{quote}
 
@@ -2383,11 +2382,11 @@ with the name of the parameter.}
 
 They can be the same or they can be different, but it is important
 to realize that they are not the same thing, except that they happen
-to have the same value(in this case the string {\tt "Never say never."}).
+to have the same value (in this case the string {\tt "Never say never."}).
 
 The value you provide as an argument must have the same type as
-the parameter of the method you invoke.  This rule is very
-important, but it often gets complicated in Java for two reasons:
+the parameter of the method you invoke.  This rule is
+important, but it gets complicated in Java for two reasons:
 
 \begin {itemize}
 
@@ -2414,7 +2413,7 @@ times, though, you will figure out how to interpret it.
 
 Parameters and other
 variables only exist inside their own methods.  Within the
-confines of {\tt main}, there is no such thing as {\tt phil}.
+confines of {\tt main}, there is no such thing as {\tt s}.
 If you try to use it, the compiler will complain.  Similarly,
 inside {\tt printTwice} there is no such thing as {\tt argument}.
 
