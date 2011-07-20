@@ -2508,6 +2508,10 @@ illegal in Java, a good way to find out is to ask the compiler.
 
 \begin{description}
 
+\item[initialization:]  A statement that declares a new variable
+and assigns a value to it at the same time.
+\index{initialization}
+
 \item[floating-point:] A type of variable (or value) that can contain
 fractions as well as integers.  The floating-point type we will
 use is {\tt double}.
@@ -3010,7 +3014,7 @@ When a method invokes itself, that's called {\bf recursion}, and
 such methods are {\bf recursive}.
 
 
-\section {Stack diagrams for recursive methods}
+\section{Stack diagrams for recursive methods}
 \index{stack}
 \index{diagram!state}
 \index{diagram!stack}
@@ -3432,10 +3436,11 @@ create a new color like this:
 \end{verbatim}
 
 Make a few bugs with different colors.  Then write a method named
-{\tt colorBug} that takes a Bug as a parameter, reads the its location,
+{\tt colorBug} that takes a Bug as a parameter, reads its location,
 and sets the color accordingly.  The Location object you get from
 {\tt getLocation} has methods named {\tt getRow} and {\tt getCol} that
-return integers.
+return integers.  You could use the row to control the red level and the
+column to control the blue.
 
 Write a method named {\tt makeBugs} that takes an ActorWorld and an
 integer {\tt n} and creates {\tt n} bugs colored according to
@@ -3459,7 +3464,7 @@ their location.
 \index{method!void}
 
 Some of the built-in methods we have used, like the Math
-functions, have produced results.  That is, the effect of
+functions, produce results.  That is, the effect of
 invoking the method is to generate a new value, which we
 usually assign to a variable or use as part of an expression.
 For example:
@@ -3475,14 +3480,13 @@ a void method, it is typically on a line by itself, with
 no assignment:
 
 \begin{verbatim}
+    countdown(3);
     nLines(3);
-    g.drawOval(0, 0, width, height);
 \end{verbatim}
 %
-In this chapter, we are going to write methods that return things,
-which I will refer to as {\bf fruitful} methods, for want of a better
-name.  The first example is {\tt area}, which takes a {\tt
-double} as a parameter, and returns the area of a circle with the
+In this chapter we write methods that return things, which I call 
+{\bf fruitful} methods.  The first example is {\tt area}, which takes a
+{\tt double} as a parameter, and returns the area of a circle with the
 given radius:
 
 \begin{verbatim}
@@ -3495,13 +3499,13 @@ given radius:
 The first thing you should notice is that the beginning of the
 method definition is different.  Instead of {\tt public static
 void}, which indicates a void method, we see {\tt public static
-double}, which indicates that the return value from this method
-will have type {\tt double}.  I still haven't explained what
+double}, which means that the return value from this method
+is a {\tt double}.  I still haven't explained what
 {\tt public static} means, but be patient.
 
 \index{static}
 
-Also, notice that the last line is an alternative form of the
+The last line is a new form of the
 {\tt return} statement that includes a return value.  This
 statement means, ``return immediately from this method and
 use the following expression as a return value.''  The
@@ -3565,11 +3569,12 @@ the program hits a return statement.  For example:
   }
 \end{verbatim}
 %
-This program is not legal because if {\tt x} happens to be 0, then
-neither condition will be true and the method will end without hitting
+This program is not legal because if {\tt x} is 0,
+neither condition is true and the method ends without hitting
 a return statement.  A typical compiler message would be ``return
 statement required in absoluteValue,'' which is a confusing message
-considering that there are already two of them.
+since there are already two of them.
+
 
 \section{Program development}
 \label{distance}
@@ -3592,7 +3597,7 @@ distance = \sqrt{(x_2 - x_1)^2 +(y_2 - y_1)^2}
 %
 The first step is to consider what a {\tt distance} method
 should look like in Java.  In other words, what are the inputs
-(parameters) and what is the output(return value).
+(parameters) and what is the output (return value)?
 
 In this case, the two points are the parameters, and it is
 natural to represent them using four {\tt double}s, although
@@ -3613,7 +3618,7 @@ The statement {\tt return 0.0;} is a place-keeper that is necessary
 in order to compile the program.  Obviously, at this stage the
 program doesn't do anything useful, but it is worthwhile to
 try compiling it so we can identify any syntax errors before
-we make it more complicated.
+we add more code.
 
 In order to test the new method, we have to invoke it with
 sample values.  Somewhere in {\tt main} I would add:
@@ -3624,17 +3629,17 @@ sample values.  Somewhere in {\tt main} I would add:
 %
 I chose these values so that the horizontal
 distance is 3 and the vertical distance is 4; that way,
-the result will be 5(the hypotenuse of a 3-4-5 triangle).
+the result will be 5 (the hypotenuse of a 3-4-5 triangle).
 When you are testing a method, it is useful to know the right
 answer.
 
 Once we have checked the syntax of the method definition, we
 can start adding lines of code one at a time.  After each
-incremental change, we recompile and run the program.  That
-way, at any point we know exactly where the error must be---in
-the last line we added.
+incremental change, we recompile and run the program.  If there is
+an error at any point, we have a good idea where to look:
+in the last line we added.
 
-The next step in the computation is to find the differences
+The next step is to find the differences
 $x_2 - x_1$ and $y_2 - y_1$.  I will store those values in
 temporary variables named {\tt dx} and {\tt dy}.
 
@@ -3649,21 +3654,18 @@ temporary variables named {\tt dx} and {\tt dy}.
   }
 \end{verbatim}
 %
-I added print statements that will let me check the intermediate
-values before proceeding.  As I mentioned, I already know that they
-should be 3.0 and 4.0.
+I added print statements so we can check the intermediate values
+before proceeding.  They should be 3.0 and 4.0.
 
 \index{scaffolding}
 
 When the method is finished I will remove the print statements.  Code
 like that is called {\bf scaffolding}, because it is helpful for
 building the program, but it is not part of the final product.
-Sometimes it is a good idea to keep the scaffolding around, but
-comment it out, just in case you need it later.
 
-The next step in the development is to square {\tt dx} and {\tt dy}.
-We could use the {\tt Math.pow} method, but it is simpler and
-faster to just multiply each term by itself.
+The next step is to square {\tt dx} and {\tt dy}.  We could use the
+{\tt Math.pow} method, but it is simpler to multiply each term by
+itself.
 
 \begin{verbatim}
   public static double distance
@@ -3677,9 +3679,9 @@ faster to just multiply each term by itself.
 \end{verbatim}
 %
 Again, I would compile and run the program at this stage
-and check the intermediate value(which should be 25.0).
+and check the intermediate value (which should be 25.0).
 
-Finally, we can use the {\tt Math.sqrt} method to compute and
+Finally, we can use {\tt Math.sqrt} to compute and
 return the result.
 
 \begin{verbatim}
@@ -3693,12 +3695,12 @@ return the result.
   }
 \end{verbatim}
 %
-Then in {\tt main}, we should print and check the value of the result.
+In {\tt main}, we can print and check the value of the result.
 
-As you gain more experience programming, you might find yourself
-writing and debugging more than one line at a time.  Nevertheless,
+As you gain more experience programming, you might
+write and debug more than one line at a time.  Nevertheless,
 this incremental development process can save you a lot of
-debugging time.
+time.
 
 The key aspects of the process are:
 
@@ -3711,17 +3713,18 @@ exactly where it is.
 \item Use temporary variables to hold intermediate values so
 you can print and check them.
 
-\item Once the program is working, you might want to remove
-some of the scaffolding or consolidate multiple statements into
+\item Once the program is working, you can remove
+scaffolding and consolidate multiple statements into
 compound expressions, but only if it does not make the program
 difficult to read.
 
 \end{itemize}
 
+
 \section{Composition}
 \index{composition}
 
-As you should expect by now, once you define a new method,
+Once you define a new method,
 you can use it as part of an expression, and you can build
 new methods using existing methods.  For example, what if someone
 gave you two points, the center of the circle and a point on
@@ -3748,7 +3751,7 @@ radius, and return it.
 Wrapping that all up in a method, we get:
 
 \begin{verbatim}
-  public static double fred
+  public static double circleArea
               (double xc, double yc, double xp, double yp) {
     double radius = distance(xc, yc, xp, yp);
     double area = area(radius);
@@ -3756,38 +3759,34 @@ Wrapping that all up in a method, we get:
   } 
 \end{verbatim}
 %
-The name of this method is {\tt fred}, which may seem odd.  I will
-explain why in the next section.
-
 The temporary variables {\tt radius} and {\tt area} are
 useful for development and debugging, but once the program is
 working we can make it more concise by composing
 the method invocations:
 
 \begin{verbatim}
-  public static double fred
+  public static double circleArea
               (double xc, double yc, double xp, double yp) {
     return area(distance(xc, yc, xp, yp));
   } 
 \end{verbatim}
 
+
 \section{Overloading}
 \label{overloading}
 \index{overloading}
 
-In the previous section you might have noticed that {\tt fred}
+You might have noticed that {\tt circleArea}
 and {\tt area} perform similar functions---finding
 the area of a circle---but take different parameters.  For
-{\tt area}, we have to provide the radius; for {\tt fred}
+{\tt area}, we have to provide the radius; for {\tt circleArea}
 we provide two points.
 
 If two methods do the same thing, it is natural to give them
-the same name.  In other words, it would make more sense if
-{\tt fred} were called {\tt area}.
-
+the same name.  
 Having more than one method with the same name, which is called {\bf
 overloading}, is legal in Java {\em as long as each version takes
-different parameters}.  So we can go ahead and rename {\tt fred}:
+different parameters}.  So we could rename {\tt circleArea}:
 
 \begin{verbatim}
   public static double area
@@ -3804,7 +3803,7 @@ want by looking at the arguments that you provide.  If you write:
 \end{verbatim}
 %
 Java goes looking for a method named {\tt area} that
-takes a single {\tt double} as an argument, and so it uses the
+takes one {\tt double} as an argument, and so it uses the
 first version, which interprets the argument as a radius.
 If you write:
 
@@ -3812,9 +3811,8 @@ If you write:
     double x = area(1.0, 2.0, 4.0, 6.0);
 \end{verbatim}
 %
-Java uses the second version of {\tt area}.  More amazing
-still, the second version of {\tt area} actually invokes the
-first.
+Java uses the second version of {\tt area}.  And notice that the
+second version of {\tt area} actually invokes the first.
 
 Many of the built-in Java methods are overloaded, meaning that there
 are different versions that accept different numbers or types of
@@ -3828,16 +3826,18 @@ with caution.  You might get yourself nicely confused if you
 are trying to debug one version of a method while accidently
 invoking a different one.
 
-Actually, that reminds me of one of the cardinal rules of
+And that reminds me of one of the cardinal rules of
 debugging: {\bf make sure that the version of the program
 you are looking at is the version of the program that is running!}
-Some time you may find yourself making one change after another
+
+Some day you may find yourself making one change after another
 in your program, and seeing the same thing every time you run it.
-This is a warning sign that for one reason or another you are
+This is a warning sign that you are
 not running the version of the program you think you are.  To
-check, stick in a {\tt print} statement(it doesn't matter what
+check, add a {\tt print} statement (it doesn't matter what
 you print) and make sure the behavior of the program changes
 accordingly.
+
 
 \section{Boolean expressions}
 \index{boolean}
@@ -3869,21 +3869,22 @@ expressions and variables:
 \end{verbatim}
 %
 The first example is a simple variable declaration;
-the second example is an assignment, and the third example is a
-combination of a declaration and an assignment, sometimes
-called an {\bf initialization}.  The values {\tt true} and {\tt false}
+the second example is an assignment, and the third example is an
+initialization.
+
+The values {\tt true} and {\tt false}
 are keywords in Java, so they may appear in a different color,
 depending on your development environment.
 
 \index{initialization}
 \index{statement!initialization}
 
-As I mentioned, the result of a conditional operator is a boolean,
+The result of a conditional operator is a boolean,
 so you can store the result of a comparison in a variable:
 
 \begin{verbatim}
-    boolean evenFlag =(n%2 == 0);     // true if n is even
-    boolean positiveFlag =(x > 0);    // true if x is positive
+    boolean evenFlag = (n%2 == 0);     // true if n is even
+    boolean positiveFlag = (x > 0);    // true if x is positive
 \end{verbatim}
 %
 and then use it as part of a conditional statement later:
@@ -3894,8 +3895,9 @@ and then use it as part of a conditional statement later:
     }
 \end{verbatim}
 %
-A variable used in this way is frequently called a {\bf flag},
-since it flags the presence or absence of some condition.
+A variable used in this way is called a {\bf flag}
+because it flags the presence or absence of some condition.
+
 
 \section{Logical operators}
 \index{logical operator}
@@ -3903,7 +3905,7 @@ since it flags the presence or absence of some condition.
 
 There are three {\bf logical operators} in Java: AND, OR and NOT,
 which are denoted by the symbols {\tt \&\&}, {\tt ||} and
-{\tt !}.  The semantics(meaning) of these operators is similar
+{\tt !}.  The semantics of these operators is similar
 to their meaning in English.  For example {\tt x > 0 \&\& x < 10}
 is true only if {\tt x} is greater than zero AND less than 10.
 
@@ -3913,15 +3915,15 @@ is true only if {\tt x} is greater than zero AND less than 10.
 the conditions is true, that is, if {\tt evenFlag} is true OR the
 number is divisible by 3.
 
-Finally, the NOT operator has the effect of negating or
-inverting a boolean expression, so {\tt !evenFlag} is true
-if {\tt evenFlag} is false---if the number is odd.
+Finally, the NOT operator inverts a boolean expression, so {\tt
+  !evenFlag} is true if {\tt evenFlag} is false---if the number is
+odd.
 
 \index{nested structure}
 
-Logical operators often provide a way to simplify nested
-conditional statements.  For example, how would you write
-the following code using a single conditional?
+Logical operators can simplify nested
+conditional statements.  For example, can you re-write
+this code using a single conditional?
 
 \begin{verbatim}
     if (x > 0) {
@@ -3931,13 +3933,14 @@ the following code using a single conditional?
     }
 \end{verbatim}
 
+
 \section{Boolean methods}
 \label{boolean}
 \index{boolean}
 \index{method!boolean}
 
 Methods can return boolean values just like any other type,
-which is often convenient for hiding complicated tests inside
+which is often convenient for hiding tests inside
 methods.  For example:
 
 \begin{verbatim}
@@ -3958,11 +3961,11 @@ statement has to provide a boolean expression.
 The code itself is straightforward, although it is a bit longer than
 it needs to be.  Remember that the expression {\tt x >= 0 \&\& x < 10}
 has type boolean, so there is nothing wrong with returning it
-directly, and avoiding the {\tt if} statement altogether:
+directly and avoiding the {\tt if} statement altogether:
 
 \begin{verbatim}
   public static boolean isSingleDigit(int x) {
-    return(x >= 0 && x < 10);
+    return (x >= 0 && x < 10);
   }
 \end{verbatim}
 %
@@ -3973,10 +3976,9 @@ In {\tt main} you can invoke this method in the usual ways:
   System.out.println(isSingleDigit(2));
 \end{verbatim}
 %
-The first line assigns the value {\tt true} to {\tt bigFlag}
+The first line sets {\tt bigFlag} to {\tt true}
 only if 17 is {\em not} a single-digit number.  The second
 line prints {\tt true} because 2 is a single-digit number.
-Yes, {\tt println} is overloaded to handle booleans, too.
 
 The most common use of boolean methods is inside conditional
 statements
@@ -3989,38 +3991,31 @@ statements
     }
 \end{verbatim}
 
+
 \section {More recursion}
 \index{recursion}
 \index{language!complete}
 
-Now that we have methods that return values, you might be interested
-to know that we have a {\bf complete} programming language, by which I
-mean that anything that can be computed can be expressed in this
-language.  Any program ever written could be rewritten
-using only the language features we have used so far (actually, we
-would need a few statements to control devices like the keyboard, mouse,
-disks, etc., but that's all).
-
+Now that we have methods that return values, we have a {\bf Turing
+  complete} programming language, which means that we can compute
+anything computable, for any reasonable definition of ``computable.''
 \index{Turing, Alan}
+\index{Church, Alonzo}
 
-Proving this claim is a non-trivial exercise first
-accomplished by Alan Turing, one of the first computer scientists
-(well, some would argue that he was a mathematician, but a lot of the
-early computer scientists started as mathematicians).  Accordingly, it
-is known as the Turing thesis.  If you take a course on the Theory of
-Computation, you will have a chance to see the proof.
+This idea was developed by Alonzo Church and Alan Turing, so it is
+known as the Church-Turing thesis.  You can read more about it at
+\url{http://en.wikipedia.org/wiki/Turing_thesis}.
 
 To give you an idea of what you can do with the tools we have learned
 so far, let's look at some methods for evaluating
 recursively-defined mathematical functions.  A recursive definition is
 similar to a circular definition, in the sense that the definition
 contains a reference to the thing being defined.  A truly circular
-definition is typically not very useful:
+definition is not very useful:
 
 \begin{description}
 
-\item[frabjuous:] an adjective used to describe
-something that is frabjuous.
+\item[recursive:] an adjective used to describe a method that is recursive.
 
 \index{frabjuous}
 
@@ -4030,7 +4025,7 @@ If you saw that definition in the dictionary, you might be
 annoyed.  On the other hand, if you looked up the definition
 of the mathematical function {\bf factorial}, you might
 get something like:
-
+%
 \begin{eqnarray*}
 &&  0! = 1 \\
 &&  n! = n \cdot(n-1)!
@@ -4045,9 +4040,9 @@ $1!$, which is 1 times $0!$.  Putting it all together, we get
 $3!$ equal to 3 times 2 times 1 times 1, which is 6.
 
 If you can write a recursive definition of something, you can usually
-write a Java program to evaluate it.  The first step is to decide what
-the parameters are for this function, and what the return type is.
-With a little thought, you should conclude that factorial takes an
+write a Java method to evaluate it.  The first step is to decide what
+the parameters are and what the return type is.  Since factorial is
+defined for integers, the method takes an
 integer as a parameter and returns an integer:
 
 \begin{verbatim}
@@ -4055,8 +4050,7 @@ integer as a parameter and returns an integer:
   }
 \end{verbatim}
 
-\noindent If the argument happens to be zero, all we have to do is
-return 1:
+\noindent If the argument happens to be zero, return 1:
 
 \begin{verbatim}
   public static int factorial(int n) {
@@ -4066,6 +4060,8 @@ return 1:
   }
 \end{verbatim}
 %
+That's the base case.
+
 Otherwise, and this is the interesting part, we have to make
 a recursive call to find the factorial of $n-1$, and then
 multiply it by $n$.
@@ -4082,8 +4078,8 @@ multiply it by $n$.
   }
 \end{verbatim}
 %
-If we look at the flow of execution for this program,
-it is similar to {\tt nLines} from the previous chapter.
+The flow of execution for this program is similar to {\tt countdown}
+from Section~\ref{recursion}.
 If we invoke {\tt factorial} with the value 3:
 
 Since 3 is not zero, we take the second branch and calculate
@@ -4104,17 +4100,17 @@ calls.
 
 \end{quote}
 
-The return value(1) gets multiplied by {\tt n}, which is 1,
+The return value (1) gets multiplied by {\tt n}, which is 1,
 and the result is returned.
 
 \end{quote}
 
-The return value(1) gets multiplied by {\tt n}, which is 2,
+The return value (1) gets multiplied by {\tt n}, which is 2,
 and the result is returned.
 
 \end{quote}
 
-\noindent The return value(2) gets multiplied by {\tt n}, which is 3,
+\noindent The return value (2) gets multiplied by {\tt n}, which is 3,
 and the result, 6, is returned to {\tt main}, or whoever
 invoked {\tt factorial(3)}.
 
@@ -4131,79 +4127,58 @@ function calls:
 %
 The return values are shown being passed back up the stack.
 
-Notice that in the last instance of {\tt factorial}, the local
-variables {\tt recurse} and {\tt result} do not exist because
-when {\tt n=0} the branch that creates them does not execute.
+Notice that in the last frame {\tt recurse} and {\tt result} do not
+exist because when {\tt n=0} the branch that creates them does not
+execute.
 
 
 \section{Leap of faith}
 \index{leap of faith}
 
-Following the flow of execution is one way to read programs, but as
-you saw in the previous section, it can quickly become labarynthine.
-An alternative is what I call the ``leap of faith.''  When you come to
-a method invocation, instead of following the flow of execution, you
-{\em assume} that the method works correctly and returns the
-appropriate value.
+Following the flow of execution is one way to read programs it can
+quickly become labarynthine.  An alternative is what I call the ``leap
+of faith.''  When you come to a method invocation, instead of
+following the flow of execution, you {\em assume} that the method
+works correctly and returns the appropriate value.
 
 In fact, you are already practicing this leap of faith
 when you use built-in methods.  When you invoke {\tt Math.cos}
-or {\tt drawOval}, you don't examine the implementations of 
-those methods.  You just assume that they work, because the people
-who wrote the built-in classes were good programmers.
+or {\tt System.out.println}, you don't examine the implementations of 
+those methods.  You just assume that they work.
 
-Well, the same is true when you invoke one of your own methods.
+You can apply the same logic to your own methods.
 For example, in Section~\ref{boolean} we wrote a method called
 {\tt isSingleDigit} that determines whether a number is between
-0 and 9.  Once we have convinced ourselves that this method
+0 and 9.  Once we convince ourselves that this method
 is correct---by testing and examination of the code---we can
 use the method without ever looking at the code again.
 
 The same is true of recursive programs.  When you get to
 the recursive invocation, instead of following the flow of
 execution, you should {\em assume} that the recursive invocation
-works(yields the correct result), and then ask yourself,
+works, and then ask yourself,
 ``Assuming that I can find the factorial of $n-1$, can I
-compute the factorial of $n$?''  In this case, it is clear
-that you can, by multiplying by $n$.
+compute the factorial of $n$?''  Yes, you can, by multiplying by $n$.
 
-Of course, it is a bit strange to assume that the method
+Of course, it is strange to assume that the method
 works correctly when you have not even finished writing it,
 but that's why it's called a leap of faith!
+
 
 \section{One more example}
 \index{factorial}
 \label{factorial}
 
-In the previous example I used temporary variables to spell out the
-steps, and to make the code easier to debug, but I could have saved a
-few lines:
-
-\begin{verbatim}
-  public static int factorial(int n) {
-    if (n == 0) {
-      return 1;
-    } else {
-      return n * factorial(n-1);
-    }
-  }
-\end{verbatim}
-%
-From now on I will tend to use the more concise version, but
-I recommend that you use the more explicit version while you
-are developing code.   When you have it working, you can
-tighten it up, if you are feeling inspired.
-
-After {\tt factorial}, the classic example of a recursively-defined
+The second most common example of a recursively-defined
 mathematical function is {\tt fibonacci}, which has the
 following definition:
-
+%
 \begin{eqnarray*}
 && fibonacci(0) = 1 \\
 && fibonacci(1) = 1 \\
 && fibonacci(n) = fibonacci(n-1) + fibonacci(n-2);
 \end{eqnarray*}
-
+%
 Translated into Java, this is
 
 \begin{verbatim}
@@ -4215,12 +4190,11 @@ Translated into Java, this is
     }
   }
 \end{verbatim}
-%
-If you try to follow the flow of execution here, even for fairly small
+% If you try to follow the flow of execution here, even for small
 values of {\tt n}, your head explodes.  But according to the leap of
-faith, if we assume that the two recursive calls(yes, you can make
-two recursive calls) work correctly, then it is clear that we get the
-right result by adding them together.
+faith, if we assume that the two recursive calls work correctly, then
+it is clear that we get the right result by adding them together.
+
 
 \section{Glossary}
 
@@ -4259,9 +4233,6 @@ operands.
 \item[logical operator:]  An operator that combines boolean values
 and produces boolean values.
 
-\item[initialization:]  A statement that declares a new variable
-and assigns a value to it at the same time.
-
 \index{return type}
 \index{return value}
 \index{dead code}
@@ -4271,7 +4242,7 @@ and assigns a value to it at the same time.
 \index{boolean}
 \index{operator!conditional}
 \index{operator!logical}
-\index{initialization}
+
 
 \end{description}
 
@@ -4279,25 +4250,10 @@ and assigns a value to it at the same time.
 \section{Exercises}
 
 \begin{exercise}
-If you are given three sticks, you may or may not be able to arrange
-them in a triangle.  For example, if one of the sticks is 12 inches
-long and the other two are one inch long, you will
-not be able to get the short sticks to meet in the middle.  For any
-three lengths, there is a simple test to see if it is possible to form
-a triangle:
-
-\begin{quotation}
-``If any of the three lengths is greater than the sum of the other two,
-then you cannot form a triangle.  Otherwise, you can.''
-\end{quotation}
-
-Write a method named {\tt isTriangle} that it takes three integers as
-arguments, and that returns either {\tt true} or {\tt false},
-depending on whether you can or cannot form a triangle from sticks
-with the given lengths.
-
-The point of this exercise is to use conditional statements to
-write a method that returns a value.
+\label{ex.isdiv}
+Write a class method named {\tt isDivisible} that takes
+two integers, {\tt n} and {\tt m} and that returns {\tt true}
+if {\tt n} is divisible by {\tt m} and {\tt false} otherwise.
 \end{exercise}
 
 
@@ -4329,7 +4285,6 @@ following values:
 %
 \item Write a method called {\tt yikes} that takes a
 double as a parameter and that uses {\tt multadd} to calculate
-and print
 %
 \begin{eqnarray*}
 x e^{-x} + \sqrt{1 - e^{-x}}
@@ -4343,20 +4298,36 @@ In the last part, you get a chance to write a method that invokes
 a method you wrote.  Whenever you do that, it is a good idea to
 test the first method carefully before you start working on the
 second.  Otherwise, you might find yourself debugging two methods
-at the same time, which can be very difficult.
+at the same time, which can be difficult.
 
 One of the purposes of this exercise is to practice pattern-matching:
 the ability to recognize a specific problem as an instance of a
 general category of problems.
-
 \end{exercise}
+
 
 \begin{exercise}
-\label{ex.isdiv}
-Write a class method named {\tt isDivisible} that takes
-two integers, {\tt n} and {\tt m} and that returns {\tt true}
-if {\tt n} is divisible by {\tt m} and {\tt false} otherwise.
+If you are given three sticks, you may or may not be able to arrange
+them in a triangle.  For example, if one of the sticks is 12 inches
+long and the other two are one inch long, you will
+not be able to get the short sticks to meet in the middle.  For any
+three lengths, there is a simple test to see if it is possible to form
+a triangle:
+
+\begin{quotation}
+``If any of the three lengths is greater than the sum of the other two,
+then you cannot form a triangle.  Otherwise, you can.''
+\end{quotation}
+
+Write a method named {\tt isTriangle} that it takes three integers as
+arguments, and that returns either {\tt true} or {\tt false},
+depending on whether you can or cannot form a triangle from sticks
+with the given lengths.
+
+The point of this exercise is to use conditional statements to
+write a fruitful method.
 \end{exercise}
+
 
 \begin{exercise}
 What is the output of the following program?  The purpose of
@@ -4397,7 +4368,6 @@ and the flow of execution through fruitful methods.
       return frabjuousFlag;
   }
 \end{verbatim}
-
 \end{exercise}
 
 
@@ -4408,7 +4378,7 @@ is
 
 \[Distance = \sqrt{(x_2 - x_1)^2 +(y_2 - y_1)^2} \]
 
-Please write a method named {\tt distance} that takes four
+Write a method named {\tt distance} that takes four
 doubles as parameters---{\tt x1}, {\tt y1}, {\tt x2} and {\tt
 y2}---and that prints the distance between the points.
 
@@ -4426,27 +4396,6 @@ The point of this exercise is to write a new method that uses an
 existing one.  You should write only one method: {\tt distance}.  You
 should not write {\tt sumSquares} or {\tt main} and you should not
 invoke {\tt distance}.
-\end{exercise}
-
-\begin{exercise}
-The point of this exercise is to practice the syntax of fruitful
-methods.
-
-\begin{enumerate}
-
-\item Dig out your solution to Exercise~\ref{ex.multadd} and make sure
-you can still compile and run it.
-
-\item Transform {\tt multadd} into a fruitful method, so
-that instead of printing a result, it returns it.
-
-\item Everywhere in the program that {\tt multadd} gets
-invoked, change the invocation so that it stores the
-result in a variable and/or prints the result.
-
-\item Transform {\tt yikes} in the same way.
-
-\end{enumerate}
 \end{exercise}
 
 
@@ -4492,7 +4441,7 @@ What is the output of this program?
 The purpose of this exercise is to translate a recursive definition
 into a Java method.  The Ackerman function is defined for non-negative
 integers as follows:
-
+%
 \begin{eqnarray*}
 A(m,n) = \left\{
 \begin{array}{l@{\quad \mathbf{if} \quad }l}
@@ -4510,7 +4459,7 @@ Test your implementation of Ackerman by invoking it
 from {\tt main} and printing the return value.  
 
 WARNING: the return value gets very big very quickly.  You should try it
-only for small values of $m$ and $n$(not bigger than 2).
+only for small values of $m$ and $n$ (not bigger than 2).
 
 \end{exercise}
 
@@ -4549,7 +4498,7 @@ String, one on each line.  It should be a {\tt void} method.
 
 \item Write a method called {\tt printBackward} that does
 the same thing as {\tt printString} but that prints the String
-backwards(one character per line).
+backward (one character per line).
 
 \item Write a method called {\tt reverseString} that takes
 a String as a parameter and that returns a new String as a
@@ -4568,57 +4517,24 @@ should be
 yenwoD nellA
 \end{verbatim}
 
-
 \end{enumerate}
 \end{exercise}
 
-\begin{exercise}
-\begin{enumerate}
-
-\item Create a new program called {\tt Sum.java},
-and type in the following two methods.
-
-\begin{verbatim}
-  public static int methOne(int m, int n) {
-    if (m == n) {
-      return n;
-    } else {
-      return m + methOne(m+1, n);
-    }
-  }
-
-  public static int methTwo(int m, int n) {
-    if (m == n) {
-      return n;
-    } else {
-      return n * methTwo(m, n-1);
-    }
-  }
-\end{verbatim}
-%
-\item Write a few lines in {\tt main} to test these methods.
-Invoke them a couple of times, with a few different values,
-and see what you get.  By some combination of testing and
-examination of the code, figure out what these methods do,
-and give them more meaningful names.  Add comments that
-describe their function abstractly.
-
-\item Add a {\tt println} statement to the beginning of both
-methods so that they print their arguments each time they are
-invoked.  This is a useful technique for debugging recursive
-programs, since it demonstrates the flow of execution.
-
-\end{enumerate}
-\end{exercise}
 
 \begin{exercise}
 \label{ex.power}
 Write a recursive method called {\tt power} that
 takes a double {\tt x} and an integer {\tt n} and that
-returns $x^n$.  Hint: a recursive definition of this
-operation is {\tt power(x, n) = x * power(x, n-1)}.
+returns $x^n$.
+
+Hint: a recursive definition of this
+operation is $x^n = x \cdot x^{n-1}$.
 Also, remember that anything raised to the zeroeth power
 is 1.
+
+Optional challenge: you can make this method more efficient, when {\tt
+  n} is even, using $x^n = \left( x^{n/2} \right)^2$.
+
 \end{exercise}
 
 
@@ -4636,15 +4552,15 @@ The process is based on the observation that, if $r$ is the
 remainder when $a$ is divided by $b$, then the common divisors
 of $a$ and $b$ are the same as the common divisors of $b$ and $r$.
 Thus we can use the equation
-
+%
 \[ gcd(a, b) = gcd(b, r) \]
-
+%
 to successively reduce the problem of computing a GCD to the
 problem of computing the GCD of smaller and smaller pairs of integers.
 For example,
-
+%
 \[ gcd(36, 20) = gcd(20, 16) = gcd(16, 4) = gcd(4, 0) = 4\]
-
+%
 implies that the GCD of 36 and 20 is 4.  It can be shown
 that for any two starting numbers, this repeated reduction eventually
 produces a pair where the second number is 0.  Then the GCD is the
@@ -6369,7 +6285,7 @@ printable version and an internal format used for sorting.
 
 In this exercise, you will write a method that compares two
 names by converting them to a standard format.  We will work
-from the bottom up, writing some helper methods and then
+from the bottom up, writing some simple methods and then
 {\tt compareName}.
 
 \begin{enumerate}
