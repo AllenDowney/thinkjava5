@@ -2067,7 +2067,7 @@ an argument to another:
     double x = Math.exp(Math.log(10.0));
 \end{verbatim}
 %
-In Java, the {\tt log} function always uses base $e$, so this
+In Java, the {\tt log} method always uses base $e$, so this
 statement finds the log base $e$ of 10 and then raises $e$ to that
 power.  The result gets assigned to {\tt x}; I hope you know what it
 is.
@@ -2097,7 +2097,7 @@ case letter and use ``camel caps,'' which is a cute name for
 
 The list of
 parameters specifies what information, if any, you have to
-provide in order to use (or {\bf invoke}) the new function.
+provide in order to use (or {\bf invoke}) the new method.
 
 \index{body!method}
 
@@ -2241,8 +2241,8 @@ methods, named {\tt newLine}, {\tt threeLine}, and {\tt main}.
 
 The other class we've seen is the {\tt Math} class.  It contains
 methods named {\tt sqrt}, {\tt sin}, and others.  When
-we invoke a mathematical function, we have to specify
-the name of the class({\tt Math}) and the name of the function.
+we invoke a mathematical method, we have to specify
+the name of the class ({\tt Math}) and the name of the method.
 That's why the syntax is slightly different for built-in
 methods and the methods that we write:
 
@@ -3257,6 +3257,7 @@ would assign the value {\tt 8} to {\tt x}, because $2^3 = 8$.
 
 \beforechapter
 \chapter{GridWorld: Part One}
+\label{gridworld}
 
 \section{Getting started}
 
@@ -3270,7 +3271,7 @@ When you unpack this code, you should have a folder named {\tt
 contains {\tt BugRunner.java}.
 
 Make a copy of {\tt BugRunner.java} in another folder and then import it
-into you development environment.  There are instructions here that
+into your development environment.  There are instructions here that
 might help: \url{http://www.collegeboard.com/prod_downloads/student/testing/ap/compsci_a/ap07_gridworld_installation_guide.pdf}.
 
 Once you run {\tt BugRunner.java}, download the GridWorld Student
@@ -3441,14 +3442,21 @@ create a new color like this:
 
 Make a few bugs with different colors.  Then write a method named
 {\tt colorBug} that takes a Bug as a parameter, reads its location,
-and sets the color accordingly.  The Location object you get from
+and sets the color.
+
+The Location object you get from
 {\tt getLocation} has methods named {\tt getRow} and {\tt getCol} that
-return integers.  You could use the row to control the red level and the
-column to control the blue.
+return integers.  So you can get the x-coordinate of a Bug like this:
+
+\begin{verbatim}
+    int x = bug.getLocation().getCol();
+\end{verbatim}
 
 Write a method named {\tt makeBugs} that takes an ActorWorld and an
-integer {\tt n} and creates {\tt n} bugs colored according to
-their location.
+integer {\tt n} and creates {\tt n} bugs colored according to their
+location.  Use the row number to control the red level and the column
+to control the blue.
+
 
 \end{exercise}
 
@@ -4100,7 +4108,7 @@ the factorial of $n-1$...
 \begin{quote}
 Since 0 {\em is} zero, we take the first branch and return
 the value 1 immediately without making any more recursive
-calls.
+invocations.
 
 \end{quote}
 
@@ -4123,7 +4131,7 @@ invoked {\tt factorial(3)}.
 \index{diagram!stack}
 
 Here is what the stack diagram looks like for this sequence of
-function calls:
+method invocations:
 
 
 \myfig{figure=figs/stack3.eps}
@@ -4196,7 +4204,7 @@ Translated into Java, this is
 \end{verbatim}
 % If you try to follow the flow of execution here, even for small
 values of {\tt n}, your head explodes.  But according to the leap of
-faith, if we assume that the two recursive calls work correctly, then
+faith, if we assume that the two recursive invocations work correctly, then
 it is clear that we get the right result by adding them together.
 
 
@@ -4819,7 +4827,7 @@ The output of this program is
 \end{verbatim}
 %
 Looking at these values, can you tell what base the {\tt log}
-function uses?
+method uses?
 
 Since powers of two are important
 in computer science, we often want logarithms with
@@ -5261,7 +5269,7 @@ public static void main(String[] args) {
 
 public static void loop(int n) {
     int i = n;
-    while (i > 1) {
+    while (i > 0) {
         System.out.println(i);
         if (i%2 == 0) {
             i = i/2;
@@ -5282,45 +5290,6 @@ iteration.
 \item What is the output of this program?  
 
 \end{enumerate}
-\end{exercise}
-
-
-\begin{exercise}
-\begin{enumerate}
-
-\item Encapsulate the following code fragment, transforming it
-into a method that takes a String as an argument and that
-returns (and doesn't print) the final value of {\tt count}.
-
-\item In a sentence, describe abstractly what the resulting
-method does.
-
-\item Assuming that you have already generalized this
-method so that it works on any String, what else could you do to
-generalize it more?
-
-\end{enumerate}
-
-\begin{verbatim}
-    String s = "((3 + 7) * 2)";
-    int len = s.length();
-
-    int i = 0;
-    int count = 0;
-
-    while (i < len) {
-        char c = s.charAt(i);
-
-        if (c == '(') {
-           count = count + 1;
-        } else if (c == ')') {
-           count = count - 1;
-        }
-        i = i + 1;
-    }
-
-    System.out.println(count);
-\end{verbatim}
 \end{exercise}
 
 
@@ -5376,14 +5345,15 @@ One way to calculate $e^x$ is to use the infinite series expansion
 e^x = 1 + x + x^2 / 2! + x^3 / 3! + x^4 / 4! + ...
 \end{equation}
 
-If the loop variable is named {\tt i}, then the $i$th term is equal to
+If the loop variable is named {\tt i}, then the $i$th term is
 $x^i / i!$.
 
 \begin{enumerate}
 
 \item Write a method called {\tt myexp} that adds up the first {\tt n}
-terms of the series shown above.  You can use the {\tt factorial}
-method from Section~\ref{factorial} or your iterative version.
+terms of this series.  You can use the {\tt factorial}
+method from Section~\ref{factorial} or your iterative version from the
+previous exercise.
 
 \item You can make this method much more efficient if you realize that
 in each iteration the numerator of the term is the same as its
@@ -5442,6 +5412,50 @@ of the first {\tt n} terms of the series.  You should not use {\tt
 factorial} or {\tt pow}.
 \end{exercise}
 
+
+\begin{exercise}
+
+If you did the GridWorld exercises in Chapter~\ref{gridworld}, you
+might enjoy this exercise.  The goal is to use trigonometry to get the
+Bugs to chase each other.
+
+Make a copy of {\tt BugRunner.java} named {\tt ChaseRunner.java} and
+import it into your development environment.  Before you change
+anything, check that you can compile and run it.
+
+\begin{itemize}
+
+\item Create two Bugs, one red and one blue.
+
+\item Write a method called {\tt distance} that takes two Bugs
+and computes the distance between them.  Remember that you can
+get the x-coordinate of a Bug like this:
+
+\begin{verbatim}
+    int x = bug.getLocation().getCol();
+\end{verbatim}
+
+\item Write a method called {\tt turnToward} that takes two
+Bugs and turns one to face the other.  HINT: use {\tt Math.atan2},
+but remember that the result is in radians, so you have to
+convert to degrees.  Also, for Bugs, 0 degress is North, not East.
+
+\item Write a method called {\tt moveToward} that takes two
+Bugs, turns the first to face the second, and then moves the
+first one, if it can.
+
+\item Write a method called {\tt moveBugs} that takes two Bugs
+and an integer {\tt n}, and moves each Bug toward the other {\tt n}
+times.  You can write this method recursively, or use a while loop.
+
+\item Test each of your methods as you develop them.  When they are
+  all working, look for opportunities to improve them.  For example,
+  if you have redundant code in {\tt distance} and {\tt turnToward},
+  you could encapsulate the repeated code in a method.
+
+\end{itemize}
+
+\end{exercise}
 
 
 \beforechapter
@@ -6055,6 +6069,45 @@ of a program to terminate.
 
 
 \section{Exercises}
+
+\begin{exercise}
+\begin{enumerate}
+
+\item Encapsulate the following code fragment, transforming it
+into a method that takes a String as an argument and that
+returns (and doesn't print) the final value of {\tt count}.
+
+\item In a sentence or two, describe what the resulting method does
+(without getting into the details of how).
+
+\item Assuming that you have already generalized this
+method so that it works on any String, what else could you do to
+generalize it more?
+
+\end{enumerate}
+
+\begin{verbatim}
+    String s = "((3 + 7) * 2)";
+    int len = s.length();
+
+    int i = 0;
+    int count = 0;
+
+    while (i < len) {
+        char c = s.charAt(i);
+
+        if (c == '(') {
+           count = count + 1;
+        } else if (c == ')') {
+           count = count - 1;
+        }
+        i = i + 1;
+    }
+
+    System.out.println(count);
+\end{verbatim}
+\end{exercise}
+
 
 \begin{exercise}
 
@@ -7071,7 +7124,7 @@ using BigIntegers, and then returns the BigInteger as a result.
 You can leave the parameter alone---it will still be an integer.
 
 \item Try printing the table again with your modified factorial
-function.  Is it correct up to 30?  How high can you make it go?  I
+method.  Is it correct up to 30?  How high can you make it go?  I
 calculated the factorial of all the numbers from 0 to 999, but my
 machine is pretty slow, so it took a while.  The last number, 999!,
 has 2565 digits.
@@ -9546,7 +9599,7 @@ public static int findBisect(Card[] deck, Card card, int low, int high) {
 \end{verbatim}
 
 I added a print statement at the beginning so I could watch
-the sequence of recursive calls and convince myself
+the sequence of recursive invocations and convince myself
 that it would eventually reach the base case.  I tried out the
 following code:
 
@@ -9587,7 +9640,7 @@ able to convince yourself.
 \index{testing}
 \index{correctness}
 
-The number of recursive calls is fairly small, typically 6 or 7.
+The number of recursive invocations is fairly small, typically 6 or 7.
 That means we only had to invoke {\tt compareCard} 6 or 7 times,
 compared to up to 52 times if we did a linear search.  In general,
 bisection is much faster than a linear search, and even more so for
