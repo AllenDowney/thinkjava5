@@ -12,6 +12,7 @@
  * GNU General Public License for more details.
  * 
  * @author Cay Horstmann
+ * Modified by Allen Downey for an exercise in Think Java (thinkapjava.com)
  */
 
 import info.gridworld.actor.ActorWorld;
