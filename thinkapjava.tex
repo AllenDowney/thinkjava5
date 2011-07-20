@@ -1779,7 +1779,6 @@ American format:
 Saturday, July 16, 2011
 European format:
 Saturday 16 July, 2011
-
 \end{verbatim}
 
 \end{enumerate}
@@ -2424,7 +2423,7 @@ example looks like this:
 \myfig{figure=figs/stack.eps}
 
 For each method there is a gray box called a {\bf frame} that contains
-the methods parameters and local variables.  The name of the method
+the method's parameters and variables.  The name of the method
 appears outside the frame.  As usual, the value of each variable
 is drawn inside a box with the name of the variable beside it.
 
@@ -2464,7 +2463,7 @@ to declare the types of arguments.  The following is wrong!
 %
 In this case, Java can tell the type of {\tt hour}
 and {\tt minute} by looking at their declarations.  It is
-unnecessary and illegal to include the type when you pass them
+not necessary to include the type when you pass them
 as arguments.  The correct
 syntax is {\tt printTime(hour, minute)}.
 
@@ -2479,15 +2478,15 @@ with the arguments {\tt 11} and {\tt 59}.
 \index{fruitful method}
 \index{method!fruitful}
 
-You might have noticed by now that some of the methods we are using,
+Some of the methods we are using,
 like the {\tt Math} methods, yield results.  Other methods,
-like {\tt println} and {\tt newLine}, perform some action but
+like {\tt println} and {\tt newLine}, perform an action but
 they don't return a value.  That raises some questions:
 
 \begin{itemize}
 
 \item What happens if you invoke a method and you don't
-do anything with the result(i.e. you don't assign it to
+do anything with the result (i.e. you don't assign it to
 a variable or use it as part of a larger expression)?
 
 \item What happens if you use a {\tt print} method as part
@@ -2509,27 +2508,29 @@ illegal in Java, a good way to find out is to ask the compiler.
 
 \begin{description}
 
-\item[floating-point:] A type of variable(or value) that can contain
-fractions as well as integers.  In Java this type is called {\tt
-double}.
+\item[floating-point:] A type of variable (or value) that can contain
+fractions as well as integers.  The floating-point type we will
+use is {\tt double}.
 
 \item[class:]  A named collection of methods.  So far, we have used
 the {\tt Math} class and the {\tt System} class, and we have
 written classes named {\tt Hello} and {\tt NewLine}.
 
-\item[method:]  A named sequence of statements that performs some
+\item[method:]  A named sequence of statements that performs a
 useful function.  Methods may or may not take parameters, and may
 or may not produce a result.
 
-\item[parameter:]  A piece of information you provide
-in order to invoke a method.  Parameters are like variables in
-the sense that they contain values and have types.
+\item[parameter:]  A piece of information a method requires before
+it can run.  Parameters are variables: they contain values and have types.
 
 \item[argument:]  A value that you provide when you invoke a
 method.  This value must have the same type as the corresponding
 parameter.
 
-\item[invoke:]  Cause a method to be executed.
+\item[frame:] A structure (represented by a gray box in stack diagrams)
+that contains a method's parameters and variables.
+
+\item[invoke:]  Cause a method to execute.
 
 \index{floating-point}
 \index{class}
@@ -2619,7 +2620,7 @@ appropriate arguments.  The output should look something like this
 (except that the date might be different):
 %
 \begin{verbatim}
-Wednesday, September 29, 1999
+Saturday, July 16, 2011
 \end{verbatim}
 %
 \item Once you have debugged {\tt printAmerican}, write another
@@ -2629,56 +2630,6 @@ European format.
 \end{enumerate}
 \end{exercise}
 
-\begin{exercise}
-\label{ex.multadd}
-
-Many computations can be expressed concisely using the ``multadd''
-operation, which takes three operands and computes {\tt a*b + c}.  Some
-processors even provide a hardware implementation of this operation for
-floating-point numbers.
-
-\begin{enumerate}
-
-\item Create a new program called {\tt Multadd.java}.
-
-\item Write a method called {\tt multadd} that takes three {\tt doubles}
-as parameters and that prints their multadditionization.
-
-\item Write a {\tt main} method that tests {\tt multadd} by invoking it with a
-few simple parameters, like {\tt 1.0, 2.0, 3.0}, and then prints
-the result, which should be {\tt 5.0}.
-
-\item Also in {\tt main}, use {\tt multadd} to compute the
-following values:
-%
-\begin{eqnarray*}
-& \sin \frac{\pi}{4} + \frac{\cos \frac{\pi}{4}}{2} & \\
-& \log 10 + \log 20 &
-\end{eqnarray*}
-%
-\item Write a method called {\tt yikes} that takes a
-double as a parameter and that uses {\tt multadd} to calculate
-and print
-%
-\begin{eqnarray*}
-x e^{-x} + \sqrt{1 - e^{-x}}
-\end{eqnarray*}
-%
-HINT: the Math method for raising $e$ to a power is {\tt Math.exp}.
-
-\end{enumerate}
-
-In the last part, you get a chance to write a method that invokes
-a method you wrote.  Whenever you do that, it is a good idea to
-test the first method carefully before you start working on the
-second.  Otherwise, you might find yourself debugging two methods
-at the same time, which can be very difficult.
-
-One of the purposes of this exercise is to practice pattern-matching:
-the ability to recognize a specific problem as an instance of a
-general category of problems.
-
-\end{exercise}
 
 
 \beforechapter
@@ -2690,10 +2641,10 @@ general category of problems.
 \index{modulus}
 \index{operator!modulus}
 
-The modulus operator works on integers(and integer expressions)
+The modulus operator works on integers (and integer expressions)
 and yields the {\em remainder} when the first operand is divided
 by the second.  In Java, the modulus operator is a percent sign,
-{\tt \%}.  The syntax is exactly the same as for other operators:
+{\tt \%}.  The syntax is the same as for other operators:
 
 \begin{verbatim}
     int quotient = 7 / 3;
@@ -2710,7 +2661,7 @@ by {\tt y}.
 
 Also, you can use the modulus operator to extract the rightmost
 digit or digits from a number.  For example, {\tt x \% 10} yields
-the rightmost digit of {\tt x}(in base 10).  Similarly
+the rightmost digit of {\tt x} (in base 10).  Similarly
 {\tt x \% 100} yields the last two digits.
 
 
@@ -2718,13 +2669,13 @@ the rightmost digit of {\tt x}(in base 10).  Similarly
 \index{conditional}
 \index{statement!conditional}
 
-In order to write useful programs, we almost always need the ability
-to check certain conditions and change the behavior of the program
+In order to write useful programs, we almost always need
+to check conditions and change the behavior of the program
 accordingly.  {\bf Conditional statements} give us this ability.  The
 simplest form is the {\tt if} statement:
 
 \begin{verbatim}
-    if(x > 0) {
+    if (x > 0) {
       System.out.println("x is positive");
     }
 \end{verbatim}
@@ -2760,10 +2711,12 @@ a comparison operator.  Also, there is no such thing as
 
 The two sides of a condition operator have to be the same
 type.  You can only compare {\tt ints} to {\tt ints} and
-{\tt doubles} to {\tt doubles}.  Unfortunately, at this
-point you can't compare {\tt String}s at all!  There is
-a way to compare {\tt String}s, but we won't get to it for a couple
-of chapters.
+{\tt doubles} to {\tt doubles}.
+
+The operators {\tt ==} and {\tt !=} work with Strings, but the other
+relational operators don't.  We will see how to compare strings in
+a couple of chapters.
+
 
 \section {Alternative execution}
 \label{alternative}
@@ -2774,7 +2727,7 @@ in which there are two possibilities, and the condition determines
 which one gets executed.  The syntax looks like:
 
 \begin{verbatim}
-    if(x%2 == 0) {
+    if (x%2 == 0) {
       System.out.println("x is even");
     } else {
       System.out.println("x is odd");
@@ -2794,7 +2747,7 @@ As an aside, if you think you might want to check the parity
 
 \begin{verbatim}
   public static void printParity(int x) {
-    if(x%2 == 0) {
+    if (x%2 == 0) {
       System.out.println("x is even");
     } else {
       System.out.println("x is odd");
@@ -2804,7 +2757,7 @@ As an aside, if you think you might want to check the parity
 %
 Now you have a method named {\tt printParity} that will print
 an appropriate message for any integer you care to provide.
-In {\tt main} you would invoke this method as follows:
+In {\tt main} you would invoke this method like this:
 
 \begin{verbatim}
     printParity(17);
@@ -2820,6 +2773,7 @@ temptation to write things like:
     printParity(int number);         // WRONG!!!
 \end{verbatim}
 
+
 \section {Chained conditionals}
 \index{conditional!chained}
 
@@ -2828,9 +2782,9 @@ and choose one of several actions.  One way to do this is by
 {\bf chaining} a series of {\tt if}s and {\tt else}s:
 
 \begin{verbatim}
-    if(x > 0) {
+    if (x > 0) {
       System.out.println("x is positive");
-    } else if(x < 0) {
+    } else if (x < 0) {
       System.out.println("x is negative");
     } else {
       System.out.println("x is zero");
@@ -2842,8 +2796,9 @@ be difficult to read if they get out of hand.  One way to
 make them easier to read is to use standard indentation,
 as demonstrated in these examples.  If you keep all the
 statements and squiggly-brackets lined up, you are less
-likely to make syntax errors and you can find them more
-quickly if you do.
+likely to make syntax errors and more likely to find them
+if you do.
+
 
 \section{Nested conditionals}
 \index{conditional!nested}
@@ -2853,10 +2808,10 @@ within another.  We could have written the previous example
 as:
 
 \begin{verbatim}
-    if(x == 0) {
+    if (x == 0) {
       System.out.println("x is zero");
     } else {
-      if(x > 0) {
+      if (x > 0) {
         System.out.println("x is positive");
       } else {
         System.out.println("x is negative");
@@ -2867,19 +2822,18 @@ as:
 There is now an outer conditional that contains two branches.  The
 first branch contains a simple {\tt print} statement, but the second
 branch contains another conditional statement, which has two branches
-of its own.  Fortunately, those two branches are both {\tt print}
-statements, although they could have been conditional statements as
+of its own.  Those two branches are both {\tt print}
+statements, but they could have been conditional statements as
 well.
 
-Notice again that indentation helps make the structure
+Indentation helps make the structure
 apparent, but nevertheless, nested conditionals get difficult to read
-very quickly.  In general, it is a good idea to avoid them when you
-can.
-
+very quickly.  Avoid them when you can.
 \index{nested structure}
 
 On the other hand, this kind of {\bf nested structure} is common, and
 we will see it again, so you better get used to it.
+
 
 \section{The return statement}
 \index{return}
@@ -2891,7 +2845,7 @@ is if you detect an error condition:
 
 \begin{verbatim}
   public static void printLogarithm(double x) {
-    if(x <= 0.0) {
+    if (x <= 0.0) {
       System.out.println("Positive numbers only, please.");
       return;
     }
@@ -2901,16 +2855,16 @@ is if you detect an error condition:
   }
 \end{verbatim}
 %
-This defines a method named {\tt printLogarithm} that takes
-a {\tt double} named {\tt x} as a parameter.  The first thing
-it does is check whether {\tt x} is less than or equal to
-zero, in which case it prints an error message and then uses
-{\tt return} to exit the method.  The flow of execution
-immediately returns to the caller and the remaining lines of
+This defines a method named {\tt printLogarithm} that takes a
+{\tt  double} named {\tt x} as a parameter.  It checks whether
+{\tt  x} is less than or equal to zero, in which case it prints an error
+message and then uses {\tt return} to exit the method.  The flow of
+execution immediately returns to the caller and the remaining lines of
 the method are not executed.
 
 I used a floating-point value on the right side of the condition
 because there is a floating-point variable on the left.
+
 
 \section {Type conversion}
 \index{type!conversion}
@@ -2918,25 +2872,25 @@ because there is a floating-point variable on the left.
 
 You might wonder how you can get away with an expression like {\tt
 "The log of x is " + result}, since one of the operands is a {\tt String}
-and the other is a {\tt double}.  Well, in this case Java is being
-smart on our behalf, by automatically converting the {\tt double} to a
+and the other is a {\tt double}.  In this case Java is being
+smart on our behalf, automatically converting the {\tt double} to a
 {\tt String} before it does the string concatenation.
 
-This kind of feature is an example of a common problem in designing a
-programming language, which is that there is a conflict between {\em
-formalism}, which is the requirement that formal languages should have
-simple rules with few exceptions, and {\em convenience}, which is the
-requirement that programming languages be easy to use in practice.
+%This kind of feature is an example of a common problem in designing a
+%programming language, which is that there is a conflict between {\em
+%formalism}, which is the requirement that formal languages should have
+%simple rules with few exceptions, and {\em convenience}, which is the
+%requirement that programming languages be easy to use in practice.
 
-More often than not, convenience wins, which is usually good for
-expert programmers(who are spared from rigorous but unwieldy
-formalism), but bad for beginning programmers, who are often baffled
-by the complexity of the rules and the number of exceptions.  In this
-book I have tried to simplify things by emphasizing the rules and
-omitting many of the exceptions.
+%More often than not, convenience wins, which is usually good for
+%expert programmers (who are spared from rigorous but unwieldy
+%formalism), but bad for beginning programmers, who are often baffled
+%by the complexity of the rules and the number of exceptions.  In this
+%book I have tried to simplify things by emphasizing the rules and
+%omitting many of the exceptions.
 
-Nevertheless, it is handy to know that whenever you try to ``add'' two
-expressions, if one of them is a {\tt String}, then Java will convert the
+Whenever you try to ``add'' two
+expressions, if one of them is a {\tt String}, Java converts the
 other to a {\tt String} and then perform string concatenation.  What do you
 think happens if you perform an operation between an integer and a
 floating-point value?
@@ -2946,19 +2900,17 @@ floating-point value?
 \label{recursion}
 \index{recursion}
 
-I mentioned in the last chapter that it is legal for one
-method to call another, and we have seen several examples of
-that.  I neglected to mention that it is also legal for
-a method to invoke itself.  It may not be obvious why that
-is a good thing, but it turns out
-to be one of the most magical and interesting things
-a program can do.
+I mentioned in the last chapter that it is legal for one method to
+invoke another, and we have seen several examples.  I neglected to
+mention that it is also legal for a method to invoke itself.  It may
+not be obvious why that is a good thing, but it turns out to be one of
+the most magical and interesting things a program can do.
 
 For example, look at the following method:
 
 \begin{verbatim}
   public static void countdown(int n) {
-    if(n == 0) {
+    if (n == 0) {
       System.out.println("Blastoff!");
     } else {
       System.out.println(n);
@@ -3000,17 +2952,17 @@ since {\tt n} is zero, it prints the word ``Blastoff!''
 and then returns.
 \end{quote}
 
-The countdown that got {\tt n=1} returns.
+The {\tt countdown} that got {\tt n=1} returns.
 
 \end{quote}
 
-The countdown that got {\tt n=2} returns.
+The {\tt countdown} that got {\tt n=2} returns.
 
 \end{quote}
 
-The countdown that got {\tt n=3} returns.
+The {\tt countdown} that got {\tt n=3} returns.
 
-\noindent And then you're back in {\tt main}(what a trip).  So the
+\noindent And then you're back in {\tt main}.  So the
 total output looks like:
 
 \begin{verbatim}
@@ -3033,29 +2985,29 @@ As a second example, let's look again at the methods
   }
 \end{verbatim}
 %
-Although these work, they would not be much help if I wanted
+Although these work, they would not be much help if we wanted
 to print 2 newlines, or 106.  A better alternative would be
 
 \begin{verbatim}
   public static void nLines(int n) {
-    if(n > 0) {
+    if (n > 0) {
       System.out.println("");
       nLines(n-1);
     }
   }
 \end{verbatim}
 %
-This program is very similar; as long as {\tt n} is greater
-than zero, it prints one newline, and then invokes itself to
-print {\tt n-1} additional newlines.  Thus, the total number
+This program similar to {\tt countdown}; as long as {\tt n} is greater
+than zero, it prints a newline and then invokes itself to
+print {\tt n-1} additional newlines.  The total number
 of newlines that get printed is {\tt 1 +(n-1)}, which usually
 comes out to roughly {\tt n}.
 
 \index{recursive}
 \index{newline}
 
-The process of a method invoking itself is called {\bf recursion}, and
-such methods are said to be {\bf recursive}.
+When a method invokes itself, that's called {\bf recursion}, and
+such methods are {\bf recursive}.
 
 
 \section {Stack diagrams for recursive methods}
@@ -3064,88 +3016,33 @@ such methods are said to be {\bf recursive}.
 \index{diagram!stack}
 
 In the previous chapter we used a stack diagram to represent the
-state of a program during a method call.  The same kind
+state of a program during a method invocation.  The same kind
 of diagram can make it easier to interpret a recursive method.
 
 Remember that every time a method gets called it creates
-a new instance of the method that contains a new version of
-the method's local variables and parameters.
+a new frame that contains a new version of
+the method's parameters and variables.
 
 The following figure is a stack diagram for countdown, called
 with {\tt n = 3}:
 
-
 \myfig{figure=figs/stack2.eps}
+% 
+There is one frame for {\tt main} and four frames for {\tt countdown},
+each with a different value for the parameter {\tt n}.  The bottom of
+the stack, {\tt countdown} with {\tt n=0} is called the {\bf base
+  case}.  It does not make a recursive call, so there are no more
+frames for {\tt countdown}.
 
-%
-There is one instance of {\tt main} and four instances of
-{\tt countdown}, each with a different value for the parameter
-{\tt n}.  The bottom of the stack, {\tt countdown} with {\tt n=0}
-is the base case.  It does not make a recursive call, so there
-are no more instances of {\tt countdown}.
-
-The instance of {\tt main} is empty because {\tt main} does not
-have any parameters or local variables.
+The frame for {\tt main} is empty because {\tt main} does not
+have any parameters or variables.
 
 \begin{exercise}
 Draw a stack diagram that shows the state of the program
 after {\tt main} invokes {\tt nLines} with the parameter {\tt n=4},
-just before the last instance of {\tt nLines} returns.
+just before the last invocation of {\tt nLines} returns.
 \end{exercise}
 
-
-\section{Convention and divine law}
-\index{convention}
-\index{divine law}
-
-In the last few sections, I used the phrase ``by convention''
-several times to indicate design decisions that are arbitrary
-in the sense that there are no significant reasons to do things
-one way or another, but dictated by convention.
-
-In these cases, it is to your advantage to be familiar with
-convention and use it, since it will make your programs easier
-for others to understand.  At the same time, it is important to
-distinguish between(at least) three kinds of rules:
-
-\begin{description}
-
-\item[Divine law:]  This is my phrase to indicate a rule that
-is true because of some underlying principle of logic or
-mathematics, and that is true in any programming language
-(or other formal system).  For example, there is no way to
-specify the location and size of a bounding box using fewer
-than four pieces of information.  Another example is that adding
-integers is commutative.  That's part of the definition of
-addition and has nothing to do with Java.
-
-\item[Rules of Java:]  These are the syntactic and semantic
-rules of Java that you cannot violate, because the
-resulting program will not compile or run.  Some are arbitrary;
-for example, the fact that the {\tt +} symbol represents
-addition {\em and} string concatenation.  Others reflect
-underlying limitations of the compilation or execution process.
-For example, you have to specify the types of parameters, but
-not arguments.
-
-\item[Style and convention:]  There are a lot of rules that
-are not enforced by the compiler, but that are essential for
-writing programs that are correct, that you can debug and
-modify, and that others can read.  Examples include indentation
-and the placement of squiggly braces, as well as conventions
-for naming variables, methods and classes.
-
-\end{description}
-
-As we go along, I will try to indicate which category various things
-fall into, but you might want to give it some thought from time to
-time.
-
-While I am on the topic, you have probably figured out by now that the
-names of classes always begin with a capital letter, but variables and
-methods begin with lower case.  If a name includes more than one word,
-you usually capitalize the first letter of each word, as in {\tt
-newLine} and {\tt printParity}.  Which category are these rules in?
 
 \section{Glossary}
 
@@ -3184,12 +3081,9 @@ using Java-like syntax.
 \item[recursion:]  The process of invoking the same method you
 are currently executing.
 
-\item[infinite recursion:]  A method that invokes itself
-recursively without ever reaching the base case.  The usual
-result is a StackOverflowException.
+\item[base case:] A condition that causes a recursive method {\em not}
+  to make a recursive call.
 
-\item[fractal:]  A kind of image that is defined recursively, so
-that each part of the image is a smaller version of the whole.
 
 \index{modulus}
 \index{conditional}
@@ -3201,37 +3095,11 @@ that each part of the image is a smaller version of the whole.
 \index{interface}
 \index{prototype}
 \index{recursion}
-\index{fractal}
-\index{recursion!infinite}
-\index{infinite recursion}
-\index{exception!StackOverflow}
+\index{base case}
 
 \end{description}
 
 \section{Exercises}
-
-\begin{exercise}
-If you are given three sticks, you may or may not be able to arrange
-them in a triangle.  For example, if one of the sticks is 12 inches
-long and the other two are one inch long, it is clear that you will
-not be able to get the short sticks to meet in the middle.  For any
-three lengths, there is a simple test to see if it is possible to form
-a triangle:
-
-\begin{quotation}
-``If any of the three lengths is greater than the sum of the other two,
-then you cannot form a triangle.  Otherwise, you can.''
-\end{quotation}
-
-Write a method named {\tt isTriangle} that it takes three integers as
-arguments, and that returns either {\tt true} or {\tt false},
-depending on whether you can or cannot form a triangle from sticks
-with the given lengths.
-
-The point of this exercise is to use conditional statements to
-write a method that returns a value.
-\end{exercise}
-
 
 \begin{exercise}
 This exercise reviews the flow of execution through a program
@@ -3247,7 +3115,7 @@ public class Buzz {
     }
 
     public static void zippo(String quince, int flag) {
-        if(flag < 0) {
+        if (flag < 0) {
             System.out.println(quince + " zoop");
         } else {
             System.out.println("ik");
@@ -3306,17 +3174,16 @@ And then the song(finally) ends.
 
 Write a program that prints the entire lyrics of
 ``99 Bottles of Beer.''  Your program should include a
-recursive method that does the hard part, but you also
+recursive method that does the hard part, but you
 might want to write additional methods to separate the major
 functions of the program.
 
-As you are developing your code, you will probably
-want to test it with a small number of verses, like
-``3 Bottles of Beer.''
+As you develop your code, test it with a small number of
+verses, like ``3 Bottles of Beer.''
 
 The purpose of this exercise is to take a problem and break it
 into smaller problems, and to solve the smaller problems by writing
-simple, easily-debugged methods.
+simple methods.
 \end{exercise}
 
 \begin{exercise}
@@ -3327,7 +3194,7 @@ public class Narf {
 
     public static void zoop(String fred, int bob) {
         System.out.println(fred);
-        if(bob == 5) {
+        if (bob == 5) {
             ping("not ");
         } else {
             System.out.println("!");
@@ -3379,6 +3246,203 @@ first argument to the power of the second.  For example:
 %
 would assign the value {\tt 8} to {\tt x}, because $2^3 = 8$.
 \end{exercise}
+
+\beforechapter
+\chapter{GridWorld: Part One}
+
+\section{Getting started}
+
+Now is a good time to start working with the AP Computer Science Case
+Study, which is a program called GridWorld.  To get started, install
+GridWorld, which you can download from the College Board:
+\url{http://www.collegeboard.com/student/testing/ap/compsci_a/case.html}.
+
+When you unpack this code, you should have a folder named {\tt
+  GridWorldCode} that contains {\tt projects/firstProject}, which
+contains {\tt BugRunner.java}.
+
+Make a copy of {\tt BugRunner.java} in another folder and then import it
+into you development environment.  There are instructions here that
+might help: \url{http://www.collegeboard.com/prod_downloads/student/testing/ap/compsci_a/ap07_gridworld_installation_guide.pdf}.
+
+Once you run {\tt BugRunner.java}, download the GridWorld Student
+Manual from \url{http://www.collegeboard.com/prod_downloads/student/testing/ap/compsci_a/ap07_gridworld_studmanual_appends_v3.pdf}.
+
+The Student Manual uses vocabulary I have not presented yet, so to
+get you started, here is a quick preview:
+
+\begin{itemize}
+
+\item The components of GridWorld, including Bugs, Rocks and the Grid
+itself, are {\bf objects}.
+
+\item A {\bf constructor} is a special method that creates new objects.
+
+\item A {\bf class} is a set of objects; every object belongs to a
+class.
+
+\item An object is also called an {\bf instance} because it is a member,
+or instance, of a class.
+
+\item An {\bf attribute} is a piece of information about an object, like
+its color or location.
+
+\item An {\bf accessor method} is a method that returns an attribute of
+an object.
+
+\item A {\bf modifier method} changes an attribute of an object.
+
+\end{itemize}
+
+Now you should be able to read Part 1 of the Student Manual and do
+the exercises.
+
+\section{{\tt BugRunner}}
+
+{\tt BugRunner.java} contains this code:
+
+\begin{verbatim}
+import info.gridworld.actor.ActorWorld;
+import info.gridworld.actor.Bug;
+import info.gridworld.actor.Rock;
+
+public class BugRunner
+{
+    public static void main(String[] args)
+    {
+        ActorWorld world = new ActorWorld();
+        world.add(new Bug());
+        world.add(new Rock());
+        world.show();
+    }
+}
+\end{verbatim}
+
+The first three lines are {\tt import} statements; they list
+the classes from GridWorld used in this program.
+
+Like the other programs we have seen, BugRunner defines a class
+that provides a {\tt main} method.  The first line of {\tt main}
+creates an {\tt ActorWorld} object.  {\tt new} is a Java keyword
+that creates new objects.
+
+The next two lines create a Bug and a Rock, and add them to {\tt world}.
+The last line shows the world on the screen.
+
+Open {\tt BugRunner.java} for editing and replace this line:
+
+\begin{verbatim}
+    world.add(new Bug());
+\end{verbatim}
+
+with these lines:
+
+\begin{verbatim}
+    Bug redBug = new Bug();
+    world.add(redBug);
+\end{verbatim}
+
+The first line assigns the Bug to a variable named {\tt redBug};
+we can use {\tt redBug} to invoke the Bug's methods.  Try this:
+
+\begin{verbatim}
+    System.out.println(redBug.getLocation());
+\end{verbatim}
+
+Note: If you run this before adding the Bug to the {\tt world}, the result is
+{\tt null}, which means that the Bug doesn't have a location yet.
+
+Invoke the other accessor methods and print the bug's attributes.
+Invoke the methods {\tt canMove}, {\tt move} and {\tt turn} and
+be sure you understand what they do.  Now try these exercises:
+
+\begin{exercise}
+\begin{enumerate}
+
+\item Write a method named {\tt moveBug} that takes a bug as a parameter
+and invokes {\tt move}.  Test your method by calling it from {\tt main}.
+
+\item Modify {\tt moveBug} so that it invokes {\tt canMove} and moves
+the bug only if it can.
+
+\item Modify {\tt moveBug} so that it takes an integer, {\tt n}, as a
+parameter, and moves the bug {\tt n} times (if it can).
+
+\item Modify {\tt moveBug} so that if the bug can't move, it invokes
+{\tt turn} instead.
+
+\end{enumerate}
+\end{exercise}
+
+
+\begin{exercise}
+\begin{enumerate}
+
+\item The {\tt Math} class provides a method named {\tt random}
+that returns a double between 0.0 and 1.0 (not including 1.0).
+
+\item Write a method named {\tt randomBug} that takes a Bug as a
+  parameter and sets the Bug's direction to one of 0, 90, 180 or 270
+  with equal probability, and then moves the bug if it can.
+
+\item Modify {\tt randomBug} to take an integer {\tt n} and repeat
+{\tt n} times.
+
+The result is a random walk, which you can read about
+at \url{http://en.wikipedia.org/wiki/Random_walk}.
+
+\item To see a longer random walk, you can give ActorWorld a bigger stage.
+At the top of {\tt BugRunner.java}, add this {\tt import} statement:
+
+\begin{verbatim}
+import info.gridworld.grid.UnboundedGrid;
+\end{verbatim}
+
+Now replace the line that creates the ActorWorld with this:
+
+\begin{verbatim}
+    ActorWorld world = new ActorWorld(new UnboundedGrid());
+\end{verbatim}
+
+You should be able to run your random walk for a few thousand
+steps (you might have to use the scrollbars to find the Bug).
+
+\end{enumerate}
+\end{exercise}
+
+
+\begin{exercise}
+
+GridWorld uses Color objects, which are defined in the Java libraries.
+You can read the documentation at
+\url{http://download.oracle.com/javase/6/docs/api/java/awt/Color.html}.
+
+To create Bugs with different colors, we have to import
+{\tt Color}:
+
+\begin{verbatim}
+import java.awt.Color;
+\end{verbatim}
+
+Then you can access the predefined colors, like {\tt Color.blue}, or
+create a new color like this:
+
+\begin{verbatim}
+    Color purple = new Color(148, 0, 211);
+\end{verbatim}
+
+Make a few bugs with different colors.  Then write a method named
+{\tt colorBug} that takes a Bug as a parameter, reads the its location,
+and sets the color accordingly.  The Location object you get from
+{\tt getLocation} has methods named {\tt getRow} and {\tt getCol} that
+return integers.
+
+Write a method named {\tt makeBugs} that takes an ActorWorld and an
+integer {\tt n} and creates {\tt n} bugs colored according to
+their location.
+
+\end{exercise}
+
 
 
 \beforechapter
@@ -3467,7 +3531,7 @@ statements, one in each branch of a conditional:
 
 \begin{verbatim}
   public static double absoluteValue(double x) {
-    if(x < 0) {
+    if (x < 0) {
       return -x;
     } else {
       return x;
@@ -3493,9 +3557,9 @@ the program hits a return statement.  For example:
 
 \begin{verbatim}
   public static double absoluteValue(double x) {
-    if(x < 0) {
+    if (x < 0) {
       return -x;
-    } else if(x > 0) {
+    } else if (x > 0) {
       return x;
     }                          // WRONG!!
   }
@@ -3825,7 +3889,7 @@ so you can store the result of a comparison in a variable:
 and then use it as part of a conditional statement later:
 
 \begin{verbatim}
-    if(evenFlag) {
+    if (evenFlag) {
       System.out.println("n was even when I checked it");
     }
 \end{verbatim}
@@ -3860,8 +3924,8 @@ conditional statements.  For example, how would you write
 the following code using a single conditional?
 
 \begin{verbatim}
-    if(x > 0) {
-      if(x < 10) {
+    if (x > 0) {
+      if (x < 10) {
         System.out.println("x is a positive single digit.");
       }
     }
@@ -3878,7 +3942,7 @@ methods.  For example:
 
 \begin{verbatim}
   public static boolean isSingleDigit(int x) {
-    if(x >= 0 && x < 10) {
+    if (x >= 0 && x < 10) {
       return true;
     } else {
       return false;
@@ -3918,7 +3982,7 @@ The most common use of boolean methods is inside conditional
 statements
 
 \begin{verbatim}
-    if(isSingleDigit(x)) {
+    if (isSingleDigit(x)) {
       System.out.println("x is little");
     } else {
       System.out.println("x is big");
@@ -3996,7 +4060,7 @@ return 1:
 
 \begin{verbatim}
   public static int factorial(int n) {
-    if(n == 0) {
+    if (n == 0) {
       return 1;
     }
   }
@@ -4008,7 +4072,7 @@ multiply it by $n$.
 
 \begin{verbatim}
   public static int factorial(int n) {
-    if(n == 0) {
+    if (n == 0) {
       return 1;
     } else {
       int recurse = factorial(n-1);
@@ -4117,7 +4181,7 @@ few lines:
 
 \begin{verbatim}
   public static int factorial(int n) {
-    if(n == 0) {
+    if (n == 0) {
       return 1;
     } else {
       return n * factorial(n-1);
@@ -4144,7 +4208,7 @@ Translated into Java, this is
 
 \begin{verbatim}
   public static int fibonacci(int n) {
-    if(n == 0 || n == 1) {
+    if (n == 0 || n == 1) {
       return 1;
     } else {
       return fibonacci(n-1) + fibonacci(n-2);
@@ -4215,6 +4279,79 @@ and assigns a value to it at the same time.
 \section{Exercises}
 
 \begin{exercise}
+If you are given three sticks, you may or may not be able to arrange
+them in a triangle.  For example, if one of the sticks is 12 inches
+long and the other two are one inch long, you will
+not be able to get the short sticks to meet in the middle.  For any
+three lengths, there is a simple test to see if it is possible to form
+a triangle:
+
+\begin{quotation}
+``If any of the three lengths is greater than the sum of the other two,
+then you cannot form a triangle.  Otherwise, you can.''
+\end{quotation}
+
+Write a method named {\tt isTriangle} that it takes three integers as
+arguments, and that returns either {\tt true} or {\tt false},
+depending on whether you can or cannot form a triangle from sticks
+with the given lengths.
+
+The point of this exercise is to use conditional statements to
+write a method that returns a value.
+\end{exercise}
+
+
+\begin{exercise}
+\label{ex.multadd}
+
+Many computations can be expressed concisely using the ``multadd''
+operation, which takes three operands and computes {\tt a*b + c}.  Some
+processors even provide a hardware implementation of this operation for
+floating-point numbers.
+
+\begin{enumerate}
+
+\item Create a new program called {\tt Multadd.java}.
+
+\item Write a method called {\tt multadd} that takes three {\tt doubles}
+as parameters and that returns their multadditionization.
+
+\item Write a {\tt main} method that tests {\tt multadd} by invoking it with a
+few simple parameters, like {\tt 1.0, 2.0, 3.0}.
+
+\item Also in {\tt main}, use {\tt multadd} to compute the
+following values:
+%
+\begin{eqnarray*}
+& \sin \frac{\pi}{4} + \frac{\cos \frac{\pi}{4}}{2} & \\
+& \log 10 + \log 20 &
+\end{eqnarray*}
+%
+\item Write a method called {\tt yikes} that takes a
+double as a parameter and that uses {\tt multadd} to calculate
+and print
+%
+\begin{eqnarray*}
+x e^{-x} + \sqrt{1 - e^{-x}}
+\end{eqnarray*}
+%
+HINT: the Math method for raising $e$ to a power is {\tt Math.exp}.
+
+\end{enumerate}
+
+In the last part, you get a chance to write a method that invokes
+a method you wrote.  Whenever you do that, it is a good idea to
+test the first method carefully before you start working on the
+second.  Otherwise, you might find yourself debugging two methods
+at the same time, which can be very difficult.
+
+One of the purposes of this exercise is to practice pattern-matching:
+the ability to recognize a specific problem as an instance of a
+general category of problems.
+
+\end{exercise}
+
+\begin{exercise}
 \label{ex.isdiv}
 Write a class method named {\tt isDivisible} that takes
 two integers, {\tt n} and {\tt m} and that returns {\tt true}
@@ -4232,17 +4369,17 @@ and the flow of execution through fruitful methods.
       boolean flag2 = isFrabjuous(202);
       System.out.println(flag1);
       System.out.println(flag2);
-      if(flag1 && flag2) {
+      if (flag1 && flag2) {
           System.out.println("ping!");
       }
-      if(flag1 || flag2) {
+      if (flag1 || flag2) {
           System.out.println("pong!");
       }
   }
 
   public static boolean isHoopy(int x) {
       boolean hoopyFlag;
-      if(x%2 == 0) {
+      if (x%2 == 0) {
           hoopyFlag = true;
       } else {
           hoopyFlag = false;
@@ -4252,7 +4389,7 @@ and the flow of execution through fruitful methods.
 
   public static boolean isFrabjuous(int x) {
       boolean frabjuousFlag;
-      if(x > 0) {
+      if (x > 0) {
           frabjuousFlag = true;
       } else {
           frabjuousFlag = false;
@@ -4325,7 +4462,7 @@ public class Prod {
     }
 
     public static int prod(int m, int n) {
-        if(m == n) {
+        if (m == n) {
             return n;
         } else {
             int recurse = prod(m, n-1);
@@ -4443,7 +4580,7 @@ and type in the following two methods.
 
 \begin{verbatim}
   public static int methOne(int m, int n) {
-    if(m == n) {
+    if (m == n) {
       return n;
     } else {
       return m + methOne(m+1, n);
@@ -4451,7 +4588,7 @@ and type in the following two methods.
   }
 
   public static int methTwo(int m, int n) {
-    if(m == n) {
+    if (m == n) {
       return n;
     } else {
       return n * methTwo(m, n-1);
@@ -4672,7 +4809,7 @@ so easy to tell:
   public static void sequence(int n) {
     while(n != 1) {
       System.out.println(n);
-      if(n%2 == 0) {           // n is even
+      if (n%2 == 0) {           // n is even
         n = n / 2;
       } else {                  // n is odd
         n = n*3 + 1;
@@ -5205,7 +5342,7 @@ public static void loop(int n) {
     int i = n;
     while(i > 1) {
         System.out.println(i);
-        if(i%2 == 0) {
+        if (i%2 == 0) {
             i = i/2;
         } else {
             i = i+1;
@@ -5253,9 +5390,9 @@ generalize it more?
     while(i < len) {
         char c = s.charAt(i);
 
-        if(c == '(') {
+        if (c == '(') {
            count = count + 1;
-        } else if(c == ')') {
+        } else if (c == ')') {
            count = count - 1;
         }
         i = i + 1;
@@ -5433,7 +5570,7 @@ variable type that stores them is called {\tt char}.
 
 \begin{verbatim}
     char fred = 'c';
-    if(fred == 'c') {
+    if (fred == 'c') {
       System.out.println(fred);
     }
 \end{verbatim}
@@ -5701,7 +5838,7 @@ number of times the letter {\tt 'a'} appears in a string:
 
     int index = 0;
     while(index < length) {
-      if(fruit.charAt(index) == 'a') {
+      if (fruit.charAt(index) == 'a') {
         count = count + 1;
       }
       index = index + 1;
@@ -5761,7 +5898,7 @@ Using the increment operators, we can rewrite the letter-counter:
 \begin{verbatim}
     int index = 0;
     while(index < length) {
-      if(fruit.charAt(index) == 'a') {
+      if (fruit.charAt(index) == 'a') {
         count++;
       }
       index++;
@@ -5914,16 +6051,16 @@ and {\tt compareTo} methods.  For example:
     String name1 = "Alan Turing";
     String name2 = "Ada Lovelace";
 
-    if(name1.equals(name2)) {
+    if (name1.equals(name2)) {
       System.out.println("The names are the same.");
     }
 
     int flag = name1.compareTo(name2);
-    if(flag == 0) {
+    if (flag == 0) {
       System.out.println("The names are the same.");
-    } else if(flag < 0) {
+    } else if (flag < 0) {
       System.out.println("name1 comes before name2.");
-    } else if(flag > 0) {
+    } else if (flag > 0) {
       System.out.println("name2 comes before name1.");
     }
 \end{verbatim}
@@ -6100,7 +6237,7 @@ What is the output of the following program?
 public class Rarefy {
 
     public static void rarefy(int x) {
-        if(x == 0) {
+        if (x == 0) {
             return;
         } else {
             rarefy(x/2);
@@ -7029,7 +7166,7 @@ exponentiation:
 
 \begin{verbatim}
 public static int pow(int x, int n) {
-    if(n==0) return 1;
+    if (n==0) return 1;
 
     // find x to the n/2 recursively
     int t = pow(x, n/2);
@@ -7037,7 +7174,7 @@ public static int pow(int x, int n) {
     // if n is even, the result is t squared
     // if n is odd, the result is t squared times x
 
-    if(n%2 == 0) {
+    if (n%2 == 0) {
       return t*t;
     } else {
       return t*t*x;
@@ -7422,13 +7559,13 @@ comes after the second:
 
 \begin{verbatim}
   public static boolean after(Time time1, Time time2) {
-    if(time1.hour > time2.hour) return true;
-    if(time1.hour < time2.hour) return false;
+    if (time1.hour > time2.hour) return true;
+    if (time1.hour < time2.hour) return false;
 
-    if(time1.minute > time2.minute) return true;
-    if(time1.minute < time2.minute) return false;
+    if (time1.minute > time2.minute) return true;
+    if (time1.minute < time2.minute) return false;
 
-    if(time1.second > time2.second) return true;
+    if (time1.second > time2.second) return true;
     return false;
   }
 \end{verbatim}
@@ -7492,11 +7629,11 @@ Here's a second, corrected version of this method.
     sum.minute = t1.minute + t2.minute;
     sum.second = t1.second + t2.second;
 
-    if(sum.second >= 60.0) {
+    if (sum.second >= 60.0) {
       sum.second -= 60.0;
       sum.minute += 1;
     }
-    if(sum.minute >= 60) {
+    if (sum.minute >= 60) {
       sum.minute -= 60;
       sum.hour += 1;
     }
@@ -7533,11 +7670,11 @@ Again, a rough draft of this method looks like:
   public static void increment(Time time, double secs) {
     time.second += secs;
 
-    if(time.second >= 60.0) {
+    if (time.second >= 60.0) {
       time.second -= 60.0;
       time.minute += 1;
     }
-    if(time.minute >= 60) {
+    if (time.minute >= 60) {
       time.minute -= 60;
       time.hour += 1;
     }
@@ -7588,11 +7725,11 @@ the following with the previous version:
     sum.minute = t1.minute + t2.minute;
     sum.second = t1.second + t2.second;
 
-    if(sum.second >= 60.0) {
+    if (sum.second >= 60.0) {
       sum.second -= 60.0;
       sum.minute += 1;
     }
-    if(sum.minute >= 60) {
+    if (sum.minute >= 60) {
       sum.minute -= 60;
       sum.hour += 1;
     }
@@ -8460,7 +8597,7 @@ the range.
 public static int inRange(int[] a, int low, int high) {
     int count = 0;
     for(int i=0; i<a.length; i++) {
-        if(a[i] >= low && a[i] < high) count++;
+        if (a[i] >= low && a[i] < high) count++;
     }
     return count;
 }
@@ -8656,7 +8793,7 @@ public static int apple(int[] a, int p) {
     int i = 0;
     int pear = 0;
     while(i < a.length) {
-        if(a[i] == p) pear++;
+        if (a[i] == p) pear++;
         i++;
     }
     return pear;
@@ -8664,7 +8801,7 @@ public static int apple(int[] a, int p) {
 
 public static int grapefruit(int[] a, int p) {
     for(int i = 0; i<a.length; i++) {
-        if(a[i] == p) return i;
+        if (a[i] == p) return i;
     }
     return -1;
 }		
@@ -9083,7 +9220,7 @@ the {\tt ==} operator.  For example:
     Card card1 = new Card(1, 11);
     Card card2 = card1;
 
-    if(card1 == card2) {
+    if (card1 == card2) {
         System.out.println("card1 and card2 are the same object.");
     }
 \end{verbatim}
@@ -9113,7 +9250,7 @@ same card:
     Card card1 = new Card(1, 11);
     Card card2 = new Card(1, 11);
 
-    if(sameCard(card1, card2)) {
+    if (sameCard(card1, card2)) {
         System.out.println("card1 and card2 are the same card.");
     }
 \end{verbatim}
@@ -9187,16 +9324,16 @@ standard for comparison methods.
 First we compare the suits:
 
 \begin{verbatim}
-    if(c1.suit > c2.suit) return 1;
-    if(c1.suit < c2.suit) return -1;
+    if (c1.suit > c2.suit) return 1;
+    if (c1.suit < c2.suit) return -1;
 \end{verbatim}
 %
 If neither statement is true, then the suits must be equal,
 and we have to compare ranks:
 
 \begin{verbatim}
-    if(c1.rank > c2.rank) return 1;
-    if(c1.rank < c2.rank) return -1;
+    if (c1.rank > c2.rank) return 1;
+    if (c1.rank < c2.rank) return -1;
 \end{verbatim}
 %
 If neither of these is true, the ranks must be equal,
@@ -9234,7 +9371,7 @@ initialized to {\tt null}.  You can access the elements of
 the array in the usual way:
 
 \begin{verbatim}
-    if(deck[3] == null) {
+    if (deck[3] == null) {
         System.out.println("No cards yet!");
     }
 \end{verbatim}
@@ -9344,7 +9481,7 @@ the deck, we return -1.
 \begin{verbatim}
 public static int findCard(Card[] deck, Card card) {
     for(int i = 0; i< deck.length; i++) {
-        if(sameCard(deck[i], card)) return i;
+        if (sameCard(deck[i], card)) return i;
     }
     return -1;
 }
@@ -9438,9 +9575,9 @@ public static int findBisect(Card[] deck, Card card, int low, int high) {
     int mid =(high + low) / 2;
     int comp = compareCard(deck[mid], card);
 
-    if(comp == 0) {
+    if (comp == 0) {
         return mid;
-    } else if(comp > 0) {
+    } else if (comp > 0) {
         return findBisect(deck, card, low, mid-1);
     } else {
         return findBisect(deck, card, mid+1, high);
@@ -9472,14 +9609,14 @@ With that line added, the method works correctly:
 public static int findBisect(Card[] deck, Card card, int low, int high) {
     System.out.println(low + ", " + high);
 
-    if(high < low) return -1;
+    if (high < low) return -1;
 
     int mid =(high + low) / 2;
     int comp = deck[mid].compareCard(card);
 
-    if(comp == 0) {
+    if (comp == 0) {
         return mid;
-    } else if(comp > 0) {
+    } else if (comp > 0) {
         return findBisect(deck, card, low, mid-1);
     } else {
         return findBisect(deck, card, mid+1, high);
@@ -11222,7 +11359,7 @@ public static boolean isIn(char c, String s) {
     while(index < s.length()) {
         char letter = s.charAt(index);
         System.out.println(letter);
-        if(letter == c) {
+        if (letter == c) {
             System.out.println("found it");
         }
         index = index + 1;
@@ -11248,7 +11385,7 @@ public static boolean isIn(char c, String s) {
     while(index < s.length()) {
         char letter = s.charAt(index);
         System.out.println(letter);
-        if(letter == c) {
+        if (letter == c) {
             System.out.println("found it");
             return true;
         }
@@ -11292,7 +11429,7 @@ public static boolean isIn(char c, String s) {
     int index = 0;
     while(index < s.length()) {
         char letter = s.charAt(index);
-        if(letter == c) {
+        if (letter == c) {
 	    return true;
         }
         index = index + 1;
@@ -11315,7 +11452,7 @@ translate the code line by line.  For example, no one needs this:
 
 \begin{verbatim}
         // if letter equals c, return true
-        if(letter == c) {
+        if (letter == c) {
             return true;
         }
 \end{verbatim}
@@ -12201,7 +12338,7 @@ example:
 
         while(true) {
             String s = in.readLine();
-            if(s == null) break;
+            if (s == null) break;
             System.out.println(s);
         }
     }
@@ -12496,7 +12633,7 @@ class Example {
     // draw demonstrates a recursive pattern
     
     public static void draw(Graphics g, int x, int y, int width, int height) {
-        if(height < 3) return;
+        if (height < 3) return;
 	
         g.drawOval(x, y, width, height);
 	
@@ -12553,7 +12690,7 @@ class Slate extends Frame {
     // paint copies the off-screen buffer onto the screen
     
     public void paint(Graphics g) {
-        if(image == null) return;
+        if (image == null) return;
         g.drawImage(image, 0, 0, null);
     }
 }
@@ -12765,7 +12902,7 @@ height of the bounding box and returns immediately if it is less than
 10.
 
 \begin{verbatim}
-        if(height < 10) return;
+        if (height < 10) return;
 \end{verbatim}
 
 \item Now that you have that line, it is safe to add code at the end
