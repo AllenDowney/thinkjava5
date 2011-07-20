@@ -2073,6 +2073,7 @@ power.  The result gets assigned to {\tt x}; I hope you know what it
 is.
 
 \section{Adding new methods}
+\label{adding_methods}
 \index{method!definition}
 \index{main}
 \index{method!main}
@@ -2202,6 +2203,9 @@ repetitive code.  For example, to print nine consecutive
 new lines, you could invoke {\tt threeLine} three times.
 
 \end{enumerate}
+
+In Section~\ref{methods} we will come back to this question and list
+some additional benefits of dividing programs into methods.
 
 
 \section{Classes and methods}
@@ -4584,7 +4588,7 @@ common divisor of the two numbers.
 I haven't said much about it, but it is legal in Java to
 make more than one assignment to the same variable.  The
 effect of the second assignment is to replace the old value
-of the variable with a new value.
+with the new.
 
 \begin{verbatim}
     int fred = 5;
@@ -4629,29 +4633,27 @@ but they don't have to stay that way!
 \end{verbatim}
 %
 The third line changes the value of {\tt a} but it does not
-change the value of {\tt b}, and so they are no longer equal.
-In many programming languages an alternative symbol is used
+change the value of {\tt b}, so they are no longer equal.
+In some programming languages a different symbol is used
 for assignment, such as {\tt <-} or {\tt :=}, in order to
 avoid this confusion.
 
-Although multiple assignment is frequently useful, you should
-use it with caution.  If the values of variables are changing
-constantly in different parts of the program, it can make
+Although multiple assignment is frequently useful, you should use it
+with caution.  If the values of variables change often, it can make
 the code difficult to read and debug.
+
 
 \section{Iteration}
 \index{iteration}
 
-One of the things computers are often used for is the automation
-of repetitive tasks.  Repeating identical or similar tasks without
-making errors is something that computers do well and people do
-poorly.
+Computers are often used to automate repetitive tasks.  Repeating
+tasks without making errors is something that
+computers do well and people do poorly.
 
-We have already seen programs that use recursion to perform
-repetition, such as {\tt nLines} and {\tt countdown}.  This
-type of repetition is called {\bf iteration}, and Java provides
-several language features that make it easier to write iterative
-programs.
+We have already seen methods, like {\tt countdown} and {\tt factorial},
+ that use recursion to perform repetition, also called
+{\bf iteration}.  Java provides language features that make
+it easier to write these methods.
 
 The two features we are going to look at are the {\tt while}
 statement and the {\tt for} statement.
@@ -4664,7 +4666,7 @@ Using a {\tt while} statement, we can rewrite {\tt countdown}:
 
 \begin{verbatim}
   public static void countdown(int n) {
-    while(n > 0) {
+    while (n > 0) {
       System.out.println(n);
       n = n-1;
     }
@@ -4672,9 +4674,9 @@ Using a {\tt while} statement, we can rewrite {\tt countdown}:
   }
 \end{verbatim}
 %
-You can almost read a {\tt while} statement as if it were
+You can almost read a {\tt while} statement like
 English.  What this means is, ``While {\tt n} is greater than
-zero, continue printing the value of {\tt n} and then reducing
+zero, print the value of {\tt n} and then reduce
 the value of {\tt n} by 1.  When you get to zero, print the
 word `Blastoff!'''
 
@@ -4689,16 +4691,18 @@ or {\tt false}.
 \item If the condition is false, exit the {\tt while} statement
 and continue execution at the next statement.
 
-\item If the condition is true, execute each of the statements
+\item If the condition is true, execute the statements
 between the squiggly-brackets, and then go back to step 1.
 
 \end{enumerate}
 
 This type of flow is called a {\bf loop} because the third step loops
-back around to the top.  Notice that if the condition is false the
-first time through the loop, the statements inside the loop are
-never executed.  The statements inside the loop are sometimes called
+back around to the top.  The statements inside the loop are called
 the {\bf body} of the loop.
+
+If the condition is false the
+first time through the loop, the statements inside the loop are
+never executed.  
 
 \index{loop}
 \index{loop!body}
@@ -4715,15 +4719,13 @@ that the directions on shampoo, ``Lather, rinse, repeat,'' are
 an infinite loop.
 
 In the case of {\tt countdown}, we can prove that the loop
-will terminate because we know that the value of {\tt n} is
-finite, and we can see that the value of {\tt n} gets smaller
-each time through the loop(each {\bf iteration}), so
-eventually we have to get to zero.  In other cases it is not
-so easy to tell:
+terminates if {\tt n} is positive.
+
+In other cases it is not so easy to tell:
 
 \begin{verbatim}
   public static void sequence(int n) {
-    while(n != 1) {
+    while (n != 1) {
       System.out.println(n);
       if (n%2 == 0) {           // n is even
         n = n / 2;
@@ -4741,7 +4743,7 @@ false.
 At each iteration, the program prints the value of {\tt n} and then
 checks whether it is even or odd.  If it is even, the value of
 {\tt n} is divided by two.  If it is odd, the value is replaced
-by $3n+1$.  For example, if the starting value(the argument passed
+by $3n+1$.  For example, if the starting value (the argument passed
 to {\tt sequence}) is 3, the resulting sequence is
 3, 10, 5, 16, 8, 4, 2, 1.
 
@@ -4756,6 +4758,8 @@ starting with 16.
 Particular values aside, the interesting question is whether
 we can prove that this program terminates for {\em all} values of n.
 So far, no one has been able to prove it {\em or} disprove it!
+For more information, see \url{http://en.wikipedia.org/wiki/Collatz_conjecture}.
+
 
 \section{Tables}
 \index{table}
@@ -4769,21 +4773,21 @@ by hand.
 
 To make that easier, there were books containing long tables
 where you could find the values of various functions.
-Creating these tables was slow and boring, and the result
-tended to be full of errors.
+Creating these tables was slow and boring, and the results
+were full of errors.
 
 When computers appeared on the scene, one of the initial reactions
 was, ``This is great!  We can use the computers to generate the
 tables, so there will be no errors.''  That turned out to be true
-(mostly), but shortsighted.  Soon thereafter computers(and
-calculators) were so pervasive that the tables became obsolete.
+(mostly), but shortsighted.  Soon thereafter computers were so
+pervasive that the tables became obsolete.
 
-Well, almost.  It turns out that for some operations, computers
-use tables of values to get an approximate answer, and then
-perform computations to improve the approximation.  In some
-cases, there have been errors in the underlying tables, most
-famously in the table the original Intel Pentium used to perform
-floating-point division.
+Well, almost.  For some operations, computers use tables of values to
+get an approximate answer, and then perform computations to improve
+the approximation.  In some cases, there have been errors in the
+underlying tables, most famously in the table the original Intel
+Pentium used to perform floating-point division\footnote{See
+  \url{http://en.wikipedia.org/wiki/Pentium_FDIV_bug}.}.
 
 \index{division!floating-point}
 
@@ -4794,7 +4798,7 @@ right column:
 
 \begin{verbatim}
     double x = 1.0;
-    while(x < 10.0) {
+    while (x < 10.0) {
       System.out.println(x + "   " + Math.log(x));
       x = x + 1.0;
     }
@@ -4815,11 +4819,11 @@ The output of this program is
 \end{verbatim}
 %
 Looking at these values, can you tell what base the {\tt log}
-function uses by default?
+function uses?
 
-Since powers of two are so important
-in computer science, we often want to find logarithms with
-respect to base 2.  To find that, we have to use the following
+Since powers of two are important
+in computer science, we often want logarithms with
+respect to base 2.  To compute them, we can use the following
 formula:
 
 \begin{equation}
@@ -4853,7 +4857,7 @@ program like this:
 
 \begin{verbatim}
     double x = 1.0;
-    while(x < 100.0) {
+    while (x < 100.0) {
       System.out.println(x + "   " + Math.log(x) / Math.log(2.0));
       x = x * 2.0;
     }
@@ -4875,9 +4879,10 @@ The result is:
 \end{verbatim}
 %
 Log tables may not be useful any more, but for computer scientists,
-knowing the powers of two is!  Some time when you have an idle
+knowing the powers of two is!  When you have an idle
 moment, you should memorize the powers of two up to 65536
 (that's $2^{16}$).
+
 
 \section{Two-dimensional tables}
 \index{table!two-dimensional}
@@ -4892,26 +4897,24 @@ the multiples of 2, all on one line.
 
 \begin{verbatim}
     int i = 1;
-    while(i <= 6) {
+    while (i <= 6) {
       System.out.print(2*i + "   ");
       i = i + 1;
     }
     System.out.println("");
 \end{verbatim}
 %
-The first line initializes a variable named {\tt i}, which is
-going to act as a counter, or {\bf loop variable}.  As the
-loop executes, the value of {\tt i} increases from 1 to 6,
-and then when {\tt i} is 7, the loop terminates.  Each
-time through the loop, we print the value {\tt 2*i} followed
-by three spaces.  Since we are using the {\tt print} statement
-rather than {\tt println}, all the output appears on a single
-line.
+The first line initializes a variable named {\tt i}, which is going
+to act as a counter, or {\bf loop variable}.  As the loop executes,
+the value of {\tt i} increases from 1 to 6; when {\tt i} is 7, the
+loop terminates.  Each time through the loop, we print the value {\tt
+  2*i} and three spaces.  Since we use {\tt System.out.print}, 
+the output appears on a single line.
 
 \index{loop variable}
 \index{variable!loop}
 
-As I mentioned in Section~\ref{printing}, in some environments the
+In some environments the
 output from {\tt print} gets stored without being displayed until {\tt
 println} is invoked.  If the program terminates, and you forget to
 invoke {\tt println}, you may never see the stored output.
@@ -4925,10 +4928,11 @@ The output of this program is:
 So far, so good.  The next step is to {\bf encapsulate} and {\bf
 generalize}.
 
+
 \section {Encapsulation and generalization}
 \label{encapsulation}
 
-Encapsulation usually means taking a piece of code and wrapping it up
+Encapsulation means taking a piece of code and wrapping it up
 in a method, allowing you to take advantage of all the things methods
 are good for.  We have seen two examples of encapsulation, when we
 wrote {\tt printParity} in Section~\ref{alternative} and {\tt
@@ -4947,7 +4951,7 @@ section and generalizes it to print multiples of {\tt n}.
 \begin{verbatim}
   public static void printMultiples(int n) {
     int i = 1;
-    while(i <= 6) {
+    while (i <= 6) {
       System.out.print(n*i + "   ");
       i = i + 1;
     }    
@@ -4980,7 +4984,7 @@ iterate through the rows.
 
 \begin{verbatim}
     int i = 1;
-    while(i <= 6) {
+    while (i <= 6) {
       printMultiples(i);
       i = i + 1;
     }    
@@ -5001,18 +5005,18 @@ The output of this program is
 6   12   18   24   30   36   
 \end{verbatim}
 %
-which is a(slightly sloppy) multiplication table.  If the
+which is a (slightly sloppy) multiplication table.  If the
 sloppiness bothers you, Java provides methods that give you
 more control over the format of the output, but I'm not
 going to get into that here.
 
+
 \section{Methods}
+\label{methods}
 \index{method}
 
-In the last section I mentioned ``all the things methods
-are good for.''  About this time, you might be wondering
-what exactly those things are.  Here are some of the reasons
-methods are useful:
+In the Section~\ref{adding_methods} I listed some of the
+reasons methods are useful.  Here are more:
 
 \begin{itemize}
 
@@ -5030,6 +5034,7 @@ Once you write and debug one, you can reuse it.
 
 \end{itemize}
 
+
 \section{More encapsulation}
 \index{encapsulation}
 
@@ -5039,7 +5044,7 @@ from the previous section and wrap it up in a method:
 \begin{verbatim}
   public static void printMultTable() {
     int i = 1;
-    while(i <= 6) {
+    while (i <= 6) {
       printMultiples(i);
       i = i + 1;
     }
@@ -5048,16 +5053,19 @@ from the previous section and wrap it up in a method:
 %
 The process I am demonstrating is a common 
 development plan.  You develop code gradually by adding
-lines to {\tt main} or someplace else, and then when you get
+lines to {\tt main} or another method.  When you get
 it working, you extract it and wrap it up in a method.
 
-The reason this is useful is that you sometimes don't know
+This process is useful because sometimes you don't know
 when you start writing exactly how to divide the program into
 methods.  This approach lets you design as you go along.
 
-\section{Local variables}
 
-About this time, you might be wondering how we can use the same
+\section{Local variables}
+\index{local variable}
+\index{variable!local}
+
+You might wonder how we can use the same
 variable {\tt i} in both {\tt printMultiples} and {\tt
 printMultTable}.  Didn't I say that you can only declare a variable
 once?  And doesn't it cause problems when one of the methods changes
@@ -5067,24 +5075,20 @@ The answer to both questions is ``no,'' because the {\tt i} in {\tt
 printMultiples} and the {\tt i} in {\tt printMultTable} are
 {\em not the same variable}.  They have the same name, but
 they do not refer to the same storage location, and changing
-the value of one of them has no effect on the other.
+the value of one has no effect on the other.
 
-\index{local variable}
-\index{variable!local}
-
-Variables that are declared inside a method definition are
-called {\bf local variables} because they are local to their
-own methods.  You cannot access a local variable from outside
+Variables declared inside a method definition are
+called {\bf local variables} because they only exist inside
+the method.  You cannot access a local variable from outside
 its ``home'' method, and you are free to have multiple
 variables with the same name, as long as they are not in
 the same method.
 
-It is often a good idea to use different variable names in
-different methods, to avoid confusion, but there are good
+Although it can be confusing, there are good
 reasons to reuse names.  For example, it is common to
 use the names {\tt i}, {\tt j} and {\tt k} as loop variables.
 If you avoid using them in one method just because you
-used them somewhere else, you will probably make the program
+used them somewhere else, you make the program
 harder to read.
 
 \index{loop variable}
@@ -5101,7 +5105,7 @@ size, not just the 6x6 table.  You could add a parameter to
 \begin{verbatim}
   public static void printMultTable(int high) {
     int i = 1;
-    while(i <= high) {
+    while (i <= high) {
       printMultiples(i);
       i = i + 1;
     }
@@ -5122,18 +5126,18 @@ invoke {\tt printMultTable} with the argument 7, I get
 \end{verbatim}
 %
 which is fine, except that I probably want the table to
-be square(same number of rows and columns), which means
+be square (same number of rows and columns), which means
 I have to add another parameter to {\tt printMultiples},
 to specify how many columns the table should have.
 
-Just to be annoying, I will also call this parameter {\tt high},
+I also call this parameter {\tt high},
 demonstrating that different methods can have parameters
-with the same name(just like local variables):
+with the same name (just like local variables):
 
 \begin{verbatim}
   public static void printMultiples(int n, int high) {
     int i = 1;
-    while(i <= high) {
+    while (i <= high) {
       System.out.print(n*i + "   ");
       i = i + 1;
     }    
@@ -5142,7 +5146,7 @@ with the same name(just like local variables):
 
   public static void printMultTable(int high) {
     int i = 1;
-    while(i <= high) {
+    while (i <= high) {
       printMultiples(i, high);
       i = i + 1;
     }
@@ -5150,7 +5154,7 @@ with the same name(just like local variables):
 \end{verbatim}
 %
 Notice that when I added a new parameter, I had to change the first
-line of the method(the interface or prototype), and I also had to
+line of the method (the interface or prototype), and I also had to
 change the place where the method is invoked in {\tt printMultTable}.
 As expected, this program generates a square 7x7 table:
 
@@ -5165,7 +5169,7 @@ As expected, this program generates a square 7x7 table:
 \end{verbatim}
 %
 When you generalize a method appropriately, you often find
-that the resulting program has capabilities you did not intend.
+that it has capabilities you did not plan.
 For example, you might notice that the multiplication table
 is symmetric, because $ab = ba$, so all the entries in the
 table appear twice.  You could save ink by printing only
@@ -5196,23 +5200,24 @@ and you get
 %
 I'll leave it up to you to figure out how it works.
 
+
 \section{Glossary}
 
 \begin{description}
 
-\item[loop:]  A statement that executes repeatedly while or
-until some condition is satisfied.
+\item[loop:]  A statement that executes repeatedly while
+some condition is satisfied.
 
 \item[infinite loop:]  A loop whose condition is always true.
 
 \item[body:]  The statements inside the loop.
 
-\item[iteration:]  One pass through(execution of) the body
+\item[iteration:]  One pass through (execution of) the body
 of the loop, including the evaluation of the condition.
 
 \item[encapsulate:]  To divide a large complex program into
-components(like methods) and isolate the components from
-each other(for example, by using local variables).
+components (like methods) and isolate the components from
+each other (for example, by using local variables).
 
 \item[local variable:]  A variable that is declared inside
 a method and that exists only within that method.  Local variables
@@ -5225,12 +5230,12 @@ interfere with any other methods.
 versatile, more likely to be reused, and sometimes even easier
 to write.
 
-\item[development plan:]  A process for developing a program.
-In this chapter, I demonstrated a style of development based on
-developing code to do simple, specific things, and then encapsulating
-and generalizing.  In Section~\ref{distance} I demonstrated a
-technique I called incremental development.  In later chapters I will
-suggest other styles of development.
+\item[development plan:] A process for developing a program.  In this
+  chapter, I demonstrated a style of development based on developing
+  code to do simple, specific things, and then encapsulating and
+  generalizing.  In Section~\ref{distance} I demonstrated incremental
+  development.  In later chapters I will suggest other styles of
+  development.
 
 \index{loop}
 \index{infinite loop}
@@ -5244,11 +5249,11 @@ suggest other styles of development.
 
 \end{description}
 
+
 \section{Exercises}
 
 \begin{exercise}\label{infloop}
-%changed the condition on the loop so that it will terminate
-%(was this *supposed* to be an infinite loop?)
+
 \begin{verbatim}
 public static void main(String[] args) {
     loop(10);
@@ -5256,7 +5261,7 @@ public static void main(String[] args) {
 
 public static void loop(int n) {
     int i = n;
-    while(i > 1) {
+    while (i > 1) {
         System.out.println(i);
         if (i%2 == 0) {
             i = i/2;
@@ -5285,7 +5290,7 @@ iteration.
 
 \item Encapsulate the following code fragment, transforming it
 into a method that takes a String as an argument and that
-returns(and doesn't print) the final value of {\tt count}.
+returns (and doesn't print) the final value of {\tt count}.
 
 \item In a sentence, describe abstractly what the resulting
 method does.
@@ -5303,7 +5308,7 @@ generalize it more?
     int i = 0;
     int count = 0;
 
-    while(i < len) {
+    while (i < len) {
         char c = s.charAt(i);
 
         if (c == '(') {
@@ -5580,7 +5585,7 @@ way to encode a traversal is with a {\tt while} statement:
 
 \begin{verbatim}
     int index = 0;
-    while(index < fruit.length()) {
+    while (index < fruit.length()) {
       char letter = fruit.charAt(index);
       System.out.println(letter);
       index = index + 1;
@@ -5753,7 +5758,7 @@ number of times the letter {\tt 'a'} appears in a string:
     int count = 0;
 
     int index = 0;
-    while(index < length) {
+    while (index < length) {
       if (fruit.charAt(index) == 'a') {
         count = count + 1;
       }
@@ -5813,7 +5818,7 @@ Using the increment operators, we can rewrite the letter-counter:
 
 \begin{verbatim}
     int index = 0;
-    while(index < length) {
+    while (index < length) {
       if (fruit.charAt(index) == 'a') {
         count++;
       }
@@ -5891,7 +5896,7 @@ can write {\tt index++;}, but you shouldn't mix them.
 
 % \begin{verbatim}
 %     char letter = 'J';
-%     while(letter <= 'Q') {
+%     while (letter <= 'Q') {
  %      System.out.println(letter + "ack");
  %      letter++;
 %     }
@@ -6109,7 +6114,7 @@ public class Mystery {
         int i = s.length() - 1;
         String total = "";
 
-        while(i >= 0 ) {
+        while (i >= 0 ) {
             char ch = s.charAt(i);
             System.out.println(i + "     " + ch);
 
@@ -7610,11 +7615,11 @@ statements with {\tt while} statements:
   public static void increment(Time time, double secs) {
     time.second += secs;
 
-    while(time.second >= 60.0) {
+    while (time.second >= 60.0) {
       time.second -= 60.0;
       time.minute += 1;
     }
-    while(time.minute >= 60) {
+    while (time.minute >= 60) {
       time.minute -= 60;
       time.hour += 1;
     }
@@ -8150,7 +8155,7 @@ variable.  For example:
 
 \begin{verbatim}
     int i = 0;
-    while(i < 4) {
+    while (i < 4) {
       System.out.println(count[i]);
       i++;
     }
@@ -8202,7 +8207,7 @@ one to the other.
     double[] b = new double [3];
 
     int i = 0;
-    while(i < 4) {
+    while (i < 4) {
       b[i] = a[i];
       i++;
     }
@@ -8234,7 +8239,7 @@ This statement is exactly equivalent to
 
 \begin{verbatim}
     INITIALIZER;
-    while(CONDITION) {
+    while (CONDITION) {
       BODY
       INCREMENTOR
     }
@@ -8254,7 +8259,7 @@ is equivalent to
 
 \begin{verbatim}
     int i = 0;
-    while(i < 4) {
+    while (i < 4) {
       System.out.println(count[i]);
       i++;
     }
@@ -8698,7 +8703,7 @@ identify the role it plays.
 public static int banana(int[] a) {
     int grape = 0;
     int i = 0;
-    while(i < a.length) {
+    while (i < a.length) {
         grape = grape + a[i];
         i++;
     }
@@ -8708,7 +8713,7 @@ public static int banana(int[] a) {
 public static int apple(int[] a, int p) {
     int i = 0;
     int pear = 0;
-    while(i < a.length) {
+    while (i < a.length) {
         if (a[i] == p) pear++;
         i++;
     }
@@ -11242,7 +11247,7 @@ public static boolean isIn(char c, String s) {
     System.out.println("in the String " + s);
 
     int index = 0;
-    while(index < s.length()) {
+    while (index < s.length()) {
         char letter = s.charAt(index);
         System.out.println(letter);
         index = index + 1;
@@ -11272,7 +11277,7 @@ public static boolean isIn(char c, String s) {
     System.out.println("in the String " + s);
 
     int index = 0;
-    while(index < s.length()) {
+    while (index < s.length()) {
         char letter = s.charAt(index);
         System.out.println(letter);
         if (letter == c) {
@@ -11298,7 +11303,7 @@ public static boolean isIn(char c, String s) {
     System.out.println("in the String " + s);
 
     int index = 0;
-    while(index < s.length()) {
+    while (index < s.length()) {
         char letter = s.charAt(index);
         System.out.println(letter);
         if (letter == c) {
@@ -11343,7 +11348,7 @@ statements.
 \begin{verbatim}
 public static boolean isIn(char c, String s) {
     int index = 0;
-    while(index < s.length()) {
+    while (index < s.length()) {
         char letter = s.charAt(index);
         if (letter == c) {
 	    return true;
@@ -11695,7 +11700,7 @@ the condition, and the value of the condition.
 For example,
 
 \begin{verbatim}
-    while(x > 0 && y < 0) {
+    while (x > 0 && y < 0) {
         // do something to x
         // do something to y
 
@@ -12252,7 +12257,7 @@ example:
         FileReader fileReader = new FileReader(filename);
         BufferedReader in = new BufferedReader(fileReader);
 
-        while(true) {
+        while (true) {
             String s = in.readLine();
             if (s == null) break;
             System.out.println(s);
@@ -12841,7 +12846,7 @@ contents of {\tt draw} with a single line that invokes {\tt moire}.
 public static void moire
         (Graphics g, int x, int y, int width, int height) {
     int i = 1;
-    while(i<width) {
+    while (i<width) {
         g.drawOval(0, 0, i, i);
         i = i + 2;
     }
