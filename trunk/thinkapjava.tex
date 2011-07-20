@@ -5475,27 +5475,27 @@ of related data that come with a set of methods.  These methods
 operate on the objects, performing computations and sometimes
 modifying the object's data.
 
-Of the types we have seen so far, only {\tt Strings} are objects.
-Based on the definition of object, you might ask ``What is the data
+{\tt Strings} are objects,
+so you might ask ``What is the data
 contained in a {\tt String} object?'' and ``What are the methods we
 can invoke on {\tt String} objects?''
 
 \index{documentation}
 \index{Sun}
 
-The data contained in a {\tt String} object are the letters of the string.
-There are quite a few methods that operate on {\tt String}s, but
-I will only use a few in this book.  The rest are documented at
+The data in a {\tt String} object are letters or, more generally,
+characters.  Not all characters are letters; some are numbers,
+symbols, and other things altogether.  But for simplicity I
+call them letters.
 
-\begin{verbatim}
-http://java.sun.com/j2se/1.4.1/docs/api/java/lang/String.html
-\end{verbatim}
-%
-The first method we will look at is {\tt charAt}, which allows you
-to extract letters from a {\tt String}.  In order to store the result, we
-need a variable type that can store individual letters(as opposed
-to strings).  Individual letters are called characters, and the
-variable type that stores them is called {\tt char}.
+There are many methods, but I use only a few in this
+book.  The rest are documented at
+\url{http://download.oracle.com/javase/6/docs/api/java/lang/String.html}.
+
+The first method we will look at is {\tt charAt}, which allows you to
+extract letters from a {\tt String}.  In order to store the result, we
+need a new type: {\tt char} is the variable type that can store
+individual characters (as opposed to strings).
 
 \index{char}
 \index{type!char}
@@ -5510,8 +5510,8 @@ variable type that stores them is called {\tt char}.
     }
 \end{verbatim}
 %
-Character values appear in single quotes({\tt 'c'}).  Unlike
-string values(which appear in double quotes), character values
+Character values appear in single quotes, like {\tt 'c'}.  Unlike
+string values (which appear in double quotes), character values
 can contain only a single letter or symbol.
 
 \index{quote}
@@ -5526,11 +5526,11 @@ Here's how the {\tt charAt} method is used:
     System.out.println(letter);
 \end{verbatim}
 %
-The syntax {\tt fruit.charAt} indicates that I am 
+{\tt fruit.charAt()} means that I am 
 invoking the {\tt charAt} method on the object named
 {\tt fruit}.
 I am passing the argument {\tt 1} to this method,
-which indicates that I would like to know the first letter of
+which means that I want to know the first letter of
 the string.  The result is a character, which is stored in a
 {\tt char} named {\tt letter}.  When I print the value of
 {\tt letter}, I get a surprise:
@@ -5540,32 +5540,33 @@ a
 \end{verbatim}
 %
 {\tt a} is not the first letter of {\tt "banana"}.  Unless you are a
-computer scientist.  For perverse reasons, computer scientists always
-start counting from zero.  The 0th letter(``zeroeth'') of {\tt
-"banana"} is {\tt b}.  The 1th letter(``oneth'') is {\tt a} and the
-2th(``twoeth'') letter is {\tt n}.
+computer scientist.  For perverse reasons, computer scientists
+start counting from zero.  The 0th letter (``zeroeth'') of {\tt
+"banana"} is {\tt b}.  The 1th letter (``oneth'') is {\tt a} and the
+2th (``twooth'') letter is {\tt n}.
 
 If you want the zereoth letter of a string, you have to pass
-zero as an argument:
+0 as an argument:
 
 \begin{verbatim}
     char letter = fruit.charAt(0);
 \end{verbatim}
 
+
 \section{Length}
 \index{String!length}
 \index{length!String}
 
-The second {\tt String} method we'll look at is {\tt length}, which
+The next {\tt String} method we'll look at is {\tt length}, which
 returns the number of characters in the string.  For example:
 
 \begin{verbatim}
     int length = fruit.length();
 \end{verbatim}
 %
-{\tt length} takes no arguments, as indicated by {\tt()},
+{\tt length} takes no arguments
 and returns an integer, in this case 6.  Notice that it is
-legal to have a variable with the same name as a method(although
+legal to have a variable with the same name as a method (although
 it can be confusing for human readers).
 
 To find the last letter of a string, you might be tempted to
