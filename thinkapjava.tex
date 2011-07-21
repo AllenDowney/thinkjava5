@@ -45,6 +45,7 @@
 \usepackage{makeidx}
 \usepackage{url}
 \usepackage{fancyhdr}
+\usepackage{moreverb}
 
 
 % the exercise environment
@@ -269,9 +270,9 @@ and printed.
 
 The \LaTeX\ source for this book is available from
 
-\begin{verbatim}
+\begin{verbatimtab}
       thinkapjava.com
-\end{verbatim}
+\end{verbatimtab}
 
 This book was typeset using \LaTeX .  The illustrations were
 drawn in xfig.  All of these are free, open-source programs.
@@ -628,7 +629,7 @@ ability is an advantage of Java over many other
 high-level languages.
 
 
-\myfig{figure=figs/java.eps}
+\epsfig{figure=figs/java.eps}
 
 
 Although this process may seem complicated, in most program
@@ -930,7 +931,7 @@ Traditionally the first program people write in a new language
 is called ``Hello, World.'' because all it does is display the
 words ``Hello, World.''  In Java, this program looks like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
 class Hello {
 
   // main: generate some simple output
@@ -939,7 +940,7 @@ class Hello {
     System.out.println("Hello, world.");
   }
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 This program includes features that are hard to explain to
 beginners, but it provides a preview of topics we
@@ -951,14 +952,14 @@ the form:
 \index{class definition}
 \index{definition!class}
 
-\begin{verbatim}
+\begin{verbatimtab}
 class CLASSNAME {
 
   public static void main (String[] args) {
     STATEMENTS
   }
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 Here {\tt CLASSNAME} indicates a name chosen by the programmer.
 The class name in the example is {\tt Hello}.
@@ -1211,7 +1212,7 @@ You can put as many
 statements as you want in {\tt main}; for example, to
 print more than one line:
 
-\begin{verbatim}
+\begin{verbatimtab}
 class Hello {
 
   // Generates some simple output.
@@ -1221,7 +1222,7 @@ class Hello {
     System.out.println("How are you?");      // print another
   }
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 As this example demonstrates, you can put comments at the
 end of a line, as well as on a line by themselves.
@@ -1245,7 +1246,7 @@ on the next line.
 To display the output from multiple print
 statements all on one line, use {\tt print}:
 
-\begin{verbatim}
+\begin{verbatimtab}
 class Hello {
 
   // Generates some simple output.
@@ -1255,7 +1256,7 @@ class Hello {
     System.out.println("cruel world!");
   }
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 The output appears on a single line as
 {\tt Goodbye, cruel world!}.  There is a space
@@ -1267,24 +1268,24 @@ Spaces that appear outside of quotation marks generally do
 not affect the behavior of the program.  For example, I
 could have written:
 
-\begin{verbatim}
+\begin{verbatimtab}
 class Hello {
 public static void main(String[] args) {
 System.out.print("Goodbye, ");
 System.out.println("cruel world!");
 }
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 This program would compile and run just as well as the original.
 The breaks at the ends of lines (newlines) do not affect
 the program's behavior either, so I could have written:
 
-\begin{verbatim}
+\begin{verbatimtab}
 class Hello { public static void main(String[] args) {
 System.out.print("Goodbye, "); System.out.println
 ("cruel world!");}}
-\end{verbatim}
+\end{verbatimtab}
 %
 That would work, too, but
 the program is getting harder and harder to read.  Newlines and
@@ -1306,9 +1307,9 @@ In order to store a value, you have to create a variable.  Since
 the values we want to store are strings, we declare that
 the new variable is a string:
 
-\begin{verbatim}
+\begin{verbatimtab}
     String bob;
-\end{verbatim}
+\end{verbatimtab}
 %
 This statement is a {\bf declaration}, because it declares that the
 variable named {\tt bob} has the type {\tt String}.  Each variable
@@ -1331,11 +1332,11 @@ variable.  In general, you will want to make up variable names
 that indicate what you plan to do with the variable.  For
 example, if you saw these variable declarations:
 
-\begin{verbatim}
+\begin{verbatimtab}
     String firstName;
     String lastName;
     int hour, minute;
-\end{verbatim}
+\end{verbatimtab}
 %
 you could guess what values
 would be stored in them.  This example
@@ -1351,11 +1352,11 @@ Now that we have created variables, we want to
 store values.  We do that with an {\bf assignment
 statement}.
 
-\begin{verbatim}
+\begin{verbatimtab}
     bob = "Hello.";     // give bob the value "Hello."
     hour = 11;           // assign the value 11 to hour
     minute = 59;         // set minute to 59
-\end{verbatim}
+\end{verbatimtab}
 %
 This example shows three assignments, and the comments show
 three different ways people sometimes talk about assignment
@@ -1376,7 +1377,7 @@ of the variable on the inside.  This figure shows
 the effect of the three assignment statements:
 
 
-\myfig{figure=figs/assign.eps}
+\epsfig{figure=figs/assign.eps}
 
 
 As a general rule,
@@ -1395,10 +1396,10 @@ can contain the string {\tt "123"}, which is made up of the
 characters {\tt 1}, {\tt 2} and {\tt 3}, but that is not
 the same thing as the {\em number} {\tt 123}.
 
-\begin{verbatim}
+\begin{verbatimtab}
     bob = "123";     // legal
     bob = 123;       // not legal
-\end{verbatim}
+\end{verbatimtab}
 
 
 \section{Printing variables}
@@ -1407,7 +1408,7 @@ the same thing as the {\em number} {\tt 123}.
 You can print the value of a variable using {\tt println} or
 {\tt print}:
 
-\begin{verbatim}
+\begin{verbatimtab}
 class Hello {
   public static void main(String[] args) {
     String firstLine;
@@ -1415,7 +1416,7 @@ class Hello {
     System.out.println(firstLine);
   }
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 This program creates a variable named {\tt firstLine}, assigns
 it the value {\tt "Hello, again!"} and then prints that value.
@@ -1426,23 +1427,23 @@ For example: {\tt System.out.println("firstLine");}
 
 For example, you can write
 
-\begin{verbatim}
+\begin{verbatimtab}
     String firstLine;
     firstLine = "Hello, again!";
     System.out.print("The value of firstLine is ");
     System.out.println(firstLine);
-\end{verbatim}
+\end{verbatimtab}
 %
 The output of this program is
 
-\begin{verbatim}
+\begin{verbatimtab}
 The value of firstLine is Hello, again!
-\end{verbatim}
+\end{verbatimtab}
 %
 I am happy to report that the syntax for printing a variable
 is the same regardless of the variable's type.
 
-\begin{verbatim}
+\begin{verbatimtab}
     int hour, minute;
     hour = 11;
     minute = 59;
@@ -1451,7 +1452,7 @@ is the same regardless of the variable's type.
     System.out.print(":");
     System.out.print(minute);
     System.out.println(".");
-\end{verbatim}
+\end{verbatimtab}
 %
 The output of this program is {\tt The current time is 11:59.}
 
@@ -1499,9 +1500,9 @@ to do because they are common mathematical symbols.  For
 example, the operator for addition is {\tt +}.  Subtraction
 is {\tt -}, multiplication is {\tt *}, and division is {\tt /}.
 
-\begin{verbatim}
+\begin{verbatimtab}
 1+1        hour-1       hour*60 + minute     minute/60
-\end{verbatim}
+\end{verbatimtab}
 %
 Expressions can contain both variable
 names and numbers.  Variables are
@@ -1513,7 +1514,7 @@ Addition, subtraction and multiplication all do what you
 expect, but you might be surprised by division.  For example,
 this program:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int hour, minute;
     hour = 11;
     minute = 59;
@@ -1521,14 +1522,14 @@ this program:
     System.out.println(hour*60 + minute);
     System.out.print("Fraction of the hour that has passed: ");
     System.out.println(minute/60);
-\end{verbatim}
+\end{verbatimtab}
 %
 generates this output:
 
-\begin{verbatim}
+\begin{verbatimtab}
 Number of minutes since midnight: 719
 Fraction of the hour that has passed: 0
-\end{verbatim}
+\end{verbatimtab}
 %
 The first line is expected, but the second line is
 odd.  The value of {\tt minute} is 59, and
@@ -1549,16 +1550,16 @@ even in cases like this where the next integer is so close.
 An alternative is to calculate a percentage
 rather than a fraction:
 
-\begin{verbatim}
+\begin{verbatimtab}
     System.out.print("Percentage of the hour that has passed: ");
     System.out.println(minute*100/60);
-\end{verbatim}
+\end{verbatimtab}
 %
 The result is:
 
-\begin{verbatim}
+\begin{verbatimtab}
 Percentage of the hour that has passed: 98
-\end{verbatim}
+\end{verbatimtab}
 %
 Again the result is rounded down, but at least now the answer
 is approximately correct.  In order to get a more accurate
@@ -1608,9 +1609,9 @@ In general you cannot perform mathematical operations on {\tt String}s,
 even if the strings look like numbers.  The following are
 illegal (if we know that bob has type {\tt String})
 
-\begin{verbatim}
+\begin{verbatimtab}
 bob - 1         "Hello"/123      bob * "Hello"
-\end{verbatim}
+\end{verbatimtab}
 %
 By the way, can you tell by looking at those expressions
 whether {\tt bob} is an integer or a string?  Nope.
@@ -1643,25 +1644,25 @@ is their ability to take small building blocks and
 numbers and we know how to print; it turns out we can
 combine them in a single statement:
 
-\begin{verbatim}
+\begin{verbatimtab}
     System.out.println(17 * 3);
-\end{verbatim}
+\end{verbatimtab}
 %
 Any expression involving numbers, strings
 and variables, can be used inside a print statement.  We've
 already seen one example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     System.out.println(hour*60 + minute);
-\end{verbatim}
+\end{verbatimtab}
 %
 But you can also put arbitrary expressions on the right-hand
 side of an assignment statement:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int percentage;
     percentage = (minute * 100) / 60;
-\end{verbatim}
+\end{verbatimtab}
 %
 This ability may not seem impressive now, but we will see
 examples where composition 
@@ -1774,12 +1775,12 @@ American form: {\tt Saturday, July 16, 2011}.
 
 \item Modify the program again so that the total output is:
 
-\begin{verbatim}
+\begin{verbatimtab}
 American format:
 Saturday, July 16, 2011
 European format:
 Saturday 16 July, 2011
-\end{verbatim}
+\end{verbatimtab}
 
 \end{enumerate}
 
@@ -1854,19 +1855,19 @@ called {\tt double}, which is short for ``double-precision.''
 You can create floating-point variables and assign values to them
 using the same syntax we used for the other types.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double pi;
     pi = 3.14159;
-\end{verbatim}
+\end{verbatimtab}
 %
 It is also legal to declare a variable and assign a value to it at the
 same time:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int x = 1;
     String empty = "";
     double pi = 3.14159;
-\end{verbatim}
+\end{verbatimtab}
 %
 This syntax is common; a combined declaration
 and assignment is sometimes called an {\bf initialization}.
@@ -1885,9 +1886,9 @@ different types, and strictly speaking, you are not allowed
 to make assignments between types.  For example, the following
 is illegal:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int x = 1.1;
-\end{verbatim}
+\end{verbatimtab}
 %
 because the variable on the left is an {\tt int}
 and the value on the right is a {\tt double}.  But it is easy
@@ -1895,17 +1896,17 @@ to forget this rule, especially because there are places where Java
 will automatically convert from one type to another.
 For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double y = 1;
-\end{verbatim}
+\end{verbatimtab}
 %
 should technically not be legal, but Java allows it by converting the
 {\tt int} to a {\tt double} automatically.  This leniency is
 convenient, but it can cause problems; for example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double y = 1 / 3;
-\end{verbatim}
+\end{verbatimtab}
 %
 You might expect the variable {\tt y} to get the value
 {\tt 0.333333}, which is a legal floating-point value, but in
@@ -1919,9 +1920,9 @@ One way to solve this problem (once you figure out what
 it is) is to make the right-hand side a floating-point
 expression:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double y = 1.0 / 3.0;
-\end{verbatim}
+\end{verbatimtab}
 %
 This sets {\tt y} to {\tt 0.333333}, as expected.
 
@@ -1956,10 +1957,10 @@ The syntax for typecasting is to put
 the name of the type in parentheses and use it as an operator.
 For example,
 
-\begin{verbatim}
+\begin{verbatimtab}
     double pi = 3.14159;
     int x = (int) pi;
-\end{verbatim}
+\end{verbatimtab}
 %
 The {\tt(int)} operator has the effect of converting what
 follows into an integer, so {\tt x} gets the value 3.
@@ -1969,10 +1970,10 @@ so in the following example, the value of {\tt pi} gets
 converted to an integer first, and the result
 is 60.0, not 62.
 
-\begin{verbatim}
+\begin{verbatimtab}
     double pi = 3.14159;
     double x = (int) pi * 20.0;
-\end{verbatim}
+\end{verbatimtab}
 % 
 Converting to an integer always rounds down, even if the fraction
 part is 0.99999999.  These behaviors (precedence and rounding)
@@ -2004,11 +2005,11 @@ are called {\bf methods}.
 The math methods are invoked using a syntax that is similar to
 the {\tt print} statements we have already seen:
 
-\begin{verbatim}
+\begin{verbatimtab}
      double root = Math.sqrt(17.0);
      double angle = 1.5;
      double height = Math.sin(angle);
-\end{verbatim}
+\end{verbatimtab}
 %
 The first example sets {\tt root} to the square root of 17.
 The second example finds the sine of the value of {\tt angle},
@@ -2018,10 +2019,10 @@ values you use with {\tt sin} and the other trigonometric functions
 convert from degrees to radians, you can divide by 360
 and multiply by $2 \pi$.  Conveniently, Java provides {\tt Math.PI}:
 
-\begin{verbatim}
+\begin{verbatimtab}
      double degrees = 90;
      double angle = degrees * 2 * Math.PI / 360.0;
-\end{verbatim}
+\end{verbatimtab}
 %
 Notice that {\tt PI} is in all capital letters.  Java does
 not recognize {\tt Pi}, {\tt pi}, or {\tt pie}.
@@ -2030,9 +2031,9 @@ Another useful method in the {\tt Math} class is {\tt round},
 which rounds a floating-point value off to the nearest integer
 and returns an {\tt int}.
 
-\begin{verbatim}
+\begin{verbatimtab}
     int x = Math.round(Math.PI * 20.0);
-\end{verbatim}
+\end{verbatimtab}
 %
 In this case the multiplication happens first, before the
 method is invoked.  The result is 63 (rounded up from 62.8319).
@@ -2047,9 +2048,9 @@ Just as with mathematical functions, Java methods can be {\bf
 composed}, meaning that you use one expression as part of another.
 For example, you can use any expression as an argument to a method:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double x = Math.cos(angle + Math.PI/2);
-\end{verbatim}
+\end{verbatimtab}
 %
 This statement takes the value {\tt Math.PI}, divides it by two and
 adds the result to the value of the variable {\tt angle}.  The sum is
@@ -2060,9 +2061,9 @@ arguments, not even the empty argument {\tt()}).
 You can also take the result of one method and pass it as
 an argument to another:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double x = Math.exp(Math.log(10.0));
-\end{verbatim}
+\end{verbatimtab}
 %
 In Java, the {\tt log} method always uses base $e$, so this
 statement finds the log base $e$ of 10 and then raises $e$ to that
@@ -2080,11 +2081,11 @@ but it is also possible to add new methods.  We have already
 seen one method definition: {\tt main}.  The method named {\tt main}
 is special, but the syntax is the same for other methods:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void NAME( LIST OF PARAMETERS ) {
     STATEMENTS
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 You can make up any name you want for your method, except
 that you can't call it {\tt main} or any other
@@ -2104,11 +2105,11 @@ Strings (we'll get to arrays in Chapter~\ref{arrays}).  The first
 couple of methods we are going to write have no parameters, so the
 syntax looks like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void newLine() {
     System.out.println("");
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 This method is named {\tt newLine}, and the empty parentheses
 mean that it takes no parameters.  It contains one
@@ -2120,27 +2121,27 @@ line after it prints, so this statement skips to the next line.
 In {\tt main} we invoke this new method the same way we invoke 
 Java methods:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void main(String[] args) {
     System.out.println("First line.");
     newLine();
     System.out.println("Second line.");
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The output of this program is
 
-\begin{verbatim}
+\begin{verbatimtab}
 First line.
 
 Second line.
-\end{verbatim}
+\end{verbatimtab}
 %
 Notice the extra space between the lines.  What if we wanted
 more space between the lines?  We could invoke the same
 method repeatedly:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void main(String[] args) {
     System.out.println("First line.");
     newLine();
@@ -2148,12 +2149,12 @@ method repeatedly:
     newLine();
     System.out.println("Second line.");
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 Or we could write a new method, named {\tt threeLine}, that 
 prints three new lines:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void threeLine() {
     newLine();  newLine();  newLine();
   }
@@ -2163,7 +2164,7 @@ prints three new lines:
     threeLine();
     System.out.println("Second line.");
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 You should notice a few things about this program:
 
@@ -2212,7 +2213,7 @@ some additional benefits of dividing programs into methods.
 Pulling together the code fragments from the previous
 section, the class definition looks like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
 class NewLine {
 
   public static void newLine() {
@@ -2229,7 +2230,7 @@ class NewLine {
     System.out.println("Second line.");
   }
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 The first line indicates that this is the class definition for a new
 class called {\tt NewLine}.  A class is a collection of related
@@ -2243,10 +2244,10 @@ the name of the class ({\tt Math}) and the name of the method.
 That's why the syntax is slightly different for Java
 methods and the methods we write:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Math.pow(2.0, 10.0);
     newLine();
-\end{verbatim}
+\end{verbatimtab}
 %
 The first statement invokes the {\tt pow} method in
 the {\tt Math class} (which raises the first argument to the
@@ -2258,9 +2259,9 @@ If you try to invoke a method from the wrong class, the
 compiler will generate an error.  For example, if you
 type:
 
-\begin{verbatim}
+\begin{verbatimtab}
     pow(2.0, 10.0);
-\end{verbatim}
+\end{verbatimtab}
 %
 The compiler will say something like, ``Can't find a method
 named {\tt pow} in class {\tt NewLine}.''  If you have
@@ -2330,12 +2331,12 @@ are.  So it shouldn't surprise you that when you write a
 class definition, the parameter list indicates the type of
 each parameter.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void printTwice(String s) {
     System.out.println(s);
     System.out.println(s);
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 This method takes a single parameter, named {\tt s}, that
 has type {\tt String}.  Whatever that parameter is(and at
@@ -2346,11 +2347,11 @@ is a string, but in general you can choose any name you want.
 In order to invoke this method, we have to provide a {\tt String}.
 For example, we might have a {\tt main} method like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void main(String[] args) {
     printTwice("Don't make me say this twice!");
   }
-\end{verbatim}
+\end{verbatimtab}
 
 The string you provide is called an {\bf argument}, and we
 say that the argument is {\bf passed} to the method.  In
@@ -2362,12 +2363,12 @@ to its wishes, it will get printed twice.
 Alternatively, if we had a {\tt String} variable, we could
 use it as an argument instead:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void main(String[] args) {
     String argument = "Never say never.";
     printTwice(argument);
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 Notice something very important: the name of the variable we pass
 as an argument ({\tt argument}) has nothing to do with the name of the
@@ -2421,7 +2422,7 @@ One way to keep track of where each variable is defined is
 with a {\bf stack diagram}.  The stack diagram for the previous
 example looks like this:
 
-\myfig{figure=figs/stack.eps}
+\epsfig{figure=figs/stack.eps}
 
 For each method there is a gray box called a {\bf frame} that contains
 the method's parameters and variables.  The name of the method
@@ -2441,13 +2442,13 @@ parameters is a common source of errors.  First, remember
 that you have to declare the type of every parameter.  For
 example
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void printTime(int hour, int minute) {
     System.out.print(hour);
     System.out.print(":");
     System.out.println(minute);
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 It might be tempting to write {\tt int hour, minute}, but
 that format is only legal for variable declarations, not
@@ -2456,11 +2457,11 @@ for parameters.
 Another common source of confusion is that you do not have
 to declare the types of arguments.  The following is wrong!
 
-\begin{verbatim}
+\begin{verbatimtab}
     int hour = 11;
     int minute = 59;
     printTime(int hour, int minute);   // WRONG!
-\end{verbatim}
+\end{verbatimtab}
 %
 In this case, Java can tell the type of {\tt hour}
 and {\tt minute} by looking at their declarations.  It is
@@ -2566,7 +2567,7 @@ the first time {\tt ping} is invoked.
 
 \end{enumerate}
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void zoop() {
     baffle();    
     System.out.print("You wugga ");
@@ -2588,7 +2589,7 @@ the first time {\tt ping} is invoked.
   public static void ping() {
     System.out.println(".");
   }
-\end{verbatim}
+\end{verbatimtab}
 \end{exercise}
 
 
@@ -2624,9 +2625,9 @@ prints them in American format.
 appropriate arguments.  The output should look something like this
 (except that the date might be different):
 %
-\begin{verbatim}
+\begin{verbatimtab}
 Saturday, July 16, 2011
-\end{verbatim}
+\end{verbatimtab}
 %
 \item Once you have debugged {\tt printAmerican}, write another
 method called {\tt printEuropean} that prints the date in
@@ -2651,10 +2652,10 @@ and yields the {\em remainder} when the first operand is divided
 by the second.  In Java, the modulus operator is a percent sign,
 {\tt \%}.  The syntax is the same as for other operators:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int quotient = 7 / 3;
     int remainder = 7 % 3;
-\end{verbatim}
+\end{verbatimtab}
 %
 The first operator, integer division, yields 2.  The second
 operator yields 1.  Thus, 7 divided by 3 is 2 with 1 left over.
@@ -2679,11 +2680,11 @@ to check conditions and change the behavior of the program
 accordingly.  {\bf Conditional statements} give us this ability.  The
 simplest form is the {\tt if} statement:
 
-\begin{verbatim}
+\begin{verbatimtab}
     if (x > 0) {
       System.out.println("x is positive");
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 The expression in parentheses is called the condition.
 If it is true, then the statements in brackets get executed.
@@ -2697,14 +2698,14 @@ If the condition is not true, nothing happens.
 The condition can contain any of the comparison operators,
 sometimes called {\bf relational operators}:
 
-\begin{verbatim}
+\begin{verbatimtab}
     x == y               // x equals y
     x != y               // x is not equal to y
     x > y                // x is greater than y
     x < y                // x is less than y
     x >= y               // x is greater than or equal to y
     x <= y               // x is less than or equal to y
-\end{verbatim}
+\end{verbatimtab}
 %
 Although these operations are probably familiar to you, the
 syntax Java uses is a little different from mathematical
@@ -2732,13 +2733,13 @@ A second form of conditional execution is alternative execution,
 in which there are two possibilities, and the condition determines
 which one gets executed.  The syntax looks like:
 
-\begin{verbatim}
+\begin{verbatimtab}
     if (x%2 == 0) {
       System.out.println("x is even");
     } else {
       System.out.println("x is odd");
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 If the remainder when {\tt x} is divided by 2 is zero, then
 we know that {\tt x} is even, and this code prints a message
@@ -2751,7 +2752,7 @@ As an aside, if you think you might want to check the parity
 (evenness or oddness) of numbers often, you might want to
 ``wrap'' this code up in a method, as follows:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void printParity(int x) {
     if (x%2 == 0) {
       System.out.println("x is even");
@@ -2759,25 +2760,25 @@ As an aside, if you think you might want to check the parity
       System.out.println("x is odd");
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 Now you have a method named {\tt printParity} that will print
 an appropriate message for any integer you care to provide.
 In {\tt main} you would invoke this method like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
     printParity(17);
-\end{verbatim}
+\end{verbatimtab}
 %
 Always remember that when you {\em invoke} a method, you do
 not have to declare the types of the arguments you provide.
 Java can figure out what type they are.  You should resist the
 temptation to write things like:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int number = 17;
     printParity(int number);         // WRONG!!!
-\end{verbatim}
+\end{verbatimtab}
 
 
 \section {Chained conditionals}
@@ -2787,7 +2788,7 @@ Sometimes you want to check for a number of related conditions
 and choose one of several actions.  One way to do this is by
 {\bf chaining} a series of {\tt if}s and {\tt else}s:
 
-\begin{verbatim}
+\begin{verbatimtab}
     if (x > 0) {
       System.out.println("x is positive");
     } else if (x < 0) {
@@ -2795,7 +2796,7 @@ and choose one of several actions.  One way to do this is by
     } else {
       System.out.println("x is zero");
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 These chains can be as long as you want, although they can
 be difficult to read if they get out of hand.  One way to
@@ -2813,7 +2814,7 @@ In addition to chaining, you can also nest one conditional
 within another.  We could have written the previous example
 as:
 
-\begin{verbatim}
+\begin{verbatimtab}
     if (x == 0) {
       System.out.println("x is zero");
     } else {
@@ -2823,7 +2824,7 @@ as:
         System.out.println("x is negative");
       }
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 There is now an outer conditional that contains two branches.  The
 first branch contains a simple {\tt print} statement, but the second
@@ -2849,7 +2850,7 @@ The {\tt return} statement allows you to terminate the execution
 of a method before you reach the end.  One reason to use it
 is if you detect an error condition:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void printLogarithm(double x) {
     if (x <= 0.0) {
       System.out.println("Positive numbers only, please.");
@@ -2859,7 +2860,7 @@ is if you detect an error condition:
     double result = Math.log(x);
     System.out.println("The log of x is " + result);
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 This defines a method named {\tt printLogarithm} that takes a
 {\tt  double} named {\tt x} as a parameter.  It checks whether
@@ -2914,7 +2915,7 @@ the most magical and interesting things a program can do.
 
 For example, look at the following method:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void countdown(int n) {
     if (n == 0) {
       System.out.println("Blastoff!");
@@ -2923,7 +2924,7 @@ For example, look at the following method:
       countdown(n-1);
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The name of the method is {\tt countdown} and it takes a single
 integer as a parameter.  If the parameter is zero, it prints
@@ -2934,9 +2935,9 @@ then invokes a method named {\tt countdown}---itself---passing
 What happens if we invoke this method, in {\tt main}, like
 this:
 
-\begin{verbatim}
+\begin{verbatimtab}
     countdown(3);
-\end{verbatim}
+\end{verbatimtab}
 %
 The execution of {\tt countdown} begins with {\tt n=3}, and
 since {\tt n} is not zero, it prints the value 3, and then
@@ -2971,17 +2972,17 @@ The {\tt countdown} that got {\tt n=3} returns.
 \noindent And then you're back in {\tt main}.  So the
 total output looks like:
 
-\begin{verbatim}
+\begin{verbatimtab}
 3
 2
 1
 Blastoff!
-\end{verbatim}
+\end{verbatimtab}
 %
 As a second example, let's look again at the methods
 {\tt newLine} and {\tt threeLine}.
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void newLine() {
     System.out.println("");
   }
@@ -2989,19 +2990,19 @@ As a second example, let's look again at the methods
   public static void threeLine() {
     newLine();  newLine();  newLine();
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 Although these work, they would not be much help if we wanted
 to print 2 newlines, or 106.  A better alternative would be
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void nLines(int n) {
     if (n > 0) {
       System.out.println("");
       nLines(n-1);
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 This program similar to {\tt countdown}; as long as {\tt n} is greater
 than zero, it prints a newline and then invokes itself to
@@ -3032,7 +3033,7 @@ the method's parameters and variables.
 The following figure is a stack diagram for countdown, called
 with {\tt n = 3}:
 
-\myfig{figure=figs/stack2.eps}
+\epsfig{figure=figs/stack2.eps}
 % 
 There is one frame for {\tt main} and four frames for {\tt countdown},
 each with a different value for the parameter {\tt n}.  The bottom of
@@ -3112,7 +3113,7 @@ This exercise reviews the flow of execution through a program
 with multiple methods.  Read the following code and answer the
 questions below.
 
-\begin{verbatim}
+\begin{verbatimtab}
 public class Buzz {
 
     public static void baffle(String blimp) {
@@ -3134,7 +3135,7 @@ public class Buzz {
         zippo("rattle", 13);
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 
 \begin{enumerate}
 
@@ -3195,7 +3196,7 @@ simple methods.
 \begin{exercise}
 What is the output of the following program?
 
-\begin{verbatim}
+\begin{verbatimtab}
 public class Narf {
 
     public static void zoop(String fred, int bob) {
@@ -3223,7 +3224,7 @@ public class Narf {
         System.out.println("any " + strangStrung + "more ");
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 \end{exercise}
 
 \begin{exercise}
@@ -3246,9 +3247,9 @@ You should assume that there is a method named {\tt raiseToPow}
 that takes two integers as arguments and that raises the
 first argument to the power of the second.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int x = raiseToPow(2, 3);
-\end{verbatim}
+\end{verbatimtab}
 %
 would assign the value {\tt 8} to {\tt x}, because $2^3 = 8$.
 \end{exercise}
@@ -3308,7 +3309,7 @@ the exercises.
 
 {\tt BugRunner.java} contains this code:
 
-\begin{verbatim}
+\begin{verbatimtab}
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.actor.Bug;
 import info.gridworld.actor.Rock;
@@ -3323,10 +3324,12 @@ public class BugRunner
         world.show();
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 
-The first three lines are {\tt import} statements; they list
-the classes from GridWorld used in this program.
+The first three lines are {\tt import} statements; they list the
+classes from GridWorld used in this program.  You can find the
+documentation for these classes at
+\url{http://www.greenteapress.com/thinkapjava/javadoc/gridworld/}.
 
 Like the other programs we have seen, BugRunner defines a class
 that provides a {\tt main} method.  The first line of {\tt main}
@@ -3338,23 +3341,23 @@ The last line shows the world on the screen.
 
 Open {\tt BugRunner.java} for editing and replace this line:
 
-\begin{verbatim}
+\begin{verbatimtab}
     world.add(new Bug());
-\end{verbatim}
+\end{verbatimtab}
 
 with these lines:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Bug redBug = new Bug();
     world.add(redBug);
-\end{verbatim}
+\end{verbatimtab}
 
 The first line assigns the Bug to a variable named {\tt redBug};
 we can use {\tt redBug} to invoke the Bug's methods.  Try this:
 
-\begin{verbatim}
+\begin{verbatimtab}
     System.out.println(redBug.getLocation());
-\end{verbatim}
+\end{verbatimtab}
 
 Note: If you run this before adding the Bug to the {\tt world}, the result is
 {\tt null}, which means that the Bug doesn't have a location yet.
@@ -3401,15 +3404,15 @@ at \url{http://en.wikipedia.org/wiki/Random_walk}.
 \item To see a longer random walk, you can give ActorWorld a bigger stage.
 At the top of {\tt BugRunner.java}, add this {\tt import} statement:
 
-\begin{verbatim}
+\begin{verbatimtab}
 import info.gridworld.grid.UnboundedGrid;
-\end{verbatim}
+\end{verbatimtab}
 
 Now replace the line that creates the ActorWorld with this:
 
-\begin{verbatim}
+\begin{verbatimtab}
     ActorWorld world = new ActorWorld(new UnboundedGrid());
-\end{verbatim}
+\end{verbatimtab}
 
 You should be able to run your random walk for a few thousand
 steps (you might have to use the scrollbars to find the Bug).
@@ -3427,16 +3430,16 @@ You can read the documentation at
 To create Bugs with different colors, we have to import
 {\tt Color}:
 
-\begin{verbatim}
+\begin{verbatimtab}
 import java.awt.Color;
-\end{verbatim}
+\end{verbatimtab}
 
 Then you can access the predefined colors, like {\tt Color.blue}, or
 create a new color like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Color purple = new Color(148, 0, 211);
-\end{verbatim}
+\end{verbatimtab}
 
 Make a few bugs with different colors.  Then write a method named
 {\tt colorBug} that takes a Bug as a parameter, reads its location,
@@ -3446,15 +3449,14 @@ The Location object you get from
 {\tt getLocation} has methods named {\tt getRow} and {\tt getCol} that
 return integers.  So you can get the x-coordinate of a Bug like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int x = bug.getLocation().getCol();
-\end{verbatim}
+\end{verbatimtab}
 
 Write a method named {\tt makeBugs} that takes an ActorWorld and an
 integer {\tt n} and creates {\tt n} bugs colored according to their
 location.  Use the row number to control the red level and the column
 to control the blue.
-
 
 \end{exercise}
 
@@ -3479,32 +3481,32 @@ invoking the method is to generate a new value, which we
 usually assign to a variable or use as part of an expression.
 For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double e = Math.exp(1.0);
     double height = radius * Math.sin(angle);
-\end{verbatim}
+\end{verbatimtab}
 %
 But so far all the methods we have written have been {\bf void}
 methods; that is, methods that return no value.  When you invoke
 a void method, it is typically on a line by itself, with
 no assignment:
 
-\begin{verbatim}
+\begin{verbatimtab}
     countdown(3);
     nLines(3);
-\end{verbatim}
+\end{verbatimtab}
 %
 In this chapter we write methods that return things, which I call 
 {\bf fruitful} methods.  The first example is {\tt area}, which takes a
 {\tt double} as a parameter, and returns the area of a circle with the
 given radius:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static double area(double radius) {
     double area = Math.PI * radius * radius;
     return area;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The first thing you should notice is that the beginning of the
 method definition is different.  Instead of {\tt public static
@@ -3522,11 +3524,11 @@ use the following expression as a return value.''  The
 expression you provide can be arbitrarily complicated,
 so we could have written this method more concisely:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static double area(double radius) {
     return Math.PI * radius * radius;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 On the other hand, {\bf temporary} variables like {\tt area} often
 make debugging easier.  In either case, the type of the expression in
@@ -3543,7 +3545,7 @@ take you to task.
 Sometimes it is useful to have multiple return
 statements, one in each branch of a conditional:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static double absoluteValue(double x) {
     if (x < 0) {
       return -x;
@@ -3551,7 +3553,7 @@ statements, one in each branch of a conditional:
       return x;
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 Since these return statements are in an alternative conditional,
 only one will be executed.  Although it is legal to have more than one
@@ -3569,7 +3571,7 @@ If you put return statements inside a conditional, then
 you have to guarantee that {\em every possible path} through
 the program hits a return statement.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static double absoluteValue(double x) {
     if (x < 0) {
       return -x;
@@ -3577,7 +3579,7 @@ the program hits a return statement.  For example:
       return x;
     }                          // WRONG!!
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 This program is not legal because if {\tt x} is 0,
 neither condition is true and the method ends without hitting
@@ -3617,12 +3619,12 @@ will have type {\tt double}.
 
 Already we can write an outline of the method:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static double distance
               (double x1, double y1, double x2, double y2) {
     return 0.0;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The statement {\tt return 0.0;} is a place-keeper that is necessary
 in order to compile the program.  Obviously, at this stage the
@@ -3633,9 +3635,9 @@ we add more code.
 In order to test the new method, we have to invoke it with
 sample values.  Somewhere in {\tt main} I would add:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double dist = distance(1.0, 2.0, 4.0, 6.0);
-\end{verbatim}
+\end{verbatimtab}
 %
 I chose these values so that the horizontal
 distance is 3 and the vertical distance is 4; that way,
@@ -3653,7 +3655,7 @@ The next step is to find the differences
 $x_2 - x_1$ and $y_2 - y_1$.  I will store those values in
 temporary variables named {\tt dx} and {\tt dy}.
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static double distance
               (double x1, double y1, double x2, double y2) {
     double dx = x2 - x1;
@@ -3662,7 +3664,7 @@ temporary variables named {\tt dx} and {\tt dy}.
     System.out.println("dy is " + dy);
     return 0.0;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 I added print statements so we can check the intermediate values
 before proceeding.  They should be 3.0 and 4.0.
@@ -3677,7 +3679,7 @@ The next step is to square {\tt dx} and {\tt dy}.  We could use the
 {\tt Math.pow} method, but it is simpler to multiply each term by
 itself.
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static double distance
               (double x1, double y1, double x2, double y2) {
     double dx = x2 - x1;
@@ -3686,7 +3688,7 @@ itself.
     System.out.println("dsquared is " + dsquared);
     return 0.0;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 Again, I would compile and run the program at this stage
 and check the intermediate value (which should be 25.0).
@@ -3694,7 +3696,7 @@ and check the intermediate value (which should be 25.0).
 Finally, we can use {\tt Math.sqrt} to compute and
 return the result.
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static double distance
               (double x1, double y1, double x2, double y2) {
     double dx = x2 - x1;
@@ -3703,7 +3705,7 @@ return the result.
     double result = Math.sqrt(dsquared);
     return result;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 In {\tt main}, we can print and check the value of the result.
 
@@ -3746,40 +3748,40 @@ and {\tt yc}, and the perimeter point is in {\tt xp} and
 is the distance between the two points.  Fortunately, we have
 a method, {\tt distance} that does that.
 
-\begin{verbatim}
+\begin{verbatimtab}
     double radius = distance(xc, yc, xp, yp);
-\end{verbatim}
+\end{verbatimtab}
 %
 The second step is to find the area of a circle with that
 radius, and return it.
 
-\begin{verbatim}
+\begin{verbatimtab}
     double area = area(radius);
     return area;
-\end{verbatim}
+\end{verbatimtab}
 %
 Wrapping that all up in a method, we get:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static double circleArea
               (double xc, double yc, double xp, double yp) {
     double radius = distance(xc, yc, xp, yp);
     double area = area(radius);
     return area;
   } 
-\end{verbatim}
+\end{verbatimtab}
 %
 The temporary variables {\tt radius} and {\tt area} are
 useful for development and debugging, but once the program is
 working we can make it more concise by composing
 the method invocations:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static double circleArea
               (double xc, double yc, double xp, double yp) {
     return area(distance(xc, yc, xp, yp));
   } 
-\end{verbatim}
+\end{verbatimtab}
 
 
 \section{Overloading}
@@ -3798,28 +3800,28 @@ Having more than one method with the same name, which is called {\bf
 overloading}, is legal in Java {\em as long as each version takes
 different parameters}.  So we could rename {\tt circleArea}:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static double area
               (double x1, double y1, double x2, double y2) {
     return area(distance(xc, yc, xp, yp));
   } 
-\end{verbatim}
+\end{verbatimtab}
 %
 When you invoke an overloaded method, Java knows which version you
 want by looking at the arguments that you provide.  If you write:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double x = area(3.0);
-\end{verbatim}
+\end{verbatimtab}
 %
 Java goes looking for a method named {\tt area} that
 takes one {\tt double} as an argument, and so it uses the
 first version, which interprets the argument as a radius.
 If you write:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double x = area(1.0, 2.0, 4.0, 6.0);
-\end{verbatim}
+\end{verbatimtab}
 %
 Java uses the second version of {\tt area}.  And notice that the
 second version of {\tt area} actually invokes the first.
@@ -3872,11 +3874,11 @@ are pretty big.  For {\tt boolean}s, not so big.
 Boolean expressions and variables work just like other types of
 expressions and variables:
 
-\begin{verbatim}
+\begin{verbatimtab}
     boolean bob;
     bob = true;
     boolean testResult = false;
-\end{verbatim}
+\end{verbatimtab}
 %
 The first example is a simple variable declaration;
 the second example is an assignment, and the third example is an
@@ -3892,18 +3894,18 @@ depending on your development environment.
 The result of a conditional operator is a boolean,
 so you can store the result of a comparison in a variable:
 
-\begin{verbatim}
+\begin{verbatimtab}
     boolean evenFlag = (n%2 == 0);     // true if n is even
     boolean positiveFlag = (x > 0);    // true if x is positive
-\end{verbatim}
+\end{verbatimtab}
 %
 and then use it as part of a conditional statement later:
 
-\begin{verbatim}
+\begin{verbatimtab}
     if (evenFlag) {
       System.out.println("n was even when I checked it");
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 A variable used in this way is called a {\bf flag}
 because it flags the presence or absence of some condition.
@@ -3935,13 +3937,13 @@ Logical operators can simplify nested
 conditional statements.  For example, can you re-write
 this code using a single conditional?
 
-\begin{verbatim}
+\begin{verbatimtab}
     if (x > 0) {
       if (x < 10) {
         System.out.println("x is a positive single digit.");
       }
     }
-\end{verbatim}
+\end{verbatimtab}
 
 
 \section{Boolean methods}
@@ -3953,7 +3955,7 @@ Methods can return boolean values just like any other type,
 which is often convenient for hiding tests inside
 methods.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static boolean isSingleDigit(int x) {
     if (x >= 0 && x < 10) {
       return true;
@@ -3961,7 +3963,7 @@ methods.  For example:
       return false;
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The name of this method is {\tt isSingleDigit}.  It is common
 to give boolean methods names that sound like yes/no questions.
@@ -3973,18 +3975,18 @@ it needs to be.  Remember that the expression {\tt x >= 0 \&\& x < 10}
 has type boolean, so there is nothing wrong with returning it
 directly and avoiding the {\tt if} statement altogether:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static boolean isSingleDigit(int x) {
     return (x >= 0 && x < 10);
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 In {\tt main} you can invoke this method in the usual ways:
 
-\begin{verbatim}
+\begin{verbatimtab}
   boolean bigFlag = !isSingleDigit(17);
   System.out.println(isSingleDigit(2));
-\end{verbatim}
+\end{verbatimtab}
 %
 The first line sets {\tt bigFlag} to {\tt true}
 only if 17 is {\em not} a single-digit number.  The second
@@ -3993,13 +3995,13 @@ line prints {\tt true} because 2 is a single-digit number.
 The most common use of boolean methods is inside conditional
 statements
 
-\begin{verbatim}
+\begin{verbatimtab}
     if (isSingleDigit(x)) {
       System.out.println("x is little");
     } else {
       System.out.println("x is big");
     }
-\end{verbatim}
+\end{verbatimtab}
 
 
 \section {More recursion}
@@ -4055,20 +4057,20 @@ the parameters are and what the return type is.  Since factorial is
 defined for integers, the method takes an
 integer as a parameter and returns an integer:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static int factorial(int n) {
   }
-\end{verbatim}
+\end{verbatimtab}
 
 \noindent If the argument happens to be zero, return 1:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static int factorial(int n) {
     if (n == 0) {
       return 1;
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 That's the base case.
 
@@ -4076,7 +4078,7 @@ Otherwise, and this is the interesting part, we have to make
 a recursive call to find the factorial of $n-1$, and then
 multiply it by $n$.
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static int factorial(int n) {
     if (n == 0) {
       return 1;
@@ -4086,7 +4088,7 @@ multiply it by $n$.
       return result;
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The flow of execution for this program is similar to {\tt countdown}
 from Section~\ref{recursion}.
@@ -4132,7 +4134,7 @@ Here is what the stack diagram looks like for this sequence of
 method invocations:
 
 
-\myfig{figure=figs/stack3.eps}
+\epsfig{figure=figs/stack3.eps}
 
 %
 The return values are shown being passed back up the stack.
@@ -4191,7 +4193,7 @@ following definition:
 %
 Translated into Java, this is
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static int fibonacci(int n) {
     if (n == 0 || n == 1) {
       return 1;
@@ -4199,7 +4201,7 @@ Translated into Java, this is
       return fibonacci(n-1) + fibonacci(n-2);
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 % If you try to follow the flow of execution here, even for small
 values of {\tt n}, your head explodes.  But according to the leap of
 faith, if we assume that the two recursive invocations work correctly, then
@@ -4344,7 +4346,7 @@ What is the output of the following program?  The purpose of
 this exercise is to make sure you understand logical operators
 and the flow of execution through fruitful methods.
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void main(String[] args) {
       boolean flag1 = isHoopy(202);
       boolean flag2 = isFrabjuous(202);
@@ -4377,7 +4379,7 @@ and the flow of execution through fruitful methods.
       }
       return frabjuousFlag;
   }
-\end{verbatim}
+\end{verbatimtab}
 \end{exercise}
 
 
@@ -4396,9 +4398,9 @@ You should assume that there is a method named {\tt sumSquares}
 that calculates and returns the sum of the squares of its arguments.
 For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double x = sumSquares(3.0, 4.0);
-\end{verbatim}
+\end{verbatimtab}
 %
 would assign the value {\tt 25.0} to {\tt x}.
 
@@ -4413,7 +4415,7 @@ invoke {\tt distance}.
 The point of this exercise is to use a stack diagram to understand
 the execution of a recursive program.
 
-\begin{verbatim}
+\begin{verbatimtab}
 public class Prod {
 
     public static void main(String[] args) {
@@ -4430,7 +4432,7 @@ public class Prod {
         }
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 \begin{enumerate}
 
@@ -4480,7 +4482,7 @@ only for small values of $m$ and $n$ (not bigger than 2).
 \item Create a program called {\tt Recurse.java} and
 type in the following methods:
 
-\begin{verbatim}
+\begin{verbatimtab}
     // first: returns the first character of the given String
     public static char first(String s) {
         return s.charAt(0);
@@ -4496,7 +4498,7 @@ type in the following methods:
     public static int length(String s) {
         return s.length();
     }
-\end{verbatim}
+\end{verbatimtab}
 
 \item Write some code in {\tt main} that tests each of these
 methods.  Make sure they work, and make sure you understand
@@ -4516,16 +4518,16 @@ return value.  The new String should contain the same letters
 as the parameter, but in reverse order.  For example, the
 output of the following code
 
-\begin{verbatim}
+\begin{verbatimtab}
 	String backwards = reverseString("Allen Downey");
 	System.out.println(backwards);
-\end{verbatim}
+\end{verbatimtab}
 %
 should be
 
-\begin{verbatim}
+\begin{verbatimtab}
 yenwoD nellA
-\end{verbatim}
+\end{verbatimtab}
 
 \end{enumerate}
 \end{exercise}
@@ -4596,12 +4598,12 @@ make more than one assignment to the same variable.  The
 effect of the second assignment is to replace the old value
 with the new.
 
-\begin{verbatim}
+\begin{verbatimtab}
     int bob = 5;
     System.out.print(bob);
     bob = 7;
     System.out.println(bob);
-\end{verbatim}
+\end{verbatimtab}
 %
 The output of this program is {\tt 57}, because the first
 time we print {\tt bob} his value is 5, and the second time
@@ -4613,7 +4615,7 @@ you assign a value to a variable, you change the contents of
 the container, as shown in the figure:
 
 
-\myfig{figure=figs/assign2.eps}
+\epsfig{figure=figs/assign2.eps}
 
 
 When there are multiple assignments to a variable, it is especially
@@ -4632,11 +4634,11 @@ for all time.  If $a = b$ now, then $a$ will always equal $b$.
 In Java, an assignment statement can make two variables equal,
 but they don't have to stay that way!
 
-\begin{verbatim}
+\begin{verbatimtab}
     int a = 5;
     int b = a;     // a and b are now equal
     a = 3;         // a and b are no longer equal
-\end{verbatim}
+\end{verbatimtab}
 %
 The third line changes the value of {\tt a} but it does not
 change the value of {\tt b}, so they are no longer equal.
@@ -4670,7 +4672,7 @@ statement and the {\tt for} statement.
 
 Using a {\tt while} statement, we can rewrite {\tt countdown}:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void countdown(int n) {
     while (n > 0) {
       System.out.println(n);
@@ -4678,7 +4680,7 @@ Using a {\tt while} statement, we can rewrite {\tt countdown}:
     }
     System.out.println("Blastoff!");
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 You can almost read a {\tt while} statement like
 English.  What this means is, ``While {\tt n} is greater than
@@ -4729,7 +4731,7 @@ terminates if {\tt n} is positive.
 
 In other cases it is not so easy to tell:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void sequence(int n) {
     while (n != 1) {
       System.out.println(n);
@@ -4740,7 +4742,7 @@ In other cases it is not so easy to tell:
       }
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The condition for this loop is {\tt n != 1}, so the loop
 will continue until {\tt n} is 1, which will make the condition
@@ -4802,17 +4804,17 @@ makes a good example of iteration.  The following program prints a
 sequence of values in the left column and their logarithms in the
 right column:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double x = 1.0;
     while (x < 10.0) {
       System.out.println(x + "   " + Math.log(x));
       x = x + 1.0;
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 The output of this program is
 
-\begin{verbatim}
+\begin{verbatimtab}
 1.0   0.0
 2.0   0.6931471805599453
 3.0   1.0986122886681098
@@ -4822,7 +4824,7 @@ The output of this program is
 7.0   1.9459101490553132
 8.0   2.0794415416798357
 9.0   2.1972245773362196
-\end{verbatim}
+\end{verbatimtab}
 %
 Looking at these values, can you tell what base the {\tt log}
 method uses?
@@ -4838,13 +4840,13 @@ formula:
 %
 Changing the {\tt print} statement to
 
-\begin{verbatim}
+\begin{verbatimtab}
       System.out.println(x + "   " + Math.log(x) / Math.log(2.0));
-\end{verbatim}
+\end{verbatimtab}
 %
 yields
 
-\begin{verbatim}
+\begin{verbatimtab}
 1.0   0.0
 2.0   1.0
 3.0   1.5849625007211563
@@ -4854,27 +4856,27 @@ yields
 7.0   2.807354922057604
 8.0   3.0
 9.0   3.1699250014423126
-\end{verbatim}
+\end{verbatimtab}
 %
 We can see that 1, 2, 4 and 8 are powers of two, because
 their logarithms base 2 are round numbers.  If we wanted to find
 the logarithms of other powers of two, we could modify the
 program like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double x = 1.0;
     while (x < 100.0) {
       System.out.println(x + "   " + Math.log(x) / Math.log(2.0));
       x = x * 2.0;
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 Now instead of adding something to {\tt x} each time through
 the loop, which yields an arithmetic sequence, we multiply
 {\tt x} by something, yielding a {\bf geometric} sequence.
 The result is:
 
-\begin{verbatim}
+\begin{verbatimtab}
 1.0   0.0
 2.0   1.0
 4.0   2.0
@@ -4882,7 +4884,7 @@ The result is:
 16.0   4.0
 32.0   5.0
 64.0   6.0
-\end{verbatim}
+\end{verbatimtab}
 %
 Log tables may not be useful any more, but for computer scientists,
 knowing the powers of two is!  When you have an idle
@@ -4901,14 +4903,14 @@ multiplication table for the values from 1 to 6.
 A good way to start is to write a simple loop that prints
 the multiples of 2, all on one line.
 
-\begin{verbatim}
+\begin{verbatimtab}
     int i = 1;
     while (i <= 6) {
       System.out.print(2*i + "   ");
       i = i + 1;
     }
     System.out.println("");
-\end{verbatim}
+\end{verbatimtab}
 %
 The first line initializes a variable named {\tt i}, which is going
 to act as a counter, or {\bf loop variable}.  As the loop executes,
@@ -4927,9 +4929,9 @@ invoke {\tt println}, you may never see the stored output.
 
 The output of this program is:
 
-\begin{verbatim}
+\begin{verbatimtab}
 2   4   6   8   10   12
-\end{verbatim}
+\end{verbatimtab}
 %
 So far, so good.  The next step is to {\bf encapsulate} and {\bf
 generalize}.
@@ -4954,7 +4956,7 @@ multiples of any integer.
 Here's a method that encapsulates the loop from the previous
 section and generalizes it to print multiples of {\tt n}.
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void printMultiples(int n) {
     int i = 1;
     while (i <= 6) {
@@ -4963,7 +4965,7 @@ section and generalizes it to print multiples of {\tt n}.
     }    
     System.out.println("");
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 To encapsulate, all I had to do was add the first line,
 which declares the name, parameter,
@@ -4973,28 +4975,28 @@ the value 2 with the parameter {\tt n}.
 If I invoke this method with the argument 2, I get the same
 output as before.  With argument 3, the output is:
 
-\begin{verbatim}
+\begin{verbatimtab}
 3   6   9   12   15   18
-\end{verbatim}
+\end{verbatimtab}
 %
 and with argument 4, the output is
 
-\begin{verbatim}
+\begin{verbatimtab}
 4   8   12   16   20   24 
-\end{verbatim}
+\end{verbatimtab}
 %
 By now you can probably guess how we are going to print a
 multiplication table: we'll invoke {\tt printMultiples} repeatedly with
 different arguments.  In fact, we are going to use another loop to
 iterate through the rows.
 
-\begin{verbatim}
+\begin{verbatimtab}
     int i = 1;
     while (i <= 6) {
       printMultiples(i);
       i = i + 1;
     }    
-\end{verbatim}
+\end{verbatimtab}
 %
 First of all, notice how similar this loop is to the one inside {\tt
 printMultiples}.  All I did was replace the print statement with a
@@ -5002,14 +5004,14 @@ method invocation.
 
 The output of this program is
 
-\begin{verbatim}
+\begin{verbatimtab}
 1   2   3   4   5   6   
 2   4   6   8   10   12   
 3   6   9   12   15   18   
 4   8   12   16   20   24   
 5   10   15   20   25   30   
 6   12   18   24   30   36   
-\end{verbatim}
+\end{verbatimtab}
 %
 which is a (slightly sloppy) multiplication table.  If the
 sloppiness bothers you, Java provides methods that give you
@@ -5047,7 +5049,7 @@ Once you write and debug one, you can reuse it.
 To demonstrate encapsulation again, I'll take the code
 from the previous section and wrap it up in a method:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void printMultTable() {
     int i = 1;
     while (i <= 6) {
@@ -5055,7 +5057,7 @@ from the previous section and wrap it up in a method:
       i = i + 1;
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The process I am demonstrating is a common 
 development plan.  You develop code gradually by adding
@@ -5108,7 +5110,7 @@ a program that would print a multiplication table of any
 size, not just the 6x6 table.  You could add a parameter to
 {\tt printMultTable}:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void printMultTable(int high) {
     int i = 1;
     while (i <= high) {
@@ -5116,12 +5118,12 @@ size, not just the 6x6 table.  You could add a parameter to
       i = i + 1;
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 I replaced the value 6 with the parameter {\tt high}.  If I
 invoke {\tt printMultTable} with the argument 7, I get
 
-\begin{verbatim}
+\begin{verbatimtab}
 1   2   3   4   5   6   
 2   4   6   8   10   12   
 3   6   9   12   15   18   
@@ -5129,7 +5131,7 @@ invoke {\tt printMultTable} with the argument 7, I get
 5   10   15   20   25   30   
 6   12   18   24   30   36   
 7   14   21   28   35   42   
-\end{verbatim}
+\end{verbatimtab}
 %
 which is fine, except that I probably want the table to
 be square (same number of rows and columns), which means
@@ -5140,7 +5142,7 @@ I also call this parameter {\tt high},
 demonstrating that different methods can have parameters
 with the same name (just like local variables):
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void printMultiples(int n, int high) {
     int i = 1;
     while (i <= high) {
@@ -5157,14 +5159,14 @@ with the same name (just like local variables):
       i = i + 1;
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 Notice that when I added a new parameter, I had to change the first
 line of the method (the interface or prototype), and I also had to
 change the place where the method is invoked in {\tt printMultTable}.
 As expected, this program generates a square 7x7 table:
 
-\begin{verbatim}
+\begin{verbatimtab}
 1   2   3   4   5   6   7   
 2   4   6   8   10   12   14   
 3   6   9   12   15   18   21   
@@ -5172,7 +5174,7 @@ As expected, this program generates a square 7x7 table:
 5   10   15   20   25   30   35   
 6   12   18   24   30   36   42   
 7   14   21   28   35   42   49
-\end{verbatim}
+\end{verbatimtab}
 %
 When you generalize a method appropriately, you often find
 that it has capabilities you did not plan.
@@ -5182,19 +5184,19 @@ table appear twice.  You could save ink by printing only
 half the table.  To do that, you only have to change one
 line of {\tt printMultTable}.  Change
 
-\begin{verbatim}
+\begin{verbatimtab}
       printMultiples(i, high);
-\end{verbatim}
+\end{verbatimtab}
 %
 to
 
-\begin{verbatim}
+\begin{verbatimtab}
       printMultiples(i, i);
-\end{verbatim}
+\end{verbatimtab}
 %
 and you get
 
-\begin{verbatim}
+\begin{verbatimtab}
 1   
 2   4   
 3   6   9   
@@ -5202,7 +5204,7 @@ and you get
 5   10   15   20   25   
 6   12   18   24   30   36   
 7   14   21   28   35   42   49  
-\end{verbatim}
+\end{verbatimtab}
 %
 I'll leave it up to you to figure out how it works.
 
@@ -5260,7 +5262,7 @@ to write.
 
 \begin{exercise}\label{infloop}
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static void main(String[] args) {
     loop(10);
 }
@@ -5276,7 +5278,7 @@ public static void loop(int n) {
         }
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 \begin{enumerate}
 
@@ -5365,9 +5367,9 @@ that you still get the same result.
 {\tt myexp(x)} for various values of {\tt x}.  The output should look
 something like:
 
-\begin{verbatim}
+\begin{verbatimtab}
 1.0     2.708333333333333       2.718281828459045
-\end{verbatim}
+\end{verbatimtab}
 
 %the next line used to use \\ in an attempt to escape the backslash character
 %but this doesn't work: \\ produces a newline
@@ -5456,12 +5458,12 @@ individual characters (as opposed to strings).
 
 {\tt char}s work just like the other types we have seen:
 
-\begin{verbatim}
+\begin{verbatimtab}
     char bob = 'c';
     if (bob == 'c') {
       System.out.println(bob);
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 Character values appear in single quotes, like {\tt 'c'}.  Unlike
 string values (which appear in double quotes), character values
@@ -5473,11 +5475,11 @@ can contain only a single letter or symbol.
 
 Here's how the {\tt charAt} method is used:
 
-\begin{verbatim}
+\begin{verbatimtab}
     String fruit = "banana";
     char letter = fruit.charAt(1);
     System.out.println(letter);
-\end{verbatim}
+\end{verbatimtab}
 %
 {\tt fruit.charAt()} means that I am 
 invoking the {\tt charAt} method on the object named
@@ -5488,9 +5490,9 @@ the string.  The result is a character, which is stored in a
 {\tt char} named {\tt letter}.  When I print the value of
 {\tt letter}, I get a surprise:
 
-\begin{verbatim}
+\begin{verbatimtab}
 a
-\end{verbatim}
+\end{verbatimtab}
 %
 {\tt a} is not the first letter of {\tt "banana"}.  Unless you are a
 computer scientist.  For perverse reasons, computer scientists
@@ -5501,9 +5503,9 @@ start counting from zero.  The 0th letter (``zeroeth'') of {\tt
 If you want the zereoth letter of a string, you have to pass
 0 as an argument:
 
-\begin{verbatim}
+\begin{verbatimtab}
     char letter = fruit.charAt(0);
-\end{verbatim}
+\end{verbatimtab}
 
 
 \section{Length}
@@ -5513,9 +5515,9 @@ If you want the zereoth letter of a string, you have to pass
 The next {\tt String} method we'll look at is {\tt length}, which
 returns the number of characters in the string.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int length = fruit.length();
-\end{verbatim}
+\end{verbatimtab}
 %
 {\tt length} takes no arguments
 and returns an integer, in this case 6.  Notice that it is
@@ -5525,20 +5527,20 @@ it can be confusing for human readers).
 To find the last letter of a string, you might be tempted to
 try something like
 
-\begin{verbatim}
+\begin{verbatimtab}
     int length = fruit.length();
     char last = fruit.charAt(length);       // WRONG!!
-\end{verbatim}
+\end{verbatimtab}
 %
 That won't work.  The reason is that there is no 6th letter
 in {\tt "banana"}.  Since we started counting at 0, the 6
 letters are numbered from 0 to 5.  To get the last character,
 you have to subtract 1 from {\tt length}.
 
-\begin{verbatim}
+\begin{verbatimtab}
     int length = fruit.length();
     char last = fruit.charAt(length-1);
-\end{verbatim}
+\end{verbatimtab}
 
 
 \section{Traversal}
@@ -5551,14 +5553,14 @@ some computation with it, and continue until the end.  This pattern
 of processing is called a {\bf traversal}.  A natural
 way to encode a traversal is with a {\tt while} statement:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int index = 0;
     while (index < fruit.length()) {
       char letter = fruit.charAt(index);
       System.out.println(letter);
       index = index + 1;
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 This loop traverses the string and prints each letter on
 a line by itself.  Notice that the condition is
@@ -5611,7 +5613,7 @@ If you go to
 and click on {\tt charAt}, you get the following documentation
 (or something like it):
 
-\begin{verbatim}
+\begin{verbatimtab}
 public char charAt(int index)
 
 Returns the char value at the specified index. An index ranges from 0
@@ -5625,7 +5627,7 @@ Returns: the char value at the specified index of this string. The
 
 Throws: IndexOutOfBoundsException - if the index argument is negative
   or not less than the length of this string.
-\end{verbatim}
+\end{verbatimtab}
 %
 The first line is the method's {\bf prototype}, which indicates the
 name of the method, the type of the parameters, and the return type.
@@ -5652,10 +5654,10 @@ where that character appears.
 exception.  {\tt indexOf} fails if the character does not appear in
 the string, and returns the value {\tt -1}.
 
-\begin{verbatim}
+\begin{verbatimtab}
     String fruit = "banana";
     int index = fruit.indexOf('a');
-\end{verbatim}
+\end{verbatimtab}
 %
 This finds the index of the letter {\tt 'a'} in the string.
 In this case, the letter appears three times, so it is not
@@ -5670,18 +5672,18 @@ of overloading, see Section~\ref{overloading}.
 
 If we invoke:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int index = fruit.indexOf('a', 2);
-\end{verbatim}
+\end{verbatimtab}
 %
 it starts at the twoeth letter (the first {\tt n}) and finds
 the second {\tt a}, which is at index 3.  If the letter happens
 to appear at the starting index, the starting index is the
 answer.  So
 
-\begin{verbatim}
+\begin{verbatimtab}
     int index = fruit.indexOf('a', 5);
-\end{verbatim}
+\end{verbatimtab}
 %
 returns 5.  
 
@@ -5694,7 +5696,7 @@ returns 5.
 The following program counts the
 number of times the letter {\tt 'a'} appears in a string:
 
-\begin{verbatim}
+\begin{verbatimtab}
     String fruit = "banana";
     int length = fruit.length();
     int count = 0;
@@ -5707,7 +5709,7 @@ number of times the letter {\tt 'a'} appears in a string:
       index = index + 1;
     }
     System.out.println(count);
-\end{verbatim}
+\end{verbatimtab}
 %
 This program demonstrates a common idiom, called a {\bf counter}.  The
 variable {\tt count} is initialized to zero and then incremented each
@@ -5746,9 +5748,9 @@ Technically, it is legal to increment a variable and use it
 in an expression at the same time.  For example, you might see
 something like:
 
-\begin{verbatim}
+\begin{verbatimtab}
     System.out.println(i++);
-\end{verbatim}
+\end{verbatimtab}
 %
 Looking at this, it is not clear whether the increment will
 take effect before or after the value is printed.  Because
@@ -5759,7 +5761,7 @@ want to know, you can try it.
 
 Using the increment operators, we can rewrite the letter-counter:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int index = 0;
     while (index < length) {
       if (fruit.charAt(index) == 'a') {
@@ -5767,13 +5769,13 @@ Using the increment operators, we can rewrite the letter-counter:
       }
       index++;
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 It is a common error to write something like
 
-\begin{verbatim}
+\begin{verbatimtab}
     index = index++;             // WRONG!!
-\end{verbatim}
+\end{verbatimtab}
 %
 Unfortunately, this is syntactically legal, so the compiler
 will not warn you.  The effect of this statement is to leave
@@ -5799,11 +5801,11 @@ can write {\tt index++}, but you shouldn't mix them.
 % that contain numbers, like '0', '1' and '2', and the corresponding
 % integers.  They are not the same thing.  For example, if you try this
 
-% \begin{verbatim}
+% \begin{verbatimtab}
 %     char letter = '3';
 %     int x =(int) letter;
 %     System.out.println(x);
-% \end{verbatim}
+% \end{verbatimtab}
 % %
 % you might expect the value 3, but depending on your environment,
 % you might get 51, which is the ASCII code that is used to
@@ -5811,9 +5813,9 @@ can write {\tt index++}, but you shouldn't mix them.
 % altogether.  To convert '3' to the corresponding integer value
 % you can subtract '0':
 
-% \begin{verbatim}
+% \begin{verbatimtab}
 %     int x =(int)(letter - '0');
-% \end{verbatim}
+% \end{verbatimtab}
 % %
 % Technically, in both of these examples the typecast({\tt(int)}) is
 % unnecessary, since Java will convert type {\tt char} to type {\tt int}
@@ -5824,9 +5826,9 @@ can write {\tt index++}, but you shouldn't mix them.
 % Since this conversion can be a little ugly, it is preferable to use
 % the {\tt digit} method in the {\tt Character} class.  For example:
 
-% \begin{verbatim}
+% \begin{verbatimtab}
 %     int x = Character.digit(letter, 10);
-% \end{verbatim}
+% \end{verbatimtab}
 % %
 % converts {\tt letter} to the corresponding digit, interpreting
 % it as a base 10 number.
@@ -5837,19 +5839,19 @@ can write {\tt index++}, but you shouldn't mix them.
 % abecedarian series: Jack, Kack, Lack, Mack, Nack, Ouack, Pack and
 % Quack.  Here is a loop that prints these names in order:
 
-% \begin{verbatim}
+% \begin{verbatimtab}
 %     char letter = 'J';
 %     while (letter <= 'Q') {
  %      System.out.println(letter + "ack");
  %      letter++;
 %     }
-% \end{verbatim}
+% \end{verbatimtab}
 %
 % Notice that in addition to the arithmetic operators, we can also
 % use the conditional operators on characters.  The output of this
 % program is:
 
-% \begin{verbatim}
+% \begin{verbatimtab}
 % Jack
 % Kack
 % Lack
@@ -5858,7 +5860,7 @@ can write {\tt index++}, but you shouldn't mix them.
 % Oack
 % Pack
 % Qack
-% \end{verbatim}
+% \end{verbatimtab}
 % %
 % Of course, that's not quite right because I've misspelled ``Ouack''
 % and ``Quack.''  As an exercise, modify the program to correct
@@ -5883,10 +5885,10 @@ others can change a string, because strings are {\bf immutable}.
 When you invoke {\tt toUpperCase} on a {\tt String}, you get a
 {\em new} {\tt String} as a return value.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     String name = "Alan Turing";
     String upperName = name.toUpperCase();
-\end{verbatim}
+\end{verbatimtab}
 %
 After the second line is executed, {\tt upperName} contains
 the value {\tt "ALAN TURING"}, but {\tt name} still contains
@@ -5910,7 +5912,7 @@ nice if we could use the comparison operators, like {\tt ==} and
 In order to compare {\tt String}s, we have to use the {\tt equals}
 and {\tt compareTo} methods.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     String name1 = "Alan Turing";
     String name2 = "Ada Lovelace";
 
@@ -5926,7 +5928,7 @@ and {\tt compareTo} methods.  For example:
     } else if (flag > 0) {
       System.out.println("name2 comes before name1.");
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 The syntax here is a little weird.  To compare two things, you
 have to invoke a method on one of them and pass the other
@@ -6015,7 +6017,7 @@ generalize it more?
 
 \end{enumerate}
 
-\begin{verbatim}
+\begin{verbatimtab}
     String s = "((3 + 7) * 2)";
     int len = s.length();
 
@@ -6034,7 +6036,7 @@ generalize it more?
     }
 
     System.out.println(count);
-\end{verbatim}
+\end{verbatimtab}
 \end{exercise}
 
 
@@ -6089,7 +6091,7 @@ reasonable possibilities?  How many seem stupid?
 What is the output of this program?  Describe in a sentence
 what {\tt mystery} does (not how it works).
 
-\begin{verbatim}
+\begin{verbatimtab}
 public class Mystery {
 
     public static String mystery(String s) {
@@ -6110,7 +6112,7 @@ public class Mystery {
         System.out.println(mystery("Allen"));
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 
 \end{exercise}
 
@@ -6124,19 +6126,19 @@ will output the number backwards.  He claims that if {\tt number} is
 Is he right?  If not, explain what the program actually does and
 modify it so that it does the right thing.
 
-\begin{verbatim}
+\begin{verbatimtab}
      int number = 17;
      int lastDigit = number%10;
      int firstDigit = number/10;
      System.out.println(lastDigit + firstDigit);
-\end{verbatim}
+\end{verbatimtab}
 
 \end{exercise}
 
 \begin{exercise}
 What is the output of the following program?
 
-\begin{verbatim}
+\begin{verbatimtab}
 public class Enigma {
 
     public static void enigma(int x) {
@@ -6154,7 +6156,7 @@ public class Enigma {
         System.out.println("");
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 
 Explain in 4-5 words what the method {\tt enigma} really does.
 \end{exercise}
@@ -6290,9 +6292,9 @@ anything, check that you can compile and run it.
 and computes the distance between them.  Remember that you can
 get the x-coordinate of a Bug like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int x = bug.getLocation().getCol();
-\end{verbatim}
+\end{verbatimtab}
 
 \item Write a method called {\tt turnToward} that takes two
 Bugs and turns one to face the other.  HINT: use {\tt Math.atan2},
@@ -6369,10 +6371,10 @@ In order to use a class defined in another package, you have to {\bf
   import} it.  {\tt Point} and {\tt Rectangle} are in the
 {\tt java.awt} package, so to import them we need:
 
-\begin{verbatim}
+\begin{verbatimtab}
     import java.awt.Point;
     import java.awt.Rectangle;
-\end{verbatim}
+\end{verbatimtab}
 
 All {\tt import} statements appear at the beginning of the program,
 outside the class definition.
@@ -6399,10 +6401,10 @@ right and $y$ units up from the origin.
 In Java, a point is represented by a {\tt Point} object.  To
 create a new point, you have to use {\tt new}:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Point blank;
     blank = new Point(3, 4);
-\end{verbatim}
+\end{verbatimtab}
 % 
 The first line is a conventional variable declaration: {\tt blank}
 has type {\tt Point}.  The second line invokes {\tt new}, specifies
@@ -6421,7 +6423,7 @@ newly-created object.  There is a standard way to diagram this
 assignment, shown in the figure.
 
 
-\myfig{figure=figs/reference.eps}
+\epsfig{figure=figs/reference.eps}
 
 
 As usual, the name of the variable {\tt blank} appears outside the box
@@ -6460,9 +6462,9 @@ Similarly, if you want to read a value from an instance variable, you
 have to specify the object you want to get it from.  In Java this is
 done using ``dot notation.''
 
-\begin{verbatim}
+\begin{verbatimtab}
     int x = blank.x;
-\end{verbatim}
+\end{verbatimtab}
 %
 The expression {\tt blank.x} means ``go to the object {\tt blank}
 refers to, and get the value of {\tt x}.''  In this case we assign
@@ -6474,10 +6476,10 @@ variable named {\tt x}.  The purpose of dot notation is to identify
 You can use dot notation as part of any Java expression, so the
 following are legal.
 
-\begin{verbatim}
+\begin{verbatimtab}
     System.out.println(blank.x + ", " + blank.y);
     int distance = blank.x * blank.x + blank.y * blank.y;
-\end{verbatim}
+\end{verbatimtab}
 %
 The first line prints {\tt 3, 4}; the second line calculates
 the value 25.
@@ -6489,11 +6491,11 @@ the value 25.
 You can pass objects as parameters in the usual way.  For
 example:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void printPoint(Point p) {
     System.out.println("(" + p.x + ", " + p.y + ")");
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 This method takes a point as an argument and prints it in
 the standard format.  If you invoke {\tt printPoint(blank)},
@@ -6501,9 +6503,9 @@ it prints {\tt(3, 4)}.  Actually, Java already has a
 method for printing {\tt Points}.  If you invoke
 {\tt System.out.println(blank)}, you get
 
-\begin{verbatim}
+\begin{verbatimtab}
 java.awt.Point[x=3,y=4]
-\end{verbatim}
+\end{verbatimtab}
 % 
 This is a standard format Java uses for printing objects.  It prints
 the name of the type, followed by the names and values of the instance
@@ -6513,13 +6515,13 @@ As a second example, we can rewrite the {\tt distance} method from
 Section~\ref{distance} so that it takes two {\tt Point}s as parameters
 instead of four {\tt double}s.
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static double distance(Point p1, Point p2) {
     double dx = (double)(p2.x - p1.x);
     double dy = (double)(p2.y - p1.y);
     return Math.sqrt(dx*dx + dy*dy);
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The typecasts are not really necessary; I added them as a
 reminder that the instance variables in a {\tt Point} are integers.
@@ -6536,21 +6538,21 @@ height}.  Other than that, everything is pretty much the same.
 This example
 creates a {\tt Rectangle} object and makes {\tt box} refer to it.
 
-\begin{verbatim}
+\begin{verbatimtab}
     Rectangle box = new Rectangle(0, 0, 100, 200);
-\end{verbatim}
+\end{verbatimtab}
 %
 This figure shows the effect of this assignment.
 
 
-\myfig{figure=figs/rectangle.eps}
+\epsfig{figure=figs/rectangle.eps}
 
 %
 If you print {\tt box}, you get
 
-\begin{verbatim}
+\begin{verbatimtab}
 java.awt.Rectangle[x=0,y=0,width=100,height=200]
-\end{verbatim}
+\end{verbatimtab}
 %
 Again, this is the result of a Java method that knows how
 to print {\tt Rectangle} objects.
@@ -6566,13 +6568,13 @@ You can write methods that return objects.  For example,
 returns a {\tt Point} that contains the coordinates of the
 center of the {\tt Rectangle}:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static Point findCenter(Rectangle box) {
     int x = box.x + box.width/2;
     int y = box.y + box.height/2;
     return new Point(x, y);
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 Notice that you can use {\tt new} to create a new object,
 and then immediately use the result as a return value.
@@ -6587,15 +6589,15 @@ to one of its instance variables.  For example, to ``move''
 a rectangle without changing its size, you can modify the
 {\tt x} and {\tt y} values:
 
-\begin{verbatim}
+\begin{verbatimtab}
     box.x = box.x + 50;
     box.y = box.y + 100;
-\end{verbatim}
+\end{verbatimtab}
 %
 The result is shown in the figure:
 
 
-\myfig{figure=figs/rectangle2.eps}
+\epsfig{figure=figs/rectangle2.eps}
 
 
 \index{encapsulation}
@@ -6604,22 +6606,22 @@ The result is shown in the figure:
 We can encapsulate this code in a method and
 generalize it to move the rectangle by any amount:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void moveRect(Rectangle box, int dx, int dy) {
     box.x = box.x + dx;
     box.y = box.y + dy;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The variables {\tt dx} and {\tt dy} indicate how far to move the
 rectangle in each direction.  Invoking this method has the effect of
 modifying the {\tt Rectangle} that is passed as an argument.
 
-\begin{verbatim}
+\begin{verbatimtab}
     Rectangle box = new Rectangle(0, 0, 100, 200);
     moveRect(box, 50, 100);
     System.out.println(box);
-\end{verbatim}
+\end{verbatimtab}
 %
 prints {\tt java.awt.Rectangle[x=50,y=100,width=100,height=200]}.
 
@@ -6639,9 +6641,9 @@ For example, {\tt translate} has the same effect as {\tt moveRect},
 but instead of passing the Rectangle as an argument, you use dot
 notation:
 
-\begin{verbatim}
+\begin{verbatimtab}
     box.translate(50, 100);
-\end{verbatim}
+\end{verbatimtab}
 %
 The effect is the same.
 
@@ -6656,15 +6658,15 @@ are assigning a {\em reference} to an object.  It is possible to have
 multiple variables that refer to the same object.  For example,
 this code:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Rectangle box1 = new Rectangle(0, 0, 100, 200);
     Rectangle box2 = box1;
-\end{verbatim}
+\end{verbatimtab}
 %
 generates a state diagram that looks like this:
 
 
-\myfig{figure=figs/aliasing.eps}
+\epsfig{figure=figs/aliasing.eps}
 
 
 {\tt box1} and {\tt box2} refer to the same object.
@@ -6675,11 +6677,11 @@ with objects.
 When two variables are aliased, any changes that affect one
 variable also affect the other.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     System.out.println(box2.width);
     box1.grow(50, 50);
     System.out.println(box2.width);
-\end{verbatim}
+\end{verbatimtab}
 %
 The first line prints {\tt 100}, which is the width of the
 {\tt Rectangle} referred to by {\tt box2}.  The second
@@ -6689,7 +6691,7 @@ expands the {\tt Rectangle} by 50 pixels in every direction
 is shown in the figure:
 
 
-\myfig{figure=figs/aliasing2.eps}
+\epsfig{figure=figs/aliasing2.eps}
 
 
 Whatever changes are
@@ -6716,14 +6718,14 @@ a Java keyword) that means ``no object.''
 The declaration {\tt Point blank;} is equivalent to this
 initialization
 
-\begin{verbatim}
+\begin{verbatimtab}
     Point blank = null;
-\end{verbatim}
+\end{verbatimtab}
 %
 and is shown in the following state diagram:
 
 
-\myfig{figure=figs/reference2.eps}
+\epsfig{figure=figs/reference2.eps}
 
 
 The value {\tt null} is represented by a small square with no arrow.
@@ -6736,11 +6738,11 @@ variable or invoking a method, you will get a {\tt
 NullPointerException}.  The system will print an error message
 and terminate the program.
 
-\begin{verbatim}
+\begin{verbatimtab}
     Point blank = null;
     int x = blank.x;              // NullPointerException
     blank.translate(50, 50);      // NullPointerException
-\end{verbatim}
+\end{verbatimtab}
 %
 On the other hand, it is legal to pass a null object as an argument or
 receive one as a return value.  In fact, it is common to do so, for
@@ -6754,10 +6756,10 @@ In Section~\ref{aliasing} we talked about what happens when
 more than one variable refers to the same object.  What happens
 when {\em no} variable refers to an object?  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Point blank = new Point(3, 4);
     blank = null;
-\end{verbatim}
+\end{verbatimtab}
 %
 The first line creates a new {\tt Point} object and makes
 {\tt blank} refer to it.  The second line changes {\tt blank}
@@ -6765,7 +6767,7 @@ so that instead of referring to the object, it refers to
 nothing (the null object).
 
 
-\myfig{figure=figs/reference3.eps}
+\epsfig{figure=figs/reference3.eps}
 
 
 If no one refers to an object, then no one can read or write any of
@@ -6882,7 +6884,7 @@ any objects those variables refer to.
 
 \end{enumerate}
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static void main(String[] args)
 {
     int x = 5;
@@ -6899,7 +6901,7 @@ public static int riddle(int x, Point p)
     x = x + 7;
     return x + p.x + p.y;
 }
-\end{verbatim}
+\end{verbatimtab}
 
 The point of this exercise is to make sure you understand the
 mechanism for passing Objects as parameters.
@@ -6917,7 +6919,7 @@ variables and parameters and the objects those variables refer to.
 
 \end{enumerate}
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static double distance(Point p1, Point p2) {
     int dx = p1.x - p2.x;
     int dy = p1.y - p2.y;
@@ -6940,7 +6942,7 @@ public static void main(String[] args) {
 
     System.out.println(dist);
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 \end{exercise}
 
@@ -6965,7 +6967,7 @@ they refer to.
 
 \end{enumerate}
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static void printPoint(Point p) {
     System.out.println("(" + p.x + ", " + p.y + ")");
 }
@@ -6986,7 +6988,7 @@ public static void main(String[] args) {
     Point p2 = findCenter(box1);
     printPoint(p2);
 }
-\end{verbatim}
+\end{verbatimtab}
 
 \end{exercise}
 
@@ -7016,10 +7018,10 @@ java.math.BigInteger} to the beginning of your program.
 BigInteger, but the one I recommend uses {\tt valueOf}.
 The following code converts an integer to a {\tt BigInteger}:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int x = 17;
     BigInteger big = BigInteger.valueOf(x);
-\end{verbatim}
+\end{verbatimtab}
 
 Type in this code and try it out.  Try printing a BigInteger.
 
@@ -7029,11 +7031,11 @@ have to use methods like {\tt add}.  To
 add two BigIntegers, invoke {\tt add} on one
 and pass the other as an argument.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     BigInteger small = BigInteger.valueOf(17); 
     BigInteger big = BigInteger.valueOf(1700000000); 
     BigInteger total = small.add(big);
-\end{verbatim}
+\end{verbatimtab}
 
 Try out some of the other methods, like {\tt multiply} and
 {\tt pow}.
@@ -7057,7 +7059,7 @@ ability to raise large integers to an integer power.  Here is a
 method that implements a (reasonably) fast technique for integer
 exponentiation:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static int pow(int x, int n) {
     if (n==0) return 1;
 
@@ -7073,7 +7075,7 @@ public static int pow(int x, int n) {
       return t*t*x;
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 
 The problem with this method is that it only works if the result
 is smaller than 2 billion.  Rewrite it so that the result is
@@ -7082,6 +7084,17 @@ a {\tt BigInteger}.  The parameters should still be integers, though.
 You can use the BigInteger methods {\tt add} and {\tt multiply}, but
 don't use {\tt pow}, which would spoil the fun.
 \end{exercise}
+
+
+\begin{exercise}
+If you are interested in graphics, now is a good time to read
+Appendix~\ref{graphics} and do the exercises there.
+\end{exercise}
+
+
+\beforechapter
+\chapter{GridWorld: Part 2}
+\label{gridworld2}
 
 
 
@@ -7185,18 +7198,18 @@ we can record fractions of a second.
 Instance variables are declared at the beginning of the class
 definition, outside of any method definition, like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
 class Time {
   int hour, minute;
   double second;
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 All by itself, this code fragment is a legal class definition.  The
 state diagram for a {\tt Time} object would look like this:
 
 
-\myfig{figure=figs/time.eps}
+\epsfig{figure=figs/time.eps}
 
 
 After declaring the instance variables, the next step is usually
@@ -7224,13 +7237,13 @@ the class.
 
 Here is an example for the {\tt Time} class:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public Time() {
     this.hour = 0;
     this.minute = 0;
     this.second = 0.0;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 Notice that where you would expect to see a return type,
 between {\tt public} and {\tt Time}, there is nothing.  That's
@@ -7269,13 +7282,13 @@ arguments(shown above), and one constructor that takes
 a parameter list that is identical to the list of instance
 variables.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public Time(int hour, int minute, double second) {
     this.hour = hour;
     this.minute = minute;
     this.second = second;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The names and types of the parameters are exactly the same as
 the names and types of the instance variables.  All the
@@ -7307,7 +7320,7 @@ invokes your constructor to initialize the instance variables.
 The following program demonstrates two ways to create and
 initialize {\tt Time} objects:
 
-\begin{verbatim}
+\begin{verbatimtab}
 class Time {
   int hour, minute;
   double second;
@@ -7338,7 +7351,7 @@ class Time {
     System.out.println(t2);
   }
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 As an exercise, figure out the flow of execution through this
 program.
@@ -7363,10 +7376,10 @@ variables.
 
 The output of this program is:
 
-\begin{verbatim}
+\begin{verbatimtab}
 Time@80cc7c0
 Time@80cc807
-\end{verbatim}
+\end{verbatimtab}
 %
 When Java prints the value of a user-defined object type, it prints
 the name of the type and a special hexadecimal(base 16) code that is
@@ -7379,11 +7392,11 @@ In order to print objects in a way that is more meaningful to users
 (as opposed to programmers), you usually want to write a method
 called something like {\tt printTime}:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void printTime(Time t) {
     System.out.println(t.hour + ":" + t.minute + ":" + t.second);
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 Compare this method to the version of {\tt printTime} in
 Section~\ref{time}.
@@ -7450,7 +7463,7 @@ One example is {\tt after}, which compares two {\tt Time}s and
 returns a {\tt boolean} that indicates whether the first operand
 comes after the second:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static boolean after(Time time1, Time time2) {
     if (time1.hour > time2.hour) return true;
     if (time1.hour < time2.hour) return false;
@@ -7461,7 +7474,7 @@ comes after the second:
     if (time1.second > time2.second) return true;
     return false;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 What is the result of this method if the two times are equal?  Does
 that seem like the appropriate result for this method?  If you were
@@ -7475,7 +7488,7 @@ the bread will be done.
 
 Here is a rough draft of this method that is not quite right:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static Time addTime(Time t1, Time t2) {
     Time sum = new Time();
     sum.hour = t1.hour + t2.hour;
@@ -7483,7 +7496,7 @@ Here is a rough draft of this method that is not quite right:
     sum.second = t1.second + t2.second;
     return sum;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 Although this method returns a {\tt Time} object, it is not
 a constructor.  You should go back and compare the syntax of
@@ -7496,12 +7509,12 @@ of time it takes for your breadmaker to make bread, then you
 could use {\tt addTime} to figure out when the bread will be
 done.
 
-\begin{verbatim}
+\begin{verbatimtab}
     Time currentTime = new Time(9, 14, 30.0);
     Time breadTime = new Time(3, 35, 0.0);
     Time doneTime = addTime(currentTime, breadTime);
     printTime(doneTime);
-\end{verbatim}
+\end{verbatimtab}
 %
 The output of this program is {\tt 12:49:30.0}, which is
 correct.  On the other hand, there are cases where the result
@@ -7515,7 +7528,7 @@ column.
 
 Here's a second, corrected version of this method.
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static Time addTime(Time t1, Time t2) {
     Time sum = new Time();
     sum.hour = t1.hour + t2.hour;
@@ -7532,7 +7545,7 @@ Here's a second, corrected version of this method.
     }
     return sum;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 Although it's correct, it's starting to get big.  Later,
 I will suggest an alternative approach to this problem that
@@ -7559,7 +7572,7 @@ As an example of a modifier, consider {\tt increment},
 which adds a given number of seconds to a {\tt Time} object.
 Again, a rough draft of this method looks like:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void increment(Time time, double secs) {
     time.second += secs;
 
@@ -7572,7 +7585,7 @@ Again, a rough draft of this method looks like:
       time.hour += 1;
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The first line performs the basic operation; the remainder
 deals with the same cases we saw before.
@@ -7583,7 +7596,7 @@ subtract 60 once; we have to keep doing it until {\tt second}
 is below 60.  We can do that by simply replacing the {\tt if}
 statements with {\tt while} statements:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void increment(Time time, double secs) {
     time.second += secs;
 
@@ -7596,7 +7609,7 @@ statements with {\tt while} statements:
       time.hour += 1;
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 This solution is correct, but not very efficient.
 Can you think of a solution that does not require iteration?
@@ -7612,7 +7625,7 @@ invoked, we could require the caller to provide an ``empty''
 object where {\tt addTime} should store the result.  Compare
 the following with the previous version:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void addTimeFill(Time t1, Time t2, Time sum) {
     sum.hour = t1.hour + t2.hour;
     sum.minute = t1.minute + t2.minute;
@@ -7627,7 +7640,7 @@ the following with the previous version:
       sum.hour += 1;
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 One advantage of this approach is that the caller has the option
 of reusing the same object repeatedly to perform a series
@@ -7688,20 +7701,20 @@ Thus an alternative approach to the whole problem is to convert
 the computer already knows how to do arithmetic with {\tt double}s.
 Here is a method that converts a {\tt Time} into a {\tt double}:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static double convertToSeconds(Time t) {
     int minutes = t.hour * 60 + t.minute;
     double seconds = minutes * 60 + t.second;
     return seconds;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 Now all we need is a way to convert from a {\tt double}
 to a {\tt Time} object.  We could write a method to
 do it, but it might make more sense to write it as a third
 constructor:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public Time(double secs) {
     this.hour =(int)(secs / 3600.0);
     secs -= this.hour * 3600.0;
@@ -7709,7 +7722,7 @@ constructor:
     secs -= this.minute * 60;
     this.second = secs;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 This constructor is a little different from the others, since
 it involves some calculation along with assignments to the
@@ -7719,12 +7732,12 @@ You might have to think a bit to convince yourself that the technique
 I am using to convert from one base to another is correct.  Assuming
 you are convinced, we can use these methods to rewrite {\tt addTime}:
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static Time addTime(Time t1, Time t2) {
     double seconds = convertToSeconds(t1) + convertToSeconds(t2);
     return new Time(seconds);
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 This is much shorter than the original version, and it is much easier
 to demonstrate that it is correct(assuming, as usual, that the
@@ -7910,7 +7923,7 @@ rational numbers.
 \item Examine the following program and make sure
 you understand what it does:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public class Complex
 {
     double real, imag;
@@ -7964,7 +7977,7 @@ public class Complex
         Complex.printComplex(s);
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 
 \item Create a new program called {\tt Rational.java} that defines a
 class named {\tt Rational}.  A {\tt Rational} object should have two
@@ -8050,18 +8063,18 @@ integers'' and {\tt double[]} is the type ``array of doubles.''
 
 You can declare variables with these types in the usual ways:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int[] count;
     double[] values;
-\end{verbatim}
+\end{verbatimtab}
 %
 Until you initialize these variables, they are set to {\tt null}.
 To create the array itself, use {\tt new}.
 
-\begin{verbatim}
+\begin{verbatimtab}
     count = new int[4];
     values = new double[size];
-\end{verbatim}
+\end{verbatimtab}
 %
 The first assignment makes {\tt count} refer to an array of 4
 integers; the second makes {\tt values} refer to an array of {\tt
@@ -8076,7 +8089,7 @@ The following figure shows how arrays are represented in state
 diagrams:
 
 
-\myfig{figure=figs/array.eps}
+\epsfig{figure=figs/array.eps}
 
 
 The large numbers inside the boxes are the {\bf elements} of
@@ -8094,18 +8107,18 @@ To store values in the array, use the
 ``oneth'' element.  You can use the {\tt []} operator anywhere in an
 expression:
 
-\begin{verbatim}
+\begin{verbatimtab}
     count[0] = 7;
     count[1] = count[0] * 2;
     count[2]++;
     count[3] -= 60;
-\end{verbatim}
+\end{verbatimtab}
 %
 All of these are legal assignment statements.  Here is the
 effect of this code fragment:
 
 
-\myfig{figure=figs/array2.eps}
+\epsfig{figure=figs/array2.eps}
 
 
 By now you should have noticed that the four elements of this array
@@ -8125,13 +8138,13 @@ You can use any expression as an index, as long as it has type {\tt
 int}.  One of the most common ways to index an array is with a loop
 variable.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int i = 0;
     while (i < 4) {
       System.out.println(count[i]);
       i++;
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 This is a standard {\tt while} loop that counts from 0
 up to 4, and when the loop variable {\tt i} is 4, the
@@ -8156,17 +8169,17 @@ like fava beans and a nice Chianti.
 When you copy an array variable, remember that you are
 copying a reference to the array.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     double[] a = new double [3];
     double[] b = a;
-\end{verbatim}
+\end{verbatimtab}
 %
 This code creates one array of three {\tt double}s, and
 sets two different variables to refer to it.
 This situation is a form of aliasing.
 
 
-\myfig{figure=figs/array3.eps}
+\epsfig{figure=figs/array3.eps}
 
 
 Any changes in either array
@@ -8175,7 +8188,7 @@ behavior you want; instead, you should make a copy of the
 array, by allocating a new array and copying each element from
 one to the other.
 
-\begin{verbatim}
+\begin{verbatimtab}
     double[] b = new double [3];
 
     int i = 0;
@@ -8183,7 +8196,7 @@ one to the other.
       b[i] = a[i];
       i++;
     }
-\end{verbatim}
+\end{verbatimtab}
 
 \section{{\tt for} loops}
 
@@ -8201,41 +8214,41 @@ This type of loop is so common that there is an alternative
 loop statement, called {\tt for}, that expresses it more
 concisely.  The general syntax looks like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
     for(INITIALIZER; CONDITION; INCREMENTOR) {
       BODY
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 This statement is exactly equivalent to
 
-\begin{verbatim}
+\begin{verbatimtab}
     INITIALIZER;
     while (CONDITION) {
       BODY
       INCREMENTOR
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 except that it is more concise and, since it puts all the
 loop-related statements in one place, it is easier to read.
 For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     for(int i = 0; i < 4; i++) {
       System.out.println(count[i]);
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 is equivalent to 
 
-\begin{verbatim}
+\begin{verbatimtab}
     int i = 0;
     while (i < 4) {
       System.out.println(count[i]);
       i++;
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 As an exercise, write a {\tt for} loop to copy the elements
 of an array.
@@ -8291,11 +8304,11 @@ the size of the array changes, you won't have to go through the
 program changing all the loops; they will work correctly for any
 size array.
 
-\begin{verbatim}
+\begin{verbatimtab}
     for(int i = 0; i < a.length; i++) {
       b[i] = a[i];
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 The last time the body of the loop gets executed, {\tt i}
 is {\tt a.length - 1}, which is the index of the last element.  When
@@ -8338,12 +8351,12 @@ than 1.0.  Each time you invoke {\tt random} you get the next
 number in a pseudorandom sequence.
 To see a sample, run this loop:
 
-\begin{verbatim}
+\begin{verbatimtab}
     for(int i = 0; i < 10; i++) {
       double x = Math.random();
       System.out.println(x);
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 To generate a random {\tt double} between 0.0 and an upper bound like
 {\tt high}, you can multiply {\tt x} by {\tt high}.  How would you
@@ -8385,7 +8398,7 @@ the array.  It allocates a new array of integers, fills
 it with random values, and returns a reference to the new
 array.
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static int[] randomArray(int n) {
     int[] a = new int[n];
     for(int i = 0; i<a.length; i++) {
@@ -8393,32 +8406,32 @@ array.
     }
     return a;
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The return type is {\tt int[]}, which means that
 this method returns an array of integers.
 To test this method, it is convenient to have a method that
 prints the contents of an array.
 
-\begin{verbatim}
+\begin{verbatimtab}
   public static void printArray(int[] a) {
     for(int i = 0; i<a.length; i++) {
       System.out.println(a[i]);
     }
   }
-\end{verbatim}
+\end{verbatimtab}
 %
 The following code generates an array and prints it:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int numValues = 8;
     int[] array = randomArray(numValues);
     printArray(array);
-\end{verbatim}
+\end{verbatimtab}
 %
 On my machine the output is
 
-\begin{verbatim}
+\begin{verbatimtab}
 27
 6
 54
@@ -8427,7 +8440,7 @@ On my machine the output is
 2
 44
 81
-\end{verbatim}
+\end{verbatimtab}
 %
 which is pretty random-looking.  Your results may differ.
 
@@ -8486,7 +8499,7 @@ in a given range.  The parameters are the array and two
 integers that specify the lower and upper bounds of
 the range.
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static int inRange(int[] a, int low, int high) {
     int count = 0;
     for(int i=0; i<a.length; i++) {
@@ -8494,7 +8507,7 @@ public static int inRange(int[] a, int low, int high) {
     }
     return count;
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 In my description of the method,
 I wasn't very careful about whether something equal
@@ -8505,14 +8518,14 @@ That should keep us from counting any elements twice.
 Now we can count the number of scores in the ranges we are
 interested in:
 
-\begin{verbatim}
+\begin{verbatimtab}
 int[] scores = randomArray(30);
 int a = inRange(scores, 90, 100);
 int b = inRange(scores, 80, 90);
 int c = inRange(scores, 70, 80);
 int d = inRange(scores, 60, 70);
 int f = inRange(scores, 0, 60);
-\end{verbatim}
+\end{verbatimtab}
 
 
 \section{The histogram}
@@ -8524,13 +8537,13 @@ long as the number of ranges want is small.  But now imagine that
 we want to keep track of the number of times each score appears,
 all 100 possible values.  Would you want to write:
 
-\begin{verbatim}
+\begin{verbatimtab}
 int count0 = inRange(scores, 0, 1);
 int count1 = inRange(scores, 1, 2);
 int count2 = inRange(scores, 2, 3);
 ...
 int count3 = inRange(scores, 99, 100);
-\end{verbatim}
+\end{verbatimtab}
 
 I don't think so.  What we really want is a
 way to store 100 integers, preferably
@@ -8542,13 +8555,13 @@ array of counters.  In this case, we initialize the array outside the
 loop; then, inside the loop, we invoke {\tt inRange} and store the
 result:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int[] counts = new int [100];
 
     for(int i = 0; i<100; i++) {
         counts[i] = inRange(scores, i, i+1);
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 The only tricky thing here is that we are using the loop variable
 in two roles: as in index into the array, and as the parameter to
@@ -8571,14 +8584,14 @@ can use the value itself as an index into the array of counters.
 Here is code that traverses an array of scores, once, and generates
 a histogram.
 
-\begin{verbatim}
+\begin{verbatimtab}
     int[] counts = new int [100];
 
     for(int i = 0; i < scores.length; i++) {
         int index = scores[i];
         counts[index]++;
     }
-\end{verbatim}
+\end{verbatimtab}
 
 \begin{exercise}
 Encapsulate this code in a method called {\tt scoreHist} that
@@ -8651,14 +8664,14 @@ Write a method called {\tt arrayHist} that takes an array of
 integers and that returns a new histogram array.  The histogram should
 contain 11 elements with the following contents:
 
-\begin{verbatim}
+\begin{verbatimtab}
 element 0 -- number of elements in the array that are <= 0
         1 -- number of elements in the array that are == 1
         2 -- number of elements in the array that are == 2
         ...
         9 -- number of elements in the array that are == 9
        10 -- number of elements in the array that are >= 10
-\end{verbatim}
+\end{verbatimtab}
 \end{exercise}
 
 
@@ -8671,7 +8684,7 @@ For each of the following methods, write one sentence that
 describes abstractly what the method does.  For each variable,
 identify the role it plays.
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static int banana(int[] a) {
     int grape = 0;
     int i = 0;
@@ -8698,7 +8711,7 @@ public static int grapefruit(int[] a, int p) {
     }
     return -1;
 }		
-\end{verbatim}
+\end{verbatimtab}
 
 The purpose of this exercise is to practice reading code and
 recognizing the solution patterns we have seen.
@@ -8716,7 +8729,7 @@ program just before {\tt mus} returns.
 \item Describe in a few words what {\tt mus} does.
 \end{enumerate}
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static int[] make(int n) {
     int[] a = new int[n];
 
@@ -8746,7 +8759,7 @@ public static void main(String[] args) {
 
     System.out.println(mus(bob));
 }
-\end{verbatim}
+\end{verbatimtab}
 \end{exercise}
 
 
@@ -8776,9 +8789,9 @@ the maximum of each of the piece-maxima.
 find the largest element in an array, we have to provide a range
 that includes the entire array.
 
-\begin{verbatim}
+\begin{verbatimtab}
     double max = maxInRange(array, 0, a.length-1);
-\end{verbatim}
+\end{verbatimtab}
 
 Write a method called {\tt max} that takes an array as a parameter
 and that uses {\tt maxInRange} to find and return the largest value.
@@ -8963,7 +8976,7 @@ that they are not part of the Java program.  They are part of the
 program design, but they never appear explicitly in the code.
 The class definition for the {\tt Card} type looks like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
 class Card
 {
     int suit, rank;
@@ -8976,7 +8989,7 @@ class Card
         this.suit = suit;  this.rank = rank;
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 
 As usual, I am providing two constructors, one of which takes
 a parameter for each instance variable and the other of which
@@ -8987,9 +9000,9 @@ takes no parameters.
 To create an object that represents the 3 of Clubs, we would
 use {\tt new}:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Card threeOfClubs = new Card(0, 3);
-\end{verbatim}
+\end{verbatimtab}
 %
 The first argument, {\tt 0} represents the suit Clubs.
 
@@ -9012,31 +9025,31 @@ A natural way to do that is with an array of {\tt String}s.  You
 can create an array of {\tt String}s the same way you create an
 array of primitive types:
 
-\begin{verbatim}
+\begin{verbatimtab}
     String[] suits = new String [4];
-\end{verbatim}
+\end{verbatimtab}
 %
 Then we can set the values of the elements of the array.
 
-\begin{verbatim}
+\begin{verbatimtab}
     suits[0] = "Clubs";
     suits[1] = "Diamonds";
     suits[2] = "Hearts";
     suits[3] = "Spades";
-\end{verbatim}
+\end{verbatimtab}
 %
 Creating an array and initializing the elements is such a common
 operation that Java provides a special syntax for it:
 
-\begin{verbatim}
+\begin{verbatimtab}
     String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
-\end{verbatim}
+\end{verbatimtab}
 %
 The effect of this statement is identical to that of the
 separate declaration, allocation, and assignment.  A state
 diagram of this array might look like:
 
-\myfig{figure=figs/stringarray.eps}
+\epsfig{figure=figs/stringarray.eps}
 
 \index{state diagram}
 \index{reference}
@@ -9047,10 +9060,10 @@ rather than {\tt String}s themselves.  This is true of all arrays of
 objects, as I will discuss in more detail later.  For now, all we need
 is another array of {\tt String}s to decode the ranks:
 
-\begin{verbatim}
+\begin{verbatimtab}
     String[] ranks = { "narf", "Ace", "2", "3", "4", "5", "6",
                "7", "8", "9", "10", "Jack", "Queen", "King" };
-\end{verbatim}
+\end{verbatimtab}
 %
 The reason for the {\tt "narf"} is to act as a place-keeper
 for the zeroeth element of the array, which will never be
@@ -9062,7 +9075,7 @@ Using these arrays, we can select the appropriate {\tt String}s by
 using the {\tt suit} and {\tt rank} as indices.  In the method
 {\tt printCard},
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static void printCard(Card c) {
     String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
     String[] ranks = { "narf", "Ace", "2", "3", "4", "5", "6",
@@ -9070,17 +9083,17 @@ public static void printCard(Card c) {
 
     System.out.println(ranks[c.rank] + " of " + suits[c.suit]);
 }
-\end{verbatim}
+\end{verbatimtab}
 
 the expression {\tt suits[c.suit]} means ``use the instance variable
 {\tt suit} from the object {\tt c} as an index into the array named
 {\tt suits}, and select the appropriate string.''  The output of this
 code
 
-\begin{verbatim}
+\begin{verbatimtab}
     Card card = new Card(1, 11);
     printCard(card);
-\end{verbatim}
+\end{verbatimtab}
 %
 is {\tt Jack of Diamonds}.
 
@@ -9109,14 +9122,14 @@ the same {\tt Card} object?
 To see if two references refer to the same object, we can use
 the {\tt ==} operator.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Card card1 = new Card(1, 11);
     Card card2 = card1;
 
     if (card1 == card2) {
         System.out.println("card1 and card2 are the same object.");
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 This type of equality is called {\bf shallow equality} because
 it only compares the references, not the contents of the objects.
@@ -9129,29 +9142,29 @@ it only compares the references, not the contents of the objects.
 To compare the contents of the objects---{\bf deep equality}---it
 is common to write a method with a name like {\tt sameCard}.
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static boolean sameCard(Card c1, Card c2) {
     return(c1.suit == c2.suit && c1.rank == c2.rank);
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 Now if we create two different objects that contain the same
 data, we can use {\tt sameCard} to see if they represent the
 same card:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Card card1 = new Card(1, 11);
     Card card2 = new Card(1, 11);
 
     if (sameCard(card1, card2)) {
         System.out.println("card1 and card2 are the same card.");
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 In this case, {\tt card1} and {\tt card2}
 are two different objects that contain the same data
 
-\myfig{figure=figs/card.eps}
+\epsfig{figure=figs/card.eps}
 
 so the condition is true.  What does the state diagram look like when
 {\tt card1 == card2} is true?
@@ -9216,18 +9229,18 @@ standard for comparison methods.
 
 First we compare the suits:
 
-\begin{verbatim}
+\begin{verbatimtab}
     if (c1.suit > c2.suit) return 1;
     if (c1.suit < c2.suit) return -1;
-\end{verbatim}
+\end{verbatimtab}
 %
 If neither statement is true, then the suits must be equal,
 and we have to compare ranks:
 
-\begin{verbatim}
+\begin{verbatimtab}
     if (c1.rank > c2.rank) return 1;
     if (c1.rank < c2.rank) return -1;
-\end{verbatim}
+\end{verbatimtab}
 %
 If neither of these is true, the ranks must be equal,
 so we return {\tt 0}.  In this ordering, aces will appear
@@ -9247,15 +9260,15 @@ The reason I chose {\tt Cards} as the objects for this chapter is that
 there is an obvious use for an array of cards---a deck.  Here is some
 code that creates a new deck of 52 cards:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Card[] deck = new Card [52];
-\end{verbatim}
+\end{verbatimtab}
 
 Here is the state diagram for this object:
 
 \index{state diagram}
 
-\myfig{figure=figs/cardarray.eps}
+\epsfig{figure=figs/cardarray.eps}
 
 The important thing to see here is that the array contains
 only {\em references} to objects; it does not contain any
@@ -9263,11 +9276,11 @@ only {\em references} to objects; it does not contain any
 initialized to {\tt null}.  You can access the elements of
 the array in the usual way:
 
-\begin{verbatim}
+\begin{verbatimtab}
     if (deck[3] == null) {
         System.out.println("No cards yet!");
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 But if you try to access the instance variables of the
 non-existent {\tt Card}s, you will get a {\tt NullPointerException}.
@@ -9276,9 +9289,9 @@ non-existent {\tt Card}s, you will get a {\tt NullPointerException}.
 \index{run-time error}
 \index{null}
 
-\begin{verbatim}
+\begin{verbatimtab}
     deck[2].rank;             // NullPointerException
-\end{verbatim}
+\end{verbatimtab}
 %
 Nevertheless, that is the correct syntax for accessing the {\tt rank}
 of the ``twoeth'' card in the deck(really the third---we started
@@ -9292,7 +9305,7 @@ and an instance variable of an object.
 The easiest way to populate the deck with {\tt Card} objects
 is to write a nested loop:
 
-\begin{verbatim}
+\begin{verbatimtab}
     int index = 0;
     for(int suit = 0; suit <= 3; suit++) {
         for(int rank = 1; rank <= 13; rank++) {
@@ -9300,7 +9313,7 @@ is to write a nested loop:
             index++;
         }
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 The outer loop enumerates the suits, from 0 to 3.  For
 each suit, the inner loop enumerates the ranks, from 1
@@ -9315,7 +9328,7 @@ deck the next card should go.  The following state diagram
 shows what the deck looks like after the first two cards
 have been allocated:
 
-\myfig{figure=figs/cardarray2.eps}
+\epsfig{figure=figs/cardarray2.eps}
 
 \begin{exercise}
 Encapsulate this deck-building code in a method called
@@ -9337,13 +9350,13 @@ a method that will print the contents of the array.  We have
 seen the pattern for traversing an array several times, so the
 following method should be familiar:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static void printDeck(Card[] deck) {
     for(int i=0; i<deck.length; i++) {
         printCard(deck[i]);
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 
 Since {\tt deck} has type {\tt Card[]}, an element of {\tt deck}
 has type {\tt Card}.  Therefore, {\tt deck[i]} is a legal argument
@@ -9371,14 +9384,14 @@ the deck and comparing each card to the one we are looking for.  If we
 find it we return the index where the card appears.  If it is not in
 the deck, we return -1.
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static int findCard(Card[] deck, Card card) {
     for(int i = 0; i< deck.length; i++) {
         if (sameCard(deck[i], card)) return i;
     }
     return -1;
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 The arguments of {\tt findCard} are named {\tt card} and {\tt deck}.
 It might seem odd to have a variable with the same name as a type(the
@@ -9463,7 +9476,7 @@ in the range from {\tt mid+1} to {\tt high}.
 Steps 3 and 4 look suspiciously like recursive invocations.  Here's
 what this all looks like translated into Java code:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static int findBisect(Card[] deck, Card card, int low, int high) {
     int mid =(high + low) / 2;
     int comp = compareCard(deck[mid], card);
@@ -9476,7 +9489,7 @@ public static int findBisect(Card[] deck, Card card, int low, int high) {
         return findBisect(deck, card, mid+1, high);
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 
 Rather than call {\tt compareCard} three times, I called it once
 and stored the result.
@@ -9498,7 +9511,7 @@ there are no cards in the segment of the deck indicated by
 
 With that line added, the method works correctly:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static int findBisect(Card[] deck, Card card, int low, int high) {
     System.out.println(low + ", " + high);
 
@@ -9515,33 +9528,33 @@ public static int findBisect(Card[] deck, Card card, int low, int high) {
         return findBisect(deck, card, mid+1, high);
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 
 I added a print statement at the beginning so I could watch
 the sequence of recursive invocations and convince myself
 that it would eventually reach the base case.  I tried out the
 following code:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Card card1 = new Card(1, 11);
     System.out.println(findBisect(deck, card1, 0, 51));
-\end{verbatim}
+\end{verbatimtab}
 %
 And got the following output:
 
-\begin{verbatim}
+\begin{verbatimtab}
 0, 51
 0, 24
 13, 24
 19, 24
 22, 24
 23
-\end{verbatim}
+\end{verbatimtab}
 %
 Then I made up a card that is not in the deck(the 15 of Diamonds),
 and tried to find it.  I got the following:
 
-\begin{verbatim}
+\begin{verbatimtab}
 0, 51
 0, 24
 13, 24
@@ -9549,7 +9562,7 @@ and tried to find it.  I got the following:
 13, 14
 13, 12
 -1
-\end{verbatim}
+\end{verbatimtab}
 %
 These tests don't prove that this program is correct.  In fact, no
 amount of testing can prove that a program is correct.  On the other
@@ -9581,9 +9594,9 @@ Java will(eventually) throw a {\tt StackOverflowException}.
 
 Looking at the interface to {\tt findBisect}
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static int findBisect(Card[] deck, Card card, int low, int high)
-\end{verbatim}
+\end{verbatimtab}
 
 \index{parameter!abstract}
 \index{abstract parameter}
@@ -9731,7 +9744,7 @@ that contains an array of {\tt Card}s as an instance variable.
 
 The class definition looks like this
 
-\begin{verbatim}
+\begin{verbatimtab}
 class Deck {
     Card[] cards;
 
@@ -9739,7 +9752,7 @@ class Deck {
         cards = new Card[n];
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 The name of the instance variable is {\tt cards} to help
 distinguish the {\tt Deck} object from the array of {\tt Card}s
@@ -9749,7 +9762,7 @@ that it contains.  Here is a state diagram showing what a
 \index{state diagram}
 \index{constructor}
 
-\myfig{figure=figs/deckobject.eps}
+\epsfig{figure=figs/deckobject.eps}
 
 As usual, the constructor initializes the instance variable, but in
 this case it uses {\tt new} to create the array of cards.
@@ -9757,7 +9770,7 @@ It doesn't create any cards to go in it, though.  For that we could
 write another constructor that creates a standard 52-card deck and
 populates it with {\tt Card} objects:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public Deck() {
     cards = new Card[52];
     int index = 0;
@@ -9768,7 +9781,7 @@ public Deck() {
         }
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 
 Notice how similar this method is to {\tt buildDeck}, except
 that we had to change the syntax to make it a constructor.
@@ -9777,9 +9790,9 @@ To invoke it, we use {\tt new}:
 \index{new}
 \index{statement!new}
 
-\begin{verbatim}
+\begin{verbatimtab}
     Deck deck = new Deck();
-\end{verbatim}
+\end{verbatimtab}
 %
 Now that we have a {\tt Deck} class, it makes sense to put
 all the methods that pertain to {\tt Deck}s in the {\tt Deck}
@@ -9790,13 +9803,13 @@ object:
 
 \index{printDeck}
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static void printDeck(Deck deck) {
     for(int i=0; i<deck.cards.length; i++) {
         Card.printCard(deck.cards[i]);
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 The most obvious thing we have to change is the type of the parameter,
 from {\tt Card[]} to {\tt Deck}.  The second change is that we can no
@@ -9849,12 +9862,12 @@ Here is an outline of how this algorithm works.  To sketch the
 program, I am using a combination of Java statements and English
 words that is sometimes called {\bf pseudocode}:
 
-\begin{verbatim}
+\begin{verbatimtab}
     for(int i=0; i<deck.length; i++) {
         // choose a random number between i and deck.cards.length
         // swap the ith card and the randomly-chosen card
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 The nice thing about using pseudocode is that it often makes it
 clear what methods you are going to need.  In this case, we
@@ -9901,12 +9914,12 @@ card.
 
 Here is pseudocode for selection sort:
 
-\begin{verbatim}
+\begin{verbatimtab}
     for(int i=0; i<deck.length; i++) {
         // find the lowest card at or to the right of i
         // swap the ith card and the lowest card
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 Again, the pseudocode helps with the design of the {\bf helper
 methods}.  In this case we can use {\tt swapCards} again,
@@ -9934,7 +9947,7 @@ We might want a method, {\tt subdeck}, that takes a Deck
 and a range of indices, and that returns a new Deck that
 contains the specified subset of the cards:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static Deck subdeck(Deck deck, int low, int high) {
     Deck sub = new Deck(high-low+1);
 	
@@ -9943,7 +9956,7 @@ public static Deck subdeck(Deck deck, int low, int high) {
     }
     return sub;
 }
-\end{verbatim}
+\end{verbatimtab}
 
 The length of the subdeck is {\tt high-low+1} because both the low
 card and high card are included.  This sort of computation can be
@@ -9963,7 +9976,7 @@ The following is a state diagram of a subdeck being created with the
 parameters {\tt low=3} and {\tt high=7}.  The result is a hand with 5
 cards that are shared with the original deck; i.e. they are aliased.
 
-\myfig{figure=figs/subdeck.eps}
+\epsfig{figure=figs/subdeck.eps}
 
 \index{aliasing}
 \index{reference}
@@ -9987,18 +10000,18 @@ Assuming that we have a method called {\tt shuffleDeck} that takes
 a deck as an argument and shuffles it, we can create and shuffle
 a deck:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Deck deck = new Deck();
     shuffleDeck(deck);
-\end{verbatim}
+\end{verbatimtab}
 %
 Then, to deal out several hands, we can use {\tt subdeck}:
 
-\begin{verbatim}
+\begin{verbatimtab}
    Deck hand1 = subdeck(deck, 0, 4);
    Deck hand2 = subdeck(deck, 5, 9);
    Deck pack = subdeck(deck, 10, 51);
-\end{verbatim}
+\end{verbatimtab}
 %
 This code puts the first 5 cards in one hand, the next 5 cards
 in the other, and the rest into the pack.
@@ -10057,7 +10070,7 @@ deck.
 The result should be a single sorted deck.  Here's what this
 looks like in pseudocode:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static Deck merge(Deck d1, Deck d2) {
     // create a new deck big enough for all the cards
     Deck result = new Deck(d1.cards.length + d2.cards.length);
@@ -10077,7 +10090,7 @@ public static Deck merge(Deck d1, Deck d2) {
     }
     return result;
 }
-\end{verbatim}
+\end{verbatimtab}
 
 The best way to test {\tt merge} is to build and shuffle a deck,
 use subdeck to form two(small) hands, and then use the sort
@@ -10089,14 +10102,14 @@ you can pass the two halves to {\tt merge} to see if it works.
 If you can get that working, try a simple implementation of
 {\tt mergeSort}:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static Deck mergeSort(Deck deck) {
     // find the midpoint of the deck
     // divide the deck into two subdecks
     // sort the subdecks using sortDeck
     // merge the two halves and return the result
 }
-\end{verbatim}
+\end{verbatimtab}
 
 Then, if you get that working, the real fun begins!  The magical thing
 about mergesort is that it is recursive.  At the point where you sort
@@ -10116,7 +10129,7 @@ unmodified, since it is already sorted.
 The recursive version of {\tt mergesort} should look something
 like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static Deck mergeSort(Deck deck) {
     // if the deck is 0 or 1 cards, return it
 
@@ -10125,7 +10138,7 @@ public static Deck mergeSort(Deck deck) {
     // sort the subdecks using mergesort
     // merge the two halves and return the result
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 As usual, there are two ways to think about recursive programs:
 you can think through the entire flow of execution, or you
@@ -10348,10 +10361,10 @@ halves, and uses {\tt merge} to create a new, fully-sorted deck.
 Remember that {\tt sortDeck} is a modifier and {\tt mergeSort} is
 a function, which means that they get invoked differently:
 
-\begin{verbatim}
+\begin{verbatimtab}
 sortDeck(deck);              // modifies existing deck
 deck = mergeSort(deck);      // replaces old deck with new
-\end{verbatim}
+\end{verbatimtab}
 
 \end{enumerate}
 \end{exercise}
@@ -10473,7 +10486,7 @@ Thus, $i \cdot i = -1$.
 The following is a class definition for a new object type called {\tt
 Complex}:
 
-\begin{verbatim}
+\begin{verbatimtab}
 class Complex
 {
     // instance variables
@@ -10490,7 +10503,7 @@ class Complex
         this.imag = imag;
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 There should be nothing surprising here.  The instance variables
 are doubles that contain the real and imaginary parts.
@@ -10508,12 +10521,12 @@ In {\tt main}, or anywhere else we want to create {\tt Complex}
 objects, we have the option of creating the object and then
 setting the instance variables, or doing both at the same time:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Complex x = new Complex();
     x.real = 1.0;
     x.imag = 2.0;
     Complex y = new Complex(3.0, 4.0);
-\end{verbatim}
+\end{verbatimtab}
 
 
 \section{A function on {\tt Complex} numbers}
@@ -10527,12 +10540,12 @@ defined to be $\sqrt {x^2 + y^2}$.  The {\tt abs} method is
 a pure function that computes the absolute value.  Written as
 a class method, it looks like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
 // class method
 public static double abs(Complex c) {
     return Math.sqrt(c.real * c.real + c.imag * c.imag);
 } 
-\end{verbatim}
+\end{verbatimtab}
 %
 This version of {\tt abs} calculates the absolute value of {\tt c},
 the {\tt Complex} object it receives as a parameter.  The next version
@@ -10540,12 +10553,12 @@ of {\tt abs} is an object method; it calculates the absolute value of
 the current object(the object the method was invoked on).  Thus,
 it does not receive any parameters:
 
-\begin{verbatim}
+\begin{verbatimtab}
 // object method
 public double abs() {
     return Math.sqrt(real*real + imag*imag);
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 I removed the keyword {\tt static} to indicate that this is an object
 method.  Also, I eliminated the unnecessary parameter.  Inside the
@@ -10555,20 +10568,20 @@ implicitly that I am referring to the instance variables of the
 current object.  If I wanted to make it explicit, I could have used
 the keyword {\tt this}:
 
-\begin{verbatim}
+\begin{verbatimtab}
 // object method
 public double abs() {
     return Math.sqrt(this.real * this.real + this.imag * this.imag);
 }
-\end{verbatim}
+\end{verbatimtab}
 
 But that would be longer and not really any clearer.  To invoke
 this method, we invoke it on an object, for example
 
-\begin{verbatim}
+\begin{verbatimtab}
     Complex y = new Complex(3.0, 4.0);
     double result = y.abs();
-\end{verbatim}
+\end{verbatimtab}
 
 
 \section{Another function on {\tt Complex} numbers}
@@ -10578,26 +10591,26 @@ is addition.  You can add complex numbers by adding the real
 parts and adding the imaginary parts.  Written as a class method,
 that looks like:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static Complex add(Complex a, Complex b) {
     return new Complex(a.real + b.real, a.imag + b.imag);
 }
-\end{verbatim}
+\end{verbatimtab}
 
 To invoke this method, we would pass both operands as arguments:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Complex sum = add(x, y);
-\end{verbatim}
+\end{verbatimtab}
 
 Written as an object method, it would take only one argument,
 which it would add to the current object:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public Complex add(Complex b) {
     return new Complex(real + b.real, imag + b.imag);
 }
-\end{verbatim}
+\end{verbatimtab}
 
 Again, we can refer to the instance variables of the current
 object implicitly, but to refer to the instance variables of
@@ -10607,9 +10620,9 @@ and pass the other as an argument.
 
 \index{dot notation}
 
-\begin{verbatim}
+\begin{verbatimtab}
     Complex sum = x.add(y);
-\end{verbatim}
+\end{verbatimtab}
 
 From these examples you can see that the current object({\tt this})
 can take the place of one of the parameters.  For this reason,
@@ -10627,19 +10640,19 @@ $x - yi$.
 
 As a class method, this looks like:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static void conjugate(Complex c) {
     c.imag = -c.imag;
 }
-\end{verbatim}
+\end{verbatimtab}
 
 As an object method, it looks like
 
-\begin{verbatim}
+\begin{verbatimtab}
 public void conjugate() {
     imag = -imag;
 }
-\end{verbatim}
+\end{verbatimtab}
 
 By now you should be getting the sense that converting a method
 from one kind to another is a mechanical process.  With a little
@@ -10677,26 +10690,26 @@ new method with the behavior you want.
 Here is what {\tt toString} might look like for the {\tt Complex}
 class:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public String toString() {
     return real + " + " + imag + "i";
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 The return type for {\tt toString} is {\tt String}, naturally,
 and it takes no parameters.  You can invoke {\tt toString} in
 the usual way:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Complex x = new Complex(1.0, 2.0);
     String s = x.toString();
-\end{verbatim}
+\end{verbatimtab}
 %
 or you can invoke it indirectly through {\tt println}:
 
-\begin{verbatim}
+\begin{verbatimtab}
     System.out.println(x);
-\end{verbatim}
+\end{verbatimtab}
 %
 In this case, the output is {\tt 1.0 + 2.0i}.
 
@@ -10724,11 +10737,11 @@ When you define a new object type, you can provide your own
 definition of equality by providing an object method called
 {\tt equals}.  For the {\tt Complex} class, this looks like:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public boolean equals(Complex b) {
     return(real == b.real && imag == b.imag);
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 By convention, {\tt equals} is always an object method that
 returns a {\tt boolean}.
@@ -10783,13 +10796,13 @@ value.  It may not be obvious why this is useful, but it is.
 Let's write the method {\tt normalize} as an object method, and
 let's make it a modifier.
 
-\begin{verbatim}
+\begin{verbatimtab}
 public void normalize() {
     double d = this.abs();
     real = real/d;
     imag = imag/d;
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 The first line finds the absolute value of the current object
 by invoking {\tt abs} on the current object.  In this case
@@ -10874,7 +10887,7 @@ object as a parameter and draw the rectangle.
 
 The class definition looks like this:
 
-\begin{verbatim}
+\begin{verbatimtab}
 import java.awt.*;
 
 class DrawableRectangle extends Rectangle {
@@ -10883,7 +10896,7 @@ class DrawableRectangle extends Rectangle {
         g.drawRect(x, y, width, height);
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 
 Yes, that's really all there is in the whole class definition.  The
 first line imports the {\tt java.awt} package, which is where {\tt
@@ -10906,14 +10919,14 @@ parent class.
 To create and draw a {\tt DrawableRectangle}, you could use
 the following:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static void draw(Graphics g, int x, int y, int width, int height) {
     DrawableRectangle dr = new DrawableRectangle();
     dr.x = 10;       dr.y = 10;
     dr.width = 200;  dr.height = 200;
     dr.draw(g);
 }
-\end{verbatim}
+\end{verbatimtab}
 
 The parameters of {\tt draw} are a {\tt Graphics} object and
 the bounding box of the drawing area(not the coordinates of the
@@ -10948,13 +10961,11 @@ we have written and many Java classes, like {\tt
 Rectangle}.  Any class that does not explicitly name a parent inherits
 from {\tt Object} by default.
 
-Some inheritance chains are longer, though.  For example, 
-in Appendix~\ref{slate}, the
-{\tt Slate} class
-extends {\tt Frame}, which
-extends {\tt Window}, which extends {\tt Container}, which extends
-{\tt Component}, which extends {\tt Object}.  No matter how long the
-chain, {\tt Object} is the ultimate parent of all classes.
+Some inheritance chains are longer, though.  For example, in {\tt
+  java.awt}, {\tt Frame} extends {\tt Window}, which extends {\tt
+  Container}, which extends {\tt Component}, which extends {\tt
+  Object}.  No matter how long the chain, {\tt Object} is the ultimate
+parent of all classes.
 
 All the classes in Java can be organized into a ``family tree'' that
 is called the class hierarchy.  {\tt Object} usually appears at the
@@ -10974,13 +10985,18 @@ them.
 
 On the other hand, inheritance can make programs difficult to read,
 since it is sometimes not clear, when a method is invoked, where to
-find the definition.  For example, one of the methods you can invoke
-on a {\tt Slate} is {\tt getBounds}.  Can you find the documentation
-for {\tt getBounds}?  It turns out that {\tt getBounds} is defined in
-the parent of the parent of the parent of the parent of {\tt Slate}.
+find the definition.  
 
 Also, many of the things that can be done using inheritance can
-be done almost as elegantly(or more so) without it.
+be done almost as elegantly (or more so) without it.  For example,
+a common alternative is {\bf composition}, where new objects are
+composed of existing objects, adding new capability without
+inheritance.
+
+Designing objects and the relationships among them is the topic
+of {\bf object-oriented design}, which is beyond the scope of this
+book.  But if you are interested, I recommend {\em Head First Design
+Patterns}, published by O'Reilly Media.
 
 
 \section{Glossary}
@@ -11026,22 +11042,22 @@ be explicit.
 
 Transform the following class method into an object method.
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static double abs(Complex c) {
     return Math.sqrt(c.real * c.real + c.imag * c.imag);
 } 
-\end{verbatim}
+\end{verbatimtab}
 \end{exercise}
 
 
 \begin{exercise}
 Transform the following object method into a class method.
 
-\begin{verbatim}
+\begin{verbatimtab}
 public boolean equals(Complex b) {
     return(real == b.real && imag == b.imag);
 }
-\end{verbatim}
+\end{verbatimtab}
 \end{exercise}
 
 
@@ -11151,12 +11167,12 @@ the character appears in the String and {\tt false} otherwise.
 \item The first step is to write the shortest possible method
 that will compile, run, and do something visible:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static boolean isIn(char c, String s) {
     System.out.println("isIn");
     return false;
 }
-\end{verbatim}
+\end{verbatimtab}
 
 Of course, to test the method we have to invoke it.  In
 {\tt main}, or somewhere else in a working program, we need
@@ -11165,12 +11181,12 @@ to create a simple test case.
 We'll start with a case where the character appears in the
 String(so we expect the result to be {\tt true}).
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static void main(String[] args) {
     boolean test = isIn('n', "banana");
     System.out.println(test);
 }
-\end{verbatim}
+\end{verbatimtab}
 
 If everything goes according to plan, this code will compile,
 run, and print the word {\tt isIn} and the value {\tt false}.
@@ -11184,13 +11200,13 @@ If I had used this development plan, it never would have happened.
 \item The next step is to check the parameters the method
 receives.
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static boolean isIn(char c, String s) {
     System.out.println("isIn looking for " + c);
     System.out.println("in the String " + s);
     return false;
 }
-\end{verbatim}
+\end{verbatimtab}
 
 The first print statement allows us to confirm that {\tt isIn}
 is looking for the right letter.  The second statement confirms
@@ -11199,10 +11215,10 @@ that we are looking in the right place.
 Now the output looks like this:
 
 %changed to 'n' to match the call to isIn from above
-\begin{verbatim}
+\begin{verbatimtab}
 isIn looking for n
 in the String banana
-\end{verbatim}
+\end{verbatimtab}
 
 Printing the parameters might seem silly, since we know what they
 are supposed to be.  The point is to confirm that they are what we
@@ -11213,7 +11229,7 @@ think they are.
 from Section~\ref{traverse}.  In general, it is a great idea to
 reuse code fragments rather than writing them from scratch.
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static boolean isIn(char c, String s) {
     System.out.println("isIn looking for " + c);
     System.out.println("in the String " + s);
@@ -11226,7 +11242,7 @@ public static boolean isIn(char c, String s) {
     }
     return false;
 }
-\end{verbatim}
+\end{verbatimtab}
 
 Now when we run the program it prints the characters in
 the String one at a time.  
@@ -11243,7 +11259,7 @@ Happily, we have already written the code that traverses the
 vector.  As usual, we'll proceed by adding just a few lines
 at a time:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static boolean isIn(char c, String s) {
     System.out.println("isIn looking for " + c);
     System.out.println("in the String " + s);
@@ -11259,7 +11275,7 @@ public static boolean isIn(char c, String s) {
     }
     return false;
 }
-\end{verbatim}
+\end{verbatimtab}
 
 As we traverse the String, we compare each letter to the target
 character.  If we find it, we print something, so
@@ -11269,7 +11285,7 @@ that when the new code executes it produces a visible effect.
 next change is to return from the method if we find what we are
 looking for:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static boolean isIn(char c, String s) {
     System.out.println("isIn looking for " + c);
     System.out.println("in the String " + s);
@@ -11286,7 +11302,7 @@ public static boolean isIn(char c, String s) {
     }
     return false;
 }
-\end{verbatim}
+\end{verbatimtab}
 
 If we find the target character, we return {\tt true}.
 If we get all the way through the loop without finding it, then
@@ -11294,7 +11310,7 @@ the correct return value is {\tt false}.
 
 If we run the program at this point, we should get
 
-\begin{verbatim}
+\begin{verbatimtab}
 isIn looking for n
 in the String banana
 b
@@ -11302,7 +11318,7 @@ a
 n
 found it
 true
-\end{verbatim}
+\end{verbatimtab}
 
 
 \item The next step is to make sure that the other test cases
@@ -11317,7 +11333,7 @@ are any, but it can't tell you if the method is correct.
 \item The penultimate step is to remove or comment out the print
 statements.
 
-\begin{verbatim}
+\begin{verbatimtab}
 public static boolean isIn(char c, String s) {
     int index = 0;
     while (index < s.length()) {
@@ -11329,7 +11345,7 @@ public static boolean isIn(char c, String s) {
     }
     return false;
 }
-\end{verbatim}
+\end{verbatimtab}
 
 Commenting out the print statements is a good idea if you
 think you might have to revisit this method later.  But if
@@ -11343,12 +11359,12 @@ If there is anything about the code that is not obvious, you
 should add comments to explain it.  Resist the temptation to
 translate the code line by line.  For example, no one needs this:
 
-\begin{verbatim}
+\begin{verbatimtab}
         // if letter equals c, return true
         if (letter == c) {
             return true;
         }
-\end{verbatim}
+\end{verbatimtab}
 
 You should use comments to explain non-obvious code, to warn
 about conditions that could cause errors, and to document any
@@ -11671,7 +11687,7 @@ the condition, and the value of the condition.
 
 For example,
 
-\begin{verbatim}
+\begin{verbatimtab}
     while (x > 0 && y < 0) {
         // do something to x
         // do something to y
@@ -11680,7 +11696,7 @@ For example,
         System.out.println("y: " + y);
         System.out.println("condition: " +(x > 0 && y < 0));
     }
-\end{verbatim}
+\end{verbatimtab}
 %
 Now when you run the program you will see three lines of output
 for each time through the loop.  The last time through the
@@ -11752,10 +11768,10 @@ Remember that when you declare a variable with an object type,
 it is initially {\tt null}, until you assign a value to it.
 For example, this code causes a NullPointerException:
 
-\begin{verbatim}
+\begin{verbatimtab}
 Point blank;
 System.out.println(blank.x);
-\end{verbatim}
+\end{verbatimtab}
 
 \item[ArrayIndexOutOfBoundsException:] The index you are using
 to access an array is either negative or greater than
@@ -11911,20 +11927,20 @@ temporary variables.
 
 For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
 rect.setLocation(rect.getLocation().translate
                     (-rect.getWidth(), -rect.getHeight()));
-\end{verbatim}
+\end{verbatimtab}
 %
 Can be rewritten as
 
-\begin{verbatim}
+\begin{verbatimtab}
 int dx = -rect.getWidth();
 int dy = -rect.getHeight();
 Point location = rect.getLocation();
 Point newLocation = location.translate(dx, dy);
 rect.setLocation(newLocation);
-\end{verbatim}
+\end{verbatimtab}
 %
 The explicit version is easier to read, because the variable
 names provide additional documentation, and easier to debug,
@@ -11941,9 +11957,9 @@ that the order of evaluation may not be what you expect.
 For example, if you are translating the expression
 $\frac{x}{2 \pi}$ into Java, you might write
 
-\begin{verbatim}
+\begin{verbatimtab}
 double y = x / 2 * Math.PI;
-\end{verbatim}
+\end{verbatimtab}
 %
 That is not correct, because multiplication and division have
 the same precedence, and are evaluated from left to right.
@@ -11952,9 +11968,9 @@ So this expression computes $x \pi / 2$.
 A good way to debug expressions is to add parentheses to make
 the order of evaluation explicit.
 
-\begin{verbatim}
+\begin{verbatimtab}
 double y = x /(2 * Math.PI);
-\end{verbatim}
+\end{verbatimtab}
 %
 Any time you are not sure of the order of evaluation, use
 parentheses.  Not only will the program be correct(in the sense
@@ -11973,7 +11989,7 @@ you don't have a chance to print the return value before
 returning.  Again, you can use a temporary variable.  For
 example, instead of
 
-\begin{verbatim}
+\begin{verbatimtab}
 public Rectangle intersection(Rectangle a, Rectangle b) { 
     return new Rectangle(
         Math.min(a.x, b.x),
@@ -11981,11 +11997,11 @@ public Rectangle intersection(Rectangle a, Rectangle b) {
         Math.max(a.x+a.width, b.x+b.width)-Math.min(a.x, b.x)
         Math.max(a.y+a.height, b.y+b.height)-Math.min(a.y, b.y) );
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 You could write
 
-\begin{verbatim}
+\begin{verbatimtab}
 public Rectangle intersection(Rectangle a, Rectangle b) { 
     int x1 = Math.min(a.x, b.x);
     int y2 = Math.min(a.y, b.y);
@@ -11994,7 +12010,7 @@ public Rectangle intersection(Rectangle a, Rectangle b) {
     Rectangle rect = new Rectangle(x1, y1, x2-x1, y2-y1);
     return rect;
 }
-\end{verbatim}
+\end{verbatimtab}
 %
 Now you have the opportunity to display any of
 the intermediate variables before returning.
@@ -12138,15 +12154,15 @@ invoke them on the object named {\tt System.out}.
 
 Interestingly, you can print {\tt System.out}:
 
-\begin{verbatim}
+\begin{verbatimtab}
 System.out.println(System.out);
-\end{verbatim}
+\end{verbatimtab}
 %
 The output is:
 
-\begin{verbatim}
+\begin{verbatimtab}
 java.io.PrintStream@80cc0e5
-\end{verbatim}
+\end{verbatimtab}
 %
 As usual, when Java prints an object, it prints the type
 of the object, which is {\tt PrintStream}, the package
@@ -12169,25 +12185,25 @@ it does not make it easy to get input from the keyboard.
 First, you have to use {\tt System.in} to create a new
 {\tt InputStreamReader}.
 
-\begin{verbatim}
+\begin{verbatimtab}
     InputStreamReader in = new InputStreamReader(System.in);
-\end{verbatim}
+\end{verbatimtab}
 %
 Then you use {\tt in} to create a new {\tt BufferedReader}:
 
-\begin{verbatim}
+\begin{verbatimtab}
     BufferedReader keyboard = new BufferedReader(in);
-\end{verbatim}
+\end{verbatimtab}
 %
 The point of all this manipulation is that there is a method
 you can invoke on a {\tt BufferedReader}, called {\tt readLine},
 that gets input from the keyboard and converts it into a
 String.  For example:
 
-\begin{verbatim}
+\begin{verbatimtab}
     String s = keyboard.readLine();
     System.out.println(s);
-\end{verbatim}
+\end{verbatimtab}
 %
 reads a line from the keyboard and prints the result.
 
@@ -12197,11 +12213,11 @@ IOException.  There is a rule in Java that if a method might
 cause an exception, it should say so.  The syntax looks
 like this:
 
-\begin {verbatim}
+\begin {verbatimtab}
 public static void main(String[] args) throws IOException {
     // body of main
 }
-\end{verbatim}
+\end{verbatimtab}
 
 This indicates that {\tt main} might ``throw'' an IOException.
 You can think of throwing an exception as similar to throwing
@@ -12215,7 +12231,7 @@ a tantrum.
 
 Here is an example that reads words from a file.
 
-\begin{verbatim}
+\begin{verbatimtab}
     public static void main(String[] args)
         throws FileNotFoundException, IOException {
 	
@@ -12234,7 +12250,7 @@ Here is an example that reads words from a file.
             System.out.println(s);
         }
     }
-\end{verbatim}
+\end{verbatimtab}
 
 This program reads each line of the named file({\tt /usr/dict/words})
 into a {\tt String} and then prints the line.  Again, the declaration {\tt
@@ -12243,6 +12259,369 @@ compiler.  The object types {\tt FileReader} and {\tt BufferedReader}
 are part of the insanely complicated class hierarchy Java uses to do
 incredibly common, simple things.  Other than that, there is not
 much value in the details of how this code fragment works.
+
+
+\beforechapter
+\chapter{Graphics}
+\label{graphics}
+
+\section{Java 2D Graphics}
+\index{class!Graphics}
+\index{Graphics}
+\index{class!Frame}
+\index{Frame}
+
+There are a number of ways to create graphics in Java, some more
+complicated than others.  The simplest is to use {\tt java.awt.Graphics}.
+This appendix provides examples and exercises that demonstrate
+Java graphics.
+
+Here is a complete example:
+
+\begin{verbatimtab}
+import java.awt.Frame;
+import java.awt.Graphics;
+
+public class GraphicsDemo extends Frame {
+
+    public static void main(String[] args) {
+	GraphicsDemo gd = new GraphicsDemo();
+	gd.setSize(400, 400);
+	gd.setVisible(true);
+    }
+
+    public void paint(Graphics g) {
+	g.fillOval(100, 100, 200, 200);
+    }
+}
+\end{verbatimtab}
+%
+You can download this code from
+\url{http://thinkapjava.com/code/GraphicsDemo.java}.
+
+The first lines import the classes we need from {\tt java.awt}.
+{\tt GraphicsDemo} extends {\tt Frame}, which means that a
+{\tt GraphicsDemo} object is a kind of {\tt Frame} that has
+all of the {\tt Frame} methods.  A Frame appears as a window on
+the screen.
+
+In {\tt main} we create a {\tt GraphicsDemo} object, set its width
+and height, and then make the Frame visible.
+
+{\tt paint} is a special method that gets invoked by the system
+when the {\tt Frame} needs to be drawn.
+
+If you run this code, you should see a black circle on a gray
+background.
+
+
+\section{{\tt Graphics} methods}
+\index{method!Graphics}
+\index{setColor}
+\index{drawOval}
+
+To draw things on the screen, you invoke methods on the
+graphics object.  The previous example uses {\tt fillOval}.
+Other methods include {\tt drawLine}, {\tt drawRect} and more.
+
+You can read the documentation of these methods at
+\url{http://download.oracle.com/javase/6/docs/api/java/awt/Graphics.html}.
+
+{\tt fillOval} takes four integers as arguments.
+These arguments specify a {\bf bounding box}, which is the rectangle
+in which the oval will be drawn (as shown in the figure).  The
+bounding box itself is not drawn; only the oval is.
+
+\index{bounding box}
+
+
+\epsfig{figure=figs/circle.eps}
+
+
+The usual way to specify a bounding box is to
+give the location of the {\em upper-left} corner and the width
+and height.  The usual way to specify a location is to use a
+{\bf coordinate system}.
+
+
+\section{Coordinates}
+\index{coordinate}
+\index{Cartesian coordinate}
+\index{graphics coordinate}
+
+You are probably familiar with Cartesian coordinates in two
+dimensions, where each location is identified by an x-coordinate
+(distance along the x-axis) and a y-coordinate.  By convention,
+Cartesian coordinates increase to the right and up, as shown in the
+figure.
+
+
+\epsfig{figure=figs/coordinates.eps,width=5in}
+
+
+By convention, computer graphics systems to use a
+variation on Cartesian coordinates in which the origin is in the
+upper-left corner of the window, and the direction of the
+positive y-axis is {\em down}.  Java follows this convention.
+
+\index{pixel}
+
+Coordinates are measured in {\bf pixels}; each pixel corresponds to
+a dot on the screen.  A typical screen is about
+1000 pixels wide.  Coordinates are always integers.  If you want to
+use a floating-point value as a coordinate, you have to round it off
+(See Section~\ref{rounding}).
+
+
+\section{Color}
+
+To choose the color of a shape, invoke {\tt setColor}:
+
+\begin{verbatimtab}
+    g.setColor(Color.red);
+\end{verbatimtab}
+%
+{\tt setColor} changes the current color; everything that gets drawn 
+will be this color, until you invoke {\tt setColor} again.
+
+{\tt Color.red} is a special value provided by the {\tt Color}
+class; to use it you have to import {\tt java.awt.Color}.
+Other special colors include:
+
+\begin{verbatimtab}
+black     blue    cyan   darkGray   gray   lightGray
+magenta	  orange  pink   red        white  yellow
+\end{verbatimtab}
+%
+You can create other colors by specifying red, green and blue (RGB)
+values.  See \url{http://download.oracle.com/javase/6/docs/api/java/awt/Color.html}.
+
+You can control the background color of the {\tt Frame} by
+invoking {\tt gd.setBackground}.
+
+As an exercise, draw the flag of Japan, a red circle on white background
+that is wider than it is tall.
+
+
+\section{Mickey Mouse}
+\index{Mickey Mouse}
+
+Let's say we want to draw a picture of Mickey Mouse.  We can use the
+oval we just drew as the face, and then add ears.  To make the code
+more readable, we will use {\tt Rectangles} to represent bounding boxes.
+
+Here's a method that takes a Rectangle and invokes {\tt fillOval}.
+
+\begin{verbatimtab}
+    public void fillOval(Graphics g, Rectangle bb) {
+	g.fillOval(bb.x, bb.y, bb.width, bb.height);
+    }
+\end{verbatimtab}
+
+And here's a method that draws Mickey:
+
+\begin{verbatimtab}
+    public void mickey(Graphics g, Rectangle bb) {
+	fillOval(g, bb);
+
+	int dx = bb.width/2;
+	int dy = bb.height/2;
+	Rectangle half = new Rectangle(bb.x, bb.y, dx, dy);
+
+	half.translate(-dx/2, -dx/2);
+	fillOval(g, half);
+
+	half.translate(dx*2, 0);
+	fillOval(g, half);
+    }
+\end{verbatimtab}
+
+The first line draws the face.  The next three lines create
+a smaller rectangle for the ears.  We translate the rectangle
+up and left for the first ear, then right for the second ear.
+
+The result looks like this:
+
+\epsfig{figure=figs/mickey.eps,height=2in}
+
+You can download this code from
+\url{http://thinkapjava.com/code/Mickey.java}.
+
+
+\begin{exercise}
+Modify {\tt Mickey.java} to draw ears on the ears, and ears on those
+ears, and more ears all the way down until the smallest ears are
+only 3 pixels wide.
+
+The result should look like Mickey Moose:
+
+\epsfig{figure=figs/moose.eps,height=2in}
+
+Hint: you should only have to add or modify a few lines of code.
+
+You can download a solution from
+\url{http://thinkapjava.com/code/MickeySoln.java}.
+
+\end{exercise}
+
+
+\begin{exercise}
+
+The purpose of this exercise is to practice using methods
+as a way of organizing and encapsulating complex tasks.
+
+\begin{enumerate}
+
+\item Create a new program named {\tt Snowperson.java},
+Type in the code or get it from \url{}.
+Run it. A new window should appear with a bunch of blue circles and
+a bunch of red circles.
+
+\item Look over the source code as it currently exists and make
+sure you understand all the code in {\tt draw}.  The method
+named {\tt anim} is there for your entertainment, but we will
+not be using it for this assignment.  You should remove it.
+
+\item Create a new method named {\tt drawSnowperson} that takes the
+same parameters as {\tt draw}.  To start, it should draw a single
+oval that fills the entire bounding box (in other words, it should
+have the same position and location as the bounding box).
+
+\item Change the size of the {\tt Frame} and run your program again.
+The size and proportion of the oval should adjust so that, no matter
+what the size the {\tt Frame} is, the oval is the same height,
+one-third of the width, and centered.
+
+\item Modify {\tt drawSnowperson} so that it draws three ovals
+stacked on top of each other like a snowperson.  The height and width
+of the snowperson should fill the bounding box.
+
+\item Change the size of the {\tt Frame} and run your program again.
+Again, the snowperson should adjust so that the snowperson always
+touches the top and bottom of the screen, and the three ovals touch,
+and the proportion of the three ovals stays the same.
+
+\item Modify {\tt draw} so that it draws two snowpeople side by
+side.  One of them should be the same height as the window; the other
+should be 90\% of the window height.  (Snowpeople exhibit a sexual
+dimorphism in which females are roughly 10\% smaller than males.)
+
+Their widths should be proportional to their heights, and their
+bounding boxes should be adjacent (which means that the drawn ovals
+probably will not quite touch).  The pair should be centered, meaning
+that there is the same amount of space on each side.
+
+\item Add faces: Write a method called {\tt drawFace} that takes the same
+  parameters as {\tt drawSnowperson}, and that draws a simple face
+  within the given bounding box.  Two eyes will suffice, but you can
+  get as elaborate as you like.
+
+Again, as you resize the window, the proportions of the face should
+not change, and all the features should fit within the oval (with
+the possible exception of ears).
+
+\item Modify {\tt drawSnowperson} so that it invokes {\tt drawFace} in
+order to fill in the top oval (the face).  The bounding box you pass
+to {\tt drawFace} should be the same as the bounding box that created
+the face oval.
+
+\item Give the Snowpeople T-shirts:
+Add a new method called {\tt drawShirt} that takes the usual
+parameters and that draws some sort of T-shirt logo within
+the bounding box.  You can use any of the drawing commands, although
+you might want to avoid {\tt drawString} because it is not easy to
+guarantee that the string will fit within the bounding box.
+
+\item Modify {\tt drawSnowperson} so that it invokes {\tt drawShirt}
+in order to emblazon something on the chest (middle
+oval) of each snowperson.
+
+\item Make Mrs. Snowperson pregnant: I realize that this is a little
+  risqu\'{e}, but there is a point.  Modify {\tt draw} so that after
+  drawing Mrs. Snowperson, it draws a baby snowperson inside her
+  abdomen oval.
+
+Notice that adding something to {\tt draw} affects just one snowperson.
+Adding something to {\tt drawSnowperson} affects all snowpeople.
+
+\item Ok, now let's imagine that instead of making a particular snowperson
+pregnant, we want to make all snowpeople pregnant.  Instead of adding
+a line to {\tt draw}, we would add a line to {\tt drawSnowperson}.
+What would that line do?  It would invoke drawSnowperson!  Can you do
+that?  Can you invoke a method from within itself?  Well, yes, you
+can, but you have to be careful.
+
+SO DON'T DO THIS YET!!!
+
+Think for a minute.  What if we draw a big snowperson, and then put
+a small snowperson in the abdomen oval.  Then we have to put an even
+smaller snowperson in the small abdomen oval, and so on and so on.
+The problem is, it would never stop.  We would be drawing smaller and
+smaller snowpeople until doomsday!
+
+One solution is to pick a minimum snowperson size, and say that below
+that size, we refuse to draw any more snowpeople.
+Add a line at the beginning of drawSnowperson that checks the
+height of the bounding box and returns immediately if it is less than
+10.
+
+\item Now that you have that line, it is safe to add code at the end
+of the method so that after drawing the ovals, and the face, and the
+t-shirt, it invokes drawSnowperson to put a small
+snowperson in the abdomen.
+
+\end{enumerate}
+\end{exercise}
+
+
+\begin{exercise}
+\begin{enumerate}
+
+\item Create a new program named {\tt Moire.java}.
+
+\item Add the following code to your project, and replace the
+contents of {\tt draw} with a single line that invokes {\tt moire}.
+
+\begin{verbatimtab}
+public static void moire(Graphics g, Rectangle bb) {
+    int i = 1;
+    while (i<bb.width) {
+        g.drawOval (bb.x, bb.y, i, i);
+        i = i + 2;
+    }
+}
+\end{verbatimtab}
+
+\item Look at the code before you run it and draw a sketch of
+what you expect it to do.  Now run it.  Did you get what you
+expected?  For a partial explanation of what is going on, see
+the following:
+
+\begin{verbatimtab}
+	http://math.hws.edu/xJava/other/Moire1.html
+	http://tqd.advanced.org/3543/moirelesson.html
+\end{verbatimtab}
+%
+\item Modify the program so that the space between the circles is
+larger or smaller.  See what happens to the image.
+
+\item Modify the program so that the circles are drawn in the center
+of the screen and concentric, as in the following figure.  Unlike in
+the figure, the distance between the circles should be small enough
+that the Moir\'{e} interference is apparent.
+
+\epsfig{figure=figs/moire.eps,height=1.5in}
+
+\item Write a method named {\tt radial} that draws a radial set
+of line segments as shown in the figure, but they should be close
+enough together to create a Moir\'{e} pattern.
+
+\item Just about any kind of graphical pattern can generate
+Moir\'{e}-like interference patterns.  Play around and see what you
+can create.
+
+\end{enumerate}
+\end{exercise}
 
 
 \beforechapter
