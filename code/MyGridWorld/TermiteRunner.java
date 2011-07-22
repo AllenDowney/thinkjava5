@@ -16,33 +16,34 @@
  * @author Allen B. Downey
  */
 
-import info.gridworld.actor.Actor;
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.actor.Flower;
-import info.gridworld.grid.UnboundedGrid;
 
 import java.awt.Color;
 
 /**
  * This class runs a world that contains Termites. <br />
  */
-public class TermiteRunner
-{
+public class TermiteRunner {
+
+    public static void main(String[] args) {
+	ActorWorld world = new ActorWorld();
+	makeFlowers(world, 20);
+
+        Termite alice = new Termite();
+	world.add(alice);
+
+        Termite bob = new Termite();
+	bob.setColor(Color.blue);
+	world.add(bob);
+
+        world.show();
+    }
+
     public static void makeFlowers(ActorWorld world, int n) {
 	for (int i=0; i<n; i++) {
 	    world.add(new EternalFlower());
 	}
-    }
-
-    public static void main(String[] args)
-    {
-	ActorWorld world = new ActorWorld();
-	makeFlowers(world, 20);
-
-        Termite alice = new MyTermite();
-	world.add(alice);
-
-        world.show();
     }
 }
 
@@ -50,6 +51,5 @@ public class TermiteRunner
  * A flower that doesn't age.
  */
 class EternalFlower extends Flower {
-    public void act() {
-    }
+    public void act() {}
 }
