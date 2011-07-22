@@ -45,6 +45,7 @@
 \usepackage{makeidx}
 \usepackage{url}
 \usepackage{fancyhdr}
+\usepackage{verbatim}
 \usepackage{moreverb}
 
 
@@ -97,6 +98,7 @@
      
 %% end of the exercise environment
 
+%\renewenvironment{verbatim}{\begin{verbatimtab}}{\end{verbatimtab}}
 
 %%------------------------------------------------------------
 % formatting commands
@@ -7096,6 +7098,283 @@ Appendix~\ref{graphics} and do the exercises there.
 \chapter{GridWorld: Part 2}
 \label{gridworld2}
 
+Part 2 of the GridWorld case study uses some features we haven't
+seen yet, so you will get a preview now and more details later.
+
+When you unpack this code, you should have a folder named {\tt
+  GridWorldCode} that contains {\tt projects/boxBug}, which
+contains {\tt BoxBug.java}, {\tt BoxBugRunner.java} and
+{\tt BoxBug.gif}.
+
+Copy these files into your working folder and import them into
+your development environment.
+There are instructions here that
+might help: \url{http://www.collegeboard.com/prod_downloads/student/testing/ap/compsci_a/ap07_gridworld_installation_guide.pdf}.
+
+Here is the code from {\tt BoxBugRunner.java}:
+
+\begin{verbatimtab}
+import info.gridworld.actor.ActorWorld;
+import info.gridworld.grid.Location;
+
+import java.awt.Color;
+
+public class BoxBugRunner {
+    public static void main(String[] args) {
+        ActorWorld world = new ActorWorld();
+        BoxBug alice = new BoxBug(6);
+        alice.setColor(Color.ORANGE);
+        BoxBug bob = new BoxBug(3);
+        world.add(new Location(7, 8), alice);
+        world.add(new Location(5, 5), bob);
+        world.show();
+    }
+}
+\end{verbatimtab}
+
+Everything here should be familiar, with the possible exception
+of {\tt Location}, which is similar to {\tt Point}.
+
+{\tt BoxBug.java} contains the class definition for BoxBug.
+
+\begin{verbatimtab}
+public class BoxBug extends Bug {
+    private int steps;
+    private int sideLength;
+
+    public BoxBug(int length) {
+        steps = 0;
+        sideLength = length;
+    }
+}
+\end{verbatimtab}
+
+The first line says that this class extends {\tt Bug}, which means
+that a {\tt BoxBug} is a kind of {\tt Bug}.
+
+The next two lines are instance variables.  Every {\tt Bug}
+has variables named {\tt sideLength}, which determines the size of the
+box it draws, and {\tt steps}, which keeps track of how many steps
+the {\tt Bug} has taken so far.
+
+The next line defines a {\bf constructor}, which is a special
+method that initializes the instance variables.  When you create
+a {\tt Bug} by invoking {\tt new}, Java invokes this constructor.
+
+The parameter of the constructor is the side length.
+
+{\tt Bug} behavior is controlled by the {\tt act} method.  Here
+is the {\tt act} method for {\tt BoxBug}:
+
+\begin{verbatimtab}
+    public void act() {
+        if (steps < sideLength && canMove()) {
+            move();
+            steps++;
+        }
+        else {
+            turn();
+            turn();
+            steps = 0;
+        }
+    }
+\end{verbatimtab}
+
+If the {\tt BoxBug} can move, and has not taken the required number
+of steps, it moves and increments {\tt steps}.
+
+If it hits a wall or completes one side of the box, it turns 90 degrees
+to the right and resets {\tt steps} to 0.
+
+Run the program and see what it does.  Did you get the behavior you
+expected?
+
+\begin{exercise}
+Now you know enough to do the exercises in the Student Manual, Part 2.
+Go do them, and then come back for more fun.
+\end{exercise}
+
+
+\section{Termites}
+
+I wrote a class called {\tt Termite} that extends {\tt Bug} and adds
+the ability to interact with flowers.
+
+To run it, download these files and import them into your development
+environment:
+
+\begin{verbatimtab}
+http://thinkapjava.com/code/Termite.java
+http://thinkapjava.com/code/Termite.gif
+http://thinkapjava.com/code/TermiteRunner.java
+\end{verbatimtab}
+
+Termites have all the same methods as Bugs, plus these:
+
+\begin{verbatimtab}
+    /*
+     * Returns true if the termite has a flower.
+     */
+    public boolean hasFlower();
+
+    /*
+     * Returns true if the termite is facing a flower.
+     */
+    public boolean seeFlower();
+
+    /*
+     * Creates a flower unless the termite already has one.
+     */
+    public void createFlower();
+
+    /*
+     * Drops the flower in the termites current location.
+     * 
+     * Note: only one Actor can occupy a grid cell, so the effect of
+     * dropping a flower is delayed until the termite moves.
+     */
+    public void dropFlower();
+
+    /*
+     * Throws the flower into the location the termite is facing.
+     * 
+     */
+    public void throwFlower();
+
+    /*
+     * Picks up the flower the termite is facing, if there is one,
+     * and if the termite doesn't already have a flower.
+     */
+    public void pickUpFlower();
+\end{verbatimtab}
+
+In addition, Termite overrides some Bug methods to change their
+behaviors.  For Termites, {\tt canMove} returns {\tt false} if there
+is a flower (or any other actor) in the next location.
+
+Termites have a version of {\tt turn} that takes an integer number of
+degrees as a parameter.  And finally, Termites have {\tt randomTurn},
+which turns left or right 45 degrees at random.
+
+% TODO: move for loops into the string chapter.
+
+Here is the code from {\tt TermiteRunner.java}:
+
+\begin{verbatimtab}
+public class TermiteRunner
+{
+    public static void main(String[] args)
+    {
+	ActorWorld world = new ActorWorld();
+	makeFlowers(world, 20);
+
+        Termite alice = new Termite();
+	world.add(alice);
+
+        Termite bob = new Termite();
+	bob.setColor(Color.blue);
+	world.add(bob);
+
+        world.show();
+    }
+
+    public static void makeFlowers(ActorWorld world, int n) {
+	for (int i=0; i<n; i++) {
+	    world.add(new EternalFlower());
+	}
+    }
+}
+\end{verbatimtab}
+
+Everything here should be familiar.  {\tt TermiteRunner} creates
+an {\tt ActorWorld} with 20 {\tt EternalFlowers} and two {\tt Termites}.
+
+% TODO: define override.
+
+An {\tt EternalFlower} is a {\tt Flower} that overrides {\tt act}
+so the flowers don't get darker. 
+
+\begin{verbatimtab}
+class EternalFlower extends Flower {
+    public void act() {}
+}
+\end{verbatimtab}
+
+If you run {\tt TermiteRunner.java} you should see two termites
+moving at random among the flowers.
+
+{\tt MyTermite.java} demonstrates the methods that interact with
+flowers.  Here is the class definition:
+
+\begin{verbatimtab}
+public class MyTermite extends Termite {
+
+    public void act() {
+        if (getGrid() == null)
+            return;
+	
+	if (seeFlower()) {
+	    pickUpFlower();
+	}
+	if (hasFlower()) {
+	    dropFlower();
+	}
+
+        if (canMove()) {
+	    move();
+        }
+	randomTurn();
+    }
+}
+\end{verbatimtab}
+
+{\tt MyTermite} extends {\tt Termite} and overrides {\tt act}.
+If {\tt MyTermite} sees a flower, it picks it up.  If it has
+a flower, it drops it.
+
+\begin{exercise}
+The purpose of this exercise is to explore the behavior of Termites
+that interact with flowers.
+
+Modify {\tt TermiteRunner.java} to create {\tt MyTermites} instead
+of {\tt Termites}.  Then run it again.  {\tt MyTermites} should move
+around at random, moving the flowers around.  The total number of
+flowers should stay the same (including the ones {\tt MyTermites}
+are holding).
+
+In {\em Termites, Turtles and Traffic Jams}, Mitchell Resnick describes
+a simple model of termite behavior:
+
+\begin{itemize}
+
+\item If you see a flower, pick it up.  Unless you already have
+a flower; in that case, drop the one you have.
+
+\item Move forward, if you can.
+
+\item Turn left or right at random.
+
+\end{itemize}
+
+Modify {\tt MyTermite.java} to implement this model.  What effect do
+you think this change will have on the behavior of {\tt MyTermites}?
+
+Try it out.  Again, the total number of flowers does not change,
+but over time the flowers accumulate in a small number of piles, often
+just one.
+
+This behavior is an {\bf an emergent property}, which you can read
+about at \url{}.  {\tt MyTermites}
+follow simple rules using only small-scale information, but the result
+is large-scale organization.
+
+Experiment with different rules and see what effect they have on the
+system.  Small changes can have unpredicable results!
+
+\end{exercise}
+
+
+\section{Langton's Termite}
 
 
 \beforechapter
@@ -7766,6 +8045,7 @@ naive approach would be to implement subtraction complete with
 Ironically, sometimes making a problem harder(more general)
 makes it easier(fewer special cases, fewer opportunities for error).
 
+
 \section{Algorithms}
 \label{algorithm}
 \index{algorithm}
@@ -8215,7 +8495,7 @@ loop statement, called {\tt for}, that expresses it more
 concisely.  The general syntax looks like this:
 
 \begin{verbatimtab}
-    for(INITIALIZER; CONDITION; INCREMENTOR) {
+    for (INITIALIZER; CONDITION; INCREMENTOR) {
       BODY
     }
 \end{verbatimtab}
@@ -8235,7 +8515,7 @@ loop-related statements in one place, it is easier to read.
 For example:
 
 \begin{verbatimtab}
-    for(int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) {
       System.out.println(count[i]);
     }
 \end{verbatimtab}
@@ -8305,7 +8585,7 @@ program changing all the loops; they will work correctly for any
 size array.
 
 \begin{verbatimtab}
-    for(int i = 0; i < a.length; i++) {
+    for (int i = 0; i < a.length; i++) {
       b[i] = a[i];
     }
 \end{verbatimtab}
@@ -8352,7 +8632,7 @@ number in a pseudorandom sequence.
 To see a sample, run this loop:
 
 \begin{verbatimtab}
-    for(int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) {
       double x = Math.random();
       System.out.println(x);
     }
@@ -8401,7 +8681,7 @@ array.
 \begin{verbatimtab}
   public static int[] randomArray(int n) {
     int[] a = new int[n];
-    for(int i = 0; i<a.length; i++) {
+    for (int i = 0; i<a.length; i++) {
       a[i] = randomInt(0, 100);
     }
     return a;
@@ -8415,7 +8695,7 @@ prints the contents of an array.
 
 \begin{verbatimtab}
   public static void printArray(int[] a) {
-    for(int i = 0; i<a.length; i++) {
+    for (int i = 0; i<a.length; i++) {
       System.out.println(a[i]);
     }
   }
@@ -8502,7 +8782,7 @@ the range.
 \begin{verbatimtab}
 public static int inRange(int[] a, int low, int high) {
     int count = 0;
-    for(int i=0; i<a.length; i++) {
+    for (int i=0; i<a.length; i++) {
         if (a[i] >= low && a[i] < high) count++;
     }
     return count;
@@ -8558,7 +8838,7 @@ result:
 \begin{verbatimtab}
     int[] counts = new int [100];
 
-    for(int i = 0; i<100; i++) {
+    for (int i = 0; i<100; i++) {
         counts[i] = inRange(scores, i, i+1);
     }
 \end{verbatimtab}
@@ -8587,7 +8867,7 @@ a histogram.
 \begin{verbatimtab}
     int[] counts = new int [100];
 
-    for(int i = 0; i < scores.length; i++) {
+    for (int i = 0; i < scores.length; i++) {
         int index = scores[i];
         counts[index]++;
     }
@@ -8706,7 +8986,7 @@ public static int apple(int[] a, int p) {
 }
 
 public static int grapefruit(int[] a, int p) {
-    for(int i = 0; i<a.length; i++) {
+    for (int i = 0; i<a.length; i++) {
         if (a[i] == p) return i;
     }
     return -1;
@@ -8733,21 +9013,21 @@ program just before {\tt mus} returns.
 public static int[] make(int n) {
     int[] a = new int[n];
 
-    for(int i=0; i<n; i++) {
+    for (int i=0; i<n; i++) {
         a[i] = i+1;
     }
     return a;
 }
 
 public static void dub(int[] jub) {
-    for(int i=0; i<jub.length; i++) {
+    for (int i=0; i<jub.length; i++) {
         jub[i] *= 2;
     }
 }
 
 public static int mus(int[] zoo) {
     int fus = 0;
-    for(int i=0; i<zoo.length; i++) {
+    for (int i=0; i<zoo.length; i++) {
         fus = fus + zoo[i];
     }
     return fus;
@@ -9307,8 +9587,8 @@ is to write a nested loop:
 
 \begin{verbatimtab}
     int index = 0;
-    for(int suit = 0; suit <= 3; suit++) {
-        for(int rank = 1; rank <= 13; rank++) {
+    for (int suit = 0; suit <= 3; suit++) {
+        for (int rank = 1; rank <= 13; rank++) {
             deck[index] = new Card(suit, rank);
             index++;
         }
@@ -9352,7 +9632,7 @@ following method should be familiar:
 
 \begin{verbatimtab}
 public static void printDeck(Card[] deck) {
-    for(int i=0; i<deck.length; i++) {
+    for (int i=0; i<deck.length; i++) {
         printCard(deck[i]);
     }
 }
@@ -9386,7 +9666,7 @@ the deck, we return -1.
 
 \begin{verbatimtab}
 public static int findCard(Card[] deck, Card card) {
-    for(int i = 0; i< deck.length; i++) {
+    for (int i = 0; i< deck.length; i++) {
         if (sameCard(deck[i], card)) return i;
     }
     return -1;
@@ -9774,8 +10054,8 @@ populates it with {\tt Card} objects:
 public Deck() {
     cards = new Card[52];
     int index = 0;
-    for(int suit = 0; suit <= 3; suit++) {
-        for(int rank = 1; rank <= 13; rank++) {
+    for (int suit = 0; suit <= 3; suit++) {
+        for (int rank = 1; rank <= 13; rank++) {
             cards[index] = new Card(suit, rank);
             index++;
         }
@@ -9805,7 +10085,7 @@ object:
 
 \begin{verbatimtab}
 public static void printDeck(Deck deck) {
-    for(int i=0; i<deck.cards.length; i++) {
+    for (int i=0; i<deck.cards.length; i++) {
         Card.printCard(deck.cards[i]);
     }
 }
@@ -9863,7 +10143,7 @@ program, I am using a combination of Java statements and English
 words that is sometimes called {\bf pseudocode}:
 
 \begin{verbatimtab}
-    for(int i=0; i<deck.length; i++) {
+    for (int i=0; i<deck.length; i++) {
         // choose a random number between i and deck.cards.length
         // swap the ith card and the randomly-chosen card
     }
@@ -9915,7 +10195,7 @@ card.
 Here is pseudocode for selection sort:
 
 \begin{verbatimtab}
-    for(int i=0; i<deck.length; i++) {
+    for (int i=0; i<deck.length; i++) {
         // find the lowest card at or to the right of i
         // swap the ith card and the lowest card
     }
@@ -9951,7 +10231,7 @@ contains the specified subset of the cards:
 public static Deck subdeck(Deck deck, int low, int high) {
     Deck sub = new Deck(high-low+1);
 	
-    for(int i = 0; i<sub.cards.length; i++) {
+    for (int i = 0; i<sub.cards.length; i++) {
         sub.cards[i] = deck.cards[low+i];
     }
     return sub;
@@ -10081,7 +10361,7 @@ public static Deck merge(Deck d1, Deck d2) {
     int j = 0;
 		
     // the index k traverses the result deck
-    for(int k = 0; k<result.cards.length; k++) {
+    for (int k = 0; k<result.cards.length; k++) {
 			
         // if d1 is empty, d2 wins; if d2 is empty, d1 wins;
         // otherwise, compare the two cards
