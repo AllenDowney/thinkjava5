@@ -1305,7 +1305,7 @@ that stores a {\bf value}.  Values are things that can be printed, stored
 and (as we'll see later) operated on.  The strings we have been
 printing ({\tt "Hello, World."}, {\tt "Goodbye, "}, etc.)  are values.
 
-to store a value, you have to create a variable.  Since
+To store a value, you have to create a variable.  Since
 the values we want to store are strings, we declare that
 the new variable is a string:
 
@@ -2348,7 +2348,7 @@ this point we have no idea what it is), it gets printed
 twice.  I chose the name {\tt s} as a hint that the parameter
 is a string, but in general you can choose any name you want.
 
-to invoke this method, we have to provide a {\tt String}.
+To invoke this method, we have to provide a {\tt String}.
 For example, we might have a {\tt main} method like this:
 
 \begin{verbatimtab}
@@ -2679,7 +2679,7 @@ the rightmost digit of {\tt x} (in base 10).  Similarly
 \index{conditional}
 \index{statement!conditional}
 
-to write useful programs, we almost always need
+To write useful programs, we almost always need
 to check conditions and change the behavior of the program
 accordingly.  {\bf Conditional statements} give us this ability.  The
 simplest form is the {\tt if} statement:
@@ -3635,7 +3635,7 @@ program doesn't do anything useful, but it is worthwhile to
 try compiling it so we can identify any syntax errors before
 we add more code.
 
-to test the new method, we have to invoke it with
+To test the new method, we have to invoke it with
 sample values.  Somewhere in {\tt main} I would add:
 
 \begin{verbatimtab}
@@ -4266,7 +4266,7 @@ and produces boolean values.
 
 \begin{exercise}
 \label{ex.isdiv}
-Write a class method named {\tt isDivisible} that takes
+Write a method named {\tt isDivisible} that takes
 two integers, {\tt n} and {\tt m} and that returns {\tt true}
 if {\tt n} is divisible by {\tt m} and {\tt false} otherwise.
 \end{exercise}
@@ -5668,7 +5668,7 @@ In this case, the letter appears three times, so it is not
 obvious what {\tt indexOf} should do.  According to the
 documentation, it returns the index of the {\em first} appearance.
 
-to find subsequent appearances, there is another
+To find subsequent appearances, there is another
 version of {\tt indexOf}.  It takes a
 second argument that indicates where in the string to start
 looking.  For an explanation of this kind
@@ -5913,7 +5913,7 @@ or to see which comes first in alphabetical order.  It would be
 nice if we could use the comparison operators, like {\tt ==} and
 {\tt >}, but we can't.
 
-to compare {\tt String}s, we have to use the {\tt equals}
+To compare {\tt String}s, we have to use the {\tt equals}
 and {\tt compareTo} methods.  For example:
 
 \begin{verbatimtab}
@@ -6371,7 +6371,7 @@ classes we have seen so far, and {\tt java.awt}, which contains
 classes that pertain to the Java {\bf Abstract Window Toolkit} (AWT),
 which contains classes for windows, buttons, graphics, etc.
 
-to use a class defined in another package, you have to {\bf
+To use a class defined in another package, you have to {\bf
   import} it.  {\tt Point} and {\tt Rectangle} are in the
 {\tt java.awt} package, so to import them we need:
 
@@ -8837,7 +8837,7 @@ counts the number of values that fall into a certain range.
 \section{Exercises}
 
 \begin{exercise}
-Write a class method named {\tt areFactors} that takes
+Write a method named {\tt areFactors} that takes
 an integer {\tt n} and an array of integers, and that returns
 {\tt true} if the numbers in the array are all factors of {\tt n}
 (which is to say that {\tt n} is divisible by all of them).
@@ -9087,26 +9087,33 @@ English, pseudocode, or Java.
 \label{chap11}
 
 
-\section{Composition}
+\section{The Road Ahead}
 \index{composition}
 \index{nested structure}
 
-By now we have seen several examples of composition (the ability to
-combine language features in a variety of arrangements).  One of the
-first examples we saw was using a method invocation as part of an
-expression.  Another example is the nested structure of statements:
-you can put an {\tt if} statement within a {\tt while} loop, or within
-another {\tt if} statement, etc.
+In the next three chapters we will develop programs to work with
+playing cards and decks of cards.  Before we dive in, here is an
+outline of the steps:
 
-Having seen this pattern, and having learned about arrays and objects,
-you should not be surprised to learn that you can make arrays of
-objects.  And you can define objects with arrays as
-instance variables; you can make arrays that contain arrays; you can
-define objects that contain objects, and so on.
+\begin{enumerate}
 
-In the next two chapters we will see examples of these
-combinations, using {\tt Card} objects as an example.
+\item In this chapter we'll define a {\tt Card} class and write
+methods that work with {\tt Cards} and arrays of {\tt Cards}.
 
+\item In Chapter~\ref{chap12} we will create a {\tt Deck} class
+and move some of the code 
+
+\item In Chapter~\ref{chap13} I will present object-oriented
+programming (OOP) and we will transform the {\tt Card} and {\tt Deck}
+classes into a more OOP style.
+
+\end{enumerate}
+
+I think that way of proceeding makes the road smoother; the drawback
+is that we will see several versions of the same code, which can
+be confusing.  If it helps, you can download the code for each
+chapter as you go along.  The code for this chapter is here:
+\url{}.
 
 \section{{\tt Card} objects}
 \label{card}
@@ -9446,9 +9453,23 @@ Then modify it so that aces are ranked higher than Kings.
 \index{object!array of}
 \index{deck}
 
-The reason I chose {\tt Cards} as the objects for this chapter is that
-there is an obvious use for an array of cards---a deck.  Here is some
-code that creates a new deck of 52 cards:
+By now we have seen several examples of composition (the ability to
+combine language features in a variety of arrangements).  One of the
+first examples we saw was using a method invocation as part of an
+expression.  Another example is the nested structure of statements:
+you can put an {\tt if} statement within a {\tt while} loop, or within
+another {\tt if} statement, etc.
+\index{composition}
+
+Having seen this pattern, and having learned about arrays and objects,
+you should not be surprised to learn that you can make arrays of
+objects.  And you can define objects with arrays as
+instance variables; you can make arrays that contain arrays; you can
+define objects that contain objects, and so on.
+In the next two chapters we will see examples of these
+combinations using {\tt Card} objects.
+
+This example creates an array of 52 cards:
 
 \begin{verbatimtab}
     Card[] deck = new Card [52];
@@ -9460,9 +9481,9 @@ Here is the state diagram for this object:
 
 \epsfig{figure=figs/cardarray.eps}
 
-The important thing to see here is that the array contains
-{\em references} to objects; it does not contain any
-{\tt Card} objects.  The elements are
+The array contains
+{\em references} to objects; it does not contain the
+{\tt Card} objects themselves.  The elements are
 initialized to {\tt null}.  You can access the elements of
 the array in the usual way:
 
@@ -9844,7 +9865,7 @@ an argument and that returns the total score.
 
 
 \begin{exercise}
-In poker a ``flush'' is a poker hand that contains five
+In Poker a ``flush'' is a hand that contains five
 or more cards of the same suit.  A hand can contain any number of cards.
 
 \begin{enumerate}
@@ -9862,6 +9883,23 @@ and {\tt false} otherwise.
 \end{exercise}
 
 
+\begin{exercise}
+Working with cards is more interesting if you can display them on
+the screen.  If you haven't played with the graphics examples in
+Appendix~\ref{graphics}, you might want to do that now.
+
+Then download
+\url{http://thinkapjava.com/code/CardTable.java}
+and
+\url{http://thinkapjava.com/code/cardset.zip}.
+
+Unzip {\tt cardset.zip} and run {\tt CardTable.java}.  You
+should see images of a pack of cards laid out on a green ``table''.
+
+You can use this class as a starting place to implement your own
+card games.
+\end{exercise}
+
 
 
 \beforechapter
@@ -9876,20 +9914,20 @@ and {\tt false} otherwise.
 In the previous chapter, we worked with an array of objects,
 but I also mentioned that it is possible to have an object
 that contains an array as an instance variable.  In this
-chapter we are going to create a new object, called a {\tt Deck},
-that contains an array of {\tt Card}s as an instance variable.
+chapter we create a {\tt Deck} object
+that contains an array of {\tt Card}s.
 
 \index{instance variable}
 \index{variable!instance}
 
-The class definition looks like this
+The class definition looks like this:
 
 \begin{verbatimtab}
 class Deck {
     Card[] cards;
 
     public Deck(int n) {
-        cards = new Card[n];
+        this.cards = new Card[n];
     }
 }
 \end{verbatimtab}
@@ -9897,34 +9935,35 @@ class Deck {
 The name of the instance variable is {\tt cards} to help
 distinguish the {\tt Deck} object from the array of {\tt Card}s
 that it contains.  Here is a state diagram showing what a
-{\tt Deck} object looks like with no cards allocated:
+{\tt Deck} looks like with no cards:
 
 \index{state diagram}
 \index{constructor}
 
 \epsfig{figure=figs/deckobject.eps}
 
-As usual, the constructor initializes the instance variable, but in
-this case it uses {\tt new} to create the array of cards.
-It doesn't create any cards to go in it, though.  For that we could
+As usual, the constructor initializes the instance variable.
+In
+this case it creates the array of cards, but it doesn't create any cards.
+For that we can
 write another constructor that creates a standard 52-card deck and
-populates it with {\tt Card} objects:
+populates it with {\tt Card}s:
 
 \begin{verbatimtab}
-public Deck() {
-    cards = new Card[52];
-    int index = 0;
-    for (int suit = 0; suit <= 3; suit++) {
-        for (int rank = 1; rank <= 13; rank++) {
-            cards[index] = new Card(suit, rank);
-            index++;
+    public Deck() {
+        cards = new Card[52];
+        int index = 0;
+        for (int suit = 0; suit <= 3; suit++) {
+            for (int rank = 1; rank <= 13; rank++) {
+                cards[index] = new Card(suit, rank);
+                index++;
+            }
         }
     }
-}
 \end{verbatimtab}
 
-Notice how similar this method is to {\tt buildDeck}, except
-that we had to change the syntax to make it a constructor.
+This method is similar to {\tt buildDeck};
+we just changed the syntax to make it a constructor.
 To invoke it, we use {\tt new}:
 
 \index{new}
@@ -9934,21 +9973,19 @@ To invoke it, we use {\tt new}:
     Deck deck = new Deck();
 \end{verbatimtab}
 %
-Now that we have a {\tt Deck} class, it makes sense to put
-all the methods that pertain to {\tt Deck}s in the {\tt Deck}
+Now it makes sense to put
+the methods that pertain to {\tt Deck}s in the {\tt Deck}
 class definition.  Looking at the methods we have written so
-far, one obvious candidate is {\tt printDeck}(Section~\ref{printdeck}).
-Here's how it looks, rewritten to work with a {\tt Deck}
-object:
-
+far, one obvious candidate is {\tt printDeck} (Section~\ref{printdeck}).
+Here's how it looks, rewritten to work with a {\tt Deck}:
 \index{printDeck}
 
 \begin{verbatimtab}
-public static void printDeck(Deck deck) {
-    for (int i=0; i < deck.cards.length; i++) {
-        Card.printCard(deck.cards[i]);
+    public static void printDeck(Deck deck) {
+        for (int i=0; i < deck.cards.length; i++) {
+            Card.printCard(deck.cards[i]);
+        }
     }
-}
 \end{verbatimtab}
 %
 The most obvious thing we have to change is the type of the parameter,
@@ -10541,15 +10578,15 @@ but here are some of its characteristics:
 
 \begin{itemize}
 
-\item Object definitions(classes) usually correspond to 
+\item Object definitions (classes) usually correspond to 
 relevant real-world objects.  For example, in Chapter~\ref{deck},
 the creation of the {\tt Deck} class was a step toward object-oriented
 programming.
 
-\item The majority of methods are object methods(the kind you
-invoke on an object) rather than class methods(the kind you just
+\item The majority of methods are object methods (the kind you
+invoke on an object) rather than class methods (the kind you just
 invoke).  So far all the methods we have written have been class
-methods.  In this chapter we will write some object methods.
+methods.  In this chapter we write some object methods.
 
 \item The language feature most associated with object-oriented
 programming is {\bf inheritance}.  I cover inheritance later in
@@ -10566,7 +10603,7 @@ have given you the tools you need to understand and evaluate these
 claims.
 
 
-\section{Object and class methods}
+\section{Object methods and class methods}
 \index{object method}
 \index{method!object}
 \index{class method}
@@ -10576,8 +10613,8 @@ claims.
 There are two types of methods in Java, called {\bf class methods} and
 {\bf object methods}.  So far, every method we have written has been a
 class method.  Class methods are identified by the keyword {\tt
-static} in the first line.  Any method that does not have the keyword
-{\tt static} is an object method.
+  static} in the first line.  Any method that does {\em not} have the
+keyword {\tt static} is an object method.
 
 Although we have not written any object methods, we have invoked some.
 Whenever you invoke a method ``on'' an object, it's an object method.
@@ -12009,7 +12046,7 @@ simple test cases, and check the results.
 
 \end{itemize}
 
-to program, you need to have a mental model of how
+To program, you need to have a mental model of how
 programs work.  If your program that doesn't do what you expect,
 very often the problem is not in the program; it's in your mental
 model.
@@ -12178,11 +12215,11 @@ symptoms:
 
 \item Frustration and/or rage.
 
-\item Superstitious beliefs(``the computer hates me'') and
-magical thinking(``the program only works when I wear my
+\item Superstitious beliefs (``the computer hates me'') and
+magical thinking (``the program only works when I wear my
 hat backwards'').
 
-\item Random walk programming(the attempt to program by writing
+\item Random walk programming (writing
 every possible program and choosing the one that does the right
 thing).
 
@@ -12207,10 +12244,10 @@ Sometimes you work on a program so long that you can't see the
 error.  A fresh pair of eyes is just the thing.
 
 Before you bring someone else in, make sure you have exhausted
-the techniques described here.  You program should be as simple
+the techniques described here.  Your program should be as simple
 as possible, and you should be working on the smallest input
 that causes the error.  You should have print statements in the
-appropriate places(and the output they produce should be
+appropriate places (and the output they produce should be
 comprehensible).  You should understand the problem well enough
 to describe it concisely.
 
@@ -12412,43 +12449,63 @@ much value in the details of how this code fragment works.
 There are a number of ways to create graphics in Java, some more
 complicated than others.  The simplest is to use {\tt java.awt.Graphics}.
 This appendix provides examples and exercises that demonstrate
-Java graphics.
-
-Here is a complete example:
+Java graphics.  Here is a complete example:
 
 \begin{verbatimtab}
-import java.awt.Frame;
+import java.awt.Canvas;
 import java.awt.Graphics;
+import javax.swing.JFrame;
 
-public class GraphicsDemo extends Frame {
+public class MyCanvas extends Canvas {
 
     public static void main(String[] args) {
-	GraphicsDemo gd = new GraphicsDemo();
-	gd.setSize(400, 400);
-	gd.setVisible(true);
+	// make the frame
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	// add the canvas
+	Canvas canvas = new MyCanvas();
+        canvas.setSize(400, 400);
+        frame.getContentPane().add(canvas);
+
+	// show the frame
+	frame.pack();
+        frame.setVisible(true);
     }
 
     public void paint(Graphics g) {
+	// draw a circle
 	g.fillOval(100, 100, 200, 200);
     }
 }
 \end{verbatimtab}
 %
 You can download this code from
-\url{http://thinkapjava.com/code/GraphicsDemo.java}.
+\url{http://thinkapjava.com/code/MyCanvas.java}.
 
-The first lines import the classes we need from {\tt java.awt}.
-{\tt GraphicsDemo} extends {\tt Frame}, which means that a
-{\tt GraphicsDemo} object is a kind of {\tt Frame} that has
-all of the {\tt Frame} methods.  A Frame appears as a window on
-the screen.
+The first lines import the classes we need from {\tt java.awt}
+and {\tt javax.swing).
 
-In {\tt main} we create a {\tt GraphicsDemo} object, set its width
-and height, and then make the Frame visible.
+{\tt MyCanvas} extends {\tt Canvas}, which means that a
+{\tt MyCanvas} object is a kind of {\tt Canvas} that provides
+methods for drawing graphical objects.
+
+In {\tt main} we 
+
+\begin{enumerate}
+
+\item Create a {\tt JFrame}, which is a window that can contain the
+  canvas, buttons, menus and other window components;
+
+\item Create {\tt MyCanvas}, set its width and height, and then add it
+  to the frame; and
+
+\item Display the frame on the screen.
+
+\end{enumerate}
 
 {\tt paint} is a special method that gets invoked by the system
-when the {\tt Frame} needs to be drawn.
-
+when {\tt MyCanvas} needs to be drawn.
 If you run this code, you should see a black circle on a gray
 background.
 
@@ -12532,10 +12589,11 @@ magenta	  orange  pink   red        white  yellow
 \end{verbatimtab}
 %
 You can create other colors by specifying red, green and blue (RGB)
-values.  See \url{http://download.oracle.com/javase/6/docs/api/java/awt/Color.html}.
+values.
+See \url{http://download.oracle.com/javase/6/docs/api/java/awt/Color.html}.
 
-You can control the background color of the {\tt Frame} by
-invoking {\tt gd.setBackground}.
+You can control the background color of the {\tt Canvas} by
+invoking {\tt canvas.setBackground}.
 
 As an exercise, draw the flag of Japan, a red circle on white background
 that is wider than it is tall.
@@ -12551,7 +12609,7 @@ more readable, we will use {\tt Rectangles} to represent bounding boxes.
 Here's a method that takes a Rectangle and invokes {\tt fillOval}.
 
 \begin{verbatimtab}
-    public void fillOval(Graphics g, Rectangle bb) {
+    public void boxOval(Graphics g, Rectangle bb) {
 	g.fillOval(bb.x, bb.y, bb.width, bb.height);
     }
 \end{verbatimtab}
@@ -12560,17 +12618,17 @@ And here's a method that draws Mickey:
 
 \begin{verbatimtab}
     public void mickey(Graphics g, Rectangle bb) {
-	fillOval(g, bb);
+	boxOval(g, bb);
 
 	int dx = bb.width/2;
 	int dy = bb.height/2;
 	Rectangle half = new Rectangle(bb.x, bb.y, dx, dy);
 
 	half.translate(-dx/2, -dx/2);
-	fillOval(g, half);
+	boxOval(g, half);
 
 	half.translate(dx*2, 0);
-	fillOval(g, half);
+	boxOval(g, half);
     }
 \end{verbatimtab}
 
@@ -12604,154 +12662,29 @@ You can download a solution from
 
 
 \begin{exercise}
-
-The purpose of this exercise is to practice using methods
-as a way of organizing and encapsulating complex tasks.
-
 \begin{enumerate}
 
-\item Create a new program named {\tt Snowperson.java},
-Type in the code or get it from \url{}.
-Run it. A new window should appear with a bunch of blue circles and
-a bunch of red circles.
+\item Download
+\url{http://thinkapjava.com/code/Moire.java} and import it into
+your development environment.  
 
-\item Look over the source code as it currently exists and make
-sure you understand all the code in {\tt draw}.  The method
-named {\tt anim} is there for your entertainment, but we will
-not be using it for this assignment.  You should remove it.
-
-\item Create a new method named {\tt drawSnowperson} that takes the
-same parameters as {\tt draw}.  To start, it should draw a single
-oval that fills the entire bounding box (in other words, it should
-have the same position and location as the bounding box).
-
-\item Change the size of the {\tt Frame} and run your program again.
-The size and proportion of the oval should adjust so that, no matter
-what the size the {\tt Frame} is, the oval is the same height,
-one-third of the width, and centered.
-
-\item Modify {\tt drawSnowperson} so that it draws three ovals
-stacked on top of each other like a snowperson.  The height and width
-of the snowperson should fill the bounding box.
-
-\item Change the size of the {\tt Frame} and run your program again.
-Again, the snowperson should adjust so that the snowperson always
-touches the top and bottom of the screen, and the three ovals touch,
-and the proportion of the three ovals stays the same.
-
-\item Modify {\tt draw} so that it draws two snowpeople side by
-side.  One of them should be the same height as the window; the other
-should be 90\% of the window height.  (Snowpeople exhibit a sexual
-dimorphism in which females are roughly 10\% smaller than males.)
-
-Their widths should be proportional to their heights, and their
-bounding boxes should be adjacent (which means that the drawn ovals
-probably will not quite touch).  The pair should be centered, meaning
-that there is the same amount of space on each side.
-
-\item Add faces: Write a method called {\tt drawFace} that takes the same
-  parameters as {\tt drawSnowperson}, and that draws a simple face
-  within the given bounding box.  Two eyes will suffice, but you can
-  get as elaborate as you like.
-
-Again, as you resize the window, the proportions of the face should
-not change, and all the features should fit within the oval (with
-the possible exception of ears).
-
-\item Modify {\tt drawSnowperson} so that it invokes {\tt drawFace} in
-order to fill in the top oval (the face).  The bounding box you pass
-to {\tt drawFace} should be the same as the bounding box that created
-the face oval.
-
-\item Give the Snowpeople T-shirts:
-Add a new method called {\tt drawShirt} that takes the usual
-parameters and that draws some sort of T-shirt logo within
-the bounding box.  You can use any of the drawing commands, although
-you might want to avoid {\tt drawString} because it is not easy to
-guarantee that the string will fit within the bounding box.
-
-\item Modify {\tt drawSnowperson} so that it invokes {\tt drawShirt}
-to emblazon something on the chest (middle
-oval) of each snowperson.
-
-\item Make Mrs. Snowperson pregnant: I realize that this is a little
-  risqu\'{e}, but there is a point.  Modify {\tt draw} so that after
-  drawing Mrs. Snowperson, it draws a baby snowperson inside her
-  abdomen oval.
-
-Notice that adding something to {\tt draw} affects just one snowperson.
-Adding something to {\tt drawSnowperson} affects all snowpeople.
-
-\item Ok, now let's imagine that instead of making a particular snowperson
-pregnant, we want to make all snowpeople pregnant.  Instead of adding
-a line to {\tt draw}, we would add a line to {\tt drawSnowperson}.
-What would that line do?  It would invoke drawSnowperson!  Can you do
-that?  Can you invoke a method from within itself?  Well, yes, you
-can, but you have to be careful.
-
-SO DON'T DO THIS YET!!!
-
-Think for a minute.  What if we draw a big snowperson, and then put
-a small snowperson in the abdomen oval.  Then we have to put an even
-smaller snowperson in the small abdomen oval, and so on and so on.
-The problem is, it would never stop.  We would be drawing smaller and
-smaller snowpeople until doomsday!
-
-One solution is to pick a minimum snowperson size, and say that below
-that size, we refuse to draw any more snowpeople.
-Add a line at the beginning of drawSnowperson that checks the
-height of the bounding box and returns immediately if it is less than
-10.
-
-\item Now that you have that line, it is safe to add code at the end
-of the method so that after drawing the ovals, and the face, and the
-t-shirt, it invokes drawSnowperson to put a small
-snowperson in the abdomen.
-
-\end{enumerate}
-\end{exercise}
-
-
-\begin{exercise}
-\begin{enumerate}
-
-\item Create a new program named {\tt Moire.java}.
-
-\item Add the following code to your project, and replace the
-contents of {\tt draw} with a single line that invokes {\tt moire}.
-
-\begin{verbatimtab}
-public static void moire(Graphics g, Rectangle bb) {
-    int i = 1;
-    while (i<bb.width) {
-        g.drawOval (bb.x, bb.y, i, i);
-        i = i + 2;
-    }
-}
-\end{verbatimtab}
-
-\item Look at the code before you run it and draw a sketch of
+\item Read the {\tt paint} method and draw a sketch of
 what you expect it to do.  Now run it.  Did you get what you
-expected?  For a partial explanation of what is going on, see
-the following:
+expected?  For an explanation of what is going on, see
+\url{http://en.wikipedia.org/wiki/Moire_pattern}.
 
-\begin{verbatimtab}
-	http://math.hws.edu/xJava/other/Moire1.html
-	http://tqd.advanced.org/3543/moirelesson.html
-\end{verbatimtab}
-%
 \item Modify the program so that the space between the circles is
 larger or smaller.  See what happens to the image.
 
 \item Modify the program so that the circles are drawn in the center
-of the screen and concentric, as in the following figure.  Unlike in
-the figure, the distance between the circles should be small enough
+of the screen and concentric, as in the following figure (left).
+The distance between the circles should be small enough
 that the Moir\'{e} interference is apparent.
 
 \epsfig{figure=figs/moire.eps,height=1.5in}
 
 \item Write a method named {\tt radial} that draws a radial set
-of line segments as shown in the figure, but they should be close
+of line segments as shown in the figure (right), but they should be close
 enough together to create a Moir\'{e} pattern.
 
 \item Just about any kind of graphical pattern can generate
