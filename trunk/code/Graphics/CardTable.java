@@ -7,21 +7,17 @@
  * @author Allen B. Downey
  */
 
+import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Insets;
-
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
-public class CardTable extends Frame {
+public class CardTable extends Canvas {
     private Image[][] images;
     private int cardWidth, cardHeight; 
-    private Insets insets;
 
    /*
     * Creates a CardTable.
@@ -30,13 +26,6 @@ public class CardTable extends Frame {
     public CardTable(String cardset) {
 	setBackground(new Color(0x088A4B));
 	
-	// if the user closes the window, exit.
-	addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        });
-
 	// create an array of card images
 	String suits = "cdhs";
 	images = new Image[4][14];
@@ -54,12 +43,7 @@ public class CardTable extends Frame {
 	cardHeight = images[1][1].getHeight(null);
 
 	// set the size temporarily to get the insets
-	setSize(14 * cardWidth, 4 *cardHeight);
-	setVisible(true);
-        insets = getInsets();
-	
-	// set the size properly
-	setTableSize(14.0, 4.0);
+	setTableSize(14, 4);
     }
 
    /*
@@ -67,8 +51,8 @@ public class CardTable extends Frame {
     * x and y are in units of card width/height.
     */
     public void setTableSize(double x, double y) {
-	setSize((int)(x * cardWidth) + insets.left + insets.right, 
-		(int)(y *cardHeight) + insets.top + insets.bottom);
+	setSize((int)(x * cardWidth),
+		(int)(y *cardHeight));
     }
 
    /*
@@ -78,8 +62,8 @@ public class CardTable extends Frame {
     public void drawCard(Graphics g, int suit, int rank, double x, double y) {
 	Image image = images[suit][rank];
 	g.drawImage(image, 
-		    (int)(x * cardWidth) + insets.left, 
-		    (int)(y * cardHeight) + insets.top,
+		    (int)(x * cardWidth), 
+		    (int)(y * cardHeight),
 		    null);
     }
 
@@ -97,9 +81,17 @@ public class CardTable extends Frame {
     }
 
     public static void main(String[] args) {
+	// make the frame
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	// add the CardTable
 	String cardset = "cardset-oxymoron";
-	CardTable table = new CardTable(cardset);
+	Canvas canvas = new CardTable(cardset);
+        frame.getContentPane().add(canvas);
 
+	// show the frame
+	frame.pack();
+        frame.setVisible(true);
     }
-
 }
