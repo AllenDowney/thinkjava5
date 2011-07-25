@@ -816,7 +816,7 @@ between printing AAAA and BBBB.  This later evolved to Linux''
 \index{Torvalds, Linux}
 \index{Greenfield, Larry}
 
-In later chapters I will make more suggestions about debugging
+In later chapters I make more suggestions about debugging
 and other programming practices.
 
 \section{Formal and natural languages}
@@ -1839,6 +1839,7 @@ intermediate or temporary variables.
 
 \beforechapter
 
+
 \chapter{Methods}
 \label{chap03}
 
@@ -2502,7 +2503,7 @@ stuck with things like {\tt newLine} and {\tt printTwice}?
 \end{itemize}
 
 The answer to the third question is ``yes, you can write methods that
-return values,'' and we'll do it in a couple of chapters.  I will
+return values,'' and we'll do it in a couple of chapters.  I
 leave it up to you to answer the other two questions by trying them
 out.  In fact, any time you have a question about what is legal or
 illegal in Java, a good way to find out is to ask the compiler.
@@ -3654,7 +3655,7 @@ an error at any point, we have a good idea where to look:
 in the last line we added.
 
 The next step is to find the differences
-$x_2 - x_1$ and $y_2 - y_1$.  I will store those values in
+$x_2 - x_1$ and $y_2 - y_1$.  I store those values in
 temporary variables named {\tt dx} and {\tt dy}.
 
 \begin{verbatimtab}
@@ -3673,7 +3674,7 @@ before proceeding.  They should be 3.0 and 4.0.
 
 \index{scaffolding}
 
-When the method is finished I will remove the print statements.  Code
+When the method is finished I remove the print statements.  Code
 like that is called {\bf scaffolding}, because it is helpful for
 building the program, but it is not part of the final product.
 
@@ -5244,7 +5245,7 @@ to write.
   chapter, I demonstrated a style of development based on developing
   code to do simple, specific things, and then encapsulating and
   generalizing.  In Section~\ref{distance} I demonstrated incremental
-  development.  In later chapters I will suggest other styles of
+  development.  In later chapters I suggest other styles of
   development.
 
 \index{loop}
@@ -6630,7 +6631,7 @@ prints {\tt java.awt.Rectangle[x=50,y=100,width=100,height=200]}.
 Modifying objects by passing them as arguments to methods can be
 useful, but it can also make debugging more difficult because it is
 not always clear which method invocations do or do not modify their
-arguments.  Later, I will discuss some pros and cons of this
+arguments.  Later, I discuss some pros and cons of this
 programming style.
 
 Java provides methods that operate on Points and Rectangles.  You can
@@ -7390,7 +7391,7 @@ system.  Small changes can have unpredicable results!
 \index{user-defined type}
 
 Every time you write a class definition, you create a new
-object type, with the same name as the class.  Way back in
+object type with the same name as the class.  Way back in
 Section~\ref{hello}, when we defined the class named {\tt Hello},
 we also created an object type named {\tt Hello}.  We
 didn't create any variables with type {\tt Hello}, and we
@@ -7398,10 +7399,10 @@ didn't use {\tt new} to create any {\tt Hello}
 objects, but we could have!
 
 That example doesn't make much sense, since there is no
-reason to create a {\tt Hello} object, and it is not clear
-what it would be good for if we did.  In this chapter, we
-will look at some examples of class definitions that create
-{\em useful} new object types.
+reason to create a {\tt Hello} object, and it wouldn't do
+much if we did.  In this chapter, we
+will look at class definitions that create
+{\em useful} object types.
 
 Here are the most important ideas in this chapter:
 
@@ -7414,7 +7415,7 @@ with the same name.
 it determines what instance variables the objects have and
 what methods can operate on them.
 
-\item Every object belongs to some object type; hence, it
+\item Every object belongs to some object type; that is, it
 is an instance of some class.
 
 \item When you invoke {\tt new} to create an object, Java
@@ -7422,7 +7423,7 @@ invokes a special method called a {\bf constructor} to initialize the
 instance variables.  You provide one or more constructors as part of
 the class definition.
 
-\item Typically all the methods that operate on a type go in the
+\item The methods that operate on a type are defined in the
 class definition for that type.
 
 \end{itemize}
@@ -7431,7 +7432,7 @@ Here are some syntax issues about class definitions:
 
 \begin{itemize}
 
-\item Class names(and hence object types) always begin with a capital
+\item Class names (and hence object types) should begin with a capital
 letter, which helps distinguish them from primitive types and variable
 names.
 
@@ -7448,28 +7449,27 @@ have a method named {\tt main}, but it will not be executed.
 \end{itemize}
 
 With those issues out of the way, let's look at an example of
-a user-defined type, {\tt Time}.
+a user-defined class, {\tt Time}.
+
 
 \section{Time}
 \index{class!Time}
 \index{Time}
 
-A common motivation for creating a new Object type is to take several
-related pieces of data and encapsulate them into an object that can be
-manipulated (passed as an argument, operated on) as a single unit.  We
+A common motivation for creating an bject type is to encapsulate
+related data in an object that can be treated as a single unit.  We
 have already seen two types like this, {\tt Point} and {\tt
 Rectangle}.
 
 Another example, which we will implement ourselves, is {\tt Time},
-which is used to record the time of day.  The various pieces of
-information that form a time are the hour, minute and second.  Because
-every {\tt Time} object will contain these data, we need to create
-instance variables to hold them.
+which represents the time of day.  The data encapsulated in a Time
+object are an hour, a minute and a number of seconds.  Because every
+{\tt Time} object contains these data, we need instance
+variables to hold them.
 
 The first step is to decide what type each variable should be.  It
 seems clear that {\tt hour} and {\tt minute} should be integers.  Just
-to keep things interesting, let's make {\tt second} a {\tt double}, so
-we can record fractions of a second.
+to keep things interesting, let's make {\tt second} a {\tt double}.
 
 \index{instance variable}
 \index{variable!instance}
@@ -7479,19 +7479,19 @@ definition, outside of any method definition, like this:
 
 \begin{verbatimtab}
 class Time {
-  int hour, minute;
-  double second;
+    int hour, minute;
+    double second;
 }
 \end{verbatimtab}
 %
-All by itself, this code fragment is a legal class definition.  The
-state diagram for a {\tt Time} object would look like this:
+By itself, this code fragment is a legal class definition.  The
+state diagram for a {\tt Time} object looks like this:
 
 
 \epsfig{figure=figs/time.eps}
 
 
-After declaring the instance variables, the next step is usually
+After declaring the instance variables, the next step is
 to define a constructor for the new class.
 
 \section{Constructors}
@@ -7499,7 +7499,7 @@ to define a constructor for the new class.
 \index{method!constructor}
 \index{static}
 
-The usual role of a constructor is to initialize the instance
+Constructors initialize instance
 variables.  The syntax for constructors is similar to that
 of other methods, with three exceptions:
 
@@ -7517,35 +7517,34 @@ the class.
 Here is an example for the {\tt Time} class:
 
 \begin{verbatimtab}
-  public Time() {
-    this.hour = 0;
-    this.minute = 0;
-    this.second = 0.0;
-  }
+    public Time() {
+        this.hour = 0;
+        this.minute = 0;
+        this.second = 0.0;
+    }
 \end{verbatimtab}
 %
-Notice that where you would expect to see a return type,
+Where you would expect to see a return type,
 between {\tt public} and {\tt Time}, there is nothing.  That's
-how we(and the compiler) can tell that this is a constructor.
+how we (and the compiler) can tell that this is a constructor.
 
-This constructor does not take any arguments, as indicated by the
-empty parentheses {\tt()}.  Each line of the constructor initializes
-an instance variable to an arbitrary default value(in this case,
-midnight).  The name {\tt this} is a special
-keyword that is the name of the object we are creating.  You can use
+This constructor does not take any arguments.  Each line of the
+constructor initializes an instance variable to a default
+value (in this case, midnight).  The name {\tt this} is a special
+keyword that refers to the object we are creating.  You can use
 {\tt this} the same way you use the name of any other object.  For
 example, you can read and write the instance variables of {\tt this},
 and you can pass {\tt this} as an argument to other methods.
 
 \index{this}
 
-But you do not declare {\tt this} and you do not use {\tt new}
-to create it.  In fact, you are not even allowed to make an
-assignment to it!  {\tt this} is created by the system; all you
-have to do is store values in its instance variables.
+But you do not declare {\tt this} and you can't make an
+assignment to it.  {\tt this} is created by the system; all you
+have to do is initialize its instance variables.
 
 A common error when writing constructors is to put a {\tt return}
 statement at the end.  Resist the temptation.
+
 
 \section{More constructors}
 \index{overloading}
@@ -7556,36 +7555,37 @@ with different parameters.  Java knows which constructor
 to invoke by matching the arguments of {\tt new}
 with the parameters of the constructors.
 
-It is very common to have one constructor that takes no
-arguments(shown above), and one constructor that takes
-a parameter list that is identical to the list of instance
+It is common to have one constructor that takes no
+arguments (shown above), and one constructor that takes
+a parameter list identical to the list of instance
 variables.  For example:
 
 \begin{verbatimtab}
-  public Time(int hour, int minute, double second) {
-    this.hour = hour;
-    this.minute = minute;
-    this.second = second;
-  }
+    public Time(int hour, int minute, double second) {
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
+    }
 \end{verbatimtab}
 %
-The names and types of the parameters are exactly the same as
+The names and types of the parameters are the same as
 the names and types of the instance variables.  All the
 constructor does is copy the information from the parameters
 to the instance variables.
 
-If you go back and look at the documentation for {\tt Point}s
+If you look at the documentation for {\tt Point}s
 and {\tt Rectangle}s, you will see that both classes provide
 constructors like this.  Overloading constructors provides the
 flexibility to create an object first and then fill in the
 blanks, or to collect all the information before creating
 the object.
 
-So far this might not seem very interesting, and in fact it
+This might not seem very interesting, and in fact it
 is not.  Writing constructors is a boring, mechanical process.
-Once you have written two, you will find that you can churn them
-out in your sleep, just by looking at the list of instance
+Once you have written two, you will find that you can write them
+quickly just by looking at the list of instance
 variables.
+
 
 \section{Creating a new object}
 \index{new}
@@ -7594,60 +7594,58 @@ variables.
 Although constructors look like methods, you never invoke them
 directly.  Instead, when you invoke {\tt new}, the system
 allocates space for the new object and then 
-invokes your constructor to initialize the instance variables.
+invokes your constructor.
 
 The following program demonstrates two ways to create and
 initialize {\tt Time} objects:
 
 \begin{verbatimtab}
 class Time {
-  int hour, minute;
-  double second;
+    int hour, minute;
+    double second;
 
-  public Time() {
-    this.hour = 0;
-    this.minute = 0;
-    this.second = 0.0;
-  }
+    public Time() {
+        this.hour = 0;
+        this.minute = 0;
+        this.second = 0.0;
+    }
 
-  public Time(int hour, int minute, double second) {
-    this.hour = hour;
-    this.minute = minute;
-    this.second = second;
-  }
+    public Time(int hour, int minute, double second) {
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
+    }
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    // one way to create and initialize a Time object
-    Time t1 = new Time();
-    t1.hour = 11;
-    t1.minute = 8;
-    t1.second = 3.14159;
-    System.out.println(t1);
+        // one way to create and initialize a Time object
+        Time t1 = new Time();
+        t1.hour = 11;
+        t1.minute = 8;
+        t1.second = 3.14159;
+        System.out.println(t1);
 
-    // another way to do the same thing
-    Time t2 = new Time(11, 8, 3.14159);
-    System.out.println(t2);
-  }
+        // another way to do the same thing
+        Time t2 = new Time(11, 8, 3.14159);
+        System.out.println(t2);
+    }
 }
 \end{verbatimtab}
 %
-As an exercise, figure out the flow of execution through this
-program.
-
 In {\tt main}, the first time we invoke {\tt new},
 we provide no arguments, so Java invokes the first constructor.
-The next few lines assign values to each of the instance
+The next few lines assign values to the instance
 variables.
 
 The second time we invoke {\tt new}, we provide
 arguments that match the parameters of the second constructor.
 This way of initializing the instance variables is more concise
-(and slightly more efficient), but it can be harder to read, since
+and slightly more efficient, but it can be harder to read, since
 it is not as clear which values are assigned to which instance
 variables.
 
-\section{Printing an object}
+
+\section{Printing objects}
 \label{printobject}
 \index{print}
 \index{statement!print}
@@ -7661,20 +7659,20 @@ Time@80cc807
 \end{verbatimtab}
 %
 When Java prints the value of a user-defined object type, it prints
-the name of the type and a special hexadecimal(base 16) code that is
+the name of the type and a special hexadecimal (base 16) code that is
 unique for each object.  This code is not meaningful in itself; in
 fact, it can vary from machine to machine and even from run to run.
 But it can be useful for debugging, in case you want to keep track of
 individual objects.
 
-In order to print objects in a way that is more meaningful to users
-(as opposed to programmers), you usually want to write a method
+To print objects in a way that is more meaningful to users
+(as opposed to programmers), you can write a method
 called something like {\tt printTime}:
 
 \begin{verbatimtab}
-  public static void printTime(Time t) {
-    System.out.println(t.hour + ":" + t.minute + ":" + t.second);
-  }
+    public static void printTime(Time t) {
+        System.out.println(t.hour + ":" + t.minute + ":" + t.second);
+    }
 \end{verbatimtab}
 %
 Compare this method to the version of {\tt printTime} in
@@ -7691,25 +7689,24 @@ part of the seconds.  In other words, we want something like
 In most languages, there are simple ways to control the output format
 for numbers.  In Java there are no simple ways.
 
-Java provides very powerful tools for printing formatted things
+Java provides powerful tools for printing formatted things
 like times and dates, and also for interpreting formatted input.
 Unfortunately, these tools are not very easy to use, so I am going to
-leave them out of this book.  If you want, though, you can take a look
+leave them out of this book.  If you want, you can take a look
 at the documentation for the {\tt Date} class in the {\tt
 java.util} package.
-
 \index{Date}
 \index{class!Date}
+
 
 \section{Operations on objects}
 \label{objectops}
 \index{object}
 \index{operator!object}
 
-Even though we can't print times in an optimal format, we can still
-write methods that manipulate {\tt Time} objects.  In the next few
-sections, I will demonstrate several of the possible interfaces for
-methods that operate on objects.  For some operations, you will have a
+In the next few
+sections, I develop interfaces for
+methods that operate on objects.  For some operations, you have a
 choice of several possible interfaces, so you should consider the pros
 and cons of each of these:
 
@@ -7728,6 +7725,7 @@ a type of modifier.
 
 \end{description}
 
+
 \section{Pure functions}
 \index{pure function}
 \index{function}
@@ -7738,21 +7736,21 @@ the arguments, and it has no side effects like modifying an argument
 or printing something.  The only result of invoking a pure function is
 the return value.
 
-One example is {\tt after}, which compares two {\tt Time}s and
+One example is {\tt isAfter}, which compares two {\tt Time}s and
 returns a {\tt boolean} that indicates whether the first operand
 comes after the second:
 
 \begin{verbatimtab}
-  public static boolean after(Time time1, Time time2) {
-    if (time1.hour > time2.hour) return true;
-    if (time1.hour < time2.hour) return false;
+    public static boolean isAfter(Time time1, Time time2) {
+        if (time1.hour > time2.hour) return true;
+        if (time1.hour < time2.hour) return false;
 
-    if (time1.minute > time2.minute) return true;
-    if (time1.minute < time2.minute) return false;
+        if (time1.minute > time2.minute) return true;
+        if (time1.minute < time2.minute) return false;
 
-    if (time1.second > time2.second) return true;
-    return false;
-  }
+        if (time1.second > time2.second) return true;
+        return false;
+    }
 \end{verbatimtab}
 %
 What is the result of this method if the two times are equal?  Does
@@ -7768,13 +7766,13 @@ the bread will be done.
 Here is a rough draft of this method that is not quite right:
 
 \begin{verbatimtab}
-  public static Time addTime(Time t1, Time t2) {
-    Time sum = new Time();
-    sum.hour = t1.hour + t2.hour;
-    sum.minute = t1.minute + t2.minute;
-    sum.second = t1.second + t2.second;
-    return sum;
-  }
+    public static Time addTime(Time t1, Time t2) {
+        Time sum = new Time();
+        sum.hour = t1.hour + t2.hour;
+        sum.minute = t1.minute + t2.minute;
+        sum.second = t1.second + t2.second;
+        return sum;
+    }
 \end{verbatimtab}
 %
 Although this method returns a {\tt Time} object, it is not
@@ -7805,30 +7803,29 @@ where the number of seconds or minutes adds up to more than
 into the minutes column, or extra minutes into the hours
 column.
 
-Here's a second, corrected version of this method.
+Here's a corrected version of the method.
 
 \begin{verbatimtab}
-  public static Time addTime(Time t1, Time t2) {
-    Time sum = new Time();
-    sum.hour = t1.hour + t2.hour;
-    sum.minute = t1.minute + t2.minute;
-    sum.second = t1.second + t2.second;
+    public static Time addTime(Time t1, Time t2) {
+        Time sum = new Time();
+        sum.hour = t1.hour + t2.hour;
+        sum.minute = t1.minute + t2.minute;
+        sum.second = t1.second + t2.second;
 
-    if (sum.second >= 60.0) {
-      sum.second -= 60.0;
-      sum.minute += 1;
+        if (sum.second >= 60.0) {
+            sum.second -= 60.0;
+            sum.minute += 1;
+        }
+        if (sum.minute >= 60) {
+            sum.minute -= 60;
+            sum.hour += 1;
+        }
+        return sum;
     }
-    if (sum.minute >= 60) {
-      sum.minute -= 60;
-      sum.hour += 1;
-    }
-    return sum;
-  }
 \end{verbatimtab}
 %
-Although it's correct, it's starting to get big.  Later,
-I will suggest an alternative approach to this problem that
-will be much shorter.
+Although it's correct, it's starting to get big.  Later
+I suggest much shorter alternative.
 
 \index{increment}
 \index{decrement}
@@ -7838,10 +7835,11 @@ will be much shorter.
 This code demonstrates two operators we have not seen before,
 {\tt +=} and {\tt -=}.  These operators provide a concise
 way to increment and decrement variables.  They are similar
-to {\tt ++} and {\tt --}, except(1) they work on {\tt double}s
-as well as {\tt int}s, and(2) the amount of the increment
+to {\tt ++} and {\tt --}, except (1) they work on {\tt double}s
+as well as {\tt int}s, and (2) the amount of the increment
 does not have to be 1.  The statement {\tt sum.second -= 60.0;}
 is equivalent to {\tt sum.second = sum.second - 60;}
+
 
 \section{Modifiers}
 \index{modifier}
@@ -7852,18 +7850,18 @@ which adds a given number of seconds to a {\tt Time} object.
 Again, a rough draft of this method looks like:
 
 \begin{verbatimtab}
-  public static void increment(Time time, double secs) {
-    time.second += secs;
+    public static void increment(Time time, double secs) {
+        time.second += secs;
 
-    if (time.second >= 60.0) {
-      time.second -= 60.0;
-      time.minute += 1;
+        if (time.second >= 60.0) {
+            time.second -= 60.0;
+            time.minute += 1;
+        }
+        if (time.minute >= 60) {
+            time.minute -= 60;
+            time.hour += 1;
+        }
     }
-    if (time.minute >= 60) {
-      time.minute -= 60;
-      time.hour += 1;
-    }
-  }
 \end{verbatimtab}
 %
 The first line performs the basic operation; the remainder
@@ -7872,61 +7870,62 @@ deals with the same cases we saw before.
 Is this method correct?  What happens if the argument {\tt secs}
 is much greater than 60?  In that case, it is not enough to
 subtract 60 once; we have to keep doing it until {\tt second}
-is below 60.  We can do that by simply replacing the {\tt if}
+is below 60.  We can do that by replacing the {\tt if}
 statements with {\tt while} statements:
 
 \begin{verbatimtab}
-  public static void increment(Time time, double secs) {
-    time.second += secs;
+    public static void increment(Time time, double secs) {
+        time.second += secs;
 
-    while (time.second >= 60.0) {
-      time.second -= 60.0;
-      time.minute += 1;
+        while (time.second >= 60.0) {
+            time.second -= 60.0;
+            time.minute += 1;
+        }
+        while (time.minute >= 60) {
+            time.minute -= 60;
+            time.hour += 1;
+        }
     }
-    while (time.minute >= 60) {
-      time.minute -= 60;
-      time.hour += 1;
-    }
-  }
 \end{verbatimtab}
 %
 This solution is correct, but not very efficient.
 Can you think of a solution that does not require iteration?
 
+
 \section{Fill-in methods}
 \index{fill-in method}
 \index{method!fill-in}
 
-Occasionally you will see methods like {\tt addTime} written
-with a different interface(different arguments and return values).
+Occasionally you see methods like {\tt addTime} written
+with a different interface (different arguments and return values).
 Instead of creating a new object every time {\tt addTime} is
 invoked, we could require the caller to provide an ``empty''
 object where {\tt addTime} should store the result.  Compare
 the following with the previous version:
 
 \begin{verbatimtab}
-  public static void addTimeFill(Time t1, Time t2, Time sum) {
-    sum.hour = t1.hour + t2.hour;
-    sum.minute = t1.minute + t2.minute;
-    sum.second = t1.second + t2.second;
+    public static void addTimeFill(Time t1, Time t2, Time sum) {
+        sum.hour = t1.hour + t2.hour;
+        sum.minute = t1.minute + t2.minute;
+        sum.second = t1.second + t2.second;
 
-    if (sum.second >= 60.0) {
-      sum.second -= 60.0;
-      sum.minute += 1;
+        if (sum.second >= 60.0) {
+            sum.second -= 60.0;
+            sum.minute += 1;
+        }
+        if (sum.minute >= 60) {
+            sum.minute -= 60;
+            sum.hour += 1;
+        }
     }
-    if (sum.minute >= 60) {
-      sum.minute -= 60;
-      sum.hour += 1;
-    }
-  }
 \end{verbatimtab}
 %
-One advantage of this approach is that the caller has the option
-of reusing the same object repeatedly to perform a series
-of additions.  This can be slightly more efficient, although
-it can be confusing enough to cause subtle errors.
-For the vast majority of programming, it is worth
+An advantage of this approach is that the caller can reuse an
+object to perform a series of additions.  This can be
+more efficient, but it can be confusing enough to cause
+subtle errors.  For the vast majority of programming, it is worth
 spending a little run time to avoid a lot of debugging time.
+
 
 \section{Which is best?}
 \index{programming style}
@@ -7942,8 +7941,8 @@ are less efficient.
 
 In general, I recommend that you write pure functions whenever
 it is reasonable to do so, and resort to modifiers only if there
-is a compelling advantage.  This approach might be called a
-functional programming style.
+is a compelling advantage.
+
 
 \section{Incremental development vs. planning}
 \index{incremental development}
@@ -7951,9 +7950,9 @@ functional programming style.
 \index{program development!incremental}
 \index{program development!planning}
 
-In this chapter I have demonstrated an approach to program
+In this chapter I demonstrated an approach to program
 development I refer to as {\bf rapid prototyping with iterative
-improvement}.  In each case, I wrote a rough draft(or prototype)
+improvement}.  In each case, I wrote a rough draft (or prototype)
 that performed the basic calculation, and then tested it on
 a few cases, correcting flaws as I found them.
 
@@ -7962,8 +7961,8 @@ that is unnecessarily complicated---since it deals with many
 special cases---and unreliable---since it is hard to convince
 yourself that you have found {\em all} the errors.
 
-An alternative is high-level planning, in which a little insight
-into the problem can make the programming much easier.  In
+An alternative is to look for insight
+into the problem that can make the programming easier.  In
 this case the insight is that a {\tt Time} is really a three-digit
 number in base 60!  The {\tt second} is the ``ones column,''
 the {\tt minute} is the ``60's column'', and the {\tt hour}
@@ -7975,17 +7974,17 @@ column to the next.
 
 \index{arithmetic!floating-point}
 
-Thus an alternative approach to the whole problem is to convert
+Another approach to the whole problem is to convert
 {\tt Time}s into {\tt double}s and take advantage of the fact that
 the computer already knows how to do arithmetic with {\tt double}s.
 Here is a method that converts a {\tt Time} into a {\tt double}:
 
 \begin{verbatimtab}
-  public static double convertToSeconds(Time t) {
-    int minutes = t.hour * 60 + t.minute;
-    double seconds = minutes * 60 + t.second;
-    return seconds;
-  }
+        public static double convertToSeconds(Time t) {
+        int minutes = t.hour * 60 + t.minute;
+        double seconds = minutes * 60 + t.second;
+        return seconds;
+    }
 \end{verbatimtab}
 %
 Now all we need is a way to convert from a {\tt double}
@@ -7994,32 +7993,32 @@ do it, but it might make more sense to write it as a third
 constructor:
 
 \begin{verbatimtab}
-  public Time(double secs) {
-    this.hour =(int)(secs / 3600.0);
-    secs -= this.hour * 3600.0;
-    this.minute =(int)(secs / 60.0);
-    secs -= this.minute * 60;
-    this.second = secs;
-  }
+    public Time(double secs) {
+        this.hour =(int)(secs / 3600.0);
+        secs -= this.hour * 3600.0;
+        this.minute =(int)(secs / 60.0);
+        secs -= this.minute * 60;
+        this.second = secs;
+    }
 \end{verbatimtab}
 %
-This constructor is a little different from the others, since
+This constructor is a little different from the others;
 it involves some calculation along with assignments to the
 instance variables.
 
 You might have to think a bit to convince yourself that the technique
-I am using to convert from one base to another is correct.  Assuming
-you are convinced, we can use these methods to rewrite {\tt addTime}:
+I am using to convert from one base to another is correct.  But once
+you're convinced, we can use these methods to rewrite {\tt addTime}:
 
 \begin{verbatimtab}
-  public static Time addTime(Time t1, Time t2) {
-    double seconds = convertToSeconds(t1) + convertToSeconds(t2);
-    return new Time(seconds);
-  }
+    public static Time addTime(Time t1, Time t2) {
+        double seconds = convertToSeconds(t1) + convertToSeconds(t2);
+        return new Time(seconds);
+    }
 \end{verbatimtab}
 %
-This is much shorter than the original version, and it is much easier
-to demonstrate that it is correct(assuming, as usual, that the
+This is shorter than the original version, and it is much easier
+to demonstrate that it is correct (assuming, as usual, that the
 methods it invokes are correct).  As an exercise, rewrite {\tt
 increment} the same way.
 
@@ -8037,13 +8036,13 @@ and make the investment of writing the conversion methods
 a program that is shorter, easier to read and debug, and more
 reliable.
 
-It is also easier to add more features later.  For example, imagine
+It is also easier to add features later.  Imagine
 subtracting two {\tt Time}s to find the duration between them.  The
 naive approach would be to implement subtraction complete with
 ``borrowing.''  Using the conversion methods would be much easier.
 
-Ironically, sometimes making a problem harder(more general)
-makes it easier(fewer special cases, fewer opportunities for error).
+Ironically, sometimes making a problem harder (more general)
+makes it easier (fewer special cases, fewer opportunities for error).
 
 
 \section{Algorithms}
@@ -8056,12 +8055,12 @@ written an {\bf algorithm}.  I mentioned this word in
 Chapter 1, but did not define it carefully.  It is
 not easy to define, so I will try a couple of approaches.
 
-First, consider some things that are not algorithms.  For example,
-when you learned to multiply single-digit numbers, you probably
-memorized the multiplication table.  In effect, you memorized 100
-specific solutions, so that knowledge is not really algorithmic.
+First, consider some things that are not algorithms.  When you learned
+to multiply single-digit numbers, you probably memorized the
+multiplication table.  In effect, you memorized 100 specific
+solutions, so that knowledge is not really algorithmic.
 
-But if you were ``lazy,'' you probably cheated by learning a few
+But if you were ``lazy,'' you probably learned a few
 tricks.  For example, to find the product of $n$ and 9, you can
 write $n-1$ as the first digit and $10-n$ as the second digit.  This
 trick is a general solution for multiplying any single-digit number by 9.
@@ -8088,7 +8087,7 @@ example.  We all do it, but so far no one has been able to
 explain {\em how} we do it, at least not in the form of an
 algorithm.
 
-Later you will have the opportunity to design
+Soon you will have the opportunity to design
 simple algorithms for a variety of problems.
 
 
@@ -8106,26 +8105,19 @@ instance of some class.
 \item[constructor:]  A special method that initializes the instance
 variables of a newly-constructed object.
 
-\item[project:]  A collection of one or more class definitions
-(one per file) that make up a program.
-
 \item[startup class:]  The class that contains the {\tt main}
 method where execution of the program begins.
 
-\item[function:]  A method whose result depends only on its
+\item[pure function:]  A method whose result depends only on its
 parameters, and that has no side-effects other than returning
 a value.
-
-\item[functional programming style:]  A style of program design
-in which the majority of methods are functions.  
 
 \item[modifier:]  A method that changes one or more of the objects
 it receives as parameters, and usually returns {\tt void}.
 
 \item[fill-in method:]  A type of method that takes an ``empty''
 object as a parameter and fills in its instance variables instead
-of generating a return value.  This type of method is usually
-not the best choice.
+of generating a return value.
 
 \item[algorithm:]  A set of instructions for solving a class of
 problems by a mechanical process.
@@ -8133,10 +8125,8 @@ problems by a mechanical process.
 \index{class}
 \index{instance}
 \index{constructor}
-\index{project}
 \index{startup class}
-\index{function}
-\index{functional programming}
+\index{pure function}
 \index{modifier}
 \index{algorithm}
 
@@ -8150,7 +8140,7 @@ In the board game Scrabble\footnote{Scrabble is a registered trademark
 owned in the U.S.A and Canada by Hasbro Inc., and in the rest of the world
 by J.W. Spear \& Sons Limited of Maidenhead, Berkshire, England, a subsidiary 
 of Mattel Inc.}, each tile contains a letter, which is used to spell
-words, and a score, which is used to determine the value of a word.
+words, and a score, which is used to determine the value of words.
 
 \begin{enumerate}
 
@@ -8163,7 +8153,7 @@ and {\tt value} and initializes the instance variables.
 
 \item Write a method named {\tt printTile} that takes a {\tt Tile}
 object as a parameter and prints the instance variables in
-some reader-friendly format.
+a reader-friendly format.
 
 \item Write a method named {\tt testTile} that creates a
 Tile object with the letter {\tt Z} and the value 10, and
@@ -8175,6 +8165,7 @@ The point of this exercise is to practice the mechanical part
 of creating a new class definition and code that tests it.
 \end{exercise}
 
+
 \begin{exercise}
 Write a class definition for {\tt Date}, an object type that
 contains three integers, {\tt year}, {\tt month} and {\tt day}.
@@ -8183,7 +8174,7 @@ take no parameters.  The second should take parameters named
 {\tt year}, {\tt month} and {\tt day}, and use them to initialize
 the instance variables.
 
-Add code to {\tt main} that creates a new {\tt Date} object
+Write a {\tt main} method that creates a new {\tt Date} object
 named {\tt birthday}.  The new object should contain your birthdate.
 You can use either constructor.
 \end{exercise}
@@ -8200,69 +8191,9 @@ rational numbers.
 
 \begin{enumerate}
 
-\item Examine the following program and make sure
-you understand what it does:
-
-\begin{verbatimtab}
-public class Complex
-{
-    double real, imag;
-
-    // simple constructor
-    public Complex() {
-        this.real = 0.0;  this.imag = 0.0;
-    }
-        
-    // constructor that takes arguments
-    public Complex(double real, double imag) {
-        this.real = real;  this.imag = imag;
-    }
-
-    public static void printComplex(Complex c) {
-        System.out.println(c.real + " + " + c.imag + "i");
-    }
-
-    // conjugate is a modifier
-    public static void conjugate(Complex c) {
-        c.imag = -c.imag;
-    }
-
-    // abs is a function that returns a primitive
-    public static double abs(Complex c) {
-        return Math.sqrt(c.real * c.real + c.imag * c.imag);
-    }
-
-    // add is a function that returns a new Complex object
-    public static Complex add(Complex a, Complex b) {
-        return new Complex(a.real + b.real, a.imag + b.imag);
-    }
-
-    public static void main(String args[]) {
-
-        // use the first constructor
-        Complex x = new Complex();
-        x.real = 1.0;
-        x.imag = 2.0;
-
-        // use the second constructor
-        Complex y = new Complex(3.0, 4.0);
-
-        System.out.println(Complex.abs(y));
-    
-        Complex.conjugate(x);
-        Complex.printComplex(x);
-        Complex.printComplex(y);
-    
-        Complex s = Complex.add(x, y);
-        Complex.printComplex(s);
-    }
-}
-\end{verbatimtab}
-
 \item Create a new program called {\tt Rational.java} that defines a
 class named {\tt Rational}.  A {\tt Rational} object should have two
-integer instance variables to store the numerator and denominator of a
-rational number.
+integer instance variables to store the numerator and denominator.
 
 \item Write a constructor that takes no arguments and that sets the
 two instance variables to zero.
@@ -8275,7 +8206,7 @@ reasonable format.
 type Rational, sets its instance variables to some values, and prints
 the object.
 
-\item At this stage, you have a minimal testable(debuggable)
+\item At this stage, you have a minimal testable
 program.  Test it and, if necessary, debug it.
 
 \item Write a second constructor for your class that takes two
@@ -8287,30 +8218,24 @@ a rational number.  This method should be a modifier, so it should
 return {\tt void}.  Add lines to {\tt main} to test the new method.
 
 \item Write a method called {\tt invert} that inverts the number by
-swapping the numerator and denominator.  Remember the swap pattern we
-have seen before.  Add lines to {\tt main} to test the new method.
-%I don't think we've seen any swap pattern before
-%since this is the first instance of the word ``swap'' in the text
-%(but I may be wrong)
+  swapping the numerator and denominator.  Add lines to {\tt main} to
+  test the new method.
 
 \item Write a method called {\tt toDouble} that converts the rational
-number to a double(floating-point number) and returns the result.
+number to a double (floating-point number) and returns the result.
 This method is a pure function; it does not modify the object.
 As always, test the new method.
 
-\item Write a modifier named {\tt reduce} that reduces a rational number
-to its lowest terms by finding the GCD of the numerator and denominator
-and then dividing top and bottom by the GCD.
-This method should be a pure function; it should not modify
-the instance variables of the object on which it is invoked.
-
-You may want to write a method called {\tt gcd} that finds
-the greatest common divisor of the numerator and the denominator
-(See Exercise~\ref{gcd}).
+\item Write a modifier named {\tt reduce} that reduces a rational
+  number to its lowest terms by finding the greatest common divisor
+  (GCD) of the numerator and denominator and dividing through.
+  This method should be a pure function; it should
+  not modify the instance variables of the object on which it is
+  invoked.  To find the GCD, see Exercise~\ref{gcd}).
 
 \item Write a method called {\tt add} that takes two Rational
 numbers as arguments and returns a new Rational object.  The return
-object, not surprisingly, should contain the sum of the arguments.
+object should contain the sum of the arguments.
 
 There are several ways to add fractions.  You can use any one you
 want, but you should make sure that the result of the operation is
@@ -9337,7 +9262,7 @@ diagram of this array might look like:
 
 The elements of the array are {\em references} to the {\tt String}s,
 rather than {\tt String}s themselves.  This is true of all arrays of
-objects, as I will discuss in more detail later.  For now, all we need
+objects, as I discuss in more detail later.  For now, all we need
 is another array of {\tt String}s to decode the ranks:
 
 \begin{verbatimtab}
@@ -9496,7 +9421,7 @@ a higher suit.
 
 In order to make cards comparable, we have to decide which is more
 important, rank or suit.  To be honest, the choice is completely
-arbitrary.  For the sake of choosing, I will say that suit is more
+arbitrary.  For the sake of choosing, I'll say that suit is more
 important, because when you buy a new deck of cards, it comes sorted
 with all the Clubs together, followed by all the Diamonds, and so on.
 
@@ -10170,7 +10095,7 @@ tricky thing is to decide whether to swap just the references
 to the cards or the contents of the cards.  Does it matter
 which one you choose?  Which is faster?
 
-I will leave the remaining implementation of these methods
+I leave the remaining implementation of these methods
 as an exercise.
 
 
@@ -10322,7 +10247,7 @@ traverse the array $n$ times, and each traversal takes an amount of
 time that is proportional to $n$.  The total time, therefore, is
 proportional to $n^2$.
 
-In this section I will sketch a more efficient algorithm called {\bf
+In this section I sketch a more efficient algorithm called {\bf
 mergesort}.  To sort $n$ items, mergesort takes time proportional to
 $n \log n$.  That may not seem impressive, but as $n$ gets big, the
 difference between $n^2$ and $n \log n$ can be enormous.  Try out a
@@ -10692,7 +10617,7 @@ invoke).  So far all the methods we have written have been class
 methods.  In this chapter we will write some object methods.
 
 \item The language feature most associated with object-oriented
-programming is {\bf inheritance}.  I will cover inheritance later in
+programming is {\bf inheritance}.  I cover inheritance later in
 this chapter.
 
 \end{itemize}
@@ -11438,7 +11363,7 @@ One problem with this approach is that it is often
 difficult to figure out a path from the starting place
 to a complete and correct program.
 
-I will demonstrate by developing a method called {\tt isIn} that takes
+I demonstrate by developing a method called {\tt isIn} that takes
 a String and a character, and that returns a boolean: {\tt true} if
 the character appears in the String and {\tt false} otherwise.
 
