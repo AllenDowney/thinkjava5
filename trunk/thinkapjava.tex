@@ -8580,7 +8580,7 @@ so that $low \le x < high$.
 \label{ex.randomint}
 Write a method called {\tt randomInt} that takes two arguments,
 {\tt low} and {\tt high}, and that returns a random integer between
-{\tt low} and {\tt high} (including both).
+{\tt low} and {\tt high}, not including {\tt high}.
 \end{exercise}
 
 
@@ -8588,7 +8588,7 @@ Write a method called {\tt randomInt} that takes two arguments,
 \label{randarray}
 
 If your implementation of {\tt randomInt} is correct, then
-every value in the range from {\tt low} to {\tt high} should
+every value in the range from {\tt low} to {\tt high-1} should
 have the same probability.  If you generate a long series
 of numbers, every value should appear, at least approximately,
 the same number of times.
@@ -8668,10 +8668,10 @@ few sections develop code to generate a histogram.
 \index{counter}
 
 A good approach to problems like this is to think of simple methods
-that are easy to write, and that might turn out to be useful.  Then
-you can combine them into a solution.
+that are easy to write, then combine them into a solution.
 This process is called {\bf bottom-up development}.
-\index{development plan}
+See \url{http://en.wikipedia.org/wiki/Top-down_and_bottom-up_design}.
+\index{program development}
 
 It is not always obvious where to start,
 but a good approach is to look for subproblems that fit a pattern you
@@ -8713,10 +8713,10 @@ public static int inRange(int[] a, int low, int high) {
 }
 \end{verbatimtab}
 %
-I wasn't very careful about whether something equal
+I wasn't specific about whether something equal
 to {\tt low} or {\tt high} falls in the range, but you can
 see from the code that {\tt low} is in and {\tt high} is out.
-That should keep us from counting any elements twice.
+That keeps us from counting any elements twice.
 
 Now we can count the number of scores in the ranges we are
 interested in:
@@ -8735,7 +8735,7 @@ int f = inRange(scores, 0, 60);
 \index{range}
 \index{histogram}
 
-The so far is repetitious, but it is acceptable as
+This code is repetitious, but it is acceptable as
 long as the number of ranges is small.  But imagine that
 we want to keep track of the number of times each score appears,
 all 100 possible values.  Would you want to write this?
@@ -9101,7 +9101,7 @@ outline of the steps:
 methods that work with {\tt Cards} and arrays of {\tt Cards}.
 
 \item In Chapter~\ref{chap12} we will create a {\tt Deck} class
-and move some of the code 
+and write methods that operate on {\tt Deck}s.
 
 \item In Chapter~\ref{chap13} I will present object-oriented
 programming (OOP) and we will transform the {\tt Card} and {\tt Deck}
@@ -9113,7 +9113,8 @@ I think that way of proceeding makes the road smoother; the drawback
 is that we will see several versions of the same code, which can
 be confusing.  If it helps, you can download the code for each
 chapter as you go along.  The code for this chapter is here:
-\url{}.
+\url{http://thinkapjava.com/code/Card1.java}.
+
 
 \section{{\tt Card} objects}
 \label{card}
@@ -9124,11 +9125,11 @@ If you are not familiar with common playing cards, now would be a good
 time to get a deck, or else this chapter might not make much sense.
 Or read \url{http://en.wikipedia.org/wiki/Playing_card}.
 
-There are 52 cards in a deck, each of which belongs to one of four
+There are 52 cards in a deck; each belongs to one of four
 suits and one of 13 ranks.  The suits are Spades, Hearts, Diamonds and
 Clubs (in descending order in Bridge).  The ranks are Ace, 2, 3, 4, 5,
 6, 7, 8, 9, 10, Jack, Queen and King.  Depending on what game you are
-playing, the rank of the Ace may be higher than King or lower than 2.
+playing, the Ace may be considered higher than King or lower than 2.
 
 \index{rank}
 \index{suit}
@@ -9472,7 +9473,7 @@ combinations using {\tt Card} objects.
 This example creates an array of 52 cards:
 
 \begin{verbatimtab}
-    Card[] deck = new Card [52];
+    Card[] cards = new Card [52];
 \end{verbatimtab}
 
 Here is the state diagram for this object:
@@ -9488,7 +9489,7 @@ initialized to {\tt null}.  You can access the elements of
 the array in the usual way:
 
 \begin{verbatimtab}
-    if (deck[0] == null) {
+    if (cards[0] == null) {
         System.out.println("No cards yet!");
     }
 \end{verbatimtab}
@@ -9500,7 +9501,7 @@ non-existent {\tt Card}s, you get a {\tt NullPointerException}.
 \index{null}
 
 \begin{verbatimtab}
-    deck[0].rank;             // NullPointerException
+    cards[0].rank;             // NullPointerException
 \end{verbatimtab}
 % 
 But that is the correct syntax for accessing the {\tt
@@ -9518,7 +9519,7 @@ is to write a nested loop:
     int index = 0;
     for (int suit = 0; suit <= 3; suit++) {
         for (int rank = 1; rank <= 13; rank++) {
-            deck[index] = new Card(suit, rank);
+            cards[index] = new Card(suit, rank);
             index++;
         }
     }
@@ -9541,7 +9542,7 @@ have been allocated:
 
 \begin{exercise}
 Encapsulate this deck-building code in a method called
-{\tt buildDeck} that takes no parameters and returns a
+{\tt makeDeck} that takes no parameters and returns a
 fully-populated array of {\tt Card}s.
 \end{exercise}
 
@@ -9557,17 +9558,16 @@ seen the pattern for traversing an array several times, so the
 following method should be familiar:
 
 \begin{verbatimtab}
-public static void printDeck(Card[] deck) {
-    for (int i=0; i < deck.length; i++) {
-        printCard(deck[i]);
+    public static void printDeck(Card[] cards) {
+        for (int i=0; i < cards.length; i++) {
+            printCard(cards[i]);
+        }
     }
-}
 \end{verbatimtab}
 
-Since {\tt deck} has type {\tt Card[]}, an element of {\tt deck}
-has type {\tt Card}.  So {\tt deck[i]} is a legal argument
+Since {\tt cards} has type {\tt Card[]}, an element of {\tt cards}
+has type {\tt Card}.  So {\tt cards[i]} is a legal argument
 for {\tt printCard}.
-
 
 
 \section{Searching}
@@ -9591,15 +9591,17 @@ find it we return the index where the card appears.  If it is not in
 the deck, we return -1.
 
 \begin{verbatimtab}
-public static int findCard(Card[] deck, Card card) {
-    for (int i = 0; i< deck.length; i++) {
-        if (sameCard(deck[i], card)) return i;
+public static int findCard(Card[] cards, Card card) {
+    for (int i = 0; i< cards.length; i++) {
+        if (sameCard(cards[i], card)) {
+            return i;
+        }
     }
     return -1;
 }
 \end{verbatimtab}
 %
-The arguments of {\tt findCard} are {\tt card} and {\tt deck}.
+The arguments of {\tt findCard} are {\tt card} and {\tt cards}.
 It might seem odd to have a variable with the same name as a type (the
 {\tt card} variable has type {\tt Card}).  We can tell the difference
 because the variable begins with a lower-case letter.
@@ -9647,11 +9649,10 @@ If you ever get to the point where there are two adjacent words on the
 page and your word comes between them, you can conclude that your word
 is not in the dictionary.
 
-In a deck of cards, if we know the cards are in order, we can write a
-faster version of {\tt findCard}.  The best way to write a bisection
-search is with a recursive method, because bisection is naturally
-recursive.
-\index{findBisect}
+Getting back to the deck of cards, if we know the cards are in order,
+we can write a faster version of {\tt findCard}.  The best way to
+write a bisection search is with a recursive method, because bisection
+is naturally recursive.  \index{findBisect}
 
 The trick is to write a method called {\tt findBisect} that takes
 two indices as parameters, {\tt low} and {\tt high}, indicating the
@@ -9678,17 +9679,17 @@ Steps 3 and 4 look suspiciously like recursive invocations.  Here's
 what this looks like translated into Java code:
 
 \begin{verbatimtab}
-public static int findBisect(Card[] deck, Card card, int low, int high) {
+public static int findBisect(Card[] cards, Card card, int low, int high) {
     // TODO: need a base case
     int mid = (high + low) / 2;
-    int comp = compareCard(deck[mid], card);
+    int comp = compareCard(cards[mid], card);
 
     if (comp == 0) {
         return mid;
     } else if (comp > 0) {
-        return findBisect(deck, card, low, mid-1);
+        return findBisect(cards, card, low, mid-1);
     } else {
-        return findBisect(deck, card, mid+1, high);
+        return findBisect(cards, card, mid+1, high);
     }
 }
 \end{verbatimtab}
@@ -9707,20 +9708,20 @@ see we conclude that the card is not in the deck.
 If we handle that case, the method works correctly:
 
 \begin{verbatimtab}
-public static int findBisect(Card[] deck, Card card, int low, int high) {
+public static int findBisect(Card[] cards, Card card, int low, int high) {
     System.out.println(low + ", " + high);
 
     if (high < low) return -1;
 
     int mid = (high + low) / 2;
-    int comp = deck[mid].compareCard(card);
+    int comp = cards[mid].compareCard(card);
 
     if (comp == 0) {
         return mid;
     } else if (comp > 0) {
-        return findBisect(deck, card, low, mid-1);
+        return findBisect(cards, card, low, mid-1);
     } else {
-        return findBisect(deck, card, mid+1, high);
+        return findBisect(cards, card, mid+1, high);
     }
 }
 \end{verbatimtab}
@@ -9731,7 +9732,7 @@ following code:
 
 \begin{verbatimtab}
     Card card1 = new Card(1, 11);
-    System.out.println(findBisect(deck, card1, 0, 51));
+    System.out.println(findBisect(cards, card1, 0, 51));
 \end{verbatimtab}
 %
 And got the following output:
@@ -9794,7 +9795,7 @@ public static int findBisect(Card[] deck, Card card, int low, int high)
 \index{parameter!abstract}
 \index{abstract parameter}
 
-we can think of {\tt deck},
+We can think of {\tt cards},
 {\tt low} and {\tt high} as a single parameter that specifies a {\bf
 subdeck}.  This way of thinking is common, and I sometimes think
 of it as an {\bf abstract parameter}.  What I mean by ``abstract,'' is
@@ -9908,6 +9909,16 @@ card games.
 \index{deck}
 \index{array!of Cards}
 
+WARNING: In this chapter, we take another step toward object-oriented
+programming, but we are not there yet.  So many of the examples are
+non-idiomatic; that is, they are not good Java.  This transitional
+form will help you learn (I hope), but don't write code like this.
+
+You can download the code in this chapter from
+\url{http://thinkapjava.com/code/Card2.java}.
+
+
+
 \section{The {\tt Deck} class}
 \label{deck}
 
@@ -9932,9 +9943,9 @@ class Deck {
 }
 \end{verbatimtab}
 %
-The name of the instance variable is {\tt cards} to help
-distinguish the {\tt Deck} object from the array of {\tt Card}s
-that it contains.  Here is a state diagram showing what a
+The constructor initializes the instance variable with
+an array of cards, but it doesn't create any cards.
+Here is a state diagram showing what a
 {\tt Deck} looks like with no cards:
 
 \index{state diagram}
@@ -9942,16 +9953,12 @@ that it contains.  Here is a state diagram showing what a
 
 \epsfig{figure=figs/deckobject.eps}
 
-As usual, the constructor initializes the instance variable.
-In
-this case it creates the array of cards, but it doesn't create any cards.
-For that we can
-write another constructor that creates a standard 52-card deck and
-populates it with {\tt Card}s:
+Here is a no-argument constructor that makes a
+52-card deck and populates it with {\tt Card}s:
 
 \begin{verbatimtab}
     public Deck() {
-        cards = new Card[52];
+        this.cards = new Card[52];
         int index = 0;
         for (int suit = 0; suit <= 3; suit++) {
             for (int rank = 1; rank <= 13; rank++) {
@@ -9962,7 +9969,7 @@ populates it with {\tt Card}s:
     }
 \end{verbatimtab}
 
-This method is similar to {\tt buildDeck};
+This method is similar to {\tt makeDeck};
 we just changed the syntax to make it a constructor.
 To invoke it, we use {\tt new}:
 
@@ -9988,26 +9995,22 @@ Here's how it looks, rewritten to work with a {\tt Deck}:
     }
 \end{verbatimtab}
 %
-The most obvious thing we have to change is the type of the parameter,
-from {\tt Card[]} to {\tt Deck}.  The second change is that we can no
+One change is the type of the parameter,
+from {\tt Card[]} to {\tt Deck}.
+
+The second change is that we can no
 longer use {\tt deck.length} to get the length of the array, because
 {\tt deck} is a {\tt Deck} object now, not an array.  It contains an
-array, but it is not, itself, an array.  Therefore, we have to write
+array, but it is not an array.  So we have to write
 {\tt deck.cards.length} to extract the array from the {\tt Deck}
 object and get the length of the array.
 
 For the same reason, we have to use {\tt deck.cards[i]} to access an
-element of the array, rather than just {\tt deck[i]}.  The last change
+element of the array, rather than just {\tt deck[i]}.
+
+The last change
 is that the invocation of {\tt printCard} has to say explicitly that
 {\tt printCard} is defined in the {\tt Card} class.
-
-For some of the other methods, it is not obvious whether they should
-be included in the {\tt Card} class or the {\tt Deck} class.  For
-example, {\tt findCard} takes a {\tt Card} and a {\tt Deck} as
-arguments; you could reasonably put it in either class.  As an
-exercise, move {\tt findCard} into the {\tt Deck} class and rewrite it
-so that the first parameter is a {\tt Deck} object rather than an
-array of {\tt Card}s.
 
 
 \section{Shuffling}
@@ -10020,24 +10023,21 @@ we saw how to generate random numbers, but it is not obvious how
 to use them to shuffle a deck.
 
 One possibility is to model the way humans shuffle, which is usually
-by dividing the deck in two and then reassembling the deck by choosing
+by dividing the deck in two and then choosing
 alternately from each deck.  Since humans usually don't shuffle
 perfectly, after about 7 iterations the order of the deck is pretty
 well randomized.  But a computer program would have the annoying
 property of doing a perfect shuffle every time, which is not really
 very random.  In fact, after 8 perfect shuffles, you would find the
-deck back in the same order you started in.  For a discussion of that
-claim, see \url{http://www.wiskit.com/marilyn/craig.html} or do a web
-search with the keywords ``perfect shuffle.''
+deck back in the order you started in.  For more information, see
+\url{http://en.wikipedia.org/wiki/Faro_shuffle}.
 
 A better shuffling algorithm is to traverse the deck one card at a
 time, and at each iteration choose two cards and swap them.
 
-\index{pseudocode}
-
 Here is an outline of how this algorithm works.  To sketch the
 program, I am using a combination of Java statements and English
-words that is sometimes called {\bf pseudocode}:
+words that is sometimes called {\bf pseudocode}:  \index{pseudocode}
 
 \begin{verbatimtab}
     for (int i=0; i<deck.length; i++) {
@@ -10046,42 +10046,31 @@ words that is sometimes called {\bf pseudocode}:
     }
 \end{verbatimtab}
 %
-The nice thing about using pseudocode is that it often makes it
+The nice thing about pseudocode is that it often makes it
 clear what methods you are going to need.  In this case, we
 need something like {\tt randomInt}, which chooses a random
-integer between the parameters {\tt low} and {\tt high},
+integer between {\tt low} and {\tt high},
 and {\tt swapCards} which takes two indices and switches the
 cards at the indicated positions.
-
 \index{random number}
-
-You can probably figure out how to write {\tt randomInt}
-by looking at Section~\ref{random}, although you will have to
-be careful about possibly generating indices that are out of range.
-
 \index{swapCards}
 \index{reference}
 
-You can also figure out {\tt swapCards} yourself.  The only
-tricky thing is to decide whether to swap just the references
-to the cards or the contents of the cards.  Does it matter
-which one you choose?  Which is faster?
-
-I leave the remaining implementation of these methods
-as an exercise.
+This process---writing pseudocode first and then writing
+methods to make it work---is called {\bf top-down development}
+(see \url{http://en.wikipedia.org/wiki/Top-down_and_bottom-up_design}).
+\index{program development}
 
 
 \section{Sorting}
 \label{sorting}
 \index{sorting}
 
-Now that we have messed up the deck, we need a way to put it
-back in order.  Ironically, there is an algorithm for
-sorting that is very similar to the algorithm for shuffling.
-This algorithm is sometimes called {\bf selection sort}
-because it works by traversing the array repeatedly and 
-selecting the lowest remaining card each time.
-
+Now that we have messed up the deck, we need a way to put it back in
+order.  There is an algorithm for sorting that is ironically similar
+to the algorithm for shuffling.  It's called {\bf selection sort}
+because it works by traversing the array repeatedly and selecting the
+lowest remaining card each time.
 \index{selection sort}
 
 During the first iteration we find the lowest card and swap
@@ -10100,15 +10089,12 @@ Here is pseudocode for selection sort:
 %
 Again, the pseudocode helps with the design of the {\bf helper
 methods}.  In this case we can use {\tt swapCards} again,
-so we only need one new one, called {\tt findLowestCard},
+so we only need one new one, called {\tt indexLowestCard},
 that takes an array of cards and an index where it should
 start looking.
-
 \index{helper method}
 \index{method!helper}
 
-Once again, I am going to leave the implementation up to
-the reader.
 
 
 \section {Subdecks}
@@ -10117,8 +10103,8 @@ the reader.
 How should we represent a hand or some other subset of a full deck?
 One possibility is to create a new class called {\tt Hand}, which
 might extend {\tt Deck}.  Another possibility, the one I will
-demonstrate, is to represent a hand with a {\tt Deck} object that
-happens to have fewer than 52 cards.
+demonstrate, is to represent a hand with a {\tt Deck} object with
+fewer than 52 cards.
 
 We might want a method, {\tt subdeck}, that takes a Deck
 and a range of indices, and that returns a new Deck that
@@ -10140,14 +10126,13 @@ card and high card are included.  This sort of computation can be
 confusing, and lead to ``off-by-one'' errors.  Drawing a picture is
 usually the best way to avoid them.
 
-\index{constructor}
-\index{overloading}
-
 Because we provide an argument with {\tt new}, the
 contructor that gets invoked will be the first one, which only
 allocates the array and doesn't allocate any cards.  Inside the
 {\tt for} loop, the subdeck gets populated with copies of the
 references from the deck.
+\index{constructor}
+\index{overloading}
 
 The following is a state diagram of a subdeck being created with the
 parameters {\tt low=3} and {\tt high=7}.  The result is a hand with 5
@@ -10158,12 +10143,12 @@ cards that are shared with the original deck; i.e. they are aliased.
 \index{aliasing}
 \index{reference}
 
-I have suggested that aliasing is not generally a good idea, since
-changes in one subdeck will be reflected in others, which is not the
+Aliasing is usually not generally a good idea, because
+changes in one subdeck are reflected in others, which is not the
 behavior you would expect from real cards and decks.  But if the
-objects in question are immutable, then aliasing is less dangerous.
+cards are immutable, aliasing is less dangerous.
 In this case, there is probably no reason ever to change the
-rank or suit of a card.  Instead we will create each card
+rank or suit of a card.  Instead we can create each card
 once and then treat it as an immutable object.  So for {\tt Card}s
 aliasing is a reasonable choice.
 
@@ -10174,27 +10159,22 @@ aliasing is a reasonable choice.
 
 In Section~\ref{shuffle} I wrote pseudocode for a shuffling algorithm.
 Assuming that we have a method called {\tt shuffleDeck} that takes
-a deck as an argument and shuffles it, we can create and shuffle
-a deck:
+a deck as an argument and shuffles it, we can use it to deal hands:
 
 \begin{verbatimtab}
     Deck deck = new Deck();
     shuffleDeck(deck);
-\end{verbatimtab}
-%
-Then, to deal out several hands, we can use {\tt subdeck}:
 
-\begin{verbatimtab}
-   Deck hand1 = subdeck(deck, 0, 4);
-   Deck hand2 = subdeck(deck, 5, 9);
-   Deck pack = subdeck(deck, 10, 51);
+    Deck hand1 = subdeck(deck, 0, 4);
+    Deck hand2 = subdeck(deck, 5, 9);
+    Deck pack = subdeck(deck, 10, 51);
 \end{verbatimtab}
 %
 This code puts the first 5 cards in one hand, the next 5 cards
 in the other, and the rest into the pack.
 
-When you thought about dealing, did you think we should give out one
-card at a time to each player in the round-robin style that is common
+When you thought about dealing, did you think we should give one
+card to each player in the round-robin style that is common
 in real card games?  I thought about it, but then realized that it is
 unnecessary for a computer program.  The round-robin convention is
 intended to mitigate imperfect shuffling and make it more difficult
@@ -10203,8 +10183,7 @@ for the dealer to cheat.  Neither of these is an issue for a computer.
 This example is a useful reminder of one of the dangers of engineering
 metaphors: sometimes we impose restrictions on computers that are
 unnecessary, or expect capabilities that are lacking, because we
-unthinkingly extend a metaphor past its breaking point.  Beware of
-misleading analogies.
+unthinkingly extend a metaphor past its breaking point.
 
 
 \section {Mergesort}
@@ -10270,7 +10249,7 @@ public static Deck merge(Deck d1, Deck d2) {
 \end{verbatimtab}
 
 The best way to test {\tt merge} is to build and shuffle a deck,
-use subdeck to form two(small) hands, and then use the sort
+use subdeck to form two (small) hands, and then use the sort
 routine from the previous chapter to sort the two halves.  Then
 you can pass the two halves to {\tt merge} to see if it works.
 
@@ -10293,12 +10272,11 @@ about mergesort is that it is recursive.  At the point where you sort
 the subdecks, why should you invoke the old, slow version of {\tt
 sort}?  Why not invoke the spiffy new {\tt mergeSort} you are in the
 process of writing?
-
 \index{recursion}
 
 Not only is that a good idea, it is {\em necessary} to
-achieve the performance advantage I promised.  to make it
-work, though, you have to add a base case so that it doesn't recurse
+achieve the performance advantage I promised.  But to make it
+work you have to have a base case; otherwise it recurses
 forever.  A simple base case is a subdeck with 0 or 1 cards.  If {\tt
 mergesort} receives such a small subdeck, it can return it
 unmodified, since it is already sorted.
@@ -10319,19 +10297,18 @@ public static Deck mergeSort(Deck deck) {
 %
 As usual, there are two ways to think about recursive programs:
 you can think through the entire flow of execution, or you
-can make the ``leap of faith.''  I have deliberately constructed
+can make the ``leap of faith.''  I have constructed
 this example to encourage you to make the leap of faith.
-
 \index{leap of faith}
 
-When you were using {\tt sortDeck} to sort the subdecks, you didn't
+When you use {\tt sortDeck} to sort the subdecks, you don't
 feel compelled to follow the flow of execution, right?  You just
-assumed that the {\tt sortDeck} method would work because you already
+assume it works because you already
 debugged it.  Well, all you did to make {\tt mergeSort} recursive was
 replace one sorting algorithm with another.  There is no reason to read
 the program differently.
 
-Well, actually, you have to give some thought to getting the
+Actually, you have to give some thought to getting the
 base case right and making sure that you reach it eventually,
 but other than that, writing the recursive version should be
 no problem.  Good luck!
@@ -10358,173 +10335,41 @@ another, more useful, method.
 \section{Exercises}
 
 \begin{exercise}
-Write a version of {\tt findBisect} that takes a subdeck as an
-argument, rather than a deck and an index range(see
-Section~\ref{findcard}).  Which version is more error-prone?  Which
-version do you think is more efficient?
-\end{exercise}
-
-
-\begin{exercise}
-In the previous version of the Card class, a deck is implemented as an
-array of {\tt Card}s.  For example, when we pass a ``deck'' as a
-parameter, the actual type of the parameter is {\tt Card[]}.
-
-In this chapter, we developed an alternative representation for a deck,
-an object type named {\tt Deck} that contains an array of cards as an
-instance variable.  In this exercise, you will implement the new
-representation of a deck.
-
-\begin{enumerate}
-
-\item Add a second file, named {\tt Deck.java} to the program.
-This file will contain the definition of the Deck class.
-
-\item Type in the constructors for the {\tt Deck} class as
-shown in Section~\ref{deck}.
-
-\item Of the methods currently in the {\tt Card} class, decide
-which ones would be more appropriate as members of the new
-{\tt Deck} class.  Move them there and make any changes necessary
-to get the program to compile and run again.
-
-\item Look over the program and identify every place where an
-array of {\tt Card}s is being used to represent a deck.  Modify
-the program throughout so that it uses a {\tt Deck} object
-instead.  You can use the version of {\tt printDeck} in
-Section~\ref{deck} as an example.
-
-It is probably a good idea to make this transformation
-one method at a time, and test the program after each change.
-On the other hand, if you are confident you know what you are
-doing, you can make most of the changes with search-and-replace
-commands.
-\end{enumerate}
-\end{exercise}
-
-
-\begin{exercise}
 The goal of this exercise is to implement the shuffling and
 sorting algorithms from this chapter.
 
 \begin{enumerate}
 
+\item Download the code from this chapter from 
+\url{http://thinkapjava.com/code/Card2.java}.
+and import it into your development environment.  I have
+provided outlines for the methods you will write, so the
+program should compile.  But when it runs it prints messages
+indicating that the empty methods are not working.  When you
+fill them in correctly, the messages should go away.
+
+\item If you did Exercise~\ref{ex.randint}, you already wrote
+{\tt randomInt}.  Otherwise, write it now and add code to test it.
+
 \item Write a method called {\tt swapCards} that takes a
-deck(array of cards) and two indices, and that switches
+deck (array of cards) and two indices, and that switches
 the cards at those two locations.
 
-HINT: it should switch the references to the two cards, rather than
-the contents of the two objects.  This is not only faster, but it
-makes it easier to deal with the case where cards are aliased.
+HINT: it should switch references, not
+the contents of the objects.  This is faster; also, it
+correctly handles the case where cards are aliased.
 
 \item Write a method called {\tt shuffleDeck} that uses the algorithm
 in Section~\ref{shuffle}.  You might want to use the {\tt randomInt}
 method from Exercise~\ref{ex.randomint}.
 
-\item Write a method called {\tt findLowestCard} that uses
+\item Write a method called {\tt indexLowestCard} that uses
 the {\tt compareCard} method to find the lowest card
 in a given range of the deck(from {\tt lowIndex} to {\tt highIndex},
 including both).
 
 \item Write a method called {\tt sortDeck} that arranges
 a deck of cards from lowest to highest.
-
-\end{enumerate}
-\end{exercise}
-
-
-\begin{exercise}
-to make life more difficult for card-counters, many casinos
-now use automatic shuffling machines that can do incremental shuffling,
-which means that after each hand, the used cards are returned to the
-deck and, instead of reshuffling the entire deck, the new cards are
-inserted in random locations.
-
-Write a method called {\tt incrementalShuffle} that takes a Deck
-and a Card and that inserts the card into the deck at a random location.
-This is an example of an {\bf incremental algorithm}.
-\end{exercise}
-
-
-\begin{exercise}
-The goal of this exercise is to write a program that generates
-random poker hands and classifies them, so that we can estimate
-the probability of the various poker hands.  Don't worry if you
-don't play poker; I'll tell you everything you need to know.
-
-\begin{enumerate}
-
-\item As a warmup, write a program that uses {\tt shuffleDeck} and
-{\tt subdeck} to generate and print four random poker hands with
-five cards each.  Did you get anything good?
-Here are the possible poker hands, in increasing order of value:
-
-\begin{description}
-
-\item[pair:] two cards with the same rank
-\vspace{-0.05in}
-
-\item[two pair:] two pairs of cards with the same rank
-\vspace{-0.05in}
-
-\item[three of a kind:] three cards with the same rank
-\vspace{-0.05in}
-
-\item[straight:] five cards with ranks in sequence
-\vspace{-0.05in}
-
-\item[flush:] five cards with the same suit
-\vspace{-0.05in}
-
-\item[full house:] three cards with one rank, two cards with another
-\vspace{-0.05in}
-
-\item[four of a kind:] four cards with the same rank
-\vspace{-0.05in}
-
-\item[straight flush:] five cards in sequence and with the same suit
-\vspace{-0.05in}
-
-\end{description} 
-
-
-\item Write a method called {\tt isFlush} that takes a Deck
-as a parameter and returns a boolean indicating whether the
-hand contains a flush.
-
-\item Write a method called {\tt isThreeKind} that takes a hand
-and returns a boolean indicating whether the hand contains
-Three of a Kind.
-
-\item Write a loop that generates a few thousand hands and
-checks whether they contain a flush or three of a kind.
-Estimate the probability of getting one of those hands.
-
-\item Write methods that test for the other poker hands.  Some
-are easier than others.  You might find it useful to write some
-general-purpose helper methods that can be used for more than one
-test.
-
-\item In some poker games, players get seven cards each, and
-they form a hand with the best five of the seven.  Modify your
-program to generate seven-card hands and recompute the probabilities.
-
-\end{enumerate}
-\end{exercise}
-
-
-\begin{exercise}
-As a special challenge, think of algorithms to check for various
-poker hands if there are wild cards.  For example, if ``deuces are
-wild,'' that means that if you have a card with rank 2, you can
-use it to represent any card in the deck.
-\end{exercise}
-
-
-\begin{exercise}
-The goal of this exercise is to implement mergesort.
-
-\begin{enumerate}
 
 \item Using the pseudocode in Section~\ref{mergesort}, write the
 method called {\tt merge}.  Be sure to test it before trying to use it
@@ -11050,79 +10895,6 @@ of the existing class.  Extending this metaphor, the existing
 class is sometimes called the {\bf parent} class.
 
 
-\section{Drawable rectangles}
-\index{Rectangle}
-\index{class!Rectangle}
-\index{drawable}
-
-An an example of inheritance, we are going to take the existing
-{\tt Rectangle} class and make it ``drawable.''  That is, we are going to
-create a new class called {\tt DrawableRectangle} that will have all
-the instance variables and methods of a {\tt Rectangle}, plus an
-additional method called {\tt draw} that will take a {\tt Graphics}
-object as a parameter and draw the rectangle.
-
-The class definition looks like this:
-
-\begin{verbatimtab}
-import java.awt.*;
-
-class DrawableRectangle extends Rectangle {
-
-    public void draw(Graphics g) {
-        g.drawRect(x, y, width, height);
-    }
-}
-\end{verbatimtab}
-
-Yes, that's really all there is in the whole class definition.  The
-first line imports the {\tt java.awt} package, which is where {\tt
-Rectangle} and {\tt Graphics} are defined.
-
-\index{AWT}
-\index{import}
-\index{statement!import}
-
-The next line indicates that {\tt DrawableRectangle} inherits from
-{\tt Rectangle}.  The keyword {\tt extends} is used to identify the
-class we are inheriting from, which is called the {\bf parent class}.
-
-The rest is the definition of the {\tt draw} method, which refers to
-the instance variables {\tt x}, {\tt y}, {\tt width} and {\tt height}.
-It might seem odd to refer to instance variables that don't appear in
-this class definition, but remember that they are inherited from the
-parent class.
-
-To create and draw a {\tt DrawableRectangle}, you could use
-the following:
-
-\begin{verbatimtab}
-public static void draw(Graphics g, int x, int y, int width, int height) {
-    DrawableRectangle dr = new DrawableRectangle();
-    dr.x = 10;       dr.y = 10;
-    dr.width = 200;  dr.height = 200;
-    dr.draw(g);
-}
-\end{verbatimtab}
-
-The parameters of {\tt draw} are a {\tt Graphics} object and
-the bounding box of the drawing area(not the coordinates of the
-rectangle).
-
-It might seem odd to use {\tt new} for a class
-that has no constructors.  {\tt DrawableRectangle}
-inherits the default constructor of its parent class, so there
-is no problem there.
-
-\index{constructor}
-
-We can set the instance variables of {\tt dr} and invoke methods
-on it in the usual way.  When we invoke {\tt draw}, Java invokes
-the method we defined in {\tt DrawableRectangle}.  If we invoked
-{\tt grow} or some other {\tt Rectangle} method on {\tt dr}, Java
-would know to use the method defined in the parent class.
-
-
 \section{The class hierarchy}
 \index{class hierarchy}
 \index{Object}
@@ -11264,6 +11036,81 @@ naturally using each style)?
 \end{enumerate}
 \end{exercise}
 
+\begin{exercise}
+The goal of this exercise is to write a program that generates
+random poker hands and classifies them, so that we can estimate
+the probability of the various poker hands.  Don't worry if you
+don't play poker; I'll tell you everything you need to know.
+
+\begin{enumerate}
+
+\item As a warmup, write a program that uses {\tt shuffleDeck} and
+{\tt subdeck} to generate and print four random poker hands with
+five cards each.  Did you get anything good?
+Here are the possible poker hands, in increasing order of value:
+
+\begin{description}
+
+\item[pair:] two cards with the same rank
+\vspace{-0.05in}
+
+\item[two pair:] two pairs of cards with the same rank
+\vspace{-0.05in}
+
+\item[three of a kind:] three cards with the same rank
+\vspace{-0.05in}
+
+\item[straight:] five cards with ranks in sequence
+\vspace{-0.05in}
+
+\item[flush:] five cards with the same suit
+\vspace{-0.05in}
+
+\item[full house:] three cards with one rank, two cards with another
+\vspace{-0.05in}
+
+\item[four of a kind:] four cards with the same rank
+\vspace{-0.05in}
+
+\item[straight flush:] five cards in sequence and with the same suit
+\vspace{-0.05in}
+
+\end{description} 
+
+
+\item Write a method called {\tt isFlush} that takes a Deck
+as a parameter and returns a boolean indicating whether the
+hand contains a flush.
+
+\item Write a method called {\tt isThreeKind} that takes a hand
+and returns a boolean indicating whether the hand contains
+Three of a Kind.
+
+\item Write a loop that generates a few thousand hands and
+checks whether they contain a flush or three of a kind.
+Estimate the probability of getting one of those hands.
+
+\item Write methods that test for the other poker hands.  Some
+are easier than others.  You might find it useful to write some
+general-purpose helper methods that can be used for more than one
+test.
+
+\item In some poker games, players get seven cards each, and
+they form a hand with the best five of the seven.  Modify your
+program to generate seven-card hands and recompute the probabilities.
+
+\end{enumerate}
+\end{exercise}
+
+
+\begin{exercise}
+As a special challenge, think of algorithms to check for various
+poker hands if there are wild cards.  For example, if ``deuces are
+wild,'' that means that if you have a card with rank 2, you can
+use it to represent any card in the deck.
+\end{exercise}
+
+
 
 \beforechapter
 
@@ -11370,7 +11217,7 @@ that the method is getting invoked and returning a value.
 
 In my programming career, I have wasted way too much time debugging
 a method, only to discover that it was never getting invoked.
-If I had used this development plan, it never would have happened.
+If I had used this development process, it never would have happened.
 
 \item The next step is to check the parameters the method
 receives.
