@@ -66,6 +66,10 @@ public class CardSoln2 {
 class Card {
     int suit, rank;
 
+    static String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
+    static String[] ranks = { "narf", "Ace", "2", "3", "4", "5", "6",
+			      "7", "8", "9", "10", "Jack", "Queen", "King" };
+
     /*
      * No-argument constructor.
      */
@@ -84,10 +88,6 @@ class Card {
      * Prints a card in human-readable form.
      */
     public static void printCard(Card c) {
-	String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
-	String[] ranks = { "narf", "Ace", "2", "3", "4", "5", "6",
-			   "7", "8", "9", "10", "Jack", "Queen", "King" };
-
 	System.out.println(ranks[c.rank] + " of " + suits[c.suit]);
     }
 

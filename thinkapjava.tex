@@ -2092,16 +2092,13 @@ is special, but the syntax is the same for other methods:
 \end{verbatimtab}
 %
 You can make up any name you want for your method, except
-that you can't call it {\tt main} or any other
+that you can't call it {\tt main} or any
 Java keyword.  By convention, Java methods start with a lower
 case letter and use ``camel caps,'' which is a cute name for
 {\tt jammingWordsTogetherLikeThis}.
 
-The list of
-parameters specifies what information, if any, you have to
+The list of parameters specifies what information, if any, you have to
 provide to use (or {\bf invoke}) the new method.
-
-\index{body!method}
 
 The parameter for {\tt main} is {\tt String[] args}, which
 means that whoever invokes {\tt main} has to provide an array of
@@ -2318,97 +2315,70 @@ follow the flow of execution.
 \index{parameter}
 \index{argument}
 
-Some of the Java methods we have used have {\bf parameters},
-which are values that you provide to let the method do its
-job.  For example, if you want to find the sine of a number,
+Some of the Java methods we have used require {\bf arguments},
+which are values that you provide when you invoke the method.
+For example, to find the sine of a number,
 you have to provide the number.  So {\tt sin}
-takes a {\tt double} as a parameter.  To print a string,
-you have to provide the string, which is why {\tt println}
-takes a {\tt String} as a parameter.
+takes a {\tt double} as an argument.  To print a string,
+you have to provide the string, so {\tt println}
+takes a {\tt String} as an argument.
 
-Some methods take more than one parameter, like {\tt pow},
-which takes two {\tt doubles}, the base and the exponent.
+Some methods take more than one argument; for example, {\tt pow}
+takes two {\tt doubles}, the base and the exponent.
 
-We have to specify not
-only how many parameters there are, but also what type they
-are.  So it shouldn't surprise you that when you write a
-class definition, the parameter list indicates the type of
-each parameter.  For example:
+When you use a method, you provide arguments.  When you write
+a method, you specify a list of parameters.  A {\bf parameter}
+is a variable that stores an argument.  The parameter list
+indicates what arguments are required.
+
+For example, {\tt printTwice} specifies a single parameter,
+{\tt s}, that has type {\tt String}.  I called it {\tt s} to
+suggest that it is a {\tt String}, but I could have given it 
+any legal variable name.
 
 \begin{verbatimtab}
-  public static void printTwice(String s) {
-    System.out.println(s);
-    System.out.println(s);
-  }
+    public static void printTwice(String s) {
+        System.out.println(s);
+        System.out.println(s);
+    }
 \end{verbatimtab}
 %
-This method takes a single parameter, named {\tt s}, that
-has type {\tt String}.  Whatever that parameter is(and at
-this point we have no idea what it is), it gets printed
-twice.  I chose the name {\tt s} as a hint that the parameter
-is a string, but in general you can choose any name you want.
-
-To invoke this method, we have to provide a {\tt String}.
-For example, we might have a {\tt main} method like this:
+When we invoke {\tt printTwice}, we have to provide
+a single argument with type {\tt String}.
 
 \begin{verbatimtab}
-  public static void main(String[] args) {
     printTwice("Don't make me say this twice!");
-  }
 \end{verbatimtab}
 
-The string you provide is called an {\bf argument}, and we
-say that the argument is {\bf passed} to the method.  In
-this case we are creating a string value that contains the
-text ``Don't make me say this twice!'' and passing that
-string as an argument to {\tt printTwice} where, contrary
-to its wishes, it will get printed twice.
+When you invoke a method, the argument you provide are assigned to the
+parameters.  In this example, the argument {\tt "Don't make me say this
+  twice!"} is assigned to the parameter {\tt s}.  This processing
+is called {\bf parameter passing} because the value gets passed
+from outside the method to the inside.
 
-Alternatively, if we had a {\tt String} variable, we could
-use it as an argument instead:
+An argument can be any kind of expression, so if you
+have a {\tt String} variable, you can use it as an argument:
 
 \begin{verbatimtab}
-  public static void main(String[] args) {
     String argument = "Never say never.";
     printTwice(argument);
-  }
 \end{verbatimtab}
 %
-Notice something very important: the name of the variable we pass
-as an argument ({\tt argument}) has nothing to do with the name of the
-parameter ({\tt s}).  Let me say that again:
-
-\begin{quote}
-
-{\bf The name of the variable we pass as an argument has nothing to do
-with the name of the parameter.}
-
-\end{quote}
-
-They can be the same or they can be different, but it is important
-to realize that they are not the same thing, except that they happen
-to have the same value (in this case the string {\tt "Never say never."}).
-
 The value you provide as an argument must have the same type as
-the parameter of the method you invoke.  This rule is
-important, but it gets complicated in Java for two reasons:
+the parameter.  For example, if you try this:
 
-\begin {itemize}
+\begin{verbatimtab}
+    printTwice(17);
+\end{verbatimtab}
+%
+You get an error message like ``cannot find symbol,'' which isn't very
+helpful.  The reason is that Java is looking for a method named
+{\tt printTwice} that can take an integer argument.  Since there
+isn't one, it can't find such a ``symbol.''
 
-\item There are some methods that can accept arguments with many
-different types.  For example, you can send {\em any} type to
-{\tt print} and {\tt println}, and it will do the right thing
-no matter what.  This sort of thing is an exception, though.
-
-\item If you violate this rule, the compiler often generates
-a confusing error message.  Instead of saying something like,
-``You are passing the wrong kind of argument to this method,''
-it will probably say something to the effect that it could
-not find a method with that name that would accept an argument
-with that type.  Once you have seen this error message a few
-times, though, you will figure out how to interpret it.
-
-\end{itemize}
+{\tt System.out.println} can accept any
+type as an argument.  But that is an exception; most methods
+are not so accommodating.
 
 
 \section {Stack diagrams}
@@ -2447,16 +2417,16 @@ that you have to declare the type of every parameter.  For
 example
 
 \begin{verbatimtab}
-  public static void printTime(int hour, int minute) {
-    System.out.print(hour);
-    System.out.print(":");
-    System.out.println(minute);
-  }
+    public static void printTime(int hour, int minute) {
+        System.out.print(hour);
+        System.out.print(":");
+        System.out.println(minute);
+    }
 \end{verbatimtab}
 %
 It might be tempting to write {\tt int hour, minute}, but
 that format is only legal for variable declarations, not
-for parameters.
+parameter lists.
 
 Another common source of confusion is that you do not have
 to declare the types of arguments.  The following is wrong!
@@ -3083,12 +3053,6 @@ a rectangular area.
 \item[typecast:]  An operator that converts from one type to another.
 In Java it appears as a type name in parentheses, like {\tt(int)}.
 
-\item[interface:]  A description of the parameters required by
-a method and their types.
-
-\item[prototype:]  A way of describing the interface to a method
-using Java-like syntax.
-
 \item[recursion:]  The process of invoking the same method you
 are currently executing.
 
@@ -3103,8 +3067,6 @@ are currently executing.
 \index{coordinate}
 \index{bounding box}
 \index{typecast}
-\index{interface}
-\index{prototype}
 \index{recursion}
 \index{base case}
 
@@ -3518,7 +3480,6 @@ void}, which indicates a void method, we see {\tt public static
 double}, which means that the return value from this method
 is a {\tt double}.  I still haven't explained what
 {\tt public static} means, but be patient.
-
 \index{static}
 
 The last line is a new form of the
@@ -4032,8 +3993,6 @@ definition is not very useful:
 
 \item[recursive:] an adjective used to describe a method that is recursive.
 
-\index{frabjuous}
-
 \end{description}
 
 If you saw that definition in the dictionary, you might be
@@ -4205,7 +4164,8 @@ Translated into Java, this is
     }
   }
 \end{verbatimtab}
-% If you try to follow the flow of execution here, even for small
+%
+If you try to follow the flow of execution here, even for small
 values of {\tt n}, your head explodes.  But according to the leap of
 faith, if we assume that the two recursive invocations work correctly, then
 it is clear that we get the right result by adding them together.
@@ -5169,7 +5129,7 @@ with the same name (just like local variables):
 \end{verbatimtab}
 %
 Notice that when I added a new parameter, I had to change the first
-line of the method (the interface or prototype), and I also had to
+line, and I also had to
 change the place where the method is invoked in {\tt printMultTable}.
 As expected, this program generates a square 7x7 table:
 
@@ -5633,7 +5593,7 @@ Throws: IndexOutOfBoundsException - if the index argument is negative
   or not less than the length of this string.
 \end{verbatimtab}
 %
-The first line is the method's {\bf prototype}, which indicates the
+The first line is the method's {\bf prototype}, which specifies the
 name of the method, the type of the parameters, and the return type.
 
 The next line describes what the method does.  The following
@@ -5934,9 +5894,9 @@ and {\tt compareTo} methods.  For example:
     }
 \end{verbatimtab}
 %
-The syntax here is a little weird.  To compare two things, you
-have to invoke a method on one of them and pass the other
-as an argument.
+The syntax here is a little weird.  To compare two {\tt String}s,
+you have to invoke a method on one of them and pass the other as an
+argument.
 
 The return value from {\tt equals} is straightforward enough;
 {\tt true} if the strings contain the same characters, and
@@ -5951,15 +5911,9 @@ the difference is positive.  In this case the return value
 is positive 8, because the second letter of ``Ada'' comes
 before the second letter of ``Alan'' by 8 letters.
 
-Using {\tt compareTo} is often tricky, and I never remember
-which way is which without looking it up, but the good news
-is that the interface is pretty standard for comparing many
-types of objects, so once you get it you are all set.
-
-Just for completeness, I should admit that it is
-{\em legal}, but very seldom {\em correct}, to use the {\tt ==}
-operator with {\tt String}s.  But what that means will not make
-sense until later, so for now, don't do it.
+Just for completeness, I should admit that it is {\em legal}, but very
+seldom {\em correct}, to use the {\tt ==} operator with {\tt String}s.
+I explain why in Section~\ref{equivalence}; for now, don't do it.
 
 
 \section{Glossary}
@@ -5972,6 +5926,9 @@ methods that operate on it.  The objects we have used so far are
 
 \item[index:]  A variable or value used to select one of the
 members of an ordered set, like a character from a string.
+
+\item[prototype:]  The first line of a method, which specifies
+the name, parameters and return type.
 
 \item[traverse:]  To iterate through all the elements of a set
 performing a similar operation on each.
@@ -6998,6 +6955,7 @@ public static void main(String[] args) {
 
 
 \begin{exercise}
+\label{ex.biginteger}
 You might be sick of the factorial
 method by now, but we're going to do one more version.
 
@@ -7706,15 +7664,13 @@ java.util} package.
 \index{operator!object}
 
 In the next few
-sections, I develop interfaces for
-methods that operate on objects.  For some operations, you have a
-choice of several possible interfaces, so you should consider the pros
-and cons of each of these:
+sections, I demonstrate three kinds of methods that
+operate on objects:
 
 \begin{description}
 
-\item[pure function:]  Takes objects and/or primitives as
-arguments but does not modify the objects.  The return value is
+\item[pure function:]  Takes objects as
+arguments but does not modify them.  The return value is
 either a primitive or a new object created inside the method.
 
 \item[modifier:]  Takes objects as arguments and modifies some
@@ -7725,6 +7681,9 @@ object that gets filled in by the method.  Technically, this is
 a type of modifier.
 
 \end{description}
+
+Often it is possible to write a method as a pure function, modifier,
+or a fill-in method.  I will discuss the pros and cons of each.
 
 
 \section{Pure functions}
@@ -7897,12 +7856,10 @@ Can you think of a solution that does not require iteration?
 \index{fill-in method}
 \index{method!fill-in}
 
-Occasionally you see methods like {\tt addTime} written
-with a different interface (different arguments and return values).
 Instead of creating a new object every time {\tt addTime} is
-invoked, we could require the caller to provide an ``empty''
-object where {\tt addTime} should store the result.  Compare
-the following with the previous version:
+invoked, we could require the caller to provide an
+object where {\tt addTime} stores the result.  Compare
+this to the previous version:
 
 \begin{verbatimtab}
     public static void addTimeFill(Time t1, Time t2, Time sum) {
@@ -7921,27 +7878,22 @@ the following with the previous version:
     }
 \end{verbatimtab}
 %
-An advantage of this approach is that the caller can reuse an
-object to perform a series of additions.  This can be
-more efficient, but it can be confusing enough to cause
-subtle errors.  For the vast majority of programming, it is worth
-spending a little run time to avoid a lot of debugging time.
+The result is stored in {\tt sum}, so the return type is {\tt void}.
 
+Modifiers and fill-in methods are efficient because they
+don't have to create new objects.  But they make it more
+difficult to isolate parts of a program; in large projects they can
+cause errors that are hard to find.
 
-\section{Which is best?}
-\index{programming style}
-
-Anything that can be done with modifiers and fill-in methods can also
-be done with pure functions.  In fact, there are programming
-languages, called {\bf functional} programming languages, that only
-allow pure functions.  Some programmers believe that programs that use
-pure functions are faster to develop and less error-prone than
-programs that use modifiers.  Nevertheless, there are times when
-modifiers are convenient, and some cases where functional programs
-are less efficient.
+Pure functions help manage the complexity of large projects,
+in part by making certain kinds of errors impossible.  Also,
+because the result of a pure function depends only on the parameters,
+it is possible to speed them up by storing previously-computed
+results.
+\index{pure function}
 
 In general, I recommend that you write pure functions whenever
-it is reasonable to do so, and resort to modifiers only if there
+it is reasonable, and resort to modifiers only if there
 is a compelling advantage.
 
 
@@ -7956,7 +7908,7 @@ In this chapter I demonstrated a program development process called
   is similar to test-driven development (TDD); the difference is that
   TDD is usually based on automated testing.  See
   \url{http://en.wikipedia.org/wiki/Test-driven_development}.}.  For
-each method, I wrote a rough draft (or prototype) that performed the
+each method, I wrote a rough draft that performed the
 basic calculation, then tested it on a few cases, correcting flaws
 as I found them.
 
@@ -8974,7 +8926,7 @@ Write a method called {\tt max} that takes an array as a parameter
 and that uses {\tt maxInRange} to find and return the largest value.
 Methods like {\tt max} are sometimes called {\bf wrapper methods}
 because they provide a layer of abstraction around an awkward method
-and provide an interface that is easier to use.  The method that actually
+and make it easier to use.  The method that actually
 performs the computation is called the {\bf helper method}.
 
 \item Write a recursive version of {\tt find} using the
@@ -9299,6 +9251,7 @@ is {\tt Jack of Diamonds}.
 
 
 \section{The {\tt sameCard} method}
+\label{equivalence}
 \index{sameCard}
 
 The word ``same'' is one of those things that occur in natural
@@ -9786,7 +9739,8 @@ Java throws a {\tt StackOverflowException}.
 \index{deck}
 \index{subdeck}
 
-Looking at the interface to {\tt findBisect}
+\index{prototype}
+Here is the prototype of {\tt findBisect}:
 
 \begin{verbatimtab}
 public static int findBisect(Card[] deck, Card card, int low, int high)
@@ -9916,7 +9870,6 @@ form will help you learn (I hope), but don't write code like this.
 
 You can download the code in this chapter from
 \url{http://thinkapjava.com/code/Card2.java}.
-
 
 
 \section{The {\tt Deck} class}
@@ -10314,6 +10267,47 @@ but other than that, writing the recursive version should be
 no problem.  Good luck!
 
 
+\section{Class variables}
+\index{class variables}
+
+So far we have seen local variables, which are declared inside
+a method, and instance variables, which are declared in a class
+definition, usually before the method definitions.
+
+Local variables are created when a method is invoked and destroyed
+when the method ends.  Instance variables are created when you
+create an object and destroyed when the object is garbage collected.
+
+Now it's time to learn about {\bf class variables}.  Like instance
+variables, class variables are defined in a class definition before
+the method definitions, but they are identified by the keyword {\tt
+  static}.  They are created when the program starts and survive until
+the program ends.
+
+You can refer to a class variable from anywhere inside the class
+definition.  Class variables are often used to store constant
+values that are needed in several places.
+
+As an example, here is a version of {\tt Card} where {\tt suits}
+and {\tt ranks} are class variables:
+
+\begin{verbatim}
+class Card {
+    int suit, rank;
+
+    static String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
+    static String[] ranks = { "narf", "Ace", "2", "3", "4", "5", "6",
+			   "7", "8", "9", "10", "Jack", "Queen", "King" };
+
+    public static void printCard(Card c) {
+	System.out.println(ranks[c.rank] + " of " + suits[c.suit]);
+    }
+\end{verbatim}
+
+Inside {\tt printCard} we can refer to {\tt suits} and {\tt ranks} as
+if they were local variables.
+
+
 \section{Glossary}
 
 \begin{description}
@@ -10408,44 +10402,40 @@ deck = mergeSort(deck);      // replaces old deck with new
 \index{programming!functional}
 \index{programming!procedural}
 
-There are many programming languages in the world, and almost as many
-programming styles(sometimes called paradigms).  Three styles that
-have appeared in this book are procedural, functional, and
-object-oriented.  Although Java is usually thought of as an
-object-oriented language, it is possible to write Java programs in any
-style.  The style I have demonstrated in this book is pretty much
-procedural.  Existing Java programs and libraries are
-written in a mixture of all three styles, but they tend to be more
-object-oriented than the programs in this book.
+There are many programming languages and almost as many
+programming styles (sometimes called paradigms).  
+The programs we have written so far are {\bf procedural}, 
+because the emphasis is on specifying computational procedures.
 
-It's not easy to define what object-oriented programming is,
-but here are some of its characteristics:
+Most Java programs are {\bf object-oriented}, which means that
+the focus is on objects and their interactions.
+Here are some of its characteristics of object-oriented programming:
 
 \begin{itemize}
 
-\item Object definitions (classes) usually correspond to 
-relevant real-world objects.  For example, in Chapter~\ref{deck},
-the creation of the {\tt Deck} class was a step toward object-oriented
-programming.
+\item Objects often represent entities in the real world.
+  In the previous chapter, creating the {\tt Deck} class
+  was a step toward object-oriented programming.
 
-\item The majority of methods are object methods (the kind you
-invoke on an object) rather than class methods (the kind you just
-invoke).  So far all the methods we have written have been class
-methods.  In this chapter we write some object methods.
+\item The majority of methods are object methods (like the methods you
+  invoke on {\tt Strings}) rather than class methods (like the {\tt Math}
+  methods).  The methods we have written so far have
+  been class methods.  In this chapter we write some object methods.
 
-\item The language feature most associated with object-oriented
-programming is {\bf inheritance}.  I cover inheritance later in
-this chapter.
+\item Objects are isolated from each other by limiting the ways they
+  interact, especially by preventing them from accessing
+  instance variables without invoking methods.
+
+\item Classes are organized in family trees where
+  new classes extend existing classes, adding new methods and
+  replacing others.
 
 \end{itemize}
 
-\index{inheritance}
-
-Recently object-oriented programming has become quite popular, and
-there are people who claim that it is superior to other styles in
-various ways.  I hope that by exposing you to a variety of styles I
-have given you the tools you need to understand and evaluate these
-claims.
+In this chapter I translate the {\tt Card} program from the
+previous chapter from procedural to object oriented style.  You
+can download the code from this chapter from
+\url{http://thinkapjava.com/code/CardSoln3.java}.
 
 
 \section{Object methods and class methods}
@@ -10456,385 +10446,179 @@ claims.
 \index{static}
 
 There are two types of methods in Java, called {\bf class methods} and
-{\bf object methods}.  So far, every method we have written has been a
-class method.  Class methods are identified by the keyword {\tt
+{\bf object methods}.  Class methods are identified by the keyword {\tt
   static} in the first line.  Any method that does {\em not} have the
 keyword {\tt static} is an object method.
 
-Although we have not written any object methods, we have invoked some.
+Although we have not written object methods, we have invoked some.
 Whenever you invoke a method ``on'' an object, it's an object method.
 For example, {\tt charAt} and the other methods we invoked on {\tt String}
 objects are all object methods.
 
 Anything that can be written as a class method can also be written as an
-object method, and vice versa.  Sometimes it is just more natural to
-use one or the other.  For reasons that will be clear soon, object
-methods are often shorter than the corresponding class methods.
+object method, and vice versa.  But sometimes it is more natural to
+use one or the other.
 
+For example, here is {\tt printCard} as a class method:
 
-\section{The current object}
+\begin{verbatim}
+    public static void printCard(Card c) {
+	System.out.println(ranks[c.rank] + " of " + suits[c.suit]);
+    }
+\end{verbatim}
+
+Here it is re-written as an object method:
+
+\begin{verbatim}
+    public void print() {
+	System.out.println(ranks[rank] + " of " + suits[suit]);
+    }
+\end{verbatim}
+
+Here are the changes:
+
+\begin{enumerate}
+
+\item I removed {\tt static}.
+
+\item I changed the name of the method to be more idiomatic.
+
+\item I removed the parameter.
+
+\item Inside an object method you can refer to instance variables
+as if they were local variables, so I changed {\tt c.rank} to {\tt rank},
+and likewise for {\tt suit}.
+
+\end{enumerate}
+
+Here's how this method is invoked:
+
+\begin{verbatim}
+    Card card = new Card(1, 1);
+    card.print();
+\end{verbatim}
+
+When you invoke a method on an object, that object becomes the {\bf
+current object}, also known as {\tt this}.  Inside {\tt print},
+{\tt this} refers to the card the method was invoked on.
 \index{current object}
 \index{object!current}
 \index{this}
-
-When you invoke a method on an object, that object becomes {\bf the
-current object}.  Inside the method, you can refer to the instance
-variables of the current object by name, without having to specify the
-name of the object.
-
-\index{constructor}
-
-Also, you can refer to the current object using the keyword {\tt
-this}.  We have already seen {\tt this} used in constructors.  In
-fact, you can think of constructors as being a special kind of object
-method.
-
-
-\section{Complex numbers}
-\index{complex number}
-\index{Complex}
-\index{class!Complex}
-\index{arithmetic!complex}
-
-As a running example for the rest of this chapter we will consider a
-class definition for complex numbers.  Complex numbers are useful for
-many branches of mathematics and engineering, and many computations
-are performed using complex arithmetic.  A complex number is the sum
-of a real part and an imaginary part, and is usually written in the
-form $x + yi$, where $x$ is the real part, $y$ is the imaginary part,
-and $i$ represents the square root of -1.
-Thus, $i \cdot i = -1$.
-
-The following is a class definition for a new object type called {\tt
-Complex}:
-
-\begin{verbatimtab}
-class Complex
-{
-    // instance variables
-    double real, imag;
-
-    // constructor
-    public Complex() {
-        this.real = 0.0;  this.imag = 0.0;
-    }
-	
-    // constructor
-    public Complex(double real, double imag) {
-        this.real = real;  
-        this.imag = imag;
-    }
-}
-\end{verbatimtab}
-%
-There should be nothing surprising here.  The instance variables
-are doubles that contain the real and imaginary parts.
-The two constructors are the usual kind: one takes no parameters
-and assigns default values to the instance variables, the other
-takes parameters that are identical to the instance variables.
-As we have seen before, the keyword {\tt this} is used to refer
-to the object being initialized.
-
-\index{instance variable}
-\index{variable!instance}
-\index{constructor}
-
-In {\tt main}, or anywhere else we want to create {\tt Complex}
-objects, we have the option of creating the object and then
-setting the instance variables, or doing both at the same time:
-
-\begin{verbatimtab}
-    Complex x = new Complex();
-    x.real = 1.0;
-    x.imag = 2.0;
-    Complex y = new Complex(3.0, 4.0);
-\end{verbatimtab}
-
-
-\section{A function on {\tt Complex} numbers}
-\index{operator!Complex}
-\index{method!function}
-\index{pure function}
-
-Let's look at some of the operations we might want to perform
-on complex numbers.  The absolute value of a complex number is
-defined to be $\sqrt {x^2 + y^2}$.  The {\tt abs} method is
-a pure function that computes the absolute value.  Written as
-a class method, it looks like this:
-
-\begin{verbatimtab}
-// class method
-public static double abs(Complex c) {
-    return Math.sqrt(c.real * c.real + c.imag * c.imag);
-} 
-\end{verbatimtab}
-%
-This version of {\tt abs} calculates the absolute value of {\tt c},
-the {\tt Complex} object it receives as a parameter.  The next version
-of {\tt abs} is an object method; it calculates the absolute value of
-the current object(the object the method was invoked on).  Thus,
-it does not receive any parameters:
-
-\begin{verbatimtab}
-// object method
-public double abs() {
-    return Math.sqrt(real*real + imag*imag);
-}
-\end{verbatimtab}
-%
-I removed the keyword {\tt static} to indicate that this is an object
-method.  Also, I eliminated the unnecessary parameter.  Inside the
-method, I can refer to the instance variables {\tt real} and {\tt
-imag} by name without having to specify an object.  Java knows
-implicitly that I am referring to the instance variables of the
-current object.  If I wanted to make it explicit, I could have used
-the keyword {\tt this}:
-
-\begin{verbatimtab}
-// object method
-public double abs() {
-    return Math.sqrt(this.real * this.real + this.imag * this.imag);
-}
-\end{verbatimtab}
-
-But that would be longer and not really any clearer.  To invoke
-this method, we invoke it on an object, for example
-
-\begin{verbatimtab}
-    Complex y = new Complex(3.0, 4.0);
-    double result = y.abs();
-\end{verbatimtab}
-
-
-\section{Another function on {\tt Complex} numbers}
-
-Another operation we might want to perform on complex numbers
-is addition.  You can add complex numbers by adding the real
-parts and adding the imaginary parts.  Written as a class method,
-that looks like:
-
-\begin{verbatimtab}
-public static Complex add(Complex a, Complex b) {
-    return new Complex(a.real + b.real, a.imag + b.imag);
-}
-\end{verbatimtab}
-
-To invoke this method, we would pass both operands as arguments:
-
-\begin{verbatimtab}
-    Complex sum = add(x, y);
-\end{verbatimtab}
-
-Written as an object method, it would take only one argument,
-which it would add to the current object:
-
-\begin{verbatimtab}
-public Complex add(Complex b) {
-    return new Complex(real + b.real, imag + b.imag);
-}
-\end{verbatimtab}
-
-Again, we can refer to the instance variables of the current
-object implicitly, but to refer to the instance variables of
-{\tt b} we have to name {\tt b} explicitly using dot notation.
-To invoke this method, you invoke it on one of the operands
-and pass the other as an argument.
-
-\index{dot notation}
-
-\begin{verbatimtab}
-    Complex sum = x.add(y);
-\end{verbatimtab}
-
-From these examples you can see that the current object({\tt this})
-can take the place of one of the parameters.  For this reason,
-the current object is sometimes called an {\bf implicit parameter}.
-
-
-\section{A modifier}
-\index{modifier}
-\index{method!modifier}
-
-As yet another example, we'll look at {\tt conjugate}, which is
-a modifier method that transforms a {\tt Complex} number into
-its complex conjugate.  The complex conjugate of $x + yi$ is
-$x - yi$.
-
-As a class method, this looks like:
-
-\begin{verbatimtab}
-public static void conjugate(Complex c) {
-    c.imag = -c.imag;
-}
-\end{verbatimtab}
-
-As an object method, it looks like
-
-\begin{verbatimtab}
-public void conjugate() {
-    imag = -imag;
-}
-\end{verbatimtab}
-
-By now you should be getting the sense that converting a method
-from one kind to another is a mechanical process.  With a little
-practice, you will be able to do it without giving it much
-thought, which is good because you should not be constrained to
-writing one kind of method or the other.  You should be equally
-familiar with both so that you can choose whichever one seems
-most appropriate for the operation you are writing.
-
-For example, I think that {\tt add} should be written as a class
-method because it is a symmetric operation of two operands, and
-it makes sense for both operands to appear as parameters.  To me, it
-seems odd to invoke the method on one of the operands and pass
-the other as an argument.
-
-On the other hand, simple operations that apply to a single object
-can be written most concisely as object methods(even if they
-take some additional arguments).
 
 
 \section{The {\tt toString} method}
 \index{toString}
 \index{method!toString}
 
-Every object type has a method called {\tt toString} that generates
-a string representation of the object.
-When you print an object using {\tt print} or {\tt println},
-Java invokes the object's {\tt toString} method.  The default
+Every object type has a method called {\tt toString} that returns a
+string representation of the object.  When you print an object using
+{\tt print} or {\tt println}, Java invokes the object's {\tt toString}
+method.
+
+The default
 version of {\tt toString} returns a string that contains the type
-of the object and a unique identifier(see Section~\ref{printobject}).
+of the object and a unique identifier (see Section~\ref{printobject}).
 When you define a new object
 type, you can {\bf override} the default behavior by providing a
 new method with the behavior you want.
 
-Here is what {\tt toString} might look like for the {\tt Complex}
-class:
+For example, here is a {\tt toString} method for {\tt Card}:
 
 \begin{verbatimtab}
 public String toString() {
-    return real + " + " + imag + "i";
+    return ranks[rank] + " of " + suits[suit];
 }
 \end{verbatimtab}
 %
-The return type for {\tt toString} is {\tt String}, naturally,
+The return type is {\tt String}, naturally,
 and it takes no parameters.  You can invoke {\tt toString} in
 the usual way:
 
 \begin{verbatimtab}
-    Complex x = new Complex(1.0, 2.0);
-    String s = x.toString();
+    Card card = new Card(1, 1);
+    String s = card.toString();
 \end{verbatimtab}
 %
 or you can invoke it indirectly through {\tt println}:
 
 \begin{verbatimtab}
-    System.out.println(x);
+    System.out.println(card);
 \end{verbatimtab}
-%
-In this case, the output is {\tt 1.0 + 2.0i}.
-
-This version of {\tt toString} does not look good if the imaginary
-part is negative.  As an exercise, write a better version.
 
 
 \section{The {\tt equals} method}
 \index{equals}
 \index{method!equals}
 
-When you use the {\tt ==} operator to compare two objects,
-what you are really asking is, ``Are these two things the same
-object?''  That is, do both objects refer to the same location
-in memory.
+In Section~\ref{} we talked about two notions of equality:
+identity, which means that two variables refer to the same
+object, and equivalence, which means that they have the same
+value.
 
-For many types, that is not the appropriate definition of
-equality.  For example, two complex numbers are equal if their
-real parts are equal and their imaginary parts are equal.  They
-don't have to be the same object.
+The {\tt ==} operator tests identity, but there is no operator
+that tests equivalence, because what ``equivalence'' means
+depends on the type of the objects.  Instead, objects provide
+a method named {\tt equals} that defines equivalence.
 
-\index{type!object}
+Java classes provide {\tt equals} methods that do the right
+thing.  But for user defined types the default behavior is the
+same as identity, which is usually not what you want.
 
-When you define a new object type, you can provide your own
-definition of equality by providing an object method called
-{\tt equals}.  For the {\tt Complex} class, this looks like:
-
-\begin{verbatimtab}
-public boolean equals(Complex b) {
-    return(real == b.real && imag == b.imag);
-}
-\end{verbatimtab}
-%
-By convention, {\tt equals} is always an object method that
-returns a {\tt boolean}.
-
-The documentation of {\tt equals} in the {\tt Object} class
-provides some guidelines you should keep in mind when you
-make up your own definition of equality:
-
-\begin{quote}
-
-The {\tt equals} method implements an equivalence relation: 
-
-\index{equality}
-\index{identity}
-
-\begin{itemize}
-
-\item It is reflexive: for any reference value {\tt x}, {\tt
-x.equals(x)} should return {\tt true}.
-
-\item It is symmetric: for any reference values {\tt x} and {\tt y},
-{\tt x.equals(y)} should return {\tt true} if and only if {\tt
-y.equals(x)} returns {\tt true}.
-
-\item It is transitive: for any reference values {\tt x}, {\tt y}, and
-{\tt z}, if {\tt x.equals(y)} returns {\tt true} and {\tt y.equals(z)}
-returns {\tt true}, then {\tt x.equals(z)} should return {\tt true}.
-
-\item It is consistent: for any reference values {\tt x} and {\tt y},
-multiple invocations of {\tt x.equals(y)} consistently return {\tt true} or
-consistently return {\tt false}.
-
-\item For any reference value {\tt x}, {\tt x.equals(null)} should
-return {\tt false}.
-
-\end{itemize}
-
-\end{quote}
-
-The definition of {\tt equals} I provided satisfies all these
-conditions except one.  Which one?  As an exercise, fix it.
-
-
-\section{Invoking one object method from another}
-\index{method!invoking}
-
-As you might expect, it is legal and common to invoke
-one object method from another.  For example, to normalize a
-complex number, you divide both parts by the absolute
-value.  It may not be obvious why this is useful, but it is.
-
-Let's write the method {\tt normalize} as an object method, and
-let's make it a modifier.
+For {\tt Card}s we already have a method that checks equivalence:
 
 \begin{verbatimtab}
-public void normalize() {
-    double d = this.abs();
-    real = real/d;
-    imag = imag/d;
-}
+    public static boolean sameCard(Card c1, Card c2) {
+	return (c1.suit == c2.suit && c1.rank == c2.rank);
+    }
 \end{verbatimtab}
 %
-The first line finds the absolute value of the current object
-by invoking {\tt abs} on the current object.  In this case
-I named the current object explicitly, but I could have left
-it out.  If you invoke one object method within another, Java
-assumes that you are invoking it on the current object.
+So all we have to do is rewrite is as an object method:
+
+\begin{verbatimtab}
+    public boolean equals(Card c2) {
+	return (suit == c2.suit && rank == c2.rank);
+    }
+\end{verbatimtab}
+%
+Again, I removed {\tt static} and the first parameter, {\tt c1}.
+Here's how it's invoked:
+
+\begin{verbatimtab}
+    Card card = new Card(1, 1);
+    Card card2 = new Card(1, 1);
+    System.out.println(card.equals(card2));
+\end{verbatimtab}
+%
+Inside {\tt equals}, {\tt card} is the current object and {\tt card2}
+is the parameter, {\tt c2}.  For methods that operate on two objects
+of the same type, I sometimes use {\tt this} explicitly and call
+the parameter {\tt that}:
+
+\begin{verbatimtab}
+    public boolean equals(Card that) {
+	return (this.suit == that.suit && this.rank == that.rank);
+    }
+\end{verbatimtab}
+%
+I think it improves readability.
 
 \begin{exercise}
-Rewrite {\tt normalize} as a pure function. 
-Then rewrite it as a class method.
+
+Download \url{http://thinkapjava.com/code/CardSoln2.java} and 
+\url{http://thinkapjava.com/code/CardSoln3.java}.
+
+{\tt CardSoln2.java} contains solutions to the exercises
+in the previous chapter.  It uses only class methods (except the
+constructors).
+
+{\tt CardSoln3.java} contains the same program, but most of the
+methods are object methods.  I left {\tt merge} unchanged because
+I think it is more readable as a class method.
+
+As an exercise, transform {\tt merge} into an object method,
+and change {\tt mergeSort} accordingly.  Which version of
+{\tt merge} do you prefer?
+
 \end{exercise}
 
 
@@ -10843,56 +10627,102 @@ Then rewrite it as a class method.
 \index{method!class}
 \index{overloading}
 
-If you have both object methods and class methods in the same class
-definition, it is easy to get confused.  A common way to organize a
-class definition is to put all the constructors at the beginning,
-followed by all the object methods and then all the class methods.
+If you have object methods and class methods in the same class, it is
+easy to get confused.  A common way to organize a class definition is
+to put all the constructors at the beginning, followed by all the
+object methods and then all the class methods.
 
 You can have an object method and a class method with the same
 name, as long as they do not have the same number and types of
 parameters.  As with other kinds of overloading, Java decides
 which version to invoke by looking at the arguments you provide.
-
 \index{static}
 
 Now that we know what the keyword {\tt static} means, you
 have probably figured out that {\tt main} is a class method,
 which means that there is no ``current object'' when it is invoked.
-
 \index{current object}
 \index{this}
 \index{instance variable}
 \index{variable!instance}
 
 Since there is no current object in a class method, it is an
-error to use the keyword {\tt this}.  If you try, you might get
-an error message like: ``Undefined variable: this.''  Also, you
-cannot refer to instance variables without using dot notation
-and providing an object name.  If you try, you might get 
-``Can't make a static reference to nonstatic variable...''
-This is not one of the better error messages, since it uses
-some non-standard language.  For example, by ``nonstatic
-variable'' it means ``instance variable.''  But once you know
-what it means, you know what it means.
+error to use the keyword {\tt this}.  If you try, you get
+an error message like: ``Undefined variable: this.''
+
+Also, you cannot refer to instance variables without using dot
+notation and providing an object name.  If you try, you get a message
+like ``non-static variable... cannot be referenced from a static
+context.''  By ``nonstatic variable'' it means ``instance variable.''
 
 
 \section{Inheritance}
 \index{inheritance}
 
-The language feature that is most often associated with
+The language feature most often associated with
 object-oriented programming is {\bf inheritance}.  Inheritance is the
-ability to define a new class that is a modified version of a
-previously-defined class.
+ability to define a new class that is a modified version of an
+existing class.
 
-The primary advantage of this feature is that you can add new methods
-or instance variables to an existing class without modifying the
-existing class.  This is particularly useful for Java classes,
+Extending the metaphor, the existing
+class is sometimes called the {\bf parent} class and the new
+class is called the {\bf child}.
+
+The primary advantage of this feature is that you can add methods
+and instance variables without modifying the
+parent.  This is particularly useful for Java classes,
 since you can't modify them even if you want to.
 
-The reason inheritance is called ``inheritance'' is that the
-new class inherits all the instance variables and methods
-of the existing class.  Extending this metaphor, the existing
-class is sometimes called the {\bf parent} class.
+If you did the GridWorld exercises (Chapters~\ref{gridworld} and
+\ref{gridworld2}) you have seen examples of inheritance:
+
+\begin{verbatimtab}
+public class BoxBug extends Bug {
+    private int steps;
+    private int sideLength;
+
+    public BoxBug(int length) {
+        steps = 0;
+        sideLength = length;
+    }
+}
+\end{verbatimtab}
+
+{\tt BoxBug extends Bug} means that {\tt BoxBug} is a new
+kind of {\tt Bug} that inherits the methods and instance
+variables of {\tt Bug}.  In addition:
+
+\begin{itemize}
+
+\item The child class can have additional instance variables; in
+this example, {\tt BoxBug}s have {\tt steps} and {\tt sideLength}.
+
+\item The child can have additional methods; in this example,
+{\tt BoxBugs} have an additional constructor that takes an integer
+parameter.
+
+\item The child can {\bf override} a method from the parent; in
+this example, the child provides {\tt act} (not shown here),
+which overrides the {\tt act} method from the parent.
+
+\end{itemize}
+
+And if you did the Graphics exercises in Appendix~\ref{graphics}, you
+saw another example:
+
+\begin{verbatim}
+public class MyCanvas extends Canvas {
+
+    public void paint(Graphics g) {
+	g.fillOval(100, 100, 200, 200);
+    }
+}
+\end{verbatim}
+
+{\tt MyCanvas} is a new kind of {\tt Canvas} with no new methods
+or instance variables, but it overrides {\tt paint}.
+
+If you didn't do either of those exercises, now is a good time!
 
 
 \section{The class hierarchy}
@@ -10902,25 +10732,24 @@ class is sometimes called the {\bf parent} class.
 \index{class!parent}
 
 In Java, all classes extend some other class.  The most basic class is
-called {\tt Object}.  It contains no instance variables, but it does
+called {\tt Object}.  It contains no instance variables, but it
 provide the methods {\tt equals} and {\tt toString}, among others.
 
 Many classes extend {\tt Object}, including almost all of the classes
-we have written and many Java classes, like {\tt
-Rectangle}.  Any class that does not explicitly name a parent inherits
-from {\tt Object} by default.
+we have written and many Java classes, like {\tt java.awt.Rectangle}.
+Any class that does not explicitly name a parent inherits from {\tt
+  Object} by default.
 
-Some inheritance chains are longer, though.  For example, in {\tt
-  java.awt}, {\tt Frame} extends {\tt Window}, which extends {\tt
-  Container}, which extends {\tt Component}, which extends {\tt
-  Object}.  No matter how long the chain, {\tt Object} is the ultimate
-parent of all classes.
+Some inheritance chains are longer, though.  For example, {\tt
+  javax.swing.JFrame} extends {\tt java.awt.Frame}, which extends {\tt
+  Window}, which extends {\tt Container}, which extends {\tt
+  Component}, which extends {\tt Object}.  No matter how long the
+chain, {\tt Object} is the common ancestor of all classes.
 
-All the classes in Java can be organized into a ``family tree'' that
-is called the class hierarchy.  {\tt Object} usually appears at the
-top, with all the ``child'' classes below.  If you look at the
-documentation of {\tt Frame}, for example, you will see the part of
-the hierarchy that makes up {\tt Frame}'s pedigree.
+The ``family tree'' of classes is called the class hierarchy.  {\tt Object}
+usually appears at the top, with all the ``child'' classes below.  If
+you look at the documentation of {\tt JFrame}, for example, you
+see the part of the hierarchy that makes up {\tt JFrame}'s pedigree.
 
 
 \section {Object-oriented design}
@@ -10932,13 +10761,13 @@ with it.  Also, inheritance can facilitate code reuse, since you can
 customize the behavior of existing classes without having to modify
 them.
 
-On the other hand, inheritance can make programs difficult to read,
-since it is sometimes not clear, when a method is invoked, where to
-find the definition.  
+On the other hand, inheritance can make programs hard to read.  When
+you see a method invocation, it can be hard to figure out which method
+gets invokes.
 
-Also, many of the things that can be done using inheritance can
-be done almost as elegantly (or more so) without it.  For example,
-a common alternative is {\bf composition}, where new objects are
+Also, many of the things that can be done with inheritance can
+be done as well or better without it.  
+A common alternative is {\bf composition}, where new objects are
 composed of existing objects, adding new capability without
 inheritance.
 
@@ -11028,67 +10857,51 @@ what is legal and what is not, and for the error messages that
 you get when you mess things up.
 
 \item Think about the pros and cons of
-class and object methods.  Which is more concise(usually)?
-Which is a more natural way to express computation(or, maybe
+class and object methods.  Which is more concise (usually)?
+Which is a more natural way to express computation (or, maybe
 more fairly, what kind of computations can be expressed most
 naturally using each style)?
 
 \end{enumerate}
 \end{exercise}
 
+
 \begin{exercise}
-The goal of this exercise is to write a program that generates
-random poker hands and classifies them, so that we can estimate
-the probability of the various poker hands.  Don't worry if you
-don't play poker; I'll tell you everything you need to know.
+The goal of this exercise is to write a program that generates random
+poker hands and classifies them, so that we can estimate the
+probability of the various poker hands.  If you don't play poker, you
+can read about it here
+\url{http://en.wikipedia.org/wiki/List_of_poker_hands}.
 
 \begin{enumerate}
 
-\item As a warmup, write a program that uses {\tt shuffleDeck} and
-{\tt subdeck} to generate and print four random poker hands with
+\item Start with \url{http://thinkapjava.com/code/CardSoln3.java}.
+and make sure you can compile and run it.
+
+\item Write a definition for a class named {\tt PokerHand}
+that extends {\tt Deck}.
+
+\item Write a {\tt Deck} method named {\tt deal} that creates
+a PokerHand, transfers cards from the deck to the hand, and returns
+the hand.
+
+\item In {\tt main} use {\tt shuffle} and
+{\tt deal} to generate and print four {\tt PokerHands} with
 five cards each.  Did you get anything good?
-Here are the possible poker hands, in increasing order of value:
 
-\begin{description}
-
-\item[pair:] two cards with the same rank
-\vspace{-0.05in}
-
-\item[two pair:] two pairs of cards with the same rank
-\vspace{-0.05in}
-
-\item[three of a kind:] three cards with the same rank
-\vspace{-0.05in}
-
-\item[straight:] five cards with ranks in sequence
-\vspace{-0.05in}
-
-\item[flush:] five cards with the same suit
-\vspace{-0.05in}
-
-\item[full house:] three cards with one rank, two cards with another
-\vspace{-0.05in}
-
-\item[four of a kind:] four cards with the same rank
-\vspace{-0.05in}
-
-\item[straight flush:] five cards in sequence and with the same suit
-\vspace{-0.05in}
-
-\end{description} 
-
-
-\item Write a method called {\tt isFlush} that takes a Deck
-as a parameter and returns a boolean indicating whether the
+\item Write a {\tt PokerHand} method called {\tt hasFlush}
+returns a boolean indicating whether the
 hand contains a flush.
 
-\item Write a method called {\tt isThreeKind} that takes a hand
-and returns a boolean indicating whether the hand contains
+\item Write a method called {\tt hasThreeKind} that 
+indicates whether the hand contains
 Three of a Kind.
 
 \item Write a loop that generates a few thousand hands and
 checks whether they contain a flush or three of a kind.
 Estimate the probability of getting one of those hands.
+Compare your results to the probabilities at
+\url{http://en.wikipedia.org/wiki/List_of_poker_hands}.
 
 \item Write methods that test for the other poker hands.  Some
 are easier than others.  You might find it useful to write some
@@ -11103,20 +10916,156 @@ program to generate seven-card hands and recompute the probabilities.
 \end{exercise}
 
 
+\beforechapter
+\chapter{GridWorld: Part 3}
+\label{gridworld3}
+
+If you haven't done the exercises in Chapters~\ref{gridworld} and
+\ref{gridworld2}, go back and do them first.  
+
+Part 3 of the GridWorld Student Manual presents the classes that
+make up GridWorld and the interactions among them.  It is an
+example of object-oriented design and an opportunity to discuss OO
+design issues.
+
+But before you read the Student Manual, there are a few more things
+you need to know.
+
+\section{{\tt ArrayList}}
+
+GridWorld uses {\tt java.util.ArrayList}, which is an object similar
+to an array.  It is a {\bf collection}, which means that it's an
+object that contains other objects.  Java provides other collections
+with different capabilities, but to use GridWorld we only need {\tt
+  ArrayList}s.
+
+To see an example, download
+\url{http://thinkapjava.com/code/BlueBug.java} and
+\url{http://thinkapjava.com/code/BlueBugRunner.java}.
+A {\tt BlueBug} is a bug that moves at random and looks for rocks.
+If it finds a rock, it makes it blue.
+
+Here's how it works.  When {\tt act} is invoked, {\tt BlueBug} gets
+its location and a reference to the grid:
+
+\begin{verbatim}
+    Location loc = getLocation();
+    Grid<Actor> grid = getGrid();
+\end{verbatim}
+
+The type in angle-brackets (\verb"<>") is a {\bf type parameter}
+that specifies the contents of {\tt grid}.  In other words, {\tt grid}
+is not just a {\tt Grid}, it's a {\tt Grid} that contains {\tt Actor}s.
+
+The next step is to get the neighbors of the current location.
+{\tt Grid} provides a method that does just that:
+
+\begin{verbatim}
+    ArrayList<Actor> neighbors = grid.getNeighbors(loc);
+\end{verbatim}
+
+The return value from {\tt getNeighbors} is an {\tt ArrayList}
+of {\tt Actors}.  The {\tt size} method returns the length of
+the {\tt ArrayList}, and {\tt get} selects an element.  So
+we can print the neighbors like this.
+
+\begin{verbatim}
+        for (int i=0; i<neighbors.size(); i++) {
+            Actor actor = neighbors.get(i);
+            System.out.println(actor);
+        }
+\end{verbatim}
+
+Traversing an {\tt ArrayList} is such a common operation there's
+a special syntax for it.  So we could write:
+
+\begin{verbatim}
+	for (Actor actor: neighbors) {
+            System.out.println(actor);
+
+	}
+\end{verbatim}
+
+We know that the neighbors are {\tt Actors}, but we don't know
+what kind of {\tt Actors}: they could be {\tt Bug}s, {\tt Rock}s, etc.
+To find the Rocks, we use the {\tt instanceof} operator, which
+checks whether an object is an instance of a class.
+
+\begin{verbatim}
+	for (Actor actor: neighbors) {
+	    if (actor instanceof Rock) {
+		actor.setColor(Color.blue);
+	    }
+	}
+\end{verbatim}
+
+To make all this work, we need to import the classes we use:
+
+\begin{verbatim}
+import info.gridworld.actor.Actor;
+import info.gridworld.actor.Bug;
+import info.gridworld.actor.Rock;
+import info.gridworld.grid.Grid;
+import info.gridworld.grid.Location;
+
+import java.awt.Color;
+import java.util.ArrayList;
+\end{verbatim}
+
 \begin{exercise}
-As a special challenge, think of algorithms to check for various
-poker hands if there are wild cards.  For example, if ``deuces are
-wild,'' that means that if you have a card with rank 2, you can
-use it to represent any card in the deck.
+Write a class definition for a new kind of {\tt Bug} that finds and
+eats flowers.  You can ``eat'' a flower by invoking {\tt removeSelfFromGrid}
+on it.
 \end{exercise}
 
+
+\section{Interfaces}
+\index{interface}
+
+Class definitions contains method definitions, and each method
+definition has a prototype (see Section~\ref{documentation}) and a
+body.  A prototype is also called a {\bf specification} because
+it specifies the name, parameters and return type of the method;
+the body is called the {\bf implementation} because it
+implements the specification.
+
+The word ``interface'' means different things in different contexts,
+but a Java {\bf interface} is a class definition that contains only
+prototypes without bodies.  So it specifies a set of methods, but doesn't
+provide implementations.
+
+For example, {\tt java.awt.Shape} is an interface that provides
+prototypes for {\tt contains}, {\tt intersects}, and several other
+methods.
+
+{\tt java.awt.Rectangle} provides implementations for those methods,
+so we say that ``Rectangle implements Shape.''  In fact, the first line
+of the {\tt Rectangle} class definition is
+
+\begin{verbatim}
+public class Rectangle extends Rectangle2D implements Shape, Serializable
+\end{verbatim}
+
+So Rectangle inherits the methods from {\tt Rectangle2D} and provides
+all of the methods required by {\tt Shape} and {\tt Serializable}.
+
+
+
+Then read Part 3 of the
+GridWorld Student Manual and do the exercises.
+
+
+
+Now we're ready to have some fun.  We'll use GridWorld to implement
+the Conway's ``Game of Life.''  If you are not familiar with it, see
+\url{http://en.wikipedia.org/wiki/Conways_Game_of_Life}.
 
 
 \beforechapter
 
 \appendix
 
-\chapter{development process}
+\chapter{Development process}
 \label{development}
 
 If you are spending a lot of time debugging, it is probably
