@@ -47,7 +47,8 @@ public class BlueBug extends Bug
 	ArrayList<Actor> neighbors = grid.getNeighbors(loc);
 
 	for (int i=0; i<neighbors.size(); i++) {
-	    System.out.println(neighbors.get(i));
+	    Actor actor = neighbors.get(i);
+	    System.out.println(actor);
 	}
 
 	for (Actor actor: neighbors) {
