@@ -18,12 +18,28 @@ thinkapjava:	thinkapjava.tex
 pdf:
 	ps2pdf $(PDFFLAGS) thinkapjava.ps thinkapjava.pdf
 
-DISTFILES = thinkapjava.pdf thinkapjava.tex.zip
+hevea:
+	rm -rf html
+	mkdir html
+	hevea -O -e latexonly htmlonly thinkapjava
+	# the following line is a kludge to prevent imagen from seeing
+	# the definitions in latexonly
+	#grep -v latexonly thinkapjava.image.tex > a; mv a thinkapjava.image.tex
+	imagen -png thinkapjava
+	hacha thinkapjava.html
+	cp up.png next.png back.png html
+	mv index.html thinkapjava.css thinkapjava*.html thinkapjava*.png *motif.gif html
+
+epub:
+	cd html; ebook-convert thinkapjava.html thinkpython.epub
+
+
+DISTFILES = thinkapjava.pdf thinkapjava.tex.zip html
 
 distrib:
 	rm -rf thinkapjava
 	mkdir thinkapjava thinkapjava/figs
-	cp thinkapjava.tex thinkapjava
+	cp thinkapjava.tex latexonly htmlonly thinkapjava
 	cp Makefile.dist thinkapjava/Makefile
 	cp figs/*.fig thinkapjava/figs
 	cp figs/*.eps thinkapjava/figs
