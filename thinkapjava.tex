@@ -242,7 +242,7 @@ Allen B. Downey
 
 \vspace{1in}
 
-{\Large Version 5.0}
+{\Large Version 5.0.1}
 
 \vfill
 
@@ -334,7 +334,7 @@ at the end of each chapter.  In my class, I include vocabulary
 questions on quizzes and exams, and require students to use
 appropriate terms in short-answer responses.
 
-\item to write a program, students have to understand the
+\item To write a program, students have to understand the
 algorithm, know the programming language, and they have to be
 able to debug.  I think too many books neglect debugging.  This
 book includes an appendix on debugging and an appendix on program
@@ -1690,7 +1690,7 @@ is created.
 that can be stored in a variable.  Every value belongs to a type.
 
 \item[type:] A set of values.  The type of a variable
-determines which values can be stored there.  So far, the types
+determines which values can be stored there.  The types
 we have seen are integers ({\tt int} in Java) and strings
 ({\tt String} in Java).
 
@@ -2185,7 +2185,7 @@ invokes {\tt newLine}.
 
 \end{itemize}
 
-So far, it may not be clear why it is worth the trouble to
+You might wonder why it is worth the trouble to
 create all these new methods.  There are several
 reasons; this example demonstrates two:
 
@@ -3452,10 +3452,9 @@ For example:
     double height = radius * Math.sin(angle);
 \end{verbatimtab}
 %
-But so far all the methods we have written have been {\bf void}
-methods; that is, methods that return no value.  When you invoke
-a void method, it is typically on a line by itself, with
-no assignment:
+But so far all our methods have been {\bf void}; that is, methods
+that return no value.  When you invoke a void method, it is typically
+on a line by itself, with no assignment:
 
 \begin{verbatimtab}
     countdown(3);
@@ -3884,7 +3883,6 @@ which are denoted by the symbols {\tt \&\&}, {\tt ||} and
 {\tt !}.  The semantics of these operators is similar
 to their meaning in English.  For example {\tt x > 0 \&\& x < 10}
 is true only if {\tt x} is greater than zero AND less than 10.
-
 \index{semantics}
 
 {\tt evenFlag || n\%3 == 0} is true if {\em either} of
@@ -3982,12 +3980,12 @@ This idea was developed by Alonzo Church and Alan Turing, so it is
 known as the Church-Turing thesis.  You can read more about it at
 \url{http://en.wikipedia.org/wiki/Turing_thesis}.
 
-To give you an idea of what you can do with the tools we have learned
-so far, let's look at some methods for evaluating
-recursively-defined mathematical functions.  A recursive definition is
-similar to a circular definition, in the sense that the definition
-contains a reference to the thing being defined.  A truly circular
-definition is not very useful:
+To give you an idea of what you can do with the tools we have learned,
+let's look at some methods for evaluating recursively-defined
+mathematical functions.  A recursive definition is similar to a
+circular definition, in the sense that the definition contains a
+reference to the thing being defined.  A truly circular definition is
+not very useful:
 
 \begin{description}
 
@@ -5560,13 +5558,71 @@ running.  In Java run-time errors are called {\bf exceptions}.
 You probably haven't seen many run-time errors, because we
 haven't been doing many things that can cause one.  Well, now we are.
 If you use the {\tt charAt} method and provide an index that is
-negative or greater than {\tt length-1}, you will get an exception:
-specifically, a {\tt StringIndexOutOfBoundsException}.  Try it
-and see how it looks.
+negative or greater than {\tt length-1}, it {\bf throws} an exception.
+You can think of ``throwing'' an exception like throwing
+a tantrum.
 
-If your program causes an exception, it prints an error message
-indicating the type of exception and where in the program it
-occurred.  Then the program terminates.
+When that happens, Java prints an error message with
+the type of exception and a {\bf stack trace}, which shows the methods
+that were running when the exception occurred.  Here is an example:
+
+\begin{verbatimtab}
+public class BadString {
+
+    public static void main(String[] args) {
+	
+	processWord("banana");
+    }
+
+    public static void processWord(String s) {
+	char c = getLastLetter(s);
+	System.out.println(c);
+    }
+
+    public static char getLastLetter(String s) {
+	int index = s.length();         // WRONG!
+        char c = s.charAt(index);
+	return c;
+    }
+}
+\end{verbatimtab}
+
+Notice the error in {\tt getLastLetter}: the index of the last
+character should be {\tt s.length()-1}.  Here's what you get:
+
+\begin{verbatimtab}
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException:
+String index out of range: 6
+	at java.lang.String.charAt(String.java:694)
+	at BadString.getLastLetter(BadString.java:24)
+	at BadString.processWord(BadString.java:18)
+	at BadString.main(BadString.java:14)
+\end{verbatimtab}
+
+Then the program ends.
+The stack trace can be hard to read, but it contains a lot of information.
+
+\begin{exercise}
+Read the stack trace and answer these questions:
+
+\begin{itemize}
+
+\item What kind of Exception occurred, and what package is it defined
+in?
+
+\item What is the value of the index that caused the exception?
+
+\item What method threw the exception, and where is
+that method defined?
+
+\item What method invoked {\tt charAt}?
+
+\item In {\tt BadString.java}, what is the line number where {\tt charAt}
+was invoked?
+
+\end{itemize}
+
+\end{exercise}
 
 
 \section{Reading documentation}
@@ -5599,8 +5655,8 @@ name of the method, the type of the parameters, and the return type.
 The next line describes what the method does.  The following
 lines explain the parameters and return values.  In this case
 the explanations are redundant, but the documentation is
-supposed to fit a standard format.  The last line explains what
-exceptions, if any, can be caused by this method.
+supposed to fit a standard format.  The last line describes
+the exceptions this method might throw.
 
 It might take some time to get 
 comfortable with this kind of documentation, but it is worth the effort.
@@ -5614,7 +5670,7 @@ comfortable with this kind of documentation, but it is worth the effort.
 index;  {\tt indexOf} takes a character and finds the index
 where that character appears.
 
-{\tt charAt} fails if the index is out of range, and causes an
+{\tt charAt} fails if the index is out of range, and throws an
 exception.  {\tt indexOf} fails if the character does not appear in
 the string, and returns the value {\tt -1}.
 
@@ -5927,6 +5983,15 @@ methods that operate on it.  The objects we have used so far are
 \item[index:]  A variable or value used to select one of the
 members of an ordered set, like a character from a string.
 
+\item[exception:] A run-time error.
+\index{exception}
+\index{run-time error}
+
+\item[throw:] Cause an exception.
+
+\item[stack trace:] A report that shows the state of a program
+when an exception occurs.
+
 \item[prototype:]  The first line of a method, which specifies
 the name, parameters and return type.
 
@@ -5942,8 +6007,6 @@ The increment operator in Java is {\tt ++}.
 \item[decrement:]  Decrease the value of a variable by one.
 The decrement operator in Java is {\tt --}.
 
-\item[exception:]  A run time error.  Exceptions cause the execution
-of a program to terminate.
 
 \index{object}
 \index{index}
@@ -5951,8 +6014,6 @@ of a program to terminate.
 \index{counter}
 \index{increment}
 \index{decrement}
-\index{exception}
-\index{run-time error}
 
 \end{description}
 
@@ -6293,7 +6354,7 @@ times.  You can write this method recursively, or use a while loop.
 \index{String}
 \index{type!String}
 
-Although {\tt String}s are objects, they are not very interesting,
+{\tt String}s are objects, but they are atypical objects
 because
 
 \begin{itemize}
@@ -6324,13 +6385,13 @@ to perform computations.
 
 The Java libraries are divided into a number of {\bf
 packages}, including {\tt java.lang}, which contains almost all of the
-classes we have seen so far, and {\tt java.awt}, which contains
-classes that pertain to the Java {\bf Abstract Window Toolkit} (AWT),
+classes we have seen, and {\tt java.awt}, 
+the {\bf Abstract Window Toolkit} (AWT),
 which contains classes for windows, buttons, graphics, etc.
 
 To use a class defined in another package, you have to {\bf
   import} it.  {\tt Point} and {\tt Rectangle} are in the
-{\tt java.awt} package, so to import them we need:
+{\tt java.awt} package, so to import them like this:
 
 \begin{verbatimtab}
     import java.awt.Point;
@@ -6340,9 +6401,9 @@ To use a class defined in another package, you have to {\bf
 All {\tt import} statements appear at the beginning of the program,
 outside the class definition.
 
-The classes in {\tt java.lang}, like {\tt Math} and {\tt String} are
-imported automatically, which is why most of our programs haven't
-required an {\tt import} statement.
+The classes in {\tt java.lang}, like {\tt Math} and {\tt String}, are
+imported automatically, which is why we haven't needed the
+{\tt import} statement yet.
 
 
 \section{{\tt Point} objects}
@@ -6695,9 +6756,9 @@ The value {\tt null} is represented by a small square with no arrow.
 \index{run-time error}
 
 If you try to use a null object, either by accessing an instance
-variable or invoking a method, you will get a {\tt
-NullPointerException}.  The system will print an error message
-and terminate the program.
+variable or invoking a method, Java throws a {\tt
+NullPointerException}, prints an error message
+and terminates the program.
 
 \begin{verbatimtab}
     Point blank = null;
@@ -7060,11 +7121,13 @@ Appendix~\ref{graphics} and do the exercises there.
 
 Part 2 of the GridWorld case study uses some features we haven't
 seen yet, so you will get a preview now and more details later.
+As a reminder, you can find the
+documentation for the GridWorld classes at
+\url{http://www.greenteapress.com/thinkapjava/javadoc/gridworld/}.
 
-When you unpack this code, you should have a folder named {\tt
-  GridWorldCode} that contains {\tt projects/boxBug}, which
-contains {\tt BoxBug.java}, {\tt BoxBugRunner.java} and
-{\tt BoxBug.gif}.
+When you install GridWorld, you should have a folder named {\tt
+  projects/boxBug}, which contains {\tt BoxBug.java}, {\tt
+  BoxBugRunner.java} and {\tt BoxBug.gif}.
 
 Copy these files into your working folder and import them into
 your development environment.
@@ -7092,8 +7155,9 @@ public class BoxBugRunner {
 }
 \end{verbatimtab}
 
-Everything here should be familiar, with the possible exception
-of {\tt Location}, which is similar to {\tt Point}.
+Everything here should be familiar, with the possible exception of
+{\tt Location}, which is part of GridWorld, and similar to {\tt
+  java.awt.Point}.
 
 {\tt BoxBug.java} contains the class definition for BoxBug.
 
@@ -7115,7 +7179,7 @@ that a {\tt BoxBug} is a kind of {\tt Bug}.
 The next two lines are instance variables.  Every {\tt Bug}
 has variables named {\tt sideLength}, which determines the size of the
 box it draws, and {\tt steps}, which keeps track of how many steps
-the {\tt Bug} has taken so far.
+the {\tt Bug} has taken.
 
 The next line defines a {\bf constructor}, which is a special
 method that initializes the instance variables.  When you create
@@ -7172,22 +7236,22 @@ http://thinkapjava.com/code/TermiteRunner.java
 Termites have all the same methods as Bugs, plus these:
 
 \begin{verbatimtab}
-    /*
+    /**
      * Returns true if the termite has a flower.
      */
     public boolean hasFlower();
 
-    /*
+    /**
      * Returns true if the termite is facing a flower.
      */
     public boolean seeFlower();
 
-    /*
+    /**
      * Creates a flower unless the termite already has one.
      */
     public void createFlower();
 
-    /*
+    /**
      * Drops the flower in the termites current location.
      * 
      * Note: only one Actor can occupy a grid cell, so the effect of
@@ -7195,13 +7259,13 @@ Termites have all the same methods as Bugs, plus these:
      */
     public void dropFlower();
 
-    /*
+    /**
      * Throws the flower into the location the termite is facing.
      * 
      */
     public void throwFlower();
 
-    /*
+    /**
      * Picks up the flower the termite is facing, if there is one,
      * and if the termite doesn't already have a flower.
      */
@@ -7886,13 +7950,14 @@ difficult to isolate parts of a program; in large projects they can
 cause errors that are hard to find.
 
 Pure functions help manage the complexity of large projects,
-in part by making certain kinds of errors impossible.  Also,
-because the result of a pure function depends only on the parameters,
+in part by making certain kinds of errors impossible.  Also, they
+lend themselves to certain kids of composition and nesting.
+And because the result of a pure function depends only on the parameters,
 it is possible to speed them up by storing previously-computed
 results.
 \index{pure function}
 
-In general, I recommend that you write pure functions whenever
+I recommend that you write pure functions whenever
 it is reasonable, and resort to modifiers only if there
 is a compelling advantage.
 
@@ -8287,18 +8352,16 @@ The elements of the array
 are numbered from 0 to 3, which means that there is no element with
 the index 4.  This should sound familiar, since we saw the same thing
 with {\tt String} indices.  Nevertheless, it is a common error to go
-beyond the bounds of an array, which will cause an {\tt
-ArrayOutOfBoundsException}.  As with all exceptions, you get an error
-message and the program quits.
-
+beyond the bounds of an array, which throws an {\tt
+ArrayOutOfBoundsException}.
 \index{exception!ArrayOutOfBounds}
 \index{run-time error}
 \index{index}
-\index{expression}
 
 You can use any expression as an index, as long as it has type {\tt
 int}.  One of the most common ways to index an array is with a loop
 variable.  For example:
+\index{expression}
 
 \begin{verbatimtab}
     int i = 0;
@@ -8360,7 +8423,7 @@ one to the other.
 
 \section{{\tt for} loops}
 
-The loops we have written so far have a number of elements
+The loops we have written have a number of elements
 in common.  All of them start by initializing a variable;
 they have a test, or condition, that depends on that variable;
 and inside the loop they do something to that variable,
@@ -8470,7 +8533,7 @@ size array.
 The last time the body of the loop gets executed, {\tt i}
 is {\tt a.length - 1}, which is the index of the last element.  When
 {\tt i} is equal to {\tt a.length}, the condition fails and the body
-is not executed, which is a good thing, since it would cause an
+is not executed, which is a good thing, since it would throw an
 exception.  This code assumes that the array {\tt b} contains at least
 as many elements as {\tt a}.
 
@@ -9727,9 +9790,8 @@ large arrays.
 
 Two common errors in recusive programs are forgetting to include a
 base case and writing the recursive call so that the base case is never
-reached.  Either error will cause an infinite recursion, in which case
-Java throws a {\tt StackOverflowException}.
-
+reached.  Either error causes infinite recursion, 
+which throws a {\tt StackOverflowException}.
 \index{recursion!infinite}
 \index{infinite recursion}
 \index{exception!StackOverflow}
@@ -10291,7 +10353,7 @@ values that are needed in several places.
 As an example, here is a version of {\tt Card} where {\tt suits}
 and {\tt ranks} are class variables:
 
-\begin{verbatim}
+\begin{verbatimtab}
 class Card {
     int suit, rank;
 
@@ -10302,7 +10364,7 @@ class Card {
     public static void printCard(Card c) {
 	System.out.println(ranks[c.rank] + " of " + suits[c.suit]);
     }
-\end{verbatim}
+\end{verbatimtab}
 
 Inside {\tt printCard} we can refer to {\tt suits} and {\tt ranks} as
 if they were local variables.
@@ -10461,19 +10523,19 @@ use one or the other.
 
 For example, here is {\tt printCard} as a class method:
 
-\begin{verbatim}
+\begin{verbatimtab}
     public static void printCard(Card c) {
 	System.out.println(ranks[c.rank] + " of " + suits[c.suit]);
     }
-\end{verbatim}
+\end{verbatimtab}
 
 Here it is re-written as an object method:
 
-\begin{verbatim}
+\begin{verbatimtab}
     public void print() {
 	System.out.println(ranks[rank] + " of " + suits[suit]);
     }
-\end{verbatim}
+\end{verbatimtab}
 
 Here are the changes:
 
@@ -10493,10 +10555,10 @@ and likewise for {\tt suit}.
 
 Here's how this method is invoked:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Card card = new Card(1, 1);
     card.print();
-\end{verbatim}
+\end{verbatimtab}
 
 When you invoke a method on an object, that object becomes the {\bf
 current object}, also known as {\tt this}.  Inside {\tt print},
@@ -10710,14 +10772,14 @@ which overrides the {\tt act} method from the parent.
 And if you did the Graphics exercises in Appendix~\ref{graphics}, you
 saw another example:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public class MyCanvas extends Canvas {
 
     public void paint(Graphics g) {
 	g.fillOval(100, 100, 200, 200);
     }
 }
-\end{verbatim}
+\end{verbatimtab}
 
 {\tt MyCanvas} is a new kind of {\tt Canvas} with no new methods
 or instance variables, but it overrides {\tt paint}.
@@ -10921,7 +10983,10 @@ program to generate seven-card hands and recompute the probabilities.
 \label{gridworld3}
 
 If you haven't done the exercises in Chapters~\ref{gridworld} and
-\ref{gridworld2}, go back and do them first.  
+\ref{gridworld2}, you should do them before reading this chapter.
+As a reminder, you can find the
+documentation for the GridWorld classes at
+\url{http://www.greenteapress.com/thinkapjava/javadoc/gridworld/}.
 
 Part 3 of the GridWorld Student Manual presents the classes that
 make up GridWorld and the interactions among them.  It is an
@@ -10930,6 +10995,7 @@ design issues.
 
 But before you read the Student Manual, there are a few more things
 you need to know.
+
 
 \section{{\tt ArrayList}}
 
@@ -10948,10 +11014,10 @@ If it finds a rock, it makes it blue.
 Here's how it works.  When {\tt act} is invoked, {\tt BlueBug} gets
 its location and a reference to the grid:
 
-\begin{verbatim}
+\begin{verbatimtab}
     Location loc = getLocation();
     Grid<Actor> grid = getGrid();
-\end{verbatim}
+\end{verbatimtab}
 
 The type in angle-brackets (\verb"<>") is a {\bf type parameter}
 that specifies the contents of {\tt grid}.  In other words, {\tt grid}
@@ -10960,48 +11026,48 @@ is not just a {\tt Grid}, it's a {\tt Grid} that contains {\tt Actor}s.
 The next step is to get the neighbors of the current location.
 {\tt Grid} provides a method that does just that:
 
-\begin{verbatim}
+\begin{verbatimtab}
     ArrayList<Actor> neighbors = grid.getNeighbors(loc);
-\end{verbatim}
+\end{verbatimtab}
 
 The return value from {\tt getNeighbors} is an {\tt ArrayList}
 of {\tt Actors}.  The {\tt size} method returns the length of
 the {\tt ArrayList}, and {\tt get} selects an element.  So
 we can print the neighbors like this.
 
-\begin{verbatim}
+\begin{verbatimtab}
         for (int i=0; i<neighbors.size(); i++) {
             Actor actor = neighbors.get(i);
             System.out.println(actor);
         }
-\end{verbatim}
+\end{verbatimtab}
 
 Traversing an {\tt ArrayList} is such a common operation there's
 a special syntax for it.  So we could write:
 
-\begin{verbatim}
+\begin{verbatimtab}
 	for (Actor actor: neighbors) {
             System.out.println(actor);
 
 	}
-\end{verbatim}
+\end{verbatimtab}
 
 We know that the neighbors are {\tt Actors}, but we don't know
-what kind of {\tt Actors}: they could be {\tt Bug}s, {\tt Rock}s, etc.
+what kind: they could be {\tt Bug}s, {\tt Rock}s, etc.
 To find the Rocks, we use the {\tt instanceof} operator, which
 checks whether an object is an instance of a class.
 
-\begin{verbatim}
+\begin{verbatimtab}
 	for (Actor actor: neighbors) {
 	    if (actor instanceof Rock) {
 		actor.setColor(Color.blue);
 	    }
 	}
-\end{verbatim}
+\end{verbatimtab}
 
 To make all this work, we need to import the classes we use:
 
-\begin{verbatim}
+\begin{verbatimtab}
 import info.gridworld.actor.Actor;
 import info.gridworld.actor.Bug;
 import info.gridworld.actor.Rock;
@@ -11010,1227 +11076,298 @@ import info.gridworld.grid.Location;
 
 import java.awt.Color;
 import java.util.ArrayList;
-\end{verbatim}
+\end{verbatimtab}
 
 \begin{exercise}
-Write a class definition for a new kind of {\tt Bug} that finds and
-eats flowers.  You can ``eat'' a flower by invoking {\tt removeSelfFromGrid}
-on it.
+Starting with a copy of {\tt BlueBug.java}, write a class definition
+for a new kind of {\tt Bug} that finds and eats flowers.  You can
+``eat'' a flower by invoking {\tt removeSelfFromGrid} on it.
 \end{exercise}
 
 
 \section{Interfaces}
 \index{interface}
 
-Class definitions contains method definitions, and each method
-definition has a prototype (see Section~\ref{documentation}) and a
-body.  A prototype is also called a {\bf specification} because
-it specifies the name, parameters and return type of the method;
-the body is called the {\bf implementation} because it
-implements the specification.
+GridWorld uses Java {\bf interfaces}, so I want to explain what
+they are.  ``Interface'' means different things in different contexts,
+but in Java it refers to a specific language feature:
+an interface is a class definition where the methods have no bodies.
 
-The word ``interface'' means different things in different contexts,
-but a Java {\bf interface} is a class definition that contains only
-prototypes without bodies.  So it specifies a set of methods, but doesn't
-provide implementations.
+In a normal class definition, each method has a prototype and a
+body (see Section~\ref{documentation}).  A prototype is also called a
+{\bf specification} because it specifies the name, parameters and
+return type of the method; the body is called the {\bf implementation}
+because it implements the specification.
 
-For example, {\tt java.awt.Shape} is an interface that provides
-prototypes for {\tt contains}, {\tt intersects}, and several other
-methods.
+In a Java interface the methods have no bodies, so it specifies 
+the methods without implementing them.
 
-{\tt java.awt.Rectangle} provides implementations for those methods,
-so we say that ``Rectangle implements Shape.''  In fact, the first line
-of the {\tt Rectangle} class definition is
+For example, {\tt java.awt.Shape} is an interface with prototypes for
+{\tt contains}, {\tt intersects}, and several other methods.  {\tt
+  java.awt.Rectangle} provides implementations for those methods, so
+we say that ``Rectangle implements Shape.''  In fact, the first line
+of the {\tt Rectangle} class definition is:
 
-\begin{verbatim}
+\begin{verbatimtab}
 public class Rectangle extends Rectangle2D implements Shape, Serializable
-\end{verbatim}
+\end{verbatimtab}
 
-So Rectangle inherits the methods from {\tt Rectangle2D} and provides
-all of the methods required by {\tt Shape} and {\tt Serializable}.
+Rectangle inherits methods from {\tt Rectangle2D} and provides
+implementations for the methods in {\tt Shape} and {\tt Serializable}.
+
+In GridWorld the Location class implements the {\tt
+  java.lang.Comparable} interface by providing {\tt compareTo}, which
+is similar to the {\tt compareTo} method for {\tt Cards} (see
+Section~\ref{}).
+
+GridWorld also defines a new interface, {\tt Grid}, that specifies
+the methods a {\tt Grid} should provide.  And it includes two
+implementations, {\tt BoundedGrid} and {\tt UnboundedGrid}.
+
+The Student Manual uses the abbreviation {\bf API}, which stands for
+``application programming interface.''  The API is the set of methods
+that are available for you, the application programmer, to use.  See
+\url{http://en.wikipedia.org/wiki/Application_programming_interface}.
 
 
+\section{{\tt public} and {\tt private}}
 
-Then read Part 3 of the
+Remember in Chapter~\ref{chap01} I said I would explain why the {\tt
+  main} method has the keyword {\tt public}?  Finally, the time has
+come.
+
+{\tt public} means that the method can be invoked from other classes.
+The alternative is {\tt private}, which means the method can only
+be invoked inside the class where it is defined.
+
+Instance variables can also be {\tt public} or {\tt private}, with
+the same result: a private instance variable can be accessed only
+inside the class where it is defined.
+
+The primary reason to make methods and instance variables private
+is to limit interactions between classes in order to manage
+complexity.
+
+For example, the Location class keeps its instance variables private.
+It has accessor methods {\tt getRow} and {\tt getCol}, but it provides
+no methods that modify the instance variables.  In effect, Location
+objects are immutable, which means that they can be shared without
+worrying about unexpected behavior due to aliasing.
+
+Making methods private helps keep the API simple.  Classes often
+include helper methods that are used to implement other methods, but
+making those methods part of the public API might be unnecessary
+and error-prone.
+
+Private methods and instance variables are language features
+that help programmers ensure {\bf data encapsulation}, which means
+that objects in one class are isolated from other classes.
+
+\begin{exercise}
+Now you know what you need to know to 
+read Part 3 of the
 GridWorld Student Manual and do the exercises.
+\end{exercise}
 
 
+\section{Game of Life}
 
-Now we're ready to have some fun.  We'll use GridWorld to implement
-the Conway's ``Game of Life.''  If you are not familiar with it, see
+The mathematician John Conway invented
+the ``Game of Life,'' which he called a ``zero-player game''
+because no players are needed to choose strategies or make decisions.
+After you set up the initial conditions, you watch the game
+play itself.  But that turns out to be more interesting than it sounds;
+you can read about it at
 \url{http://en.wikipedia.org/wiki/Conways_Game_of_Life}.
+
+The goal of this exercises is to implement the Game of Life in
+GridWorld.  The game board is the grid, and the pieces are Rocks.
+
+The game proceeds in turns, or {\bf time steps}.  At the beginning
+of the time step, each Rock is either ``alive'' or ``dead''.  On the
+screen, the color of the Rock indicates its status.
+
+The status of each Rock depends on the status of its
+{\bf neighbors}.  Each Rock has 8 neighbors, except the Rocks along
+the edge of the Grid.  Here are the rules:
+
+\begin{itemize}
+
+\item If a dead Rock has exactly three neighbors, it comes to life!
+Otherwise it stays dead.
+
+\item If a live Rock has 2 or 3 neighbors, it survives.  Otherwise it dies.
+
+\end{itemize}
+
+Some consequences of these rules:
+If all Rocks are dead, no Rocks come to life.  If you start with a
+single live Rock, it dies.  But if you have 4 Rocks in a square, they
+keep each other alive, so that's a stable configuration.
+
+Most simple starting configurations either die out quickly or reach a
+stable configuration.  But there are a few starting conditions that
+display remarkable complexity.  One of those is the r-pentomino: it
+starts with only 5 Rocks, runs for 1103 timesteps and ends in a stable
+configuration with 116 live Rocks (see
+\url{http://www.conwaylife.com/wiki/R-pentomino}).
+
+The following sections are my suggestions for implementing GoF
+in GridWorld.  You can download my solution from \url{???}.
+
+
+\section{{\tt LifeRunner}}
+
+Make a copy of {\tt BugRunner.java} named {\tt LifeRunner.java}
+and add methods with the following prototypes:
+
+\begin{verbatimtab}
+    /**
+     * Makes a Game of Life grid with an r-pentomino.
+     */
+    public static void makeLifeWorld(int rows, int cols)
+
+    /**
+     * Fills the grid with LifeRocks.
+     */
+    public static void makeRocks(ActorWorld world)
+\end{verbatimtab}
+
+{\tt makeLifeWorld} should create a Grid of Actors and an ActorWorld,
+then invoke {\tt makeRocks}, which should put a {\tt LifeRock} at
+every location in the Grid.
+
+
+\section{{\tt LifeRock}}
+
+Make a copy of {\tt BoxBug.java} named {\tt LifeRock.java}.
+{\tt LifeRock} should extend {\tt Rock}.  Add an {\tt act} method
+that does nothing.  At this point you should be able to run the
+code and see a Grid full of Rocks.
+
+To keep track of the status of the Rocks, you can add a new instance
+variable, or you can use the Color of the Rock to indicate status.
+Either way, write methods with these prototypes:
+
+\begin{verbatimtab}
+    /**
+     * Returns true if the Rock is alive.
+     */
+    public boolean isAlive() 
+
+    /**
+     * Makes the Rock alive.
+     */
+    public void setAlive() 
+
+    /**
+     * Makes the Rock dead.
+     */
+    public void setDead() 
+\end{verbatimtab}
+
+Write a constructor that invokes {\tt setDead} and confirm that
+all Rocks are dead.
+
+
+\section{Simultaneous updates}
+
+In the Game of Life, all Rocks are updated simultaneously; that is,
+each rock checks the status of its neighbors before any Rocks
+change their status.  Otherwise the behavior of the system would
+depend on the order of the updates.
+
+In order to implement simultaneous updates, I suggest that you write
+an {\tt act} method that has two phases: during the first phase,
+all Rocks count their neighbors and record the results; during the
+second phase, all Rocks update their status.
+
+Here's what my {\tt act} method looks like:
+
+\begin{verbatimtab}
+    /**
+     * Check what phase we're in and calls the appropriate method.
+     * Moves to the next phase.
+     */
+    public void act() {
+	if (phase == 1) {
+	    numNeighbors = countLiveNeighbors();
+	    phase = 2;
+	} else {
+	    updateStatus();
+	    phase = 1;
+	}
+    }
+\end{verbatimtab}
+
+{\tt phase} and {\tt numNeighbors} are instance variables.
+And here are the prototypes for {\tt countLiveNeighbors} and
+{\tt updateStatus}:
+
+\begin{verbatimtab}
+    /**
+     * Counts the number of live neighbors.
+     */
+    public int countLiveNeighbors() 
+
+    /**
+     * Updates the status of the Rock (live or dead) based on the number
+     * of neighbors.
+     */
+    public void updateStatus()
+\end{verbatimtab}
+
+Start with a simple version of {\tt updateStatus} that changes live
+rocks to dead and vice versa.  Now run the program and confirm that
+the Rocks change color.  Every two steps in the World correspond to
+one timestep in the Game of Life.
+
+Now fill in the bodies of {\tt countLiveNeighbors} and
+{\tt updateStatus} according to the rules and see if the system behaves
+as expected.
+
+
+\section{Initial conditions}
+
+To change the initial conditions, you can use the GridWorld pop-up
+menus to change the status of the Rocks by invoking {\tt setAlive}.
+Or you can write methods to automate the process.
+
+In {\tt LifeRunner}, add a method called {\tt makeRow} that creates
+an initial configuration with {\tt n} live Rock in a row in the middle
+of the grid.  What happens for different values of {\tt n}?
+
+Add a method called {\tt makePentomino} that creates
+an r-pentomino in the middle of the Grid.  The initial configuration
+should look like this:
+
+\epsfig{figure=figs/LifeRunner.eps,height=2in}
+
+If you run this configuration for more than a few steps, it reaches the
+end of the Grid.  The boundaries of the Grid change the behavior of
+the system; in order to see the fill evolution of the r-pentomino,
+the Grid has to be big enough.  You might have to experiment to find
+the right size, and depending on the speed of your computer, it
+might take a while.
+
+The Game of Life web page describes other initial conditions that
+yield interesting results (\url{http://www.conwaylife.com/}).  Choose
+one you like and implement it.
+
+There are also variations of the Game of Life based on different rules.
+Try one out and see if you find anything interesting.
+
+\begin{exercise}
+If you implemented the Game of Life, you are well prepared for
+Part 4 of the GridWorld Student Manual.  Read it and do the exercises.
+\end{exercise}
+
+Congratulations, you're done!
 
 
 \beforechapter
 
 \appendix
-
-\chapter{Development process}
-\label{development}
-
-If you are spending a lot of time debugging, it is probably
-because you do not have an effective {\bf development process}.
-
-A typical, bad development process goes something like
-this:
-
-\begin{enumerate}
-
-\item Write an entire method.
-
-\item Write several more methods.
-
-\item Try to compile the program.
-
-\item Spend an hour finding syntax errors.
-
-\item Spend an hour finding run time errors.
-
-\item Spend three hours finding semantic errors.
-
-\end{enumerate}
-
-The problem, of course, is the first two steps.  If you
-write more than one method, or even an entire method, before
-you start the debugging process, you are likely to write more
-code than you can debug.
-
-If you find yourself in this situation, the {\em only} solution
-is to remove code until you have a working program again, and
-then gradually build the program back up.  Beginning programmers
-are often unwilling to do this, because their carefully crafted
-code is precious to them.  To debug effectively, you have to
-be ruthless!
-
-Here is a better development process:
-
-\begin{enumerate}
-
-\item Start with a working program that does something visible,
-   like printing something.
-
-\item Add a small number of lines of code at a time,
-   and test the program after every change.
-
-\item Repeat until the program does what it is supposed to do.
-
-\end{enumerate}
-
-After every change, the program should produce some visible effect
-that demonstrates the new code.  This approach to programming can save
-a lot of time.  Because you only add a few lines of code at a time, it
-is easy to find syntax errors.  Also, because each version of the
-program produces a visible result, you are constantly testing your
-mental model of how the program works.  If your mental model is
-erroneous, you will be confronted with the conflict(and have a chance
-to correct it) before you have written a lot of erroneous code.
-
-One problem with this approach is that it is often
-difficult to figure out a path from the starting place
-to a complete and correct program.
-
-I demonstrate by developing a method called {\tt isIn} that takes
-a String and a character, and that returns a boolean: {\tt true} if
-the character appears in the String and {\tt false} otherwise.
-
-\begin{enumerate}
-
-\item The first step is to write the shortest possible method
-that will compile, run, and do something visible:
-
-\begin{verbatimtab}
-public static boolean isIn(char c, String s) {
-    System.out.println("isIn");
-    return false;
-}
-\end{verbatimtab}
-
-Of course, to test the method we have to invoke it.  In
-{\tt main}, or somewhere else in a working program, we need
-to create a simple test case.
-
-We'll start with a case where the character appears in the
-String(so we expect the result to be {\tt true}).
-
-\begin{verbatimtab}
-public static void main(String[] args) {
-    boolean test = isIn('n', "banana");
-    System.out.println(test);
-}
-\end{verbatimtab}
-
-If everything goes according to plan, this code will compile,
-run, and print the word {\tt isIn} and the value {\tt false}.
-Of course, the answer isn't correct, but at this point we know
-that the method is getting invoked and returning a value.
-
-In my programming career, I have wasted way too much time debugging
-a method, only to discover that it was never getting invoked.
-If I had used this development process, it never would have happened.
-
-\item The next step is to check the parameters the method
-receives.
-
-\begin{verbatimtab}
-public static boolean isIn(char c, String s) {
-    System.out.println("isIn looking for " + c);
-    System.out.println("in the String " + s);
-    return false;
-}
-\end{verbatimtab}
-
-The first print statement allows us to confirm that {\tt isIn}
-is looking for the right letter.  The second statement confirms
-that we are looking in the right place.
-
-Now the output looks like this:
-
-%changed to 'n' to match the call to isIn from above
-\begin{verbatimtab}
-isIn looking for n
-in the String banana
-\end{verbatimtab}
-
-Printing the parameters might seem silly, since we know what they
-are supposed to be.  The point is to confirm that they are what we
-think they are.
-
-
-\item To traverse the String, we can take advantage of the code
-from Section~\ref{traverse}.  In general, it is a great idea to
-reuse code fragments rather than writing them from scratch.
-
-\begin{verbatimtab}
-public static boolean isIn(char c, String s) {
-    System.out.println("isIn looking for " + c);
-    System.out.println("in the String " + s);
-
-    int index = 0;
-    while (index < s.length()) {
-        char letter = s.charAt(index);
-        System.out.println(letter);
-        index = index + 1;
-    }
-    return false;
-}
-\end{verbatimtab}
-
-Now when we run the program it prints the characters in
-the String one at a time.  
-If all goes well, we can confirm that
-the loop examines all the letters in the String.
-
-
-\item So far we haven't given much thought to what this method
-is going to do.  At this point we probably need to figure out an
-algorithm.  The simplest algorithm is a linear search, which
-traverses the vector and compares each element to the target word.
-
-Happily, we have already written the code that traverses the
-vector.  As usual, we'll proceed by adding just a few lines
-at a time:
-
-\begin{verbatimtab}
-public static boolean isIn(char c, String s) {
-    System.out.println("isIn looking for " + c);
-    System.out.println("in the String " + s);
-
-    int index = 0;
-    while (index < s.length()) {
-        char letter = s.charAt(index);
-        System.out.println(letter);
-        if (letter == c) {
-            System.out.println("found it");
-        }
-        index = index + 1;
-    }
-    return false;
-}
-\end{verbatimtab}
-
-As we traverse the String, we compare each letter to the target
-character.  If we find it, we print something, so
-that when the new code executes it produces a visible effect.
-
-\item At this point we are pretty close to working code.  The
-next change is to return from the method if we find what we are
-looking for:
-
-\begin{verbatimtab}
-public static boolean isIn(char c, String s) {
-    System.out.println("isIn looking for " + c);
-    System.out.println("in the String " + s);
-
-    int index = 0;
-    while (index < s.length()) {
-        char letter = s.charAt(index);
-        System.out.println(letter);
-        if (letter == c) {
-            System.out.println("found it");
-            return true;
-        }
-        index = index + 1;
-    }
-    return false;
-}
-\end{verbatimtab}
-
-If we find the target character, we return {\tt true}.
-If we get all the way through the loop without finding it, then
-the correct return value is {\tt false}.
-
-If we run the program at this point, we should get
-
-\begin{verbatimtab}
-isIn looking for n
-in the String banana
-b
-a
-n
-found it
-true
-\end{verbatimtab}
-
-
-\item The next step is to make sure that the other test cases
-work correctly.  First, we should confirm that the method returns
-{\tt false} if the character is not in the String.
-Then we should check some of the typical troublemakers, like
-an empty String, {\tt ""}, or a String with a single character.
-
-As always, this kind of testing can help find bugs if there
-are any, but it can't tell you if the method is correct.
-
-\item The penultimate step is to remove or comment out the print
-statements.
-
-\begin{verbatimtab}
-public static boolean isIn(char c, String s) {
-    int index = 0;
-    while (index < s.length()) {
-        char letter = s.charAt(index);
-        if (letter == c) {
-	    return true;
-        }
-        index = index + 1;
-    }
-    return false;
-}
-\end{verbatimtab}
-
-Commenting out the print statements is a good idea if you
-think you might have to revisit this method later.  But if
-this is the final version of the method, and you are convinced
-that it is correct, you should remove them.
-
-Removing the comments allows you to see the code most clearly,
-which can help you spot any remaining problems.
-
-If there is anything about the code that is not obvious, you
-should add comments to explain it.  Resist the temptation to
-translate the code line by line.  For example, no one needs this:
-
-\begin{verbatimtab}
-        // if letter equals c, return true
-        if (letter == c) {
-            return true;
-        }
-\end{verbatimtab}
-
-You should use comments to explain non-obvious code, to warn
-about conditions that could cause errors, and to document any
-assumptions that are built into the code.  Also, before each
-method, it is a good idea to write an abstract description of
-what the method does.
-
-
-\item The final step is to examine the code and see if you
-can convince yourself that it is correct.  
-At this point we know that the method is syntactically correct,
-because it compiles.
-To check for run time errors, you should find every statement
-that can cause an error and figure out what conditions cause
-the error.
-
-In this method, the only statement that can cause a run-time error is
-{\tt s.charAt(index)}.  This statement will fail if {\tt s} is {\tt
-null} or if the index is out of bounds.  Since we get {\tt s} as a
-parameter, we can't be sure that it is not {\tt null}; all we can do
-is check.  In general, it is a good idea for methods to make sure
-their parameters are legal.  The structure of the {\tt while} loop
-ensures that {\tt index} is always between 0 and {\tt s.length-1}.  If
-we check all the problem conditions, or prove that they cannot happen,
-then we can prove that this method will not cause a run time error.
-
-We haven't proven yet that the method is semantically correct, but by
-proceeding incrementally, we have avoided many possible errors.  For
-example, we already know that the method is getting parameters
-correctly and that the loop traverses the entire String.  We also know
-that it is comparing characters successfully, and returning {\tt true} if
-it finds the target.  Finally, we know that if the loop exits,
-%of course the loop exists, we just wrote it!
-the target is not in the String.
-
-Short of a formal proof, that is probably the best we can do.
-
-\end{enumerate}
-
-
-
-\beforechapter
-\chapter{Debugging}
-\label{debug}
-\index{debugging}
-
-There are a few different kinds of errors that can occur
-in a program, and it is useful to distinguish between them
-to track them down more quickly.
-
-\begin{itemize}
-
-\item Syntax errors are produced by the compiler and usually
-indicate that there is something wrong with the syntax of the
-program.  Example: omitting the semi-colon at the end of a
-statement.
-
-\item Run-time errors are produced by the run-time system if something
-goes wrong while the program is running.  Most run-time errors
-are Exceptions.  Example: an infinite recursion eventually causes
-a StackOverflowException.
-
-\item Semantic errors are problems with a program that compiles and
-runs, but doesn't do the right thing.  Example: an expression may
-not be evaluated in the order you expect, yielding an unexpected
-result.
-
-\end{itemize}
-
-\index{syntax error}
-\index{run-time error}
-\index{semantic error}
-\index{error!syntax}
-\index{error!run-time}
-\index{error!semantic}
-\index{exception}
-
-The first step in debugging is to figure out which kind of
-error you are dealing with.  Although the following sections are
-organized by error type, there are some techniques that are
-applicable in more than one situation.
-
-
-\section{Syntax errors}
-
-The best kind of debugging is the kind you don't have to do,
-because you avoid making errors in the first place.  In the
-previous section, I suggested a development process that
-minimizes the number of errors you will make and makes it easy
-to find them when you do.  The key is to start with a working
-program and add small amounts of code at a time.  That way,
-when there is an error, you will have a pretty good idea where it
-is.
-
-Nevertheless, you might find yourself in one of the following
-situations.  For each situation, I make some suggestions about
-how to proceed.
-
-
-\subsection*{The compiler is spewing error messages.}
-\index{error messages}
-\index{compiler}
-
-If the compiler reports 100 error messages, that doesn't mean
-there are 100 errors in your program.  When the compiler encounters
-an error, it often gets thrown off track for a while.  It tries to
-recover and pick up again after the first error, but sometimes
-it fails, and it reports spurious errors.
-
-In general, only the first error message is reliable.  I suggest
-that you only fix one error at a time, and then recompile the
-program.  You may find that one semi-colon ``fixes'' 100 errors.
-Of course, if you see several legitimate error messages, you
-might as well fix more than one bug per compilation attempt.
-
-
-\subsection*{I'm getting a weird compiler message and it
-won't go away.}
-
-First of all, read the error message carefully.  It is written
-in terse jargon, but often there is a kernel of information
-there that is carefully hidden.
-
-If nothing else, the message will tell you where in the program the
-problem occurred.  Actually, it tells you where the compiler was
-when it noticed a problem, which is not necessarily where the error
-is.  Use the information the compiler gives you as a guideline,
-but if you don't see an error where the compiler is pointing,
-broaden the search.
-
-Generally the error will be prior to the location of the error
-message, but there are cases where it will be somewhere else
-entirely.  For example, if you get an error message at a method
-invocation, the actual error may be in the method definition.
-
-If you are building the program incrementally, you should have
-a good idea about where the error is.  It will be in the last
-line you added.
-
-If you are copying code from a book, start by comparing 
-your code to the book's code very carefully.  Check every character.
-At the same time, remember that the book might be wrong, so
-if you see something that looks like a syntax error, it might be.
-
-If you don't find the error quickly, take a breath and look more
-broadly at the entire program.  Now is a good time to go through the
-whole program and make sure it is indented properly.  I won't say that
-good indentation makes it easy to find syntax errors, but bad
-indentation sure makes it harder.
-
-Now, start examining the code for the common syntax errors.
-\index{syntax}
-
-\begin{enumerate}
-
-\item Check that all parentheses and brackets are
-balanced and properly nested.  All method definitions should be nested
-within a class definition.  All program statements should be within a
-method definition.
-
-\item Remember that upper case letters are not the same as
-lower case letters.
-
-\item Check for semi-colons at the end of statements(and
-no semi-colons after squiggly-braces).
-
-\item Make sure that any strings in the code have matching
-quotation marks.  Make sure that you use double-quotes for
-Strings and single quotes for characters.
-
-\item For each assignment statement, make sure that the type
-on the left is the same as the type on the right.  Make sure
-that the expression on the left is a variable name or something
-else that you can assign a value to(like an element of an array).
-
-\item For each method invocation, make sure that the arguments
-you provide are in the right order, and have right type, and that the
-object you are invoking the method on is the right type.
-
-\item If you are invoking a fruitful method, make sure you
-are doing something with the result.  If you are invoking a
-void method, make sure you are not {\em trying} to do something
-with the result.
-
-\item If you are invoking an object method, make sure you are
-invoking it on an object with the right type.  If you are invoking
-a class method from outside the class where it is defined, make
-sure you specify the class name.
-
-\item Inside an object method you can refer to the instance
-variables without specifying an object.  If you try that in
-a class method, you will get a confusing message like, ``Static
-reference to non-static variable.''
-
-\end{enumerate}
-
-If nothing works, move on to the next section...
-
-
-\subsection*{I can't get my program to compile no matter
-what I do.}
-
-If the compiler says there is an error and you don't see it, that
-might be because you and the compiler are not looking at the same
-code.  Check your development environment to make sure the program
-you are editing is the program the compiler is compiling.  If you
-are not sure, try putting an obvious and deliberate syntax error
-right at the beginning of the program.  Now compile again.  If
-the compiler doesn't find the new error, there is probably something
-wrong with the way you set up the project.
-
-Otherwise, if you have examined the code thoroughly,
-it is time for desperate measures.  You should start over with
-a program that you can compile and then gradually add your code
-back.
-
-\begin{itemize}
-
-\item Make a copy of the file you are working on.  If you are
-working on {\tt Bob.java}, make a copy called {\tt Bob.java.old}.
-
-\item Delete about half the code from {\tt Bob.java}.  Try compiling
-again.
-
-\begin{itemize}
-
-\item If the program compiles now, then you know the error is in
-the other half.  Bring back about half of the code you deleted and
-repeat.
-
-\item If the program still doesn't compile, the error must be in
-this half.  Delete about half of the code and repeat.
-
-\end{itemize}
-
-\item Once you have found and fixed the error, start bringing back
-the code you deleted, a little bit at a time.
-
-\end{itemize}
-
-This process is called ``debugging by bisection.''  As an
-alternative, you can comment out chunks of code instead of
-deleting them.  For really sticky syntax problems, though,
-I think deleting is more reliable---you don't have to worry
-about the syntax of the comments, and by making the program
-smaller you make it more readable.
-
-\index{bisection!debugging by}
-\index{debugging by bisection}
-
-
-\subsection*{I did what the compiler told me to do, but it
-still doesn't work.}
-
-Some compiler messages come with tidbits of advice, like
-``class Golfer must be declared
-abstract. It does not define int compareTo(java.lang.Object) from
-interface java.lang.Comparable.''  It sounds like the compiler
-is telling you to declare Golfer as an abstract class, and if
-you are reading this book, you probably don't know what that is
-or how to do it.
-
-Fortunately, the compiler is wrong.  The solution in this case
-is to make sure {\tt Golfer} has a method called {\tt compareTo}
-that takes an {\tt Object} as a parameter.
-
-In general, don't let the compiler lead you by the nose.  Error
-messages give you evidence that something is wrong, but they can
-be misleading, and their ``advice'' is often wrong.
-
-
-\section{Run-time errors}
-
-\subsection*{My program hangs.}
-\index{infinite loop}
-\index{infinite recursion}
-\index{hanging}
-
-If a program stops and seems to be doing nothing, we
-say it is ``hanging.''  Often that means that it is caught in
-an infinite loop or an infinite recursion.
-
-\begin{itemize}
-
-\item If there is a particular loop that you suspect is the
-problem, add a print statement immediately before the loop
-that says
-``entering the loop'' and another immediately after that
-says ``exiting the loop.''
-
-Run the program.  If you get the first message and not
-the second, you've got an infinite loop.  Go to the section
-titled ``Infinite loop.''
-
-\item Most of the time an infinite recursion will cause the program
-to run for a while and then produce a StackOverflowException.
-If that happens, go to the section
-titled ``Infinite recursion.''
-
-If you are not getting a StackOverflowException, but you suspect
-there is a problem with a recursive method, you can still use
-the techniques in the infinite recursion section.
-
-\item If neither of those things works, start testing other
-loops and other recursive methods.
-
-\item If none of these suggestions helps, then it is possible that
-you don't understand the flow of execution in your program.
-Go to the section titled ``Flow of execution.''
-
-\end{itemize}
-
-
-\subsubsection*{Infinite loop}
-
-If you think you have an infinite loop and think you know
-what loop is causing the problem, add a print statement at
-the end of the loop that prints the values of the variables in
-the condition, and the value of the condition.
-
-For example,
-
-\begin{verbatimtab}
-    while (x > 0 && y < 0) {
-        // do something to x
-        // do something to y
-
-        System.out.println("x: " + x);
-        System.out.println("y: " + y);
-        System.out.println("condition: " +(x > 0 && y < 0));
-    }
-\end{verbatimtab}
-%
-Now when you run the program you will see three lines of output
-for each time through the loop.  The last time through the
-loop, the condition should be {\tt false}.  If the loop keeps
-going, you will be able to see the values of {\tt x} and {\tt y}
-and you might figure out why they are not being updated correctly.
-
-
-\subsubsection*{Infinite recursion}
-
-Most of the time an infinite recursion will cause the program
-to run for a while and then produce a StackOverflowException.
-
-If you know that a method is causing an infinite recursion, start by
-checking to make sure that there is a base case.  In other words,
-there should be some condition that will cause the method to return
-without making a recursive invocation.  If not, then you need to
-rethink the algorithm and identify a base case.
-
-If there is a base case, but the program doesn't seem to be reaching
-it, add a print statement at the beginning of the method that prints
-the parameters.  Now when you run the program you will see a few lines
-of output every time the method is invoked, and you will see the
-parameters.  If the parameters are not moving toward the base case,
-you will get some ideas about why not.
-
-
-\subsubsection*{Flow of execution}
-\index{flow of execution}
-
-If you are not sure how the flow of execution is moving through
-your program, add print statements to the beginning of each
-method with a message like ``entering method foo,'' where
-{\tt foo} is the name of the method.
-
-Now when you run the program it will print a trace of each
-method as it is invoked.
-
-It is often useful to print the parameters each method receives
-when it is invoked.  When you run the program, check whether
-the parameters are reasonable, and check for one of the
-classic errors---providing parameters in the wrong order.
-
-
-\subsection*{When I run the program I get an Exception.}
-\index{Exception}
-
-If something goes wrong during run time, the Java run-time
-system prints a message that includes the name of the
-exception, the line of the program where the problem occurred,
-and a stack trace.
-
-The stack trace includes the method that is currently running,
-and then the method that invoked it, and then the method that
-invoked {\em that}, and so on.  In other words, it traces the
-stack of method invocations that got you to where you are.
-
-The first step is to examine the place in the program where
-the error occurred and see if you can figure out what happened.
-
-\begin{description}
-
-\item[NullPointerException:] You tried to access an instance
-variable or invoke a method on an object that is currently
-{\tt null}.  You should figure out what variable is {\tt null}
-and then figure out how it got to be that way.
-
-Remember that when you declare a variable with an object type,
-it is initially {\tt null}, until you assign a value to it.
-For example, this code causes a NullPointerException:
-
-\begin{verbatimtab}
-Point blank;
-System.out.println(blank.x);
-\end{verbatimtab}
-
-\item[ArrayIndexOutOfBoundsException:] The index you are using
-to access an array is either negative or greater than
-{\tt array.length-1}.  If you can find the site where the
-problem is, add a print statement immediately before it to
-print the value of the index and the length of the array.
-Is the array the right size?  Is the index the right value?
-
-Now work your way backwards through the program and see where
-the array and the index come from.  Find the nearest assignment
-statement and see if it is doing the right thing.
-
-If either one is a parameter, go to the place where the method
-is invoked and see where the values are coming from.
-
-\item[StackOverFlowException:] See ``Infinite recursion.''
-
-\end{description}
-
-
-\subsection*{I added so many print statements I get inundated with
-output.}
-\index{print statement}
-\index{statement!print}
-
-One of the problems with using print statements for debugging
-is that you can end up buried in output.  There are two ways
-to proceed: either simplify the output or simplify the program.
-
-To simplify the output, you can remove or comment out print
-statements that aren't helping, or combine them, or format
-the output so it is easier to understand.  As you develop a program,
-you will conceive ways to visualize the execution of
-the program, and develop code that generates concise,
-informative visualizations.
-
-To simplify the program, there are several things you can do.  First,
-scale down the problem the program is working on.  For example, if you
-are sorting an array, sort a {\em small} array.  If the program takes
-input from the user, give it the simplest input that causes the
-error.
-
-Second, clean up the program.  Remove dead code and reorganize the
-program to make it as easy to read as possible.  For example, if you
-suspect that the error is in a deeply-nested part of the program,
-try rewriting that part with simpler structure.  If you suspect a
-large method, try splitting it into smaller methods and testing them
-separately.
-
-Often the process of finding the minimal test case leads you to the
-bug.  For example, if you find that a program works when the array has
-an even number of elements, but not when it has an odd number, that
-gives you a clue about what is going on.
-
-Similarly, rewriting a piece of code can help you find subtle
-bugs.  If you make a change that you think doesn't affect the
-program, and it does, that can tip you off.
-
-
-\section{Semantic errors}
-
-\subsection*{My program doesn't work.}
-
-In some ways semantic errors are the hardest, because the
-compiler and the run-time system provide no information about
-what is wrong.  Only you know what the program was supposed to
-do, and only you know that it isn't doing it.
-
-The first step is to make a connection between the program
-text and the behavior you are seeing.  You need a hypothesis
-about what the program is actually doing.  One of the things
-that makes this hard is that computers run so fast.
-You will often wish that you could slow the program down to
-human speed, but there is no straightforward way to do that,
-and even if there were, it is not really a good way to debug.
-
-Here are some questions to ask yourself:
-
-\begin{itemize}
-
-\item Is there something the program was supposed to do, but
-doesn't seem to be happening?  Find the section of the code
-that performs that function and make sure it is executing when
-you think it should.  Add a print statement to the beginning
-of the suspect methods.
-
-\item Is something happening that shouldn't?  Find code in
-your program that performs that function and see if it is
-executing when it shouldn't.
-
-\item Is a section of code producing an effect that is not
-what you expected?  Make sure that you understand the code in
-question, especially if it involves invocations to 
-Java methods.  Read the documentation for the methods you invoke.
-Try out the methods by invoking the methods directly with
-simple test cases, and check the results.
-
-\end{itemize}
-
-To program, you need to have a mental model of how
-programs work.  If your program that doesn't do what you expect,
-very often the problem is not in the program; it's in your mental
-model.
-
-\index{model!mental}
-\index{mental model}
-
-The best way to correct your mental model is to break the program
-into its components(usually the classes and methods) and test
-each component independently.  Once you find the discrepancy
-between your model and reality, you can solve the problem.
-
-Of course, you should be building and testing components as you
-develop the program.  If you encounter a problem, there should be only
-a small amount of new code that is not known to be correct.
-
-Here are some common semantic errors that you might want to check for:
-
-\begin{itemize}
-
-\item If you use the assignment operator,
-{\tt =}, instead of the equality operator, {\tt ==}, in the
-condition of an {\tt if}, {\tt while} or {\tt for} statement,
-you might get an expression that is syntactically legal, but
-it doesn't do what you expect.
-
-\item When you apply the equality operator, {\tt ==}, to an
-object, it checks shallow equality.  If you meant to check
-deep equality, you should use the {\tt equals} method(or
-define one, for user-defined objects).
-
-\item Some Java libraries expect user-defined objects to
-define methods like {\tt equals}.  If you don't define them
-yourself, you will inherit the default behavior from the parent
-class, which may not be what you want.
-
-\item Inheritance can lead to subtle semantic errors,
-because you may be executing inherited code without realizing it.
-To make sure you understand the flow of execution in your
-program, see the section titled ``Flow of Execution.''
-
-\end{itemize}
-
-
-\subsection*{I've got a big hairy expression and it doesn't
-do what I expect.}
-\index{expression!big and hairy}
-
-Writing complex expressions is fine as long as they are readable,
-but they can be hard to debug.  It is often a good idea to
-break a complex expression into a series of assignments to
-temporary variables.
-
-For example:
-
-\begin{verbatimtab}
-rect.setLocation(rect.getLocation().translate
-                    (-rect.getWidth(), -rect.getHeight()));
-\end{verbatimtab}
-%
-Can be rewritten as
-
-\begin{verbatimtab}
-int dx = -rect.getWidth();
-int dy = -rect.getHeight();
-Point location = rect.getLocation();
-Point newLocation = location.translate(dx, dy);
-rect.setLocation(newLocation);
-\end{verbatimtab}
-%
-The explicit version is easier to read, because the variable
-names provide additional documentation, and easier to debug,
-because we can check the types of the intermediate variables
-and display their values.
-
-\index{temporary variable}
-\index{variable!temporary}
-\index{order of evaluation}
-\index{precedence}
-
-Another problem that can occur with big expressions is
-that the order of evaluation may not be what you expect.
-For example, if you are translating the expression
-$\frac{x}{2 \pi}$ into Java, you might write
-
-\begin{verbatimtab}
-double y = x / 2 * Math.PI;
-\end{verbatimtab}
-%
-That is not correct, because multiplication and division have
-the same precedence, and are evaluated from left to right.
-So this expression computes $x \pi / 2$.
-
-A good way to debug expressions is to add parentheses to make
-the order of evaluation explicit.
-
-\begin{verbatimtab}
-double y = x /(2 * Math.PI);
-\end{verbatimtab}
-%
-Any time you are not sure of the order of evaluation, use
-parentheses.  Not only will the program be correct(in the sense
-of doing what you intend); it will also be more readable for
-other people who haven't memorized the rules of precedence.
-
-
-
-\subsection*{I've got a method that doesn't return what I
-expect.}
-\index{return statement}
-\index{statement!return}
-
-If you have a return statement with a complex expression,
-you don't have a chance to print the return value before
-returning.  Again, you can use a temporary variable.  For
-example, instead of
-
-\begin{verbatimtab}
-public Rectangle intersection(Rectangle a, Rectangle b) { 
-    return new Rectangle(
-        Math.min(a.x, b.x),
-        Math.min(a.y, b.y),
-        Math.max(a.x+a.width, b.x+b.width)-Math.min(a.x, b.x)
-        Math.max(a.y+a.height, b.y+b.height)-Math.min(a.y, b.y) );
-}
-\end{verbatimtab}
-%
-You could write
-
-\begin{verbatimtab}
-public Rectangle intersection(Rectangle a, Rectangle b) { 
-    int x1 = Math.min(a.x, b.x);
-    int y2 = Math.min(a.y, b.y);
-    int x2 = Math.max(a.x+a.width, b.x+b.width);
-    int y2 = Math.max(a.y+a.height, b.y+b.height);
-    Rectangle rect = new Rectangle(x1, y1, x2-x1, y2-y1);
-    return rect;
-}
-\end{verbatimtab}
-%
-Now you have the opportunity to display any of
-the intermediate variables before returning.
-
-
-\subsection*{My print statement isn't doing anything}
-\index{print statement}
-\index{statement!print}
-
-If you use the {\tt println} method, the output gets displayed
-immediately, but if you use {\tt print}(at least in some
-environments) the output gets stored without being displayed until the
-next newline character gets output.  If the program terminates without
-producing a newline, you may never see the stored output.
-
-If you suspect that this is happening to you, try changing
-some or all of the {\tt print} statements to {\tt println}.
-
-
-\subsection*{I'm really, really stuck and I need help}
-
-First of all, try getting away from the computer for a few minutes.
-Computers emit waves that affect the brain, causing the following
-symptoms:
-
-\begin{itemize}
-
-\item Frustration and/or rage.
-
-\item Superstitious beliefs (``the computer hates me'') and
-magical thinking (``the program only works when I wear my
-hat backwards'').
-
-\item Random walk programming (writing
-every possible program and choosing the one that does the right
-thing).
-
-\end{itemize}
-
-If you find yourself suffering from any of these symptoms, get
-up and go for a walk.  When you are calm, think about the program.
-What is it doing?  What are some possible causes of that
-behavior?  When was the last time you had a working program,
-and what did you do next?
-
-Sometimes it just takes time to find a bug.  I often find bugs
-when I am away from the computer and I let my mind wander.  Some
-of the best places to find bugs are trains, showers, and in bed,
-just before you fall asleep.
-
-
-\subsection*{No, I really need help.}
-
-It happens.  Even the best programmers occasionally get stuck.
-Sometimes you work on a program so long that you can't see the
-error.  A fresh pair of eyes is just the thing.
-
-Before you bring someone else in, make sure you have exhausted
-the techniques described here.  Your program should be as simple
-as possible, and you should be working on the smallest input
-that causes the error.  You should have print statements in the
-appropriate places (and the output they produce should be
-comprehensible).  You should understand the problem well enough
-to describe it concisely.
-
-When you bring someone in to help, be sure to give
-them the information they need.
-
-\begin{itemize}
-
-\item What kind of bug is it?  compiler, run-time, or
-semantic?
-
-\item If the bug occurs at compile-time or run-time, what is
-the error message, and what part of the program does it indicate?
-
-\item What was the last thing you did before this error occurred?
-What were the last lines of code that you wrote, or what is
-the new test case that fails?
-
-\item What have you tried so far, and what have you learned? 
-
-\end{itemize}
-
-Often you will find that by the time you have explained the problem
-to someone else, you will see the answer.  This phenomenon
-is so pervasive that some people recommend a debugging technique
-called ``rubber ducking.''  Here's how it works:
-
-\begin{enumerate}
-
-\item Buy a standard-issue rubber duck.
-
-\item When you are really stuck on a problem, put the rubber
-duck on the desk in front of you and say, ``Rubber duck, I
-am stuck on a problem.  Here's what's happening...''
-
-\item Explain the problem to the rubber duck.
-
-\item See the solution.
-
-\item Thank the rubber duck.
-
-\end{enumerate}
-
-
-\subsection*{I found the bug!}
-
-Most often, when you find a bug, it is obvious how to fix it.  But not
-always.  Sometimes what seems to be a bug is really an indication that
-you don't really understand the program, or there is an error in your
-algorithm.  In these cases, you might have to rethink the algorithm,
-or adjust your mental model of the program.  Take some time away from
-the computer to think about the program, work through some test cases
-by hand, or draw diagrams to represent the computation.
-
-When you fix a bug, don't just dive in and start making new errors.
-Take a second to think about what kind of bug it was, why you made
-the error in the first place, how the error manifested itself, and
-what you could have done to find it faster.  Next time you see something
-similar, you will be able to find the bug more quickly.
-
-
-
-\beforechapter
-\chapter{Input and Output in Java}
-\label{javaio}
-
-\section* {System objects}
-\label{system}
-\index{System object}
-\index{object!System}
-
-{\tt System} is the name of the Java class that contains
-methods and objects used to get input from the keyboard,
-print text on the screen, and do file input/output(I/0).
-
-{\tt System.out} is the name of the object we use to to display text
-on the screen.  When you invoke {\tt print} and {\tt println}, you
-invoke them on the object named {\tt System.out}.
-
-Interestingly, you can print {\tt System.out}:
-
-\begin{verbatimtab}
-System.out.println(System.out);
-\end{verbatimtab}
-%
-The output is:
-
-\begin{verbatimtab}
-java.io.PrintStream@80cc0e5
-\end{verbatimtab}
-%
-As usual, when Java prints an object, it prints the type
-of the object, which is {\tt PrintStream}, the package
-in which that type is defined, {\tt java.io}, and a
-unique identifier for the object.  On my machine the identifier
-is {\tt 80cc0e5}, but if you run the same code, you will
-probably get something different.
-
-There is also an object named {\tt System.in} that has
-type {\tt BufferedInputStream}.  {\tt System.in} makes it
-possible to get input from the keyboard.  Unfortunately,
-it does not make it easy to get input from the keyboard.
-
-
-\section* {Keyboard input}
-\label{keyboard}
-\index{keyboard}
-\index{input!keyboard}
-
-First, you have to use {\tt System.in} to create a new
-{\tt InputStreamReader}.
-
-\begin{verbatimtab}
-    InputStreamReader in = new InputStreamReader(System.in);
-\end{verbatimtab}
-%
-Then you use {\tt in} to create a new {\tt BufferedReader}:
-
-\begin{verbatimtab}
-    BufferedReader keyboard = new BufferedReader(in);
-\end{verbatimtab}
-%
-The point of all this manipulation is that there is a method
-you can invoke on a {\tt BufferedReader}, called {\tt readLine},
-that gets input from the keyboard and converts it into a
-String.  For example:
-
-\begin{verbatimtab}
-    String s = keyboard.readLine();
-    System.out.println(s);
-\end{verbatimtab}
-%
-reads a line from the keyboard and prints the result.
-
-There is only one problem.  There are things that can go wrong
-when you invoke {\tt readLine}, and they might cause an
-IOException.  There is a rule in Java that if a method might
-cause an exception, it should say so.  The syntax looks
-like this:
-
-\begin {verbatimtab}
-public static void main(String[] args) throws IOException {
-    // body of main
-}
-\end{verbatimtab}
-
-This indicates that {\tt main} might ``throw'' an IOException.
-You can think of throwing an exception as similar to throwing
-a tantrum.
-
-
-\section* {File input}
-\label{fileIO}
-\index{file input}
-\index{input!file}
-
-Here is an example that reads words from a file.
-
-\begin{verbatimtab}
-    public static void main(String[] args)
-        throws FileNotFoundException, IOException {
-	
-        processFile("/usr/dict/words");
-    }
-
-    public static void processFile(String filename)
-        throws FileNotFoundException, IOException {
-
-        FileReader fileReader = new FileReader(filename);
-        BufferedReader in = new BufferedReader(fileReader);
-
-        while (true) {
-            String s = in.readLine();
-            if (s == null) break;
-            System.out.println(s);
-        }
-    }
-\end{verbatimtab}
-
-This program reads each line of the named file({\tt /usr/dict/words})
-into a {\tt String} and then prints the line.  Again, the declaration {\tt
-throws FileNotFoundException, IOException} is required by the
-compiler.  The object types {\tt FileReader} and {\tt BufferedReader}
-are part of the insanely complicated class hierarchy Java uses to do
-incredibly common, simple things.  Other than that, there is not
-much value in the details of how this code fragment works.
-
 
 \beforechapter
 \chapter{Graphics}
@@ -12242,10 +11379,10 @@ much value in the details of how this code fragment works.
 \index{class!Frame}
 \index{Frame}
 
-There are a number of ways to create graphics in Java, some more
-complicated than others.  The simplest is to use {\tt java.awt.Graphics}.
-This appendix provides examples and exercises that demonstrate
-Java graphics.  Here is a complete example:
+This appendix provides examples and exercises that demonstrate Java
+graphics.  There are several ways to create graphics in Java; the
+simplest is to use {\tt java.awt.Graphics}.
+Here is a complete example:
 
 \begin{verbatimtab}
 import java.awt.Canvas;
@@ -12293,14 +11430,14 @@ In {\tt main} we
 \item Create a {\tt JFrame}, which is a window that can contain the
   canvas, buttons, menus and other window components;
 
-\item Create {\tt MyCanvas}, set its width and height, and then add it
+\item Create {\tt MyCanvas}, set its width and height, and add it
   to the frame; and
 
 \item Display the frame on the screen.
 
 \end{enumerate}
 
-{\tt paint} is a special method that gets invoked by the system
+{\tt paint} is a special method that gets invoked
 when {\tt MyCanvas} needs to be drawn.
 If you run this code, you should see a black circle on a gray
 background.
@@ -12311,27 +11448,31 @@ background.
 \index{setColor}
 \index{drawOval}
 
-To draw things on the screen, you invoke methods on the
-graphics object.  The previous example uses {\tt fillOval}.
+To draw on the Canvas, you invoke methods on the
+Graphics object.  The previous example uses {\tt fillOval}.
 Other methods include {\tt drawLine}, {\tt drawRect} and more.
-
 You can read the documentation of these methods at
 \url{http://download.oracle.com/javase/6/docs/api/java/awt/Graphics.html}.
 
-{\tt fillOval} takes four integers as arguments.
-These arguments specify a {\bf bounding box}, which is the rectangle
-in which the oval will be drawn (as shown in the figure).  The
-bounding box itself is not drawn; only the oval is.
+Here is the prototype for {\tt fillOval}:
+
+\begin{verbatim}
+public void fillOval(int x, int y, int width, int height)
+\end{verbatim}
+
+The parameters specify 
+a {\bf bounding box}, which is the rectangle
+in which the oval is drawn (as shown in the figure).  The
+bounding box itself is not drawn.
 
 \index{bounding box}
 
 
 \epsfig{figure=figs/circle.eps}
 
-
-The usual way to specify a bounding box is to
-give the location of the {\em upper-left} corner and the width
-and height.  The usual way to specify a location is to use a
+{\tt x} and {\tt y} specify the
+the location of the upper-left corner 
+of the bounding box in the Graphics
 {\bf coordinate system}.
 
 
@@ -12351,8 +11492,8 @@ figure.
 
 
 By convention, computer graphics systems to use a
-variation on Cartesian coordinates in which the origin is in the
-upper-left corner of the window, and the direction of the
+coordinate system where the origin is in the
+upper-left corner, and the direction of the
 positive y-axis is {\em down}.  Java follows this convention.
 
 \index{pixel}
@@ -12361,23 +11502,24 @@ Coordinates are measured in {\bf pixels}; each pixel corresponds to
 a dot on the screen.  A typical screen is about
 1000 pixels wide.  Coordinates are always integers.  If you want to
 use a floating-point value as a coordinate, you have to round it off
-(See Section~\ref{rounding}).
+(see Section~\ref{rounding}).
 
 
 \section{Color}
 
-To choose the color of a shape, invoke {\tt setColor}:
+To choose the color of a shape, invoke {\tt setColor} on the Graphics
+object:
 
 \begin{verbatimtab}
     g.setColor(Color.red);
 \end{verbatimtab}
 %
 {\tt setColor} changes the current color; everything that gets drawn 
-will be this color, until you invoke {\tt setColor} again.
+is the current color.
 
-{\tt Color.red} is a special value provided by the {\tt Color}
+{\tt Color.red} is a value provided by the {\tt Color}
 class; to use it you have to import {\tt java.awt.Color}.
-Other special colors include:
+Other colors include:
 
 \begin{verbatimtab}
 black     blue    cyan   darkGray   gray   lightGray
@@ -12385,14 +11527,16 @@ magenta	  orange  pink   red        white  yellow
 \end{verbatimtab}
 %
 You can create other colors by specifying red, green and blue (RGB)
-values.
+components.
 See \url{http://download.oracle.com/javase/6/docs/api/java/awt/Color.html}.
 
 You can control the background color of the {\tt Canvas} by
-invoking {\tt canvas.setBackground}.
+invoking {\tt Canvas.setBackground}.
 
-As an exercise, draw the flag of Japan, a red circle on white background
+\begin{exercise}
+Draw the flag of Japan, a red circle on white background
 that is wider than it is tall.
+\end{exercise}
 
 
 \section{Mickey Mouse}
@@ -12400,7 +11544,7 @@ that is wider than it is tall.
 
 Let's say we want to draw a picture of Mickey Mouse.  We can use the
 oval we just drew as the face, and then add ears.  To make the code
-more readable, we will use {\tt Rectangles} to represent bounding boxes.
+more readable, let's use {\tt Rectangles} to represent bounding boxes.
 
 Here's a method that takes a Rectangle and invokes {\tt fillOval}.
 
@@ -12490,6 +11634,985 @@ can create.
 \end{enumerate}
 \end{exercise}
 
+
+\beforechapter
+\chapter{Input and Output in Java}
+\label{javaio}
+
+\section* {System objects}
+\label{system}
+\index{System object}
+\index{object!System}
+
+The {\tt System} class provides
+methods and objects that get input from the keyboard,
+print text on the screen, and do file input and output (I/O).
+
+{\tt System.out} is the object that displays
+on the screen.  When you invoke {\tt print} and {\tt println}, you
+invoke them on {\tt System.out}.
+
+You can use {\tt System.out} to print {\tt System.out}:
+
+\begin{verbatimtab}
+System.out.println(System.out);
+\end{verbatimtab}
+%
+The result is:
+
+\begin{verbatimtab}
+java.io.PrintStream@80cc0e5
+\end{verbatimtab}
+%
+When Java prints an object, it prints the type
+of the object, {\tt PrintStream}, the package
+where the type is defined, {\tt java.io}, and a
+unique identifier for the object.  On my machine the identifier
+is {\tt 80cc0e5}, but if you run the same code, you
+probably get something different.
+
+There is also an object named {\tt System.in} that makes it
+possible to get input from the keyboard.  Unfortunately,
+it does not make it easy to get input from the keyboard.
+
+
+\section* {Keyboard input}
+\label{keyboard}
+\index{keyboard}
+\index{input!keyboard}
+
+First, you have to use {\tt System.in} to create a new
+{\tt InputStreamReader}.
+
+\begin{verbatimtab}
+    InputStreamReader in = new InputStreamReader(System.in);
+\end{verbatimtab}
+%
+Then you use {\tt in} to create a new {\tt BufferedReader}:
+
+\begin{verbatimtab}
+    BufferedReader keyboard = new BufferedReader(in);
+\end{verbatimtab}
+%
+Finally you can invoke {\tt readLine} on {\tt keyboard}, 
+to take input from the keyboard and convert it to a
+String.
+
+\begin{verbatimtab}
+    String s = keyboard.readLine();
+    System.out.println(s);
+\end{verbatimtab}
+%
+There is only one problem.  There are things that can go wrong when
+you invoke {\tt readLine}, and they might throw an {\tt IOException}.  A
+method that throws an exception has to include it in the
+prototype, like this:
+
+\begin {verbatimtab}
+public static void main(String[] args) throws IOException {
+    // body of main
+}
+\end{verbatimtab}
+
+
+\section* {File input}
+\label{fileIO}
+\index{file input}
+\index{input!file}
+
+Here's a program that reads lines from a file and prints them:
+
+\begin{verbatimtab}
+import java.io.*;
+
+public class Words {
+
+    public static void main(String[] args)
+        throws FileNotFoundException, IOException {
+	
+        processFile("words.txt");
+    }
+
+    public static void processFile(String filename)
+        throws FileNotFoundException, IOException {
+
+        FileReader fileReader = new FileReader(filename);
+        BufferedReader in = new BufferedReader(fileReader);
+
+        while (true) {
+            String s = in.readLine();
+            if (s == null) break;
+            System.out.println(s);
+        }
+    }
+}
+\end{verbatimtab}
+
+This first line imports {\tt java.io}, the package that contains
+{\tt FileReader}, {\tt BufferedReader} and the rest of
+the elaborate class hierarchy Java uses to do
+common, simple things.  The {\tt *} means it imports all classes
+in the package.
+\index{import statement}
+\index{statement!import}
+
+Here's what the same program looks like in Python:
+
+\begin{verbatim}
+for word in open('words.txt'):
+    print word
+\end{verbatim}
+
+I'm not kidding.  That's the whole program, and it does the same thing.
+
+
+\section{Catching exceptions}
+
+In the previous example, {\tt processFile} can throw 
+{\tt FileNotFoundException} and {\tt IOException}.  And since
+{\tt main} calls {\tt processFile}, it has to declare the
+same exceptions.  In a larger program, {\tt main} might
+declare every exception there is.
+
+The alternative is to {\bf catch} the exception with a
+{\tt try} statement.  Here's an example:
+\index{try statement}
+\index{statement!try}
+
+\begin{verbatimtab}
+    public static void main(String[] args) {
+	
+	try {
+	    processFile("words.txt");
+	} catch(Exception ex) {
+	    System.out.println("That didn't work.  Here's why:");
+	    ex.printStackTrace();
+	}
+    }
+\end{verbatimtab}
+
+The structure is similar to an {\tt if} statement.  If the first
+``branch'' runs without causing an Exception, the second branch
+is skipped.
+
+If the first branch causes an Exception, the flow of execution jumps
+to the second branch, which tries to deal with the exceptional
+condition (a polite way to say ``error'').  In this case it prints
+an error message and the stack trace.
+
+You can download this example from
+\url{}.
+Now go do Excercises~\ref{} and ~\ref{}.
+
+
+
+\beforechapter
+\chapter{Program development}
+\label{development}
+
+I present different program development strategies throughout
+the book, so I wanted to pull them together here.
+
+The foundation of all strategies is {\bf incremental development},
+which goes like this:
+
+\begin{enumerate}
+
+\item Start with a working program that does something visible,
+   like printing something.
+
+\item Add a small number of lines of code at a time,
+   and test the program after every change.
+
+\item Repeat until the program does what it is supposed to do.
+
+\end{enumerate}
+
+After every change, the program should produce some visible effect
+that tests the new code.  This approach to programming can save
+a lot of time.
+
+Because you only add a few lines of code at a time, it
+is easy to find syntax errors.  
+
+And because each version of the
+program produces a visible result, you are constantly testing your
+mental model of how the program works.  If your mental model is
+wrong, you are confronted with the conflict (and have a chance
+to correct it) before you write a lot of bad code.
+
+The challenge of incremental development is that is it not
+easy to figure out a path from the starting place
+to a complete and correct program.
+
+To help with that, there are several strategies to choose from:
+
+\begin{description}
+
+\item[Encapsulation and generalization:] If you don't know yet how
+to divide the computation into methods, start writing code in
+{\tt main}, then look for coherent chunks to encapsulate in
+a method, and generalize the appropriately.
+
+\item[Rapid prototyping:] If you know what method to write, but not
+how to write it, start with a rough draft that handles the simplest
+case, then test it with other cases, extending and correcting as you go.
+
+\item[Bottom-up:] Start by writing simple methods, then assemble them
+into a solution.
+
+\item[Top-down:] Use pseudocode to design the structure of the
+computation and identify the methods you'll need.  Then write the
+methods and replace the pseudocode with real code.
+
+\end{description}
+
+Along the way, you might need some scaffolding; for example, each
+class should have a {\tt toString} method that lets you print the
+state of an object in human-readable form.  This method is useful
+for debugging, but usually not part of a finished program.
+
+\section{Failure modes}
+
+If you are spending a lot of time debugging, it is probably
+because are using an ineffective development strategy.  Here
+are the failure modes I see most often (and occasionally fall
+into):
+
+\begin{description}
+
+\item[Non-incremental developement:] If you write more than a few
+  lines of code without compiling and testing, you are asking for
+  trouble.  One time when I asked a student how the homework was
+  coming along, he said, ``Great!  I have it all written.  Now I just
+  have to debug it.''
+
+\item[Attachment to bad code:] If you write more than a few lines of
+  code without compiling and testing, you may not be able to debug it.
+  Ever.  Sometimes the only strategy is (gasp!)  to delete the bad
+  code and start over (using an incremental strategy).  But beginners
+  are often emotionally attached to their code, even if it doesn't
+  work.  The only way out of this trap is to be ruthless.
+
+\item[Random-walk programming:] I sometimes work with students who
+  seem to be programming at random.  They make a change, run the
+  program, get an error, make a change, run the program, etc.  The
+  problem is that there is no apparent connection between the outcome
+  of the program and the change.
+
+  If you get an error message, take the time to read it.
+  More generally, take time to think.
+
+\item[Compiler submission:] Error messages are useful, but they
+  are not always right.  For example, if the message says, ``Semi-colon
+  expected on line 13,'' that means there is a syntax error near
+  line 13, but putting a semi-colon on line 13 is probably not the
+  solution.  Don't submit to the will of the compiler.
+
+\end{description}
+
+The next chapter makes more suggestions for effective debugging.
+
+
+\beforechapter
+\chapter{Debugging}
+\label{debug}
+\index{debugging}
+
+The best debugging strategy depends on what kind of error
+you have:
+
+\begin{itemize}
+
+\item Syntax errors are produced by the compiler and indicate that
+  there is something wrong with the syntax of the program.  Example:
+  omitting the semi-colon at the end of a statement.
+\index{syntax error}
+
+\item Exceptions are produced if something goes wrong while the
+  program is running.  Example: an infinite recursion eventually
+  causes a {\tt StackOverflowException}.
+\index{exception}
+\index{run-time error}
+
+\item Logic errors cause the program to do the wrong thing.  Example:
+  an expression may not be evaluated in the order you expect, yielding
+  an unexpected result.
+\index{logic error}
+
+\end{itemize}
+
+\index{error!syntax}
+\index{error!run-time}
+\index{error!logic}
+
+The following sections are
+organized by error type, there are some techniques that are
+useful for more than one.
+
+
+\section{Syntax errors}
+
+The best kind of debugging is the kind you don't have to do
+because you avoid making errors in the first place.  In the
+previous section, I suggested a development strategies that
+minimizes errors and makes it easy
+to find them when you do.
+
+The key is to start with a working program and add small
+amounts of code at a time.  When there is an error, you will
+have a pretty good idea where it is.
+
+Nevertheless, you might find yourself in one of the following
+situations.  For each situation, I make some suggestions about
+how to proceed.
+
+
+\subsection*{The compiler is spewing error messages.}
+\index{error messages}
+\index{compiler}
+
+If the compiler reports 100 error messages, that doesn't mean
+there are 100 errors in your program.  When the compiler encounters
+an error, it often gets thrown off track for a while.  It tries to
+recover and pick up again after the first error, but sometimes
+it reports spurious errors.
+
+Only the first error message is truly reliable.  I suggest
+that you only fix one error at a time, and then recompile the
+program.  You may find that one semi-colon ``fixes'' 100 errors.
+
+
+\subsection*{I'm getting a weird compiler message and it
+won't go away.}
+
+First of all, read the error message carefully.  It is written in
+terse jargon, but often there is a carefully hidden kernel of
+information.
+
+If nothing else, the message will tell you where in the program the
+problem occurred.  Actually, it tells you where the compiler was
+when it noticed a problem, which is not necessarily where the error
+is.  Use the information the compiler gives you as a guideline,
+but if you don't see an error where the compiler is pointing,
+broaden the search.
+
+Generally the error will be prior to the location of the error
+message, but there are cases where it will be somewhere else
+entirely.  For example, if you get an error message at a method
+invocation, the actual error may be in the method definition.
+
+If you don't find the error quickly, take a breath and look more
+broadly at the entire program.  Make sure the program is indented
+properly; that makes it easier to spot syntax errors.
+
+Now, start looking for common errors:
+\index{syntax}
+
+\begin{enumerate}
+
+\item Check that all parentheses and brackets are
+balanced and properly nested.  All method definitions should be nested
+within a class definition.  All program statements should be within a
+method definition.
+
+\item Remember that upper case letters are not the same as
+lower case letters.
+
+\item Check for semi-colons at the end of statements (and
+no semi-colons after squiggly-braces).
+
+\item Make sure that any strings in the code have matching
+quotation marks.  Make sure that you use double-quotes for
+Strings and single quotes for characters.
+
+\item For each assignment statement, make sure that the type
+on the left is the same as the type on the right.  Make sure
+that the expression on the left is a variable name or something
+else that you can assign a value to (like an element of an array).
+
+\item For each method invocation, make sure that the arguments
+you provide are in the right order, and have right type, and that the
+object you are invoking the method on is the right type.
+
+\item If you are invoking a fruitful method, make sure you
+are doing something with the result.  If you are invoking a
+void method, make sure you are {\em not} trying to do something
+with the result.
+
+\item If you are invoking an object method, make sure you are
+invoking it on an object with the right type.  If you are invoking
+a class method from outside the class where it is defined, make
+sure you specify the class name.
+
+\item Inside an object method you can refer to the instance
+variables without specifying an object.  If you try that in
+a class method, you get a message like, ``Static
+reference to non-static variable.''
+
+\end{enumerate}
+
+If nothing works, move on to the next section...
+
+
+\subsection*{I can't get my program to compile no matter
+what I do.}
+
+If the compiler says there is an error and you don't see it, that
+might be because you and the compiler are not looking at the same
+code.  Check your development environment to make sure the program
+you are editing is the program the compiler is compiling.  If you
+are not sure, try putting an obvious and deliberate syntax error
+right at the beginning of the program.  Now compile again.  If
+the compiler doesn't find the new error, there is probably something
+wrong with the way you set up the development environment.
+
+If you have examined the code thoroughly, and you're sure the compiler
+is compiling the right code, it is time for desperate measures:
+{\bf debugging by bisection}.
+\index{bisection!debugging by}
+\index{debugging by bisection}
+
+\begin{itemize}
+
+\item Make a copy of the file you are working on.  If you are
+working on {\tt Bob.java}, make a copy called {\tt Bob.java.old}.
+
+\item Delete about half the code from {\tt Bob.java}.  Try compiling
+again.
+
+\begin{itemize}
+
+\item If the program compiles now, you know the error is in
+the other half.  Bring back about half of the code you deleted and
+repeat.
+
+\item If the program still doesn't compile, the error must be in
+this half.  Delete about half of the code and repeat.
+
+\end{itemize}
+
+\item Once you have found and fixed the error, start bringing back
+the code you deleted, a little bit at a time.
+
+\end{itemize}
+
+This process is ugly, but it goes faster than you might think,
+and it is very reliable.
+
+
+\subsection*{I did what the compiler told me to do, but it
+still doesn't work.}
+
+Some compiler messages come with tidbits of advice, like
+``class Golfer must be declared
+abstract. It does not define int compareTo(java.lang.Object) from
+interface java.lang.Comparable.''  It sounds like the compiler
+is telling you to declare Golfer as an abstract class, and if
+you are reading this book, you probably don't know what that is
+or how to do it.
+
+Fortunately, the compiler is wrong.  The solution in this case
+is to make sure {\tt Golfer} has a method called {\tt compareTo}
+that takes an {\tt Object} as a parameter.
+
+Don't let the compiler lead you by the nose.  Error
+messages give you evidence that something is wrong, but 
+the remedies they suggest are unreliable.
+
+
+\section{Run-time errors}
+
+\subsection*{My program hangs.}
+\index{infinite loop}
+\index{infinite recursion}
+\index{hanging}
+
+If a program stops and seems to be doing nothing, we
+say it is {\bf hanging}.  Often that means that it is caught in
+an infinite loop or an infinite recursion.
+
+\begin{itemize}
+
+\item If there is a particular loop that you suspect is the
+problem, add a print statement immediately before the loop
+that says
+``entering the loop'' and another immediately after that
+says ``exiting the loop.''
+
+Run the program.  If you get the first message and not
+the second, you've got an infinite loop.  Go to the section
+titled ``Infinite loop.''
+
+\item Most of the time an infinite recursion will cause the program
+to run for a while and then produce a StackOverflowException.
+If that happens, go to the section titled ``Infinite recursion.''
+
+If you are not getting a StackOverflowException, but you suspect
+there is a problem with a recursive method, you can still use
+the techniques in the infinite recursion section.
+
+\item If neither of those suggestions helps, you might not
+understand the flow of execution in your program.
+Go to the section titled ``Flow of execution.''
+
+\end{itemize}
+
+
+\subsubsection*{Infinite loop}
+
+If you think you have an infinite loop and you know
+which loop it is, add a print statement at
+the end of the loop that prints the values of the variables in
+the condition, and the value of the condition.
+
+For example,
+
+\begin{verbatimtab}
+    while (x > 0 && y < 0) {
+        // do something to x
+        // do something to y
+
+        System.out.println("x: " + x);
+        System.out.println("y: " + y);
+        System.out.println("condition: " + (x > 0 && y < 0));
+    }
+\end{verbatimtab}
+%
+Now when you run the program you see three lines of output
+for each time through the loop.  The last time through the
+loop, the condition should be {\tt false}.  If the loop keeps
+going, you will see the values of {\tt x} and {\tt y}
+and you might figure out why they are not updated correctly.
+
+
+\subsubsection*{Infinite recursion}
+
+Most of the time an infinite recursion will cause the program
+to throw a {\tt StackOverflowException}.  But if the program is
+slow it may take a long time to fill the stack.
+
+If you know which method is causing an infinite recursion, check that
+there is a base case.  There should be some condition
+that makes the method return without making a recursive
+invocation.  If not, you need to rethink the algorithm and
+identify a base case.
+
+If there is a base case, but the program doesn't seem to be reaching
+it, add a print statement at the beginning of the method that prints
+the parameters.  Now when you run the program you see a few lines
+of output every time the method is invoked, and you see the values of
+the parameters.  If the parameters are not moving toward the base case,
+you might see why not.
+
+
+\subsubsection*{Flow of execution}
+\index{flow of execution}
+
+If you are not sure how the flow of execution is moving through
+your program, add print statements to the beginning of each
+method with a message like ``entering method foo,'' where
+{\tt foo} is the name of the method.
+
+Now when you run the program it prints a trace of each
+method as it is invoked.
+
+You can also print the arguments each method receives.  When you run
+the program, check whether the values are reasonable, and check
+for one of the most common errors---providing arguments in the wrong
+order.
+
+
+\subsection*{When I run the program I get an Exception.}
+\index{Exception}
+
+When an exception occurs, Java prints
+a message that includes the name of the
+exception, the line of the program where the problem occurred, and a
+stack trace.
+
+The stack trace includes the method that was running,
+the method that invoked it, the method that
+invoked {\em that}, and so on.
+
+The first step is to examine the place in the program where
+the error occurred and see if you can figure out what happened.
+
+\begin{description}
+
+\item[NullPointerException:] You tried to access an instance
+variable or invoke a method on an object that is currently
+{\tt null}.  You should figure out which variable is {\tt null}
+and then figure out how it got to be that way.
+
+Remember that when you declare a variable with an object type,
+it is initially {\tt null}, until you assign a value to it.
+For example, this code causes a NullPointerException:
+
+\begin{verbatimtab}
+Point blank;
+System.out.println(blank.x);
+\end{verbatimtab}
+
+\item[ArrayIndexOutOfBoundsException:] The index you are using
+to access an array is either negative or greater than
+{\tt array.length-1}.  If you can find the site where the
+problem is, add a print statement immediately before it to
+print the value of the index and the length of the array.
+Is the array the right size?  Is the index the right value?
+
+Now work your way backwards through the program and see where
+the array and the index come from.  Find the nearest assignment
+statement and see if it is doing the right thing.
+
+If either one is a parameter, go to the place where the method
+is invoked and see where the values are coming from.
+
+\item[StackOverFlowException:] See ``Infinite recursion.''
+
+\item[FileNotFoundException:] This means Java didn't find the file
+it was looking for.  If you are using a project-based development
+environment like Eclipse, you might have to import the file into
+the project.  Otherwise make sure the file exists and that the
+path is correct.  This problem depends on your file system, so it
+can be hard to track down.
+
+\item[ArithmeticException:] Occurs when something goes wrong during
+an arithmetic operation, most often division by zero.
+
+\end{description}
+
+
+\subsection*{I added so many print statements I get inundated with
+output.}
+\index{print statement}
+\index{statement!print}
+
+One of the problems with using print statements for debugging
+is that you can end up buried in output.  There are two ways
+to proceed: either simplify the output or simplify the program.
+
+To simplify the output, you can remove or comment out print
+statements that aren't helping, or combine them, or format
+the output so it is easier to understand.  As you develop a program,
+you should write code to generate concise,
+informative visualizations of what the program is doing.
+
+To simplify the program,
+scale down the problem the program is working on.  For example, if you
+are sorting an array, sort a {\em small} array.  If the program takes
+input from the user, give it the simplest input that causes the
+error.
+
+Also, clean up the code.  Remove dead code and reorganize the
+program to make it easier to read.  For example, if you
+suspect that the error is in a deeply-nested part of the program,
+rewrite that part with simpler structure.  If you suspect a
+large method, split it into smaller methods and test them
+separately.
+
+The process of finding the minimal test case often leads you to the
+bug.  For example, if you find that a program works when the array has
+an even number of elements, but not when it has an odd number, that
+gives you a clue about what is going on.
+
+Reorganizing the program can help you find subtle
+bugs.  If you make a change that you think doesn't affect the
+program, and it does, that can tip you off.
+
+
+\section{Logic errors}
+
+\subsection*{My program doesn't work.}
+
+Logic errors are hard to find because the
+compiler and the run-time system provide no information about
+what is wrong.  Only you know what the program is supposed to
+do, and only you know that it isn't doing it.
+
+The first step is to make a connection between the code and the
+behavior you get.  You need a hypothesis about what the program
+is actually doing.
+
+Here are some questions to ask yourself:
+
+\begin{itemize}
+
+\item Is there something the program was supposed to do, but
+doesn't seem to be happening?  Find the section of the code
+that performs that function and make sure it is executing when
+you think it should.  See ``Flow of execution,'' above.
+
+\item Is something happening that shouldn't?  Find code in
+your program that performs that function and see if it is
+executing when it shouldn't.
+
+\item Is a section of code producing an unexpected effect?  Make sure
+  you understand the code, especially if it invokes
+  Java methods.  Read the documentation for those methods, and
+  try them out with simple test cases.  They might not do what you
+  think they do.
+
+\end{itemize}
+
+To program, you need a mental model what your code does.
+If it doesn't do what you expect, the problem might not be
+the program; it might be in your head.
+\index{model!mental}
+\index{mental model}
+
+The best way to correct your mental model is to break the program
+into components (usually the classes and methods) and test
+them independently.  Once you find the discrepancy
+between your model and reality, you can solve the problem.
+
+Here are some common logic errors to check for:
+
+\begin{itemize}
+
+\item Remember that integer division always rounds down.  If you
+want fractions, use {\tt doubles}.
+
+\item Floating-point numbers are only approximate, so don't rely
+on perfect accuracy.
+
+\item More generally, use integers for countable things
+and floating-point numbers for measurable things.
+
+\item If you use the assignment operator,
+{\tt =}, instead of the equality operator, {\tt ==}, in the
+condition of an {\tt if}, {\tt while} or {\tt for} statement,
+you might get an expression that is syntactically legal and
+semantically wrong.
+
+\item When you apply the equality operator, {\tt ==}, to an
+object, it checks identity.  If you meant to check
+equivalence, you should use the {\tt equals} method.
+
+\item For user defined types, {\tt equals} checks identity.
+If you want a different notion of equivalence, you have to
+override it.
+
+\item Inheritance can lead to subtle logic errors,
+because you can run inherited code without realizing it.
+See ``Flow of Execution,'' above.
+
+\end{itemize}
+
+
+\subsection*{I've got a big hairy expression and it doesn't
+do what I expect.}
+\index{expression!big and hairy}
+
+Writing complex expressions is fine as long as they are readable,
+but they can be hard to debug.  It is often a good idea to
+break a complex expression into a series of assignments to
+temporary variables.
+
+For example:
+
+\begin{verbatimtab}
+rect.setLocation(rect.getLocation().translate(
+                -rect.getWidth(), -rect.getHeight()));
+\end{verbatimtab}
+%
+Can be rewritten as
+
+\begin{verbatimtab}
+int dx = -rect.getWidth();
+int dy = -rect.getHeight();
+Point location = rect.getLocation();
+Point newLocation = location.translate(dx, dy);
+rect.setLocation(newLocation);
+\end{verbatimtab}
+%
+The explicit version is easier to read, because the variable
+names provide additional documentation, and easier to debug,
+because you can check the types of the temporary variables
+and display their values.
+
+\index{temporary variable}
+\index{variable!temporary}
+\index{order of evaluation}
+\index{precedence}
+
+Another problem that can occur with big expressions is
+that the order of evaluation may not be what you expect.
+For example, to evaluate
+$\frac{x}{2 \pi}$, you might write
+
+\begin{verbatimtab}
+double y = x / 2 * Math.PI;
+\end{verbatimtab}
+%
+That is not correct, because multiplication and division have
+the same precedence, and they are evaluated from left to right.
+This expression computes $x \pi / 2$.
+
+If you are not sure of the order of operations, use parentheses to
+make it explicit.
+
+\begin{verbatimtab}
+double y = x / (2 * Math.PI);
+\end{verbatimtab}
+%
+This version is correct,
+and more readable for
+other people who haven't memorized the order of operations.
+
+
+
+\subsection*{My method doesn't return what I expect.}
+\index{return statement}
+\index{statement!return}
+
+If you have a return statement with a complex expression,
+you don't have a chance to print the value before
+returning.  Again, you can use a temporary variable.  For
+example, instead of
+
+\begin{verbatimtab}
+public Rectangle intersection(Rectangle a, Rectangle b) { 
+    return new Rectangle(
+        Math.min(a.x, b.x),
+        Math.min(a.y, b.y),
+        Math.max(a.x+a.width, b.x+b.width)-Math.min(a.x, b.x)
+        Math.max(a.y+a.height, b.y+b.height)-Math.min(a.y, b.y) );
+}
+\end{verbatimtab}
+%
+You could write
+
+\begin{verbatimtab}
+public Rectangle intersection(Rectangle a, Rectangle b) { 
+    int x1 = Math.min(a.x, b.x);
+    int y2 = Math.min(a.y, b.y);
+    int x2 = Math.max(a.x+a.width, b.x+b.width);
+    int y2 = Math.max(a.y+a.height, b.y+b.height);
+    Rectangle rect = new Rectangle(x1, y1, x2-x1, y2-y1);
+    return rect;
+}
+\end{verbatimtab}
+%
+Now you have the opportunity to display any of
+the intermediate variables before returning.  And by
+reusing {\tt x1} and {\tt y1}, you made the code smaller, too.
+
+
+\subsection*{My print statement isn't doing anything}
+\index{print statement}
+\index{statement!print}
+
+If you use the {\tt println} method, the output is displayed
+immediately, but if you use {\tt print} (at least in some
+environments) the output gets stored without being displayed until the
+next newline.  If the program terminates without
+printing a newline, you may never see the stored output.
+
+If you suspect that this is happening to, change
+some or all of the {\tt print} statements to {\tt println}.
+
+
+\subsection*{I'm really, really stuck and I need help}
+
+First, get away from the computer for a few minutes.
+Computers emit waves that affect the brain, causing the following
+symptoms:
+
+\begin{itemize}
+
+\item Frustration and rage.
+
+\item Superstitious beliefs (``the computer hates me'') and
+magical thinking (``the program only works when I wear my
+hat backwards'').
+
+\item Sour grapes (``this program is lame anyway'').
+
+\end{itemize}
+
+If you suffer from any of these symptoms, get
+up and go for a walk.  When you are calm, think about the program.
+What is it doing?  What are possible causes of that
+behavior?  When was the last time you had a working program,
+and what did you do next?
+
+Sometimes it just takes time to find a bug.  I often find bugs when I
+let my mind wander.  Good places to find bugs are trains, showers, and
+bed.
+
+
+\subsection*{No, I really need help.}
+
+It happens.  Even the best programmers get stuck.
+Sometimes you need a fresh pair of eyes.
+
+Before you bring someone else in, make sure you have tried
+the techniques described above.  Your program should be as simple
+as possible, and you should be working on the smallest input
+that causes the error.  You should have print statements in the
+appropriate places (and the output they produce should be
+comprehensible).  You should understand the problem well enough
+to describe it concisely.
+
+When you bring someone in to help, give
+them the information they need.
+
+\begin{itemize}
+
+\item What kind of bug is it?  Syntax, run-time or logic?
+
+\item What was the last thing you did before this error occurred?
+What were the last lines of code that you wrote, or what is
+the new test case that fails?
+
+\item If the bug occurs at compile-time or run-time, what is
+the error message, and what part of the program does it indicate?
+
+\item What have you tried, and what have you learned? 
+
+\end{itemize}
+
+By the time you explain the problem
+to someone, you might see the answer.  This phenomenon
+is so common that some people recommend a debugging technique
+called ``rubber ducking.''  Here's how it works:
+
+\begin{enumerate}
+
+\item Buy a standard-issue rubber duck.
+
+\item When you are really stuck on a problem, put the rubber
+duck on the desk in front of you and say, ``Rubber duck, I
+am stuck on a problem.  Here's what's happening...''
+
+\item Explain the problem to the rubber duck.
+
+\item See the solution.
+
+\item Thank the rubber duck.
+
+\end{enumerate}
+
+I am not kidding.  See
+\url{http://en.wikipedia.org/wiki/Rubber_duck_debugging}.
+
+
+\subsection*{I found the bug!}
+
+When you find the bug, it is usually obvious how to fix it.  But not
+always.  Sometimes what seems to be a bug is really an indication that
+you don't understand the program, or there is an error in your
+algorithm.  In these cases, you might have to rethink the algorithm,
+or adjust your mental model.  Take some time away from
+the computer to think, work through test cases
+by hand, or draw diagrams to represent the computation.
+
+After you fix the bug, don't just start in making new errors.
+Take a minute to think about what kind of bug it was, why you made
+the error, how the error manifested itself, and
+what you could have done to find it faster.  Next time you see something
+similar, you will be able to find the bug more quickly.
 
 \beforechapter
 
