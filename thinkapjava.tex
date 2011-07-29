@@ -42,153 +42,38 @@
 
 \documentclass{book}
 \usepackage{epsfig}
+\usepackage{amsmath, amsthm, amssymb}
 \usepackage{makeidx}
 \usepackage{url}
 \usepackage{fancyhdr}
 \usepackage{verbatim}
 \usepackage{moreverb}
+\usepackage{hevea}
+\usepackage{upquote}
+
+\title{Think Java}
+\newcommand{\thetitle}{Think Java: How to Think Like a Computer Scientist}
+\newcommand{\theversion}{5.0.2}
 
 
-% the exercise environment
+\input{latexonly}
 
-\newcounter{exercisenum}                                                  
-     
-% by default, the exercise number includes the chapter number             
-% this way, an exercise label is a complete, unique exercise id           
-     
-\renewcommand{\theexercisenum}{{\thechapter}.\arabic{exercisenum}}  
+\newtheorem{exercise}{Exercise}[chapter]
 
-% Standard font size for exercise/problem text                            
-
-\newenvironment{exercisesize}{\begin{small}}{\end{small}}                 
-
-\newcommand{\exerciseheader}[2]{                                          
-     
-  \begin{exercisesize}                                                    
-     
-  % Use alphabetic chars for subparts of exercises,                            
-  % and roman numerals for subparts of them.
-     
-  \def\theenumi{\alph{enumi}}                                             
-  \def\labelenumi{\theenumi.}                                             
-  \def\theenumii{\roman{enumii}}                                          
-  \def\labelenumii{\theenumii.}                                           
-  {\bf Exercise {#1}{#2}}\hspace{0.1in}                 
-}                                                                         
-
-\newcommand{\startexercise}[1]{%
-  \refstepcounter{exercisenum}                                            
-  \exerciseheader{\theexercisenum}{#1}                                    
-}                                                                         
-
-\newcommand{\stopexercise}{%                                                   
-  {\hfill}                                                               
-  \end{exercisesize}      
-}                                                         
-     
-\newcommand{\normaldif}{}                                                 
-     
-\newcommand{\bigdif}{\dag{}}                                              
-     
-\newcommand{\verybigdif}{\ddag{}}             
-
-\newenvironment{exercise}{\startexercise{\normaldif{}}}{\stopexercise}    
-     
-\newenvironment{hardexercise}{\startexercise{\bigdif{}}}{\stopexercise}   
-     
-%% end of the exercise environment
-
-%\renewenvironment{verbatim}{\begin{verbatimtab}}{\end{verbatimtab}}
-
-%%------------------------------------------------------------
-% formatting commands
-
-\sloppy
-\setlength{\topmargin}{0.125in}
-\setlength{\oddsidemargin}{0.875in}
-\setlength{\evensidemargin}{0.875in}
-
-\setlength{\headsep}{3ex}
-\setlength{\textheight}{8in}
-
-\setlength{\parindent}{0.0in}
-\setlength{\parskip}{1.7ex plus 0.5ex minus 0.5ex}
-\renewcommand{\baselinestretch}{1.02}
-
-% see LaTeX Companion page 62
-\setlength{\topsep}{-0.0\parskip}
-\setlength{\partopsep}{-0.5\parskip}
-\setlength{\itemindent}{0.0in}
-\setlength{\listparindent}{0.0in}
-
-% see LaTeX Companion page 26
-% these are copied from /usr/local/teTeX/share/texmf/tex/latex/base/book.cls
-% all I changed is afterskip
-
-\makeatletter
-\renewcommand{\section}{\@startsection 
-    {section} {1} {0mm}%
-    {-3.5ex \@plus -1ex \@minus -.2ex}%
-    {0.7ex \@plus.2ex}%
-    {\normalfont\Large\bfseries}}
-\renewcommand\subsection{\@startsection {subsection}{2}{0mm}%
-    {-3.25ex\@plus -1ex \@minus -.2ex}%
-    {0.3ex \@plus .2ex}%
-    {\normalfont\large\bfseries}}
-\renewcommand\subsubsection{\@startsection {subsubsection}{3}{0mm}%
-    {-3.25ex\@plus -1ex \@minus -.2ex}%
-    {0.3ex \@plus .2ex}%
-    {\normalfont\normalsize\bfseries}}
-
-\makeatother
-
-\newcommand{\beforeverb}{\vspace{0.6\parskip}}
-\newcommand{\afterverb}{\vspace{0.6\parskip}}
-
-\newcommand{\adjustpage}[1]{\enlargethispage{#1\baselineskip}}
-\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
-\newcommand{\blankpage}{\pagestyle{empty}\vspace*{1in}\newpage}
-
-\newcommand{\beforefig}{\vspace{1.3\parskip}}
-\newcommand{\afterfig}{\vspace{-0.2\parskip}}
-\newcommand{\myfig}[1]{
-    \beforefig
-    \centerline{\epsfig{#1,scale=0.8}}
-    \afterfig
-}
-
-\newcommand{\beforechapter}{
-%    \clearemptydoublepage 
-    \cleardoublepage 
-    \setcounter{exercisenum}{0}
-}
-
-\pagestyle{fancyplain}
-
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}{}}
-
-\lhead[\fancyplain{}{\bfseries\thepage}]%
-      {\fancyplain{}{\bfseries\rightmark}}
-\rhead[\fancyplain{}{\bfseries\leftmark}]%
-      {\fancyplain{}{\bfseries\thepage}}
-\cfoot{}
-
-% turn off the rule under the header
-%\setlength{\headrulewidth}{0pt}
-
-% the following is a brute-force way to prevent the headers
-% from getting transformed into all-caps
-\renewcommand\MakeUppercase{}
-
-
-%%-----------------------------------------------------------
-% beginning of the document
-
-
-\title{Think Java: How to Think Like a Computer Scientist}
+\title{\thetitle}
 
 \author{Allen B. Downey}
+
+% these styles get translated in CSS for the HTML version
+\newstyle{a:link}{color:black;}
+\newstyle{p+p}{margin-top:1em;margin-bottom:1em}
+\newstyle{img}{border:0px}
+
+% change the arrows
+\setlinkstext
+  {\imgsrc[ALT="Previous"]{back.png}}
+  {\imgsrc[ALT="Up"]{up.png}}
+  {\imgsrc[ALT="Next"]{next.png}}
 
 \makeindex
 
@@ -196,6 +81,24 @@
 
 \frontmatter
 
+% title page for the HTML version
+
+\begin{htmlonly}
+
+% TITLE PAGE FOR HTML VERSION
+
+{\Large Think Java}
+
+{\large Allen B. Downey}
+
+Version \theversion
+
+\setcounter{chapter}{-1}
+
+\end{htmlonly}
+
+
+\begin{latexonly}
 
 %-half title--------------------------------------------------
 
@@ -242,7 +145,7 @@ Allen B. Downey
 
 \vspace{1in}
 
-{\Large Version 5.0.1}
+{\Large \theversion}
 
 \vfill
 
@@ -283,6 +186,9 @@ drawn in xfig.  All of these are free, open-source programs.
 
 
 %-----------------------------------------------------------------
+
+\end{latexonly}
+
 
 \chapter{Preface}
 
@@ -526,20 +432,14 @@ examples.
 
 \end{itemize}
 
+% table of contents
 
-
-% The following lines add a little extra space to the column
-% in which the Section numbers appear in the table of contents
-\makeatletter
-\renewcommand{\l@section}{\@dottedtocline{1}{1.5em}{3.0em}}
-\makeatother
 \setcounter{tocdepth}{1}
-
 \tableofcontents
 
+% main matter
 \mainmatter
 
-\beforechapter
 \chapter{The way of the program}
 \label{chap01}
 
@@ -1109,7 +1009,7 @@ the three kinds of errors.
 \begin{exercise}
 
 Computer scientists have the annoying habit of using common
-English words to mean something different from their common
+English words to mean something other than their common
 English meaning.  For example, in English, statements and
 comments are the same thing, but in programs they are different.
 
@@ -1151,7 +1051,7 @@ it again.  The new comment should not affect the result.
 \end{enumerate}
 
 This exercise may seem trivial, but it is the starting place for many
-of the programs we will work with.  to debug with confidence,
+of the programs we will work with.  To debug with confidence,
 you have to have confidence in your programming environment.  In some
 environments, it is easy to lose track of which program is executing,
 and you might find yourself trying to debug one program while you are
@@ -1201,7 +1101,6 @@ not do what you expect.
 
 
 
-\beforechapter
 
 \chapter{Variables and types}
 \label{chap02}
@@ -1838,7 +1737,6 @@ intermediate or temporary variables.
 
 \end{exercise}
 
-\beforechapter
 
 
 \chapter{Methods}
@@ -2612,7 +2510,6 @@ European format.
 
 
 
-\beforechapter
 \chapter{Conditionals and recursion}
 \label{chap04}
 \label{condrecursion}
@@ -3220,7 +3117,6 @@ first argument to the power of the second.  For example:
 would assign the value {\tt 8} to {\tt x}, because $2^3 = 8$.
 \end{exercise}
 
-\beforechapter
 \chapter{GridWorld: Part One}
 \label{gridworld}
 
@@ -3428,7 +3324,6 @@ to control the blue.
 
 
 
-\beforechapter
 \chapter{Fruitful methods}
 \label{chap05}
 
@@ -4415,14 +4310,13 @@ The purpose of this exercise is to translate a recursive definition
 into a Java method.  The Ackerman function is defined for non-negative
 integers as follows:
 %
-\begin{eqnarray*}
-A(m,n) = \left\{
-\begin{array}{l@{\quad \mathbf{if} \quad }l}
-n+1 & m=0 \\
-A(m-1, 1) & m>0, n=0 \\
-A(m-1, A(m, n-1)) & m>0, n>0 \\
-\end{array} \right.
-\end{eqnarray*}
+\begin{eqnarray}
+A(m, n) = \begin{cases} 
+              n+1 & \mbox{if } m = 0 \\ 
+        A(m-1, 1) & \mbox{if } m > 0 \mbox{ and } n = 0 \\ 
+A(m-1, A(m, n-1)) & \mbox{if } m > 0 \mbox{ and } n > 0.
+\end{cases} 
+\end{eqnarray}
 %
 Write a method called {\tt ack} that takes two {\tt int}s as
 parameters and that computes and returns the value
@@ -4545,7 +4439,6 @@ common divisor of the two numbers.
 \end{exercise}
 
 
-\beforechapter
 \chapter{Iteration}
 \label{chap06}
 
@@ -5375,7 +5268,6 @@ factorial} or {\tt pow}.
 \end{exercise}
 
 
-\beforechapter
 \chapter{Strings and things}
 \label{chap07}
 \label{strings}
@@ -5396,14 +5288,12 @@ modifying the object's data.
 so you might ask ``What is the data
 contained in a {\tt String} object?'' and ``What are the methods we
 can invoke on {\tt String} objects?''
-
 \index{documentation}
-\index{Sun}
 
-The data in a {\tt String} object are letters or, more generally,
+The components of a {\tt String} object are letters or, more generally,
 characters.  Not all characters are letters; some are numbers,
-symbols, and other things altogether.  But for simplicity I
-call them letters.
+symbols, and other things.  For simplicity I
+call them all letters.
 
 There are many methods, but I use only a few in this
 book.  The rest are documented at
@@ -5518,9 +5408,9 @@ way to encode a traversal is with a {\tt while} statement:
 \begin{verbatimtab}
     int index = 0;
     while (index < fruit.length()) {
-      char letter = fruit.charAt(index);
-      System.out.println(letter);
-      index = index + 1;
+        char letter = fruit.charAt(index);
+        System.out.println(letter);
+        index = index + 1;
     }
 \end{verbatimtab}
 %
@@ -5541,10 +5431,11 @@ index} is a variable or value used to specify a member of an ordered
 set, in this case the string of characters.  The index
 indicates (hence the name) which one you want.
 
-As an exercise, write a method that takes a {\tt String}
-as an argument and that prints the letters backwards, all on
+\begin{exercise}
+Write a method that takes a {\tt String}
+as an argument and that prints the letters backwards all on
 one line.
-
+\end{exercise}
 
 \section{Run-time errors}
 \index{error!run-time}
@@ -5626,6 +5517,7 @@ was invoked?
 
 
 \section{Reading documentation}
+\label{documentation}
 \index{documentation}
 
 If you go to
@@ -5723,10 +5615,10 @@ number of times the letter {\tt 'a'} appears in a string:
 
     int index = 0;
     while (index < length) {
-      if (fruit.charAt(index) == 'a') {
-        count = count + 1;
-      }
-      index = index + 1;
+        if (fruit.charAt(index) == 'a') {
+            count = count + 1;
+        }
+        index = index + 1;
     }
     System.out.println(count);
 \end{verbatimtab}
@@ -5737,21 +5629,25 @@ time we find an {\tt 'a'} (to {\bf increment} is to increase by one;
 it is the opposite of {\bf decrement}, and unrelated to {\bf
 excrement}, which is a noun).  When we exit the loop, {\tt count}
 contains the result: the total number of a's.
-
 \index{counter}
 \index{increment}
 \index{decrement}
 
-As an exercise, encapsulate this code in a method named
+\begin{exercise}
+
+Encapsulate this code in a method named
 {\tt countLetters}, and generalize it so that it accepts the
 string and the letter as arguments.
-
 \index{encapsulation}
 \index{generalization}
 
-As a second exercise, rewrite the method so that it uses
+Then rewrite the method so that it uses
 {\tt indexOf} to locate the a's, rather than checking
 the characters one by one.
+
+\end{exercise}
+
+
 
 
 \section{Increment and decrement operators}
@@ -6185,6 +6081,8 @@ Explain in 4-5 words what the method {\tt enigma} really does.
 
 
 \begin{exercise}
+\label{palindrome}
+
 \begin{enumerate}
 
 \item Create a new program named {\tt Palindrome.java}.
@@ -6238,6 +6136,8 @@ of words from a file.  Read a list of words and print the palindromes.
 
 
 \begin{exercise}
+\label{abecedarian}
+
 A word is said to be ``abecedarian'' if the letters in the
 word appear in alphabetical order.  For example, the following
 are all 6-letter English abecedarian words.
@@ -6261,6 +6161,7 @@ letters.  Your process can be iterative or recursive.
 
 
 \begin{exercise}
+\label{dupledrome}
 A dupledrome is a word that contains only double letters,
 like ``llaammaa'' or ``ssaabb''.  I conjecture that there
 are no dupledromes in common English use.  To test that
@@ -6343,7 +6244,6 @@ times.  You can write this method recursively, or use a while loop.
 
 
 
-\beforechapter
 \chapter{Mutable objects}
 \label{chap08}
 \label{objects}
@@ -7115,7 +7015,6 @@ Appendix~\ref{graphics} and do the exercises there.
 \end{exercise}
 
 
-\beforechapter
 \chapter{GridWorld: Part 2}
 \label{gridworld2}
 
@@ -7233,7 +7132,9 @@ http://thinkapjava.com/code/Termite.gif
 http://thinkapjava.com/code/TermiteRunner.java
 \end{verbatimtab}
 
-Termites have all the same methods as Bugs, plus these:
+Because {\tt Termite} extends {\tt Bug}, all {\tt Bug} methods
+also work on {\tt Termite}s.  But {\tt Termite}s have additional
+methods that {\tt Bug}s don't have.
 
 \begin{verbatimtab}
     /**
@@ -7272,13 +7173,19 @@ Termites have all the same methods as Bugs, plus these:
     public void pickUpFlower();
 \end{verbatimtab}
 
-In addition, Termite overrides some Bug methods to change their
-behaviors.  For Termites, {\tt canMove} returns {\tt false} if there
-is a flower (or any other actor) in the next location.
+For some methods {\tt Bug} provides one definition and {\tt Termite}
+provides another.  In that case, the {\tt Termite} method 
+{\bf overrides} the {\tt Bug} method.
 
-Termites have a version of {\tt turn} that takes an integer number of
-degrees as a parameter.  And finally, Termites have {\tt randomTurn},
-which turns left or right 45 degrees at random.
+For example, {\tt Bug.canMove}
+returns {\tt true} if there is a flower in the next location, so 
+{\tt Bug}s can trample {\tt Flower}s.  {\tt Termite.canMove} returns
+{\tt false} if there is any object in the next location, so
+{\tt Termite} behavior is different.
+
+As another example, Termites have a version of {\tt turn} that takes
+an integer number of degrees as a parameter.  Finally, Termites
+have {\tt randomTurn}, which turns left or right 45 degrees at random.
 
 % TODO: move for loops into the string chapter.
 
@@ -7312,8 +7219,6 @@ public class TermiteRunner
 
 Everything here should be familiar.  {\tt TermiteRunner} creates
 an {\tt ActorWorld} with 20 {\tt EternalFlowers} and two {\tt Termites}.
-
-% TODO: define override.
 
 An {\tt EternalFlower} is a {\tt Flower} that overrides {\tt act}
 so the flowers don't get darker. 
@@ -7388,7 +7293,7 @@ but over time the flowers accumulate in a small number of piles, often
 just one.
 
 This behavior is an {\bf an emergent property}, which you can read
-about at \url{}.  {\tt MyTermites}
+about at \url{http://en.wikipedia.org/wiki/Emergence}.  {\tt MyTermites}
 follow simple rules using only small-scale information, but the result
 is large-scale organization.
 
@@ -7401,7 +7306,6 @@ system.  Small changes can have unpredicable results!
 \section{Langton's Termite}
 
 
-\beforechapter
 \chapter{Create your own objects}
 \label{chap09}
 
@@ -8272,7 +8176,6 @@ pure functions.
 
 
 
-\beforechapter
 \chapter{Arrays}
 \label{chap10}
 \label{arrays}
@@ -8472,9 +8375,11 @@ is equivalent to
         i++;
     }
 \end{verbatimtab}
-%
+
+\begin{exercise}
 As an exercise, write a {\tt for} loop to copy the elements
 of an array.
+\end{exercise}
 
 
 \section{Arrays and objects}
@@ -8496,16 +8401,16 @@ of the array.
 
 \end{itemize}
 
-Some of the objects we have looked at, like {\tt Rectangles}, are
-similar to arrays, in the sense that they are collections of
+Some of the objects we looked at, like {\tt Rectangles}, are
+similar to arrays in the sense that they are collections of
 values.  This raises the question, ``How is an array of 4 integers
 different from a Rectangle object?''
 \index{collection}
 
 If you go back to the definition of ``array'' at the beginning
-of the chapter, you see one difference, which is that the
-elements of an array are identified by indices, whereas the
-elements (instance variables) of an object have names.
+of the chapter, you see one difference: the
+elements of an array are identified by indices, and the
+elements of an object have names.
 
 Another difference is that the
 elements of an array have to be the same type.  Objects can
@@ -8537,10 +8442,12 @@ is not executed, which is a good thing, since it would throw an
 exception.  This code assumes that the array {\tt b} contains at least
 as many elements as {\tt a}.
 
-As an exercise, write a method called {\tt cloneArray} that takes an
+\begin{exercise}
+Write a method called {\tt cloneArray} that takes an
 array of integers as a parameter, creates a new array that is the same
 size, copies the elements from the first array into the new one, and
 then returns a reference to the new array.
+\end{exercise}
 
 
 \section{Random numbers}
@@ -8592,7 +8499,7 @@ so that $low \le x < high$.
 
 
 \begin{exercise}
-\label{ex.randomint}
+\label{ex.randint}
 Write a method called {\tt randomInt} that takes two arguments,
 {\tt low} and {\tt high}, and that returns a random integer between
 {\tt low} and {\tt high}, not including {\tt high}.
@@ -9097,7 +9004,6 @@ English, pseudocode, or Java.
 
 
 
-\beforechapter
 \chapter{Arrays of Objects}
 \label{chap11}
 
@@ -9320,10 +9226,9 @@ is {\tt Jack of Diamonds}.
 The word ``same'' is one of those things that occur in natural
 language that seem perfectly clear until you give it some thought,
 and then you realize there is more to it than you expected.
-
 \index{ambiguity}
 \index{natural language}
-\index{language!}
+\index{language!natural}
 
 For example, if I say ``Chris and I have the same car,'' I
 mean that his car and mine are the same make and model, but they are
@@ -9396,6 +9301,7 @@ object (identity).
 
 
 \section{The {\tt compareCard} method}
+\label{compare}
 \index{compareCard}
 \index{operator!conditional}
 \index{conditional operator}
@@ -9426,7 +9332,6 @@ that the 3 of Clubs is higher than the 2 of Clubs, and the 3 of
 Diamonds is higher than the 3 of Clubs.  But which is better, the 3 of
 Clubs or the 2 of Diamonds?  One has a higher rank, but the other has
 a higher suit.
-
 \index{comparable}
 
 To make cards comparable, we have to decide which is more
@@ -9919,7 +9824,6 @@ card games.
 
 
 
-\beforechapter
 \chapter{Objects of Arrays}
 \label{chap12}
 \index{deck}
@@ -10417,7 +10321,7 @@ correctly handles the case where cards are aliased.
 
 \item Write a method called {\tt shuffleDeck} that uses the algorithm
 in Section~\ref{shuffle}.  You might want to use the {\tt randomInt}
-method from Exercise~\ref{ex.randomint}.
+method from Exercise~\ref{ex.randint}.
 
 \item Write a method called {\tt indexLowestCard} that uses
 the {\tt compareCard} method to find the lowest card
@@ -10449,7 +10353,6 @@ deck = mergeSort(deck);      // replaces old deck with new
 
 
 
-\beforechapter
 \label{chap13}
 \chapter{Object-oriented programming}
 
@@ -10612,7 +10515,7 @@ or you can invoke it indirectly through {\tt println}:
 \index{equals}
 \index{method!equals}
 
-In Section~\ref{} we talked about two notions of equality:
+In Section~\ref{equivalence} we talked about two notions of equality:
 identity, which means that two variables refer to the same
 object, and equivalence, which means that they have the same
 value.
@@ -10677,7 +10580,7 @@ constructors).
 methods are object methods.  I left {\tt merge} unchanged because
 I think it is more readable as a class method.
 
-As an exercise, transform {\tt merge} into an object method,
+Transform {\tt merge} into an object method,
 and change {\tt mergeSort} accordingly.  Which version of
 {\tt merge} do you prefer?
 
@@ -10978,7 +10881,6 @@ program to generate seven-card hands and recompute the probabilities.
 \end{exercise}
 
 
-\beforechapter
 \chapter{GridWorld: Part 3}
 \label{gridworld3}
 
@@ -11117,8 +11019,7 @@ implementations for the methods in {\tt Shape} and {\tt Serializable}.
 
 In GridWorld the Location class implements the {\tt
   java.lang.Comparable} interface by providing {\tt compareTo}, which
-is similar to the {\tt compareTo} method for {\tt Cards} (see
-Section~\ref{}).
+is similar to {\tt compareCards} in Section~\ref{compare}.
 
 GridWorld also defines a new interface, {\tt Grid}, that specifies
 the methods a {\tt Grid} should provide.  And it includes two
@@ -11213,7 +11114,9 @@ configuration with 116 live Rocks (see
 \url{http://www.conwaylife.com/wiki/R-pentomino}).
 
 The following sections are my suggestions for implementing GoF
-in GridWorld.  You can download my solution from \url{???}.
+in GridWorld.  You can download my solution at
+\url{http://thinkapjava.com/code/LifeRunner.java} and
+\url{http://thinkapjava.com/code/LifeRock.java}.
 
 
 \section{{\tt LifeRunner}}
@@ -11365,11 +11268,9 @@ Part 4 of the GridWorld Student Manual.  Read it and do the exercises.
 Congratulations, you're done!
 
 
-\beforechapter
 
 \appendix
 
-\beforechapter
 \chapter{Graphics}
 \label{graphics}
 
@@ -11417,7 +11318,7 @@ You can download this code from
 \url{http://thinkapjava.com/code/MyCanvas.java}.
 
 The first lines import the classes we need from {\tt java.awt}
-and {\tt javax.swing).
+and {\tt javax.swing}.
 
 {\tt MyCanvas} extends {\tt Canvas}, which means that a
 {\tt MyCanvas} object is a kind of {\tt Canvas} that provides
@@ -11635,11 +11536,10 @@ can create.
 \end{exercise}
 
 
-\beforechapter
 \chapter{Input and Output in Java}
 \label{javaio}
 
-\section* {System objects}
+\section{System objects}
 \label{system}
 \index{System object}
 \index{object!System}
@@ -11676,7 +11576,7 @@ possible to get input from the keyboard.  Unfortunately,
 it does not make it easy to get input from the keyboard.
 
 
-\section* {Keyboard input}
+\section{Keyboard input}
 \label{keyboard}
 \index{keyboard}
 \index{input!keyboard}
@@ -11715,7 +11615,7 @@ public static void main(String[] args) throws IOException {
 \end{verbatimtab}
 
 
-\section* {File input}
+\section{File input}
 \label{fileIO}
 \index{file input}
 \index{input!file}
@@ -11800,15 +11700,19 @@ to the second branch, which tries to deal with the exceptional
 condition (a polite way to say ``error'').  In this case it prints
 an error message and the stack trace.
 
-You can download this example from
-\url{}.
-Now go do Excercises~\ref{} and ~\ref{}.
+You can download this code from
+\url{http://thinkapjava.com/code/Words.java}
+and the word list from
+\url{http://thinkapjava.com/code/words.txt}.
+
+Now go do Exercises~\ref{palindrome}, \ref{abecedarian} and \ref{dupledrome}.
 
 
 
-\beforechapter
 \chapter{Program development}
 \label{development}
+
+\section{Strategies}
 
 I present different program development strategies throughout
 the book, so I wanted to pull them together here.
@@ -11914,7 +11818,6 @@ into):
 The next chapter makes more suggestions for effective debugging.
 
 
-\beforechapter
 \chapter{Debugging}
 \label{debug}
 \index{debugging}
@@ -12614,10 +12517,8 @@ the error, how the error manifested itself, and
 what you could have done to find it faster.  Next time you see something
 similar, you will be able to find the bug more quickly.
 
-\beforechapter
 
 \printindex
-\beforechapter
 
 \end{document}
 
