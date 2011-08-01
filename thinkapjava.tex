@@ -519,12 +519,12 @@ run the compiled code later.  In this case, the high-level
 program is called the {\bf source code}, and the translated
 program is called the {\bf object code} or the {\bf executable}.
 
-The Java language is unusual because it is both compiled and
-interpreted.  Instead of translating Java programs into
-machine language, the Java compiler generates Java byte code.
+Java is both compiled and
+interpreted.  Instead of translating programs into
+machine language, the Java compiler generates {\bf byte code}.
 Byte code is easy (and fast) to interpret, like machine language,
 but it is also portable, like a high-level language.  Thus,
-it is possible to compile a Java program on one machine,
+it is possible to compile a program on one machine,
 transfer the byte code to another machine,
 and then interpret the byte code on the other machine.  This
 ability is an advantage of Java over many other
@@ -1978,7 +1978,7 @@ is.
 \index{main}
 \index{method!main}
 
-So far we have used methods from the Java libraries,
+So far we have used methods from Java libraries,
 but it is also possible to add new methods.  We have already
 seen one method definition: {\tt main}.  The method named {\tt main}
 is special, but the syntax is the same for other methods:
@@ -2190,7 +2190,7 @@ main}, we might have to go off and execute the statements in {\tt
 threeLine}.  But while we are executing {\tt threeLine}, we get
 interrupted three times to go off and execute {\tt newLine}.
 
-For its part, {\tt newLine} invokes the Java method
+For its part, {\tt newLine} invokes
 {\tt println}, which causes yet another detour.  Fortunately,
 Java is adept at keeping track of where it is, so when
 {\tt println} completes, it picks up where it left off in
@@ -2200,7 +2200,7 @@ finally gets back to {\tt main} so the program can terminate.
 Technically, the program does not terminate at the
 end of {\tt main}.  Instead, execution picks up where it left
 off in the program that invoked {\tt main}, which is the
-Java interpreter.  The Java interpreter takes care of things
+Java interpreter.  The interpreter takes care of things
 like deleting windows and general cleanup, and {\em then}
 the program terminates.
 
@@ -2213,7 +2213,7 @@ follow the flow of execution.
 \index{parameter}
 \index{argument}
 
-Some of the Java methods we have used require {\bf arguments},
+Some of the methods we have used require {\bf arguments},
 which are values that you provide when you invoke the method.
 For example, to find the sine of a number,
 you have to provide the number.  So {\tt sin}
@@ -3285,7 +3285,7 @@ steps (you might have to use the scrollbars to find the Bug).
 
 \begin{exercise}
 
-GridWorld uses Color objects, which are defined in the Java libraries.
+GridWorld uses Color objects, which are defined in a Java library.
 You can read the documentation at
 \url{http://download.oracle.com/javase/6/docs/api/java/awt/Color.html}.
 
@@ -3336,7 +3336,7 @@ to control the blue.
 \index{void}
 \index{method!void}
 
-Some of the Java methods we have used, like the Math
+Some of the methods we have used, like the Math
 functions, produce results.  That is, the effect of
 invoking the method is to generate a new value, which we
 usually assign to a variable or use as part of an expression.
@@ -3899,7 +3899,7 @@ get something like:
 \end{eqnarray*}
 %
 (Factorial is usually denoted with the symbol $!$, which is
-not to be confused with the Java logical operator {\tt !} which
+not to be confused with the logical operator {\tt !} which
 means NOT.)  This definition says that the factorial of 0 is 1,
 and the factorial of any other value, $n$, is $n$ multiplied
 by the factorial of $n-1$.  So $3!$ is 3 times $2!$, which is 2 times
@@ -6267,7 +6267,7 @@ because
 
 \end{itemize}
 
-In this chapter, we use two objects from the Java libraries,
+In this chapter, we use two objects from Java libraries,
  {\tt Point} and {\tt Rectangle}.
 But first, I want to make it clear that these points
 and rectangles are not graphical objects that appear on the
@@ -6283,9 +6283,9 @@ to perform computations.
 \index{import}
 \index{statement!import}
 
-The Java libraries are divided into a number of {\bf
-packages}, including {\tt java.lang}, which contains almost all of the
-classes we have seen, and {\tt java.awt}, 
+The Java libraries are divided into {\bf
+packages}, including {\tt java.lang}, which contains most of the
+classes we have used so far, and {\tt java.awt}, 
 the {\bf Abstract Window Toolkit} (AWT),
 which contains classes for windows, buttons, graphics, etc.
 
@@ -6741,7 +6741,7 @@ have to be aware of it.
 \end{itemize}
 
 There is one other difference between primitives and object
-types.  You cannot add new primitives to the Java language
+types.  You cannot add new primitives to Java
 (unless you get yourself on the standards committee), but
 you can create new object types!  We'll see how in the next
 chapter.
@@ -6750,7 +6750,7 @@ chapter.
 
 \begin{description}
 
-\item[package:]  A collection of classes.  The Java
+\item[package:]  A collection of classes.  Java
 classes are organized in packages.
 
 \item[AWT:]  The Abstract Window Toolkit, one of the biggest
@@ -7304,6 +7304,74 @@ system.  Small changes can have unpredicable results!
 
 
 \section{Langton's Termite}
+
+Langton's Ant is a simple model of ant behavior that 
+displays surprisingly complex behavior.  The Ant lives on a grid
+like GridWorld where each cell is either white or black.  The
+Ant moves according to these rules:
+
+\begin{itemize}
+
+\item If the Ant is one a white cell, it turns to the right,
+makes the cell black, and moves forward.
+
+\item If the Ant is one a black cell, it turns to the left,
+makes the cell white, and moves forward.
+
+\end{itemize}
+
+Because the rules are simple, you might expect the Ant to do
+something simple like make a square or repeat a simple
+pattern.  But starting on a grid with all white cells, the
+Ant makes more than 10,000 steps in a seemingly random pattern
+before it settles into a repeating loop of 104 steps.
+
+You can read more about Langton's
+Ant at \url{http://en.wikipedia.org/wiki/Langton_ant}.
+
+It is not easy to implement 
+Langton's Ant in GridWorld because we can't set the color of
+the cells.  As an alternative, we can use Flowers to mark
+cells, but we can't have an Ant and a Flower in the same cell,
+so we can't implement the Ant rules exactly.
+
+Instead we'll create what I'll call a {\tt LangtonTermite}, which uses
+{\tt seeFlower} to check whether there is a flower in the next cell,
+{\tt pickUpFlower} to pick it up,
+and {\tt throwFlower} to put a flower in the next cell.  You
+might want to read the code for these methods to be sure you
+know what they do.
+
+\begin{exercise}
+
+\begin{enumerate}
+
+\item Make a copy of {\tt Termite.java} called {\tt LangtonTermite}
+and a copy of {\tt TermiteRunner.java} called {\tt LangtonRunner.java}.
+Modify them so the class definitions have the same name as the files,
+and so {\tt LangtonRunner} creates a {\tt LangtonTermite}.
+
+\item If you create a file named {\tt LangtonTermite.gif}, GridWorld
+  uses it to represent your Termite.  You can download excellent
+  pictures of insects from
+  \url{http://www.cksinfo.com/animals/insects/realisticdrawings/index.html}.
+  To convert them to GIF format, you can use an application like
+  ImageMagick.
+
+\item Modify {\tt act} to implement rules similar to Langton's Ant.
+Experiment with different rules, and with both 45 and 90 degree turns.
+Find rules that run the maximum number of steps before the Termite
+starts to loop.
+
+\item To give your Termite enough room, you can make the grid
+bigger or switch to an {\tt UnboundedGrid}.
+
+\item Create more than one {\tt LangtonTermite} and see how they
+interact.
+
+\end{enumerate}
+
+\end{exercise}
 
 
 \chapter{Create your own objects}
@@ -9093,7 +9161,7 @@ King & $\mapsto$ & 13 \\
 \end{tabular}
 
 The reason I am using mathematical notation for these mappings is
-that they are not part of the Java program.  They are part of the
+that they are not part of the program.  They are part of the
 program design, but they never appear explicitly in the code.
 The class definition for the {\tt Card} type looks like this:
 

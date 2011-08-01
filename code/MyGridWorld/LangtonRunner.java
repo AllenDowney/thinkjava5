@@ -38,11 +38,3 @@ public class LangtonRunner
         world.show();
     }
 }
-
-/**
- * A flower that doesn't age.
- */
-class EternalFlower extends Flower {
-    public void act() {
-    }
-}

@@ -22,19 +22,22 @@ hevea:
 	rm -rf html
 	mkdir html
 	hevea -O -e latexonly htmlonly thinkapjava
-	# the following line is a kludge to prevent imagen from seeing
-	# the definitions in latexonly
-	#grep -v latexonly thinkapjava.image.tex > a; mv a thinkapjava.image.tex
 	imagen -png thinkapjava
 	hacha thinkapjava.html
 	cp up.png next.png back.png html
 	mv index.html thinkapjava.css thinkapjava*.html thinkapjava*.png *motif.gif html
 
+plastex:
+	cp thinkapjava.tex xml.tex
+	plastex --renderer=DocBook --theme=book --image-resolution=300 --filename=thinkapjava.xml xml.tex
+	#~/Downloads/xxe-perso-4_8_0/bin/xxe xml/thinkapjava.xml
+
+
 epub:
 	cd html; ebook-convert thinkapjava.html thinkpython.epub
 
 
-DISTFILES = thinkapjava.pdf thinkapjava.tex.zip html
+DISTFILES = thinkapjava.pdf thinkapjava.tex.zip
 
 distrib:
 	rm -rf thinkapjava
@@ -46,6 +49,7 @@ distrib:
 	zip -r thinkapjava.tex.zip thinkapjava
 	chmod 644 $(DISTFILES)
 	cp $(DISTFILES) $(DIR)
+	rsync -a html $(DIR)
 
 distcode:
 	cp code/IntList/code/IntList.java $(DIR)/code/IntList
