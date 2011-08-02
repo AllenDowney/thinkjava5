@@ -9,28 +9,28 @@ PDFFLAGS = -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress  \
 DIR = /home/downey/public_html/greent/thinkapjava
 
 thinkapjava:	thinkapjava.tex
-	#latex thinkapjava
-	makeindex thinkapjava
-	latex thinkapjava
-	dvips -Ppdf -o thinkapjava.ps thinkapjava
-	evince thinkapjava.ps
-
-pdf:
-	ps2pdf $(PDFFLAGS) thinkapjava.ps thinkapjava.pdf
+	pdflatex thinkapjava
+	makeindex thinkapjava.idx
+	evince thinkapjava.pdf
 
 hevea:
+	sed 's/\(figs\/[^.]*\).pdf/\1.eps/' thinkapjava.tex > thinkjava.tex
 	rm -rf html
 	mkdir html
-	hevea -O -e latexonly htmlonly thinkapjava
-	imagen -png thinkapjava
-	hacha thinkapjava.html
+	hevea -O -e latexonly htmlonly thinkjava
+	imagen -png thinkjava
+	hacha thinkjava.html
 	cp up.png next.png back.png html
-	mv index.html thinkapjava.css thinkapjava*.html thinkapjava*.png *motif.gif html
+	mv index.html thinkjava.css thinkjava*.html thinkjava*.png *motif.gif html
 
 plastex:
+	rm -rf /home/downey/thinkapjava/trunk/xml/.svn
 	cp thinkapjava.tex xml.tex
 	plastex --renderer=DocBook --theme=book --image-resolution=300 --filename=thinkapjava.xml xml.tex
-	#~/Downloads/xxe-perso-4_8_0/bin/xxe xml/thinkapjava.xml
+	rm -rf /home/downey/thinkapjava/trunk/xml/.svn
+
+xxe:
+	~/Downloads/xxe-perso-4_8_0/bin/xxe xml/thinkapjava.xml
 
 
 epub:

@@ -40,9 +40,11 @@
 
 %%-----------------------------------------------------------------
 
-\documentclass{book}
-\usepackage{epsfig}
-\usepackage{amsmath, amsthm, amssymb}
+\documentclass[12pt]{book}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
 \usepackage{makeidx}
 \usepackage{url}
 \usepackage{fancyhdr}
@@ -50,13 +52,23 @@
 \usepackage{moreverb}
 \usepackage{hevea}
 \usepackage{upquote}
+\usepackage{graphicx}
 
-\title{Think Java}
+
 \newcommand{\thetitle}{Think Java: How to Think Like a Computer Scientist}
-\newcommand{\theversion}{5.0.2}
+\newcommand{\theversion}{5.0.3}
 
+\newif\ifplastex
+\plastexfalse
 
-\input{latexonly}
+\ifplastex
+% PLASTEX ONLY
+    \usepackage{localdef}
+    \maketitle
+
+\else
+
+% LATEX AND HTML
 
 \newtheorem{exercise}{Exercise}[chapter]
 
@@ -66,6 +78,8 @@
 
 % these styles get translated in CSS for the HTML version
 \newstyle{a:link}{color:black;}
+\newstyle{pre}{color:darkgreen;font-size:110\%;}
+\newstyle{tt}{color:darkgreen;font-size:110\%;}
 \newstyle{p+p}{margin-top:1em;margin-bottom:1em}
 \newstyle{img}{border:0px}
 
@@ -97,6 +111,9 @@ Version \theversion
 
 \end{htmlonly}
 
+% BEGINNING OF LATEXONLY
+
+\input{latexonly}
 
 \begin{latexonly}
 
@@ -189,6 +206,8 @@ drawn in xfig.  All of these are free, open-source programs.
 
 \end{latexonly}
 
+\fi
+% END OF THE PART WE SKIP FOR PLASTEX
 
 \chapter{Preface}
 
@@ -201,7 +220,7 @@ Invention of ours, and this we should do freely and generously.''
 Edmund S. Morgan.
 \end{quote}
 
-\subsection* {Why I wrote this book}
+\subsection*{Why I wrote this book}
 
 This is the fifth edition of a book I started writing in 1999,
 when I was teaching at Colby College.  I had taught an introductory
@@ -291,10 +310,9 @@ file input.
 
 \subsection*{Object-oriented programming}
 
-Some books introduce objects immediately;
-others warm up with a more procedural style and develop
-object-oriented style more gradually.  This book is probably
-the extreme of the ``objects late'' approach.
+Some books introduce objects immediately; others warm up with a more
+procedural style and develop object-oriented style more gradually.
+This book uses the ``objects late'' approach.
 
 Many of Java's object-oriented features are motivated
 by problems with previous languages, and their implementations
@@ -306,17 +324,10 @@ It wasn't my intention to postpone object-oriented programming.
 On the contrary, I got to it as quickly as I could, limited by
 my intention to introduce concepts one at a time, as clearly
 as possible, in a way that allows students to practice each
-idea in isolation before adding the next.  It just happens
-that it takes 13 steps.
+idea in isolation before adding the next.  But I have to admit
+that it takes some time to get there.
 
-\subsection* {The Computer Science AP Exam}
-
-During Summer 2001 I worked with teachers at the Maine School of
-Science and Mathematics on a version of the book that would help
-students prepare for the Computer Science Advanced Placement Exam,
-which used C++ at the time.  The translation went quickly because,
-as it turned out, the material I covered was almost identical to
-the AP Syllabus.
+\subsection*{The Computer Science AP Exam}
 
 Naturally, when the College Board announced that the AP Exam
 would switch to Java, I made plans to update the Java version of
@@ -328,15 +339,9 @@ making these changes:
 
 \begin{itemize}
 
-\item I added a new chapter covering Huffman codes.
-
-\item I revised several sections that I had found problematic,
-including the transition to object-oriented programming and the
-discussion of heaps.
+\item I added sections to improve coverage of the AP syllabus.
 
 \item I improved the appendices on debugging and program development.
-
-\item I added a few sections to improve coverage of the AP syllabus.
 
 \item I collected the exercises, quizzes, and exam questions I
 had used in my classes and put them at the end of the appropriate
@@ -345,39 +350,36 @@ help with AP Exam preparation.
 
 \end{itemize}
 
+Finally, in August 2011 I wrote the fifth edition, adding
+coverage of the GridWorld Case Study that is part of the AP Exam.
 
-\subsection* {Free books!}
 
-Since the beginning, this book and its descendents have been available
-under licenses that allow users to copy, distribute and modify the
-book.  Readers can download the book in a variety of formats
-and print it or read it on screen.  Teachers are free to send the book
-to a short-run printer and make as many copies as they need.  And,
-maybe most importantly, anyone is free to customize the book for their
-needs.  You can download the \LaTeX\ source code, and then add,
-remove, edit, or rearrange material, and make the book that is best
-for you or your class.
+\subsection*{Free books!}
+
+Since the beginning, this book has under a license that allows users
+to copy, distribute and modify the book.  Readers can download the
+book in a variety of formats and read it on screen or print it.
+Teachers are free to print as many copies as they need.  And anyone is
+free to customize the book for their needs.
 
 People have translated the book into other computer languages
 (including Python and Eiffel), and other natural languages (including
 Spanish, French and German).  Many of these derivatives are also
 available under free licenses.
 
-This approach to publishing has a lot of advantages, but there is
-one drawback: my books have never been through a formal editing and
-proofreading process and sometimes it shows.  Motivated by Open
-Source Software, I have adopted the philosophy of releasing the
+Motivated by Open
+Source Software, I adopted the philosophy of releasing the
 book early and updating it often.  I do my best to minimize the
 number of errors, but I also depend on readers to help out.
 
 The response has been great.  I get messages almost every day from
 people who have read the book and liked it enough to take the trouble
 to send in a ``bug report.''  Often I can correct an error
-and post an updated version almost immediately.  I think of the
+and post an updated version within a few minutes.  I think of the
 book as a work in progress, improving a little whenever I have time
-to make a revision, or when readers take the time to send feedback.
+to make a revision, or when readers send feedback.
 
-\subsection* {Oh, the title}
+\subsection*{Oh, the title}
 
 I get a lot of grief about the title of the book.  Not everyone
 understands that it is---mostly---a joke.
@@ -429,6 +431,8 @@ the book!
 examples.
 
 \item Doan Thanh Nam corrected an example in Chapter 3.
+
+\item Stijn Debrouwere found a math typo.
 
 \end{itemize}
 
@@ -531,7 +535,7 @@ ability is an advantage of Java over many other
 high-level languages.
 
 
-\epsfig{figure=figs/java.eps}
+\includegraphics{figs/java.pdf}
 
 
 Although this process may seem complicated, in most program
@@ -1278,7 +1282,7 @@ of the variable on the inside.  This figure shows
 the effect of the three assignment statements:
 
 
-\epsfig{figure=figs/assign.eps}
+\includegraphics{figs/assign.pdf}
 
 
 As a general rule,
@@ -2294,7 +2298,7 @@ One way to keep track of where each variable is defined is
 with a {\bf stack diagram}.  The stack diagram for the previous
 example looks like this:
 
-\epsfig{figure=figs/stack.eps}
+\includegraphics{figs/stack.pdf}
 
 For each method there is a gray box called a {\bf frame} that contains
 the method's parameters and variables.  The name of the method
@@ -2342,9 +2346,11 @@ as arguments.  The correct
 syntax is {\tt printTime(hour, minute)}.
 
 \begin{exercise}
+
 Draw a stack frame that shows the state of the program
 when {\tt main} invokes {\tt printTime}
 with the arguments {\tt 11} and {\tt 59}.
+
 \end{exercise}
 
 
@@ -2462,10 +2468,12 @@ the first time {\tt ping} is invoked.
     System.out.println(".");
   }
 \end{verbatimtab}
+
 \end{exercise}
 
 
 \begin{exercise}
+
 The point of this exercise is to make sure you understand how
 to write and invoke methods that take parameters.
 
@@ -2478,6 +2486,7 @@ takes three parameters: an {\tt int} and two {\tt Strings}.
 as arguments the value {\tt 11}, the name of your first pet,
 and the name of the street you grew up on.
 \end{enumerate}
+
 \end{exercise}
 
 
@@ -2904,8 +2913,8 @@ the method's parameters and variables.
 The following figure is a stack diagram for countdown, called
 with {\tt n = 3}:
 
-\epsfig{figure=figs/stack2.eps}
-% 
+\includegraphics{figs/stack2.pdf}
+
 There is one frame for {\tt main} and four frames for {\tt countdown},
 each with a different value for the parameter {\tt n}.  The bottom of
 the stack, {\tt countdown} with {\tt n=0} is called the {\bf base
@@ -2972,6 +2981,7 @@ are currently executing.
 \section{Exercises}
 
 \begin{exercise}
+
 This exercise reviews the flow of execution through a program
 with multiple methods.  Read the following code and answer the
 questions below.
@@ -3020,6 +3030,7 @@ gets invoked?
 
 
 \begin{exercise}
+
 The first verse of the song ``99 Bottles of Beer'' is:
 
 \begin{quote}
@@ -3057,6 +3068,7 @@ simple methods.
 \end{exercise}
 
 \begin{exercise}
+
 What is the output of the following program?
 
 \begin{verbatimtab}
@@ -3115,7 +3127,9 @@ first argument to the power of the second.  For example:
 \end{verbatimtab}
 %
 would assign the value {\tt 8} to {\tt x}, because $2^3 = 8$.
+
 \end{exercise}
+
 
 \chapter{GridWorld: Part One}
 \label{gridworld}
@@ -3229,6 +3243,7 @@ Invoke the methods {\tt canMove}, {\tt move} and {\tt turn} and
 be sure you understand what they do.  Now try these exercises:
 
 \begin{exercise}
+
 \begin{enumerate}
 
 \item Write a method named {\tt moveBug} that takes a bug as a parameter
@@ -3248,6 +3263,7 @@ parameter, and moves the bug {\tt n} times (if it can).
 
 
 \begin{exercise}
+
 \begin{enumerate}
 
 \item The {\tt Math} class provides a method named {\tt random}
@@ -3988,10 +4004,8 @@ invoked {\tt factorial(3)}.
 Here is what the stack diagram looks like for this sequence of
 method invocations:
 
+\includegraphics{figs/stack3.pdf}
 
-\epsfig{figure=figs/stack3.eps}
-
-%
 The return values are shown being passed back up the stack.
 
 Notice that in the last frame {\tt recurse} and {\tt result} do not
@@ -4119,9 +4133,11 @@ and produces boolean values.
 
 \begin{exercise}
 \label{ex.isdiv}
+
 Write a method named {\tt isDivisible} that takes
 two integers, {\tt n} and {\tt m} and that returns {\tt true}
 if {\tt n} is divisible by {\tt m} and {\tt false} otherwise.
+
 \end{exercise}
 
 
@@ -4171,6 +4187,7 @@ at the same time, which can be difficult.
 One of the purposes of this exercise is to practice pattern-matching:
 the ability to recognize a specific problem as an instance of a
 general category of problems.
+
 \end{exercise}
 
 
@@ -4194,6 +4211,7 @@ with the given lengths.
 
 The point of this exercise is to use conditional statements to
 write a fruitful method.
+
 \end{exercise}
 
 
@@ -4469,7 +4487,7 @@ you assign a value to a variable, you change the contents of
 the container, as shown in the figure:
 
 
-\epsfig{figure=figs/assign2.eps}
+\includegraphics{figs/assign2.pdf}
 
 
 When there are multiple assignments to a variable, it is especially
@@ -6345,7 +6363,7 @@ newly-created object.  There is a standard way to diagram this
 assignment, shown in the figure.
 
 
-\epsfig{figure=figs/reference.eps}
+\includegraphics{figs/reference.pdf}
 
 
 As usual, the name of the variable {\tt blank} appears outside the box
@@ -6467,9 +6485,8 @@ creates a {\tt Rectangle} object and makes {\tt box} refer to it.
 This figure shows the effect of this assignment.
 
 
-\epsfig{figure=figs/rectangle.eps}
+\includegraphics{figs/rectangle.pdf}
 
-%
 If you print {\tt box}, you get
 
 \begin{verbatimtab}
@@ -6519,7 +6536,7 @@ a rectangle without changing its size, you can modify the
 The result is shown in the figure:
 
 
-\epsfig{figure=figs/rectangle2.eps}
+\includegraphics{figs/rectangle2.pdf}
 
 
 \index{encapsulation}
@@ -6588,7 +6605,7 @@ this code:
 generates a state diagram that looks like this:
 
 
-\epsfig{figure=figs/aliasing.eps}
+\includegraphics{figs/aliasing.pdf}
 
 
 {\tt box1} and {\tt box2} refer to the same object.
@@ -6613,7 +6630,7 @@ expands the {\tt Rectangle} by 50 pixels in every direction
 is shown in the figure:
 
 
-\epsfig{figure=figs/aliasing2.eps}
+\includegraphics{figs/aliasing2.pdf}
 
 
 Whatever changes are
@@ -6647,7 +6664,7 @@ initialization
 and is shown in the following state diagram:
 
 
-\epsfig{figure=figs/reference2.eps}
+\includegraphics{figs/reference2.pdf}
 
 
 The value {\tt null} is represented by a small square with no arrow.
@@ -6689,7 +6706,7 @@ so that instead of referring to the object, it refers to
 nothing (the null object).
 
 
-\epsfig{figure=figs/reference3.eps}
+\includegraphics{figs/reference3.pdf}
 
 
 If no one refers to an object, then no one can read or write any of
@@ -7483,7 +7500,7 @@ By itself, this code fragment is a legal class definition.  The
 state diagram for a {\tt Time} object looks like this:
 
 
-\epsfig{figure=figs/time.eps}
+\includegraphics{figs/time.pdf}
 
 
 After declaring the instance variables, the next step is
@@ -8286,7 +8303,7 @@ The following figure shows how arrays are represented in state
 diagrams:
 
 
-\epsfig{figure=figs/array.eps}
+\includegraphics{figs/array.pdf}
 
 
 The large numbers inside the boxes are the {\bf elements} of
@@ -8316,7 +8333,7 @@ These are all legal assignment statements.  Here is the
 result of this code fragment:
 
 
-\epsfig{figure=figs/array2.eps}
+\includegraphics{figs/array2.pdf}
 
 
 The elements of the array
@@ -8372,7 +8389,7 @@ sets two different variables to refer to it.
 This situation is a form of aliasing.
 
 
-\epsfig{figure=figs/array3.eps}
+\includegraphics{figs/array3.pdf}
 
 
 Any changes in either array
@@ -9238,7 +9255,7 @@ This statement is equivalent to the
 separate declaration, allocation, and assignment.  The state
 diagram of this array looks like:
 
-\epsfig{figure=figs/stringarray.eps}
+\includegraphics{figs/stringarray.pdf}
 
 \index{state diagram}
 \index{reference}
@@ -9355,7 +9372,7 @@ In this case, {\tt card1} and {\tt card2}
 are equivalent but not identical, so
 the state diagram looks like this:
 
-\epsfig{figure=figs/card.eps}
+\includegraphics{figs/card.pdf}
 
 What does it look like when
 {\tt card1} and {\tt card2} are identical?
@@ -9469,7 +9486,7 @@ Here is the state diagram for this object:
 
 \index{state diagram}
 
-\epsfig{figure=figs/cardarray.eps}
+\includegraphics{figs/cardarray.pdf}
 
 The array contains
 {\em references} to objects; it does not contain the
@@ -9527,7 +9544,7 @@ deck the next card should go.  The following state diagram
 shows what the deck looks like after the first two cards
 have been allocated:
 
-\epsfig{figure=figs/cardarray2.eps}
+\includegraphics{figs/cardarray2.pdf}
 
 \begin{exercise}
 Encapsulate this deck-building code in a method called
@@ -9938,7 +9955,7 @@ Here is a state diagram showing what a
 \index{state diagram}
 \index{constructor}
 
-\epsfig{figure=figs/deckobject.eps}
+\includegraphics{figs/deckobject.pdf}
 
 Here is a no-argument constructor that makes a
 52-card deck and populates it with {\tt Card}s:
@@ -10125,7 +10142,7 @@ The following is a state diagram of a subdeck being created with the
 parameters {\tt low=3} and {\tt high=7}.  The result is a hand with 5
 cards that are shared with the original deck; i.e. they are aliased.
 
-\epsfig{figure=figs/subdeck.eps}
+\includegraphics{figs/subdeck.pdf}
 
 \index{aliasing}
 \index{reference}
@@ -11312,7 +11329,7 @@ Add a method called {\tt makePentomino} that creates
 an r-pentomino in the middle of the Grid.  The initial configuration
 should look like this:
 
-\epsfig{figure=figs/LifeRunner.eps,height=2in}
+\includegraphics[height=2in]{figs/LifeRunner.pdf}
 
 If you run this configuration for more than a few steps, it reaches the
 end of the Grid.  The boundaries of the Grid change the behavior of
@@ -11437,7 +11454,7 @@ bounding box itself is not drawn.
 \index{bounding box}
 
 
-\epsfig{figure=figs/circle.eps}
+\includegraphics{figs/circle.pdf}
 
 {\tt x} and {\tt y} specify the
 the location of the upper-left corner 
@@ -11457,7 +11474,7 @@ Cartesian coordinates increase to the right and up, as shown in the
 figure.
 
 
-\epsfig{figure=figs/coordinates.eps,width=5in}
+\includegraphics[width=5in]{figs/coordinates.pdf}
 
 
 By convention, computer graphics systems to use a
@@ -11547,7 +11564,7 @@ up and left for the first ear, then right for the second ear.
 
 The result looks like this:
 
-\epsfig{figure=figs/mickey.eps,height=2in}
+\includegraphics[height=2in]{figs/mickey.pdf}
 
 You can download this code from
 \url{http://thinkapjava.com/code/Mickey.java}.
@@ -11560,7 +11577,7 @@ only 3 pixels wide.
 
 The result should look like Mickey Moose:
 
-\epsfig{figure=figs/moose.eps,height=2in}
+\includegraphics[height=2in]{figs/moose.pdf}
 
 Hint: you should only have to add or modify a few lines of code.
 
@@ -11590,7 +11607,7 @@ of the screen and concentric, as in the following figure (left).
 The distance between the circles should be small enough
 that the Moir\'{e} interference is apparent.
 
-\epsfig{figure=figs/moire.eps,height=1.5in}
+\includegraphics[height=1.5in]{figs/moire.pdf}
 
 \item Write a method named {\tt radial} that draws a radial set
 of line segments as shown in the figure (right), but they should be close
@@ -12587,6 +12604,8 @@ similar, you will be able to find the bug more quickly.
 
 
 \printindex
+
+\clearemptydoublepage
 
 \end{document}
 
