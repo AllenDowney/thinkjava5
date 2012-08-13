@@ -1,5 +1,5 @@
 % LaTeX source for ``Think Java: How to think like a computer scientist''
-% Copyright (C) 2011  Allen B. Downey
+% Copyright (C) 2012  Allen B. Downey
 
 % Permission is granted to copy, distribute, transmit and adapt
 % this work under a Creative Commons 
@@ -56,7 +56,7 @@
 
 
 \newcommand{\thetitle}{Think Java: How to Think Like a Computer Scientist}
-\newcommand{\theversion}{5.0.3}
+\newcommand{\theversion}{5.0.5}
 
 \newif\ifplastex
 \plastexfalse
@@ -412,6 +412,9 @@ obvious that I am embarassed by the omission.  This list starts
 with the 4th Edition, so it omits many people who contributed
 suggestions and corrections to earlier versions.
 
+If you have additional comments, please send them to
+\url{feedback@greenteapress.com}.
+
 \begin{itemize}
 
 \item Ellen Hildreth used this book to teach Data Structures at
@@ -434,7 +437,16 @@ examples.
 
 \item Stijn Debrouwere found a math typo.
 
+\item Muhammad Saied translated the book into Arabic, and found
+several errors.
+
+\item Marius Margowski found an inconsistency in a code example.
+
+\item Guy Driesen found several typos.
+
 \end{itemize}
+
+% endcontrib
 
 % table of contents
 
@@ -3880,6 +3892,8 @@ statements
 \section {More recursion}
 \index{recursion}
 \index{language!complete}
+\index{factorial}
+\label{factorial}
 
 Now that we have methods that return values, we have a {\bf Turing
   complete} programming language, which means that we can compute
@@ -4047,8 +4061,8 @@ but that's why it's called a leap of faith!
 
 
 \section{One more example}
-\index{factorial}
-\label{factorial}
+\index{fibonacci}
+\label{fibonacci}
 
 The second most common example of a recursively-defined
 mathematical function is {\tt fibonacci}, which has the
@@ -4465,9 +4479,8 @@ common divisor of the two numbers.
 \index{statement!assignment}
 \index{multiple assignment}
 
-I haven't said much about it, but it is legal in Java to
-make more than one assignment to the same variable.  The
-effect of the second assignment is to replace the old value
+You can make more than one assignment to the same variable;
+effect is to replace the old value
 with the new.
 
 \begin{verbatimtab}
@@ -7329,10 +7342,10 @@ Ant moves according to these rules:
 
 \begin{itemize}
 
-\item If the Ant is one a white cell, it turns to the right,
+\item If the Ant is on a white cell, it turns to the right,
 makes the cell black, and moves forward.
 
-\item If the Ant is one a black cell, it turns to the left,
+\item If the Ant is on a black cell, it turns to the left,
 makes the cell white, and moves forward.
 
 \end{itemize}
@@ -7468,7 +7481,7 @@ a user-defined class, {\tt Time}.
 \index{class!Time}
 \index{Time}
 
-A common motivation for creating an bject type is to encapsulate
+A common motivation for creating an object type is to encapsulate
 related data in an object that can be treated as a single unit.  We
 have already seen two types like this, {\tt Point} and {\tt
 Rectangle}.
@@ -8061,8 +8074,7 @@ makes it easier (fewer special cases, fewer opportunities for error).
 
 When you write a general solution for a class of problems, as
 opposed to a specific solution to a single problem, you have
-written an {\bf algorithm}.  I mentioned this word in 
-Chapter 1, but did not define it carefully.  It is
+written an {\bf algorithm}.  This word is
 not easy to define, so I will try a couple of approaches.
 
 First, consider some things that are not algorithms.  When you learned
@@ -9720,7 +9732,7 @@ public static int findBisect(Card[] cards, Card card, int low, int high) {
     if (high < low) return -1;
 
     int mid = (high + low) / 2;
-    int comp = cards[mid].compareCard(card);
+    int comp = compareCard(cards[mid], card);
 
     if (comp == 0) {
         return mid;
@@ -10044,8 +10056,8 @@ program, I am using a combination of Java statements and English
 words that is sometimes called {\bf pseudocode}:  \index{pseudocode}
 
 \begin{verbatimtab}
-    for (int i=0; i<deck.length; i++) {
-        // choose a random number between i and deck.cards.length
+    for (int i=0; i<deck.cards.length; i++) {
+        // choose a random number between i and deck.cards.length-1
         // swap the ith card and the randomly-chosen card
     }
 \end{verbatimtab}
@@ -10085,7 +10097,7 @@ card.
 Here is pseudocode for selection sort:
 
 \begin{verbatimtab}
-    for (int i=0; i<deck.length; i++) {
+    for (int i=0; i<deck.cards.length; i++) {
         // find the lowest card at or to the right of i
         // swap the ith card and the lowest card
     }
@@ -10353,6 +10365,7 @@ class Card {
     public static void printCard(Card c) {
 	System.out.println(ranks[c.rank] + " of " + suits[c.suit]);
     }
+}
 \end{verbatimtab}
 
 Inside {\tt printCard} we can refer to {\tt suits} and {\tt ranks} as
@@ -10438,8 +10451,8 @@ deck = mergeSort(deck);      // replaces old deck with new
 
 
 
-\label{chap13}
 \chapter{Object-oriented programming}
+\label{chap13}
 
 \section{Programming languages and styles}
 \index{programming language}
@@ -10813,7 +10826,7 @@ them.
 
 On the other hand, inheritance can make programs hard to read.  When
 you see a method invocation, it can be hard to figure out which method
-gets invokes.
+gets invoked.
 
 Also, many of the things that can be done with inheritance can
 be done as well or better without it.  
@@ -11550,7 +11563,7 @@ And here's a method that draws Mickey:
 	int dy = bb.height/2;
 	Rectangle half = new Rectangle(bb.x, bb.y, dx, dy);
 
-	half.translate(-dx/2, -dx/2);
+	half.translate(-dx/2, -dy/2);
 	boxOval(g, half);
 
 	half.translate(dx*2, 0);
