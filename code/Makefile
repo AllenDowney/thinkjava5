@@ -7,7 +7,7 @@ MyGridWorld/BugRunner.java        MyGridWorld/LangtonTermite.java \
 MyGridWorld/ChaseRunner.java      MyGridWorld/MyTermite.java \
 MyGridWorld/CircleBug.java        MyGridWorld/Termite.java \
 MyGridWorld/CircleBugRunner.java  MyGridWorld/TermiteRunner.java \
-MyGridWorld/DiamondTermite.java   \
+MyGridWorld/DiamondTermite.java   MyGridWorld/Termite.gif \
 MyGridWorld/BlueBug.java          MyGridWorld/LifeRock.java \
 MyGridWorld/BlueBugRunner.java    MyGridWorld/LifeRunner.java \
 Cards/Card1.java  Cards/Card3.java      Cards/CardSoln3.java \

@@ -44,8 +44,10 @@ distrib:
 	mkdir thinkapjava thinkapjava/figs
 	cp thinkapjava.tex latexonly htmlonly thinkapjava
 	cp Makefile.dist thinkapjava/Makefile
+	cp *.png thinkapjava
 	cp figs/*.fig thinkapjava/figs
 	cp figs/*.eps thinkapjava/figs
+	cp figs/*.pdf thinkapjava/figs
 	zip -r thinkapjava.tex.zip thinkapjava
 	chmod 644 $(DISTFILES)
 	cp $(DISTFILES) $(DIR)
