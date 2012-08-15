@@ -44,7 +44,7 @@ distrib:
 	mkdir thinkapjava thinkapjava/figs
 	cp thinkapjava.tex latexonly htmlonly thinkapjava
 	cp Makefile.dist thinkapjava/Makefile
-	cp *.png thinkapjava
+	cp *.png *.html thinkapjava
 	cp figs/*.fig thinkapjava/figs
 	cp figs/*.eps thinkapjava/figs
 	cp figs/*.pdf thinkapjava/figs
@@ -52,13 +52,6 @@ distrib:
 	chmod 644 $(DISTFILES)
 	cp $(DISTFILES) $(DIR)
 	rsync -a html $(DIR)
-
-distcode:
-	cp code/IntList/code/IntList.java $(DIR)/code/IntList
-
-distsol:
-	cp -r solutions /home/downey/public_html/thinkapjava
-	chmod -R o+r /home/downey/public_html/thinkapjava
 
 clean:
 	rm -f *~ *.aux *.log *.dvi *.idx *.ilg *.ind *.toc
