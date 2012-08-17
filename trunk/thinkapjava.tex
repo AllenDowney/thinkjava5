@@ -91,6 +91,23 @@
 
 \makeindex
 
+% enable pdf hyperlinks, table of contents, and document properties
+\usepackage[pdftex]{hyperref}
+\makeatletter
+\hypersetup{%
+  pdftitle={\@title},
+  pdfauthor={\@author},
+  pdfsubject={Version \theversion},
+  pdfkeywords={},
+  bookmarksopen=false,
+  colorlinks=true,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=cyan
+}
+\makeatother
+
 \begin{document}
 
 \frontmatter
@@ -412,8 +429,8 @@ obvious that I am embarassed by the omission.  This list starts
 with the 4th Edition, so it omits many people who contributed
 suggestions and corrections to earlier versions.
 
-If you have additional comments, please send them to
-\url{feedback@greenteapress.com}.
+If you have additional comments, please send them to: \\
+\href{mailto:feedback@greenteapress.com}{feedback@greenteapress.com}
 
 \begin{itemize}
 
