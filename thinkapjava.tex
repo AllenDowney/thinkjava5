@@ -70,6 +70,16 @@
 
 % LATEX AND HTML
 
+\newtheoremstyle{exercise}
+  {\topsep}     % space above
+  {\topsep}     % space below
+  {}            % body font
+  {}            % indent amount
+  {\bfseries}   % head font
+  {.}           % punctuation
+  {5pt}         % head space
+  {}            % custom head
+\theoremstyle{exercise}
 \newtheorem{exercise}{Exercise}[chapter]
 
 \title{\thetitle}
@@ -2374,14 +2384,6 @@ not necessary to include the type when you pass them
 as arguments.  The correct
 syntax is {\tt printTime(hour, minute)}.
 
-\begin{exercise}
-
-Draw a stack frame that shows the state of the program
-when {\tt main} invokes {\tt printTime}
-with the arguments {\tt 11} and {\tt 59}.
-
-\end{exercise}
-
 
 \section {Methods with results}
 \index{fruitful method}
@@ -2454,6 +2456,14 @@ that contains a method's parameters and variables.
 \end{description}
 
 \section{Exercises}
+
+\begin{exercise}
+
+Draw a stack frame that shows the state of the program in Section~\ref{time}
+when {\tt main} invokes {\tt printTime}
+with the arguments {\tt 11} and {\tt 59}.
+
+\end{exercise}
 
 \begin{exercise}
 
@@ -2953,12 +2963,6 @@ frames for {\tt countdown}.
 The frame for {\tt main} is empty because {\tt main} does not
 have any parameters or variables.
 
-\begin{exercise}
-Draw a stack diagram that shows the state of the program
-after {\tt main} invokes {\tt nLines} with the parameter {\tt n=4},
-just before the last invocation of {\tt nLines} returns.
-\end{exercise}
-
 
 \section{Glossary}
 
@@ -3008,6 +3012,12 @@ are currently executing.
 \end{description}
 
 \section{Exercises}
+
+\begin{exercise}
+Draw a stack diagram that shows the state of the program in Section~\ref{recursion}
+after {\tt main} invokes {\tt nLines} with the parameter {\tt n=4},
+just before the last invocation of {\tt nLines} returns.
+\end{exercise}
 
 \begin{exercise}
 
@@ -3269,7 +3279,10 @@ Note: If you run this before adding the Bug to the {\tt world}, the result is
 
 Invoke the other accessor methods and print the bug's attributes.
 Invoke the methods {\tt canMove}, {\tt move} and {\tt turn} and
-be sure you understand what they do.  Now try these exercises:
+be sure you understand what they do.  % Now try these exercises:
+
+
+\section{Exercises}
 
 \begin{exercise}
 
@@ -5479,13 +5492,8 @@ index} is a variable or value used to specify a member of an ordered
 set, in this case the string of characters.  The index
 indicates (hence the name) which one you want.
 
-\begin{exercise}
-Write a method that takes a {\tt String}
-as an argument and that prints the letters backwards all on
-one line.
-\end{exercise}
-
 \section{Run-time errors}
+\label{StringIndexOutOfBounds}
 \index{error!run-time}
 \index{run-time error}
 \index{exception!StringIndexOutOfBounds}
@@ -5540,28 +5548,6 @@ String index out of range: 6
 
 Then the program ends.
 The stack trace can be hard to read, but it contains a lot of information.
-
-\begin{exercise}
-Read the stack trace and answer these questions:
-
-\begin{itemize}
-
-\item What kind of Exception occurred, and what package is it defined
-in?
-
-\item What is the value of the index that caused the exception?
-
-\item What method threw the exception, and where is
-that method defined?
-
-\item What method invoked {\tt charAt}?
-
-\item In {\tt BadString.java}, what is the line number where {\tt charAt}
-was invoked?
-
-\end{itemize}
-
-\end{exercise}
 
 
 \section{Reading documentation}
@@ -5680,22 +5666,6 @@ contains the result: the total number of a's.
 \index{counter}
 \index{increment}
 \index{decrement}
-
-\begin{exercise}
-
-Encapsulate this code in a method named
-{\tt countLetters}, and generalize it so that it accepts the
-string and the letter as arguments.
-\index{encapsulation}
-\index{generalization}
-
-Then rewrite the method so that it uses
-{\tt indexOf} to locate the a's, rather than checking
-the characters one by one.
-
-\end{exercise}
-
-
 
 
 \section{Increment and decrement operators}
@@ -5963,6 +5933,49 @@ The decrement operator in Java is {\tt --}.
 
 
 \section{Exercises}
+
+\begin{exercise}
+Write a method that takes a {\tt String}
+as an argument and that prints the letters backwards all on
+one line.
+\end{exercise}
+
+\begin{exercise}
+Read the stack trace in Section~\ref{StringIndexOutOfBounds}
+and answer these questions:
+
+\begin{itemize}
+
+\item What kind of Exception occurred, and what package is it defined
+in?
+
+\item What is the value of the index that caused the exception?
+
+\item What method threw the exception, and where is
+that method defined?
+
+\item What method invoked {\tt charAt}?
+
+\item In {\tt BadString.java}, what is the line number where {\tt charAt}
+was invoked?
+
+\end{itemize}
+
+\end{exercise}
+
+\begin{exercise}
+
+Encapsulate the code in Section~\ref{loopcount} in a method named
+{\tt countLetters}, and generalize it so that it accepts the
+string and the letter as arguments.
+\index{encapsulation}
+\index{generalization}
+
+Then rewrite the method so that it uses
+{\tt indexOf} to locate the a's, rather than checking
+the characters one by one.
+
+\end{exercise}
 
 \begin{exercise}
 The purpose of this exercise is to review encapsulation
@@ -7159,11 +7172,6 @@ to the right and resets {\tt steps} to 0.
 Run the program and see what it does.  Did you get the behavior you
 expected?
 
-\begin{exercise}
-Now you know enough to do the exercises in the Student Manual, Part 2.
-Go do them, and then come back for more fun.
-\end{exercise}
-
 
 \section{Termites}
 
@@ -7308,6 +7316,53 @@ public class MyTermite extends Termite {
 If {\tt MyTermite} sees a flower, it picks it up.  If it has
 a flower, it drops it.
 
+
+\section{Langton's Termite}
+
+Langton's Ant is a simple model of ant behavior that 
+displays surprisingly complex behavior.  The Ant lives on a grid
+like GridWorld where each cell is either white or black.  The
+Ant moves according to these rules:
+
+\begin{itemize}
+
+\item If the Ant is on a white cell, it turns to the right,
+makes the cell black, and moves forward.
+
+\item If the Ant is on a black cell, it turns to the left,
+makes the cell white, and moves forward.
+
+\end{itemize}
+
+Because the rules are simple, you might expect the Ant to do
+something simple like make a square or repeat a simple
+pattern.  But starting on a grid with all white cells, the
+Ant makes more than 10,000 steps in a seemingly random pattern
+before it settles into a repeating loop of 104 steps.
+
+You can read more about Langton's
+Ant at \url{http://en.wikipedia.org/wiki/Langton_ant}.
+
+It is not easy to implement 
+Langton's Ant in GridWorld because we can't set the color of
+the cells.  As an alternative, we can use Flowers to mark
+cells, but we can't have an Ant and a Flower in the same cell,
+so we can't implement the Ant rules exactly.
+
+Instead we'll create what I'll call a {\tt LangtonTermite}, which uses
+{\tt seeFlower} to check whether there is a flower in the next cell,
+{\tt pickUpFlower} to pick it up,
+and {\tt throwFlower} to put a flower in the next cell.  You
+might want to read the code for these methods to be sure you
+know what they do.
+
+\section{Exercises}
+
+\begin{exercise}
+Now you know enough to do the exercises in the Student Manual, Part 2.
+Go do them, and then come back for more fun.
+\end{exercise}
+
 \begin{exercise}
 The purpose of this exercise is to explore the behavior of Termites
 that interact with flowers.
@@ -7348,46 +7403,6 @@ Experiment with different rules and see what effect they have on the
 system.  Small changes can have unpredicable results!
 
 \end{exercise}
-
-
-\section{Langton's Termite}
-
-Langton's Ant is a simple model of ant behavior that 
-displays surprisingly complex behavior.  The Ant lives on a grid
-like GridWorld where each cell is either white or black.  The
-Ant moves according to these rules:
-
-\begin{itemize}
-
-\item If the Ant is on a white cell, it turns to the right,
-makes the cell black, and moves forward.
-
-\item If the Ant is on a black cell, it turns to the left,
-makes the cell white, and moves forward.
-
-\end{itemize}
-
-Because the rules are simple, you might expect the Ant to do
-something simple like make a square or repeat a simple
-pattern.  But starting on a grid with all white cells, the
-Ant makes more than 10,000 steps in a seemingly random pattern
-before it settles into a repeating loop of 104 steps.
-
-You can read more about Langton's
-Ant at \url{http://en.wikipedia.org/wiki/Langton_ant}.
-
-It is not easy to implement 
-Langton's Ant in GridWorld because we can't set the color of
-the cells.  As an alternative, we can use Flowers to mark
-cells, but we can't have an Ant and a Flower in the same cell,
-so we can't implement the Ant rules exactly.
-
-Instead we'll create what I'll call a {\tt LangtonTermite}, which uses
-{\tt seeFlower} to check whether there is a flower in the next cell,
-{\tt pickUpFlower} to pick it up,
-and {\tt throwFlower} to put a flower in the next cell.  You
-might want to read the code for these methods to be sure you
-know what they do.
 
 \begin{exercise}
 
@@ -8490,11 +8505,6 @@ is equivalent to
     }
 \end{verbatimtab}
 
-\begin{exercise}
-As an exercise, write a {\tt for} loop to copy the elements
-of an array.
-\end{exercise}
-
 
 \section{Arrays and objects}
 \index{object!compared to array}
@@ -8556,13 +8566,6 @@ is not executed, which is a good thing, since it would throw an
 exception.  This code assumes that the array {\tt b} contains at least
 as many elements as {\tt a}.
 
-\begin{exercise}
-Write a method called {\tt cloneArray} that takes an
-array of integers as a parameter, creates a new array that is the same
-size, copies the elements from the first array into the new one, and
-then returns a reference to the new array.
-\end{exercise}
-
 
 \section{Random numbers}
 \label{random}
@@ -8603,21 +8606,6 @@ To generate a random {\tt double} between 0.0 and an upper bound like
 {\tt high}, you can multiply {\tt x} by {\tt high}.  How would you
 generate a random number between {\tt low} and {\tt high}?  How would
 you generate a random integer?
-
-
-\begin{exercise}
-Write a method called {\tt randomDouble} that takes two doubles,
-{\tt low} and {\tt high}, and that returns a random double $x$
-so that $low \le x < high$.
-\end{exercise}
-
-
-\begin{exercise}
-\label{ex.randint}
-Write a method called {\tt randomInt} that takes two arguments,
-{\tt low} and {\tt high}, and that returns a random integer between
-{\tt low} and {\tt high}, not including {\tt high}.
-\end{exercise}
 
 
 \section{Array of random numbers}
@@ -8806,6 +8794,7 @@ in two roles: as in index into the array, and as the parameter to
 
 
 \section{A single-pass solution}
+\label{singlepass}
 
 This code works, but it is not as efficient as it could
 be.  Every time it invokes {\tt inRange}, it traverses the
@@ -8829,12 +8818,6 @@ a histogram.
         counts[index]++;
     }
 \end{verbatimtab}
-
-\begin{exercise}
-Encapsulate this code in a method called {\tt makeHist} that
-takes an array of scores and returns a histogram of the values
-in the array.
-\end{exercise}
 
 
 \section{Glossary}
@@ -8871,6 +8854,36 @@ counts the number of values that fall into a certain range.
 
 
 \section{Exercises}
+
+\begin{exercise}
+Write a method called {\tt cloneArray} that takes an
+array of integers as a parameter, creates a new array that is the same
+size, copies the elements from the first array into the new one, and
+then returns a reference to the new array.
+\end{exercise}
+
+
+\begin{exercise}
+Write a method called {\tt randomDouble} that takes two doubles,
+{\tt low} and {\tt high}, and that returns a random double $x$
+so that $low \le x < high$.
+\end{exercise}
+
+
+\begin{exercise}
+\label{ex.randint}
+Write a method called {\tt randomInt} that takes two arguments,
+{\tt low} and {\tt high}, and that returns a random integer between
+{\tt low} and {\tt high}, not including {\tt high}.
+\end{exercise}
+
+
+\begin{exercise}
+Encapsulate the code in Section~\ref{singlepass} in a method called
+{\tt makeHist} that takes an array of scores and returns a histogram
+of the values in the array.
+\end{exercise}
+
 
 \begin{exercise}
 Write a method named {\tt areFactors} that takes
@@ -9477,11 +9490,6 @@ and we have to compare ranks:
 If neither of these is true, the ranks must be equal,
 so we return {\tt 0}.
 
-\begin{exercise}
-Encapsulate this code in a method.
-Then modify it so that aces are ranked higher than Kings.
-\end{exercise}
-
 
 \section{Arrays of cards}
 \label{cardarray}
@@ -9574,12 +9582,6 @@ shows what the deck looks like after the first two cards
 have been allocated:
 
 \includegraphics{figs/cardarray2.pdf}
-
-\begin{exercise}
-Encapsulate this deck-building code in a method called
-{\tt makeDeck} that takes no parameters and returns a
-fully-populated array of {\tt Card}s.
-\end{exercise}
 
 
 \section{The {\tt printDeck} method}
@@ -9887,6 +9889,19 @@ represented by the code.
 
 
 \section{Exercises}
+
+\begin{exercise}
+Encapsulate the code in Section~\ref{compare} in a method.
+Then modify it so that aces are ranked higher than Kings.
+\end{exercise}
+
+
+\begin{exercise}
+Encapsulate the deck-building code of Section~\ref{cardarray} in a method called
+{\tt makeDeck} that takes no parameters and returns a
+fully-populated array of {\tt Card}s.
+\end{exercise}
+
 
 \begin{exercise}
 In Blackjack the object of the game is to get a collection of cards
@@ -10682,25 +10697,6 @@ the parameter {\tt that}:
 %
 I think it improves readability.
 
-\begin{exercise}
-
-Download \url{http://thinkapjava.com/code/CardSoln2.java} and 
-\url{http://thinkapjava.com/code/CardSoln3.java}.
-
-{\tt CardSoln2.java} contains solutions to the exercises
-in the previous chapter.  It uses only class methods (except the
-constructors).
-
-{\tt CardSoln3.java} contains the same program, but most of the
-methods are object methods.  I left {\tt merge} unchanged because
-I think it is more readable as a class method.
-
-Transform {\tt merge} into an object method,
-and change {\tt mergeSort} accordingly.  Which version of
-{\tt merge} do you prefer?
-
-\end{exercise}
-
 
 \section{Oddities and errors}
 \index{method!object}
@@ -10895,6 +10891,26 @@ be explicit.
 
 
 \section{Exercises}
+
+\begin{exercise}
+
+Download \url{http://thinkapjava.com/code/CardSoln2.java} and 
+\url{http://thinkapjava.com/code/CardSoln3.java}.
+
+{\tt CardSoln2.java} contains solutions to the exercises
+in the previous chapter.  It uses only class methods (except the
+constructors).
+
+{\tt CardSoln3.java} contains the same program, but most of the
+methods are object methods.  I left {\tt merge} unchanged because
+I think it is more readable as a class method.
+
+Transform {\tt merge} into an object method,
+and change {\tt mergeSort} accordingly.  Which version of
+{\tt merge} do you prefer?
+
+\end{exercise}
+
 
 \begin{exercise}
 
@@ -11095,12 +11111,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 \end{verbatimtab}
 
-\begin{exercise}
-Starting with a copy of {\tt BlueBug.java}, write a class definition
-for a new kind of {\tt Bug} that finds and eats flowers.  You can
-``eat'' a flower by invoking {\tt removeSelfFromGrid} on it.
-\end{exercise}
-
 
 \section{Interfaces}
 \index{interface}
@@ -11178,12 +11188,6 @@ and error-prone.
 Private methods and instance variables are language features
 that help programmers ensure {\bf data encapsulation}, which means
 that objects in one class are isolated from other classes.
-
-\begin{exercise}
-Now you know what you need to know to 
-read Part 3 of the
-GridWorld Student Manual and do the exercises.
-\end{exercise}
 
 
 \section{Game of Life}
@@ -11375,13 +11379,26 @@ one you like and implement it.
 There are also variations of the Game of Life based on different rules.
 Try one out and see if you find anything interesting.
 
+\section{Exercises}
+
+\begin{exercise}
+Starting with a copy of {\tt BlueBug.java}, write a class definition
+for a new kind of {\tt Bug} that finds and eats flowers.  You can
+``eat'' a flower by invoking {\tt removeSelfFromGrid} on it.
+\end{exercise}
+
+\begin{exercise}
+Now you know what you need to know to read Part 3 of the
+GridWorld Student Manual and do the exercises.
+\end{exercise}
+
 \begin{exercise}
 If you implemented the Game of Life, you are well prepared for
 Part 4 of the GridWorld Student Manual.  Read it and do the exercises.
 \end{exercise}
 
-Congratulations, you're done!
 
+Congratulations, you're done!
 
 
 \appendix
