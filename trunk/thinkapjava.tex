@@ -200,14 +200,14 @@ Allen B. Downey
 \pagebreak
 \thispagestyle{empty}
 
-Copyright \copyright ~2011 Allen Downey.
+Copyright \copyright ~2012 Allen Downey.
 
 \vspace{0.25in}
 
 Permission is granted to copy, distribute, transmit and adapt
 this work under a Creative Commons 
 Attribution-NonCommercial-ShareAlike 3.0 Unported License:
-\url{http://creativecommons.org/licenses/by-nc-sa/3.0/}.
+\url{http://creativecommons.org/licenses/by-nc-sa/3.0/}
 
 If you are interested in distributing a commercial version of this
 work, please contact Allen B. Downey.
@@ -217,11 +217,8 @@ The original form of this book is \LaTeX\ source code.  Compiling this
 representation of the book, which can be converted to other formats
 and printed.
 
-The \LaTeX\ source for this book is available from
-
-\begin{verbatimtab}
-      thinkapjava.com
-\end{verbatimtab}
+The \LaTeX\ source for this book is available from:
+\url{http://thinkapjava.com}
 
 This book was typeset using \LaTeX .  The illustrations were
 drawn in xfig.  All of these are free, open-source programs.
@@ -260,8 +257,8 @@ specific---details about Java and its libraries that would be obsolete
 by the end of the semester, and that obscured the material I really
 wanted to get to.
 
-The other problem I found was that the introduction to object
-oriented programming was too abrupt.  Many students who were otherwise
+The other problem I found was that the introduction to object-oriented
+programming was too abrupt.  Many students who were otherwise
 doing well just hit a wall when we got to objects, whether we did
 it at the beginning, middle or end.
 
@@ -736,7 +733,7 @@ modification, and you take a step closer to a working program.  If
 your hypothesis was wrong, you have to come up with a new one.  As
 Sherlock Holmes pointed out, ``When you have eliminated the
 impossible, whatever remains, however improbable, must be the truth.''
-(from A. Conan Doyle's {\em The Sign of Four}).
+(From A.~Conan Doyle's {\em The Sign of Four}.)
 
 \index{Holmes, Sherlock}
 \index{Doyle, Arthur Conan}
@@ -873,8 +870,8 @@ language.
 \index{hello world}
 
 Traditionally the first program people write in a new language
-is called ``Hello, World.'' because all it does is display the
-words ``Hello, World.''  In Java, this program looks like this:
+is called ``hello world'' because all it does is display the
+words ``Hello, World.''  In Java, this program looks like:
 
 \begin{verbatimtab}
 class Hello {
@@ -1691,8 +1688,8 @@ if you find the error without compiling the program, one point if you
 find it using the compiler, and your opponent gets a point if you
 don't find it.
 
-Note: please don't remove the ``l'' from ``public.''  It's not as
-funny as you think.
+% Note: please don't remove the ``l'' from ``public.''  It's not as
+% funny as you think.
 \end{exercise}
 
 
@@ -2175,7 +2172,7 @@ class NewLine {
 \end{verbatimtab}
 %
 The first line indicates that this is the class definition for a new
-class called {\tt NewLine}.  A class is a collection of related
+class called {\tt NewLine}.  A {\bf class} is a collection of related
 methods.  In this case, the class named {\tt NewLine} contains three
 methods, named {\tt newLine}, {\tt threeLine}, and {\tt main}.
 
@@ -2194,8 +2191,8 @@ methods and the methods we write:
 The first statement invokes the {\tt pow} method in
 the {\tt Math class} (which raises the first argument to the
 power of the second argument).  The second statement invokes
-the {\tt newLine} method, which Java assumes 
-is in the {\tt NewLine} class, which is what we are writing.
+the {\tt newLine} method, which Java assumes is in the class
+we are writing (i.e., {\tt NewLine}).
 
 If you try to invoke a method from the wrong class, the
 compiler will generate an error.  For example, if you
@@ -3427,7 +3424,7 @@ is a {\tt double}.  I still haven't explained what
 The last line is a new form of the
 {\tt return} statement that includes a return value.  This
 statement means, ``return immediately from this method and
-use the following expression as a return value.''  The
+use the following expression as the return value.''  The
 expression you provide can be arbitrarily complicated,
 so we could have written this method more concisely:
 
@@ -3617,9 +3614,8 @@ In {\tt main}, we can print and check the value of the result.
 
 As you gain more experience programming, you might
 write and debug more than one line at a time.  Nevertheless,
-incremental development can save you a lot of
-time.
-
+incremental development can save you a lot of time.
+%
 The key aspects of the process are:
 
 \begin{itemize}
@@ -3775,7 +3771,7 @@ compare {\tt int}s and {\tt float}s and return either {\tt true} or
 and together they make up a type called {\bf boolean}.  You might
 recall that when I defined a type, I said it was a set of values.  In
 the case of {\tt int}s, {\tt double}s and {\tt String}s, those sets
-are pretty big.  For {\tt boolean}s, not so big.
+are pretty big.  For {\tt boolean}s, there are only two values.
 
 Boolean expressions and variables work just like other types of
 expressions and variables:
@@ -3920,7 +3916,7 @@ Now that we have methods that return values, we have a {\bf Turing
 anything computable, for any reasonable definition of ``computable.''
 \index{Turing, Alan}
 \index{Church, Alonzo}
-
+%
 This idea was developed by Alonzo Church and Alan Turing, so it is
 known as the Church-Turing thesis.  You can read more about it at
 \url{http://en.wikipedia.org/wiki/Turing_thesis}.
@@ -4050,8 +4046,8 @@ execute.
 \section{Leap of faith}
 \index{leap of faith}
 
-Following the flow of execution is one way to read programs it can
-quickly become labarynthine.  An alternative is what I call the ``leap
+Following the flow of execution is one way to read programs, but it can
+quickly become disorienting.  An alternative is what I call the ``leap
 of faith.''  When you come to a method invocation, instead of
 following the flow of execution, you {\em assume} that the method
 works correctly and returns the appropriate value.
@@ -4139,7 +4135,7 @@ provide.
 \item[boolean:]  A type of variable that can contain only the two
 values {\tt true} and {\tt false}.
 
-\item[flag:]  A variable(usually {\tt boolean}) that records
+\item[flag:]  A variable (usually {\tt boolean}) that records
 a condition or status information.
 
 \item[conditional operator:]  An operator that compares two values
@@ -4463,7 +4459,7 @@ Optional challenge: you can make this method more efficient, when {\tt
 {\em Structure and Interpretation of Computer Programs}.)
 
 The following technique is known as Euclid's Algorithm because
-it appears in Euclid's {\em Elements}(Book 7, ca. 300 B.C.).
+it appears in Euclid's {\em Elements} (Book 7, ca.~300 BC).
 It may be the oldest nontrivial algorithm\footnote{For a definition
 of ``algorithm'', jump ahead to Section~\ref{algorithm}.}.
 
@@ -4500,8 +4496,7 @@ common divisor of the two numbers.
 \index{multiple assignment}
 
 You can make more than one assignment to the same variable;
-effect is to replace the old value
-with the new.
+the effect is to replace the old value with the new.
 
 \begin{verbatimtab}
     int bob = 5;
@@ -4612,7 +4607,7 @@ between the squiggly-brackets, and then go back to step 1.
 This type of flow is called a {\bf loop} because the third step loops
 back around to the top.  The statements inside the loop are called
 the {\bf body} of the loop.
-
+%
 If the condition is false the
 first time through the loop, the statements inside the loop are
 never executed.  
@@ -4633,7 +4628,7 @@ an infinite loop.
 
 In the case of {\tt countdown}, we can prove that the loop
 terminates if {\tt n} is positive.
-
+%
 In other cases it is not so easy to tell:
 
 \begin{verbatimtab}
@@ -4800,9 +4795,9 @@ moment, you should memorize the powers of two up to 65536
 \section{Two-dimensional tables}
 \index{table!two-dimensional}
 
-A two-dimensional table is a table where you choose a row and
-a column and read the value at the intersection.  A multiplication
-table is a good example.  Let's say you wanted to print a
+A two-dimensional table consists of rows and columns that make
+it easy to find values at the intersections.  A multiplication
+table is a good example.  Let's say you want to print a
 multiplication table for the values from 1 to 6.
 
 A good way to start is to write a simple loop that prints
@@ -5166,7 +5161,10 @@ to write.
 
 \section{Exercises}
 
-\begin{exercise}\label{infloop}
+\begin{exercise}
+\label{infloop}
+
+Consider the following code:
 
 \begin{verbatimtab}
 public static void main(String[] args) {
@@ -5286,7 +5284,7 @@ something like:
 HINT: you can use the String {\tt "\textbackslash t"} to print a tab character
 between columns of a table.
 
-\item Vary the number of terms in the series(the second argument
+\item Vary the number of terms in the series (the second argument
 that {\tt check} sends to {\tt myexp}) and see the effect on
 the accuracy of the result.  Adjust this value until the estimated
 value agrees with the ``correct'' answer when {\tt x} is 1.
@@ -5330,30 +5328,31 @@ factorial} or {\tt pow}.
 \index{object method}
 \index{class!String}
 
-In Java and other object-oriented languages, objects are collections
+In Java and other object-oriented languages, {\bf objects} are collections
 of related data that come with a set of methods.  These methods
 operate on the objects, performing computations and sometimes
 modifying the object's data.
 
 {\tt Strings} are objects,
 so you might ask ``What is the data
-contained in a {\tt String} object?'' and ``What are the methods we
+contained in a {\tt String} object?''~and~``What are the methods we
 can invoke on {\tt String} objects?''
 \index{documentation}
-
+%
 The components of a {\tt String} object are letters or, more generally,
 characters.  Not all characters are letters; some are numbers,
 symbols, and other things.  For simplicity I
 call them all letters.
-
+%
 There are many methods, but I use only a few in this
 book.  The rest are documented at
 \url{http://download.oracle.com/javase/6/docs/api/java/lang/String.html}.
 
 The first method we will look at is {\tt charAt}, which allows you to
-extract letters from a {\tt String}.  to store the result, we
-need a new type: {\tt char} is the variable type that can store
-individual characters (as opposed to strings).
+extract letters from a {\tt String}.
+% To store the result, we need a new type:
+{\tt char} is the variable type that can store
+individual characters (as opposed to strings of them).
 
 \index{char}
 \index{type!char}
@@ -5398,7 +5397,7 @@ a
 \end{verbatimtab}
 %
 {\tt a} is not the first letter of {\tt "banana"}.  Unless you are a
-computer scientist.  For perverse reasons, computer scientists
+computer scientist.  For technical reasons, computer scientists
 start counting from zero.  The 0th letter (``zeroeth'') of {\tt
 "banana"} is {\tt b}.  The 1th letter (``oneth'') is {\tt a} and the
 2th (``twooth'') letter is {\tt n}.
@@ -5649,9 +5648,10 @@ number of times the letter {\tt 'a'} appears in a string:
 %
 This program demonstrates a common idiom, called a {\bf counter}.  The
 variable {\tt count} is initialized to zero and then incremented each
-time we find an {\tt 'a'} (to {\bf increment} is to increase by one;
-it is the opposite of {\bf decrement}, and unrelated to {\bf
-excrement}, which is a noun).  When we exit the loop, {\tt count}
+time we find an {\tt 'a'}. To {\bf increment} is to increase by one;
+it is the opposite of {\bf decrement}.
+%, and unrelated to {\bf excrement}, which is a noun
+When we exit the loop, {\tt count}
 contains the result: the total number of a's.
 \index{counter}
 \index{increment}
@@ -6043,7 +6043,7 @@ String  &           &        &       &         \\ \hline
 made when they filled in this table.  How many of the entries
 seem unavoidable, as if there were no other choice?
 How many seem like arbitrary choices from several equally
-reasonable possibilities?  How many seem stupid?
+reasonable possibilities?  How many seem problematic?
 
 \item Here's a puzzler: normally, the statement {\tt x++} is exactly
   equivalent to {\tt x = x + 1}.  But if {\tt x} is a {\tt char}, it's
@@ -6549,7 +6549,7 @@ center of the {\tt Rectangle}:
 \end{verbatimtab}
 %
 Notice that you can use {\tt new} to create a new object,
-and then immediately use the result as a return value.
+and then immediately use the result as the return value.
 
 
 \section{Objects are mutable}
@@ -6617,7 +6617,7 @@ notation:
     box.translate(50, 100);
 \end{verbatimtab}
 %
-The effect is the same.
+%The effect is the same.
 
 
 \section{Aliasing}
@@ -6750,9 +6750,9 @@ objects and reclaims them, in a process called {\bf garbage
 collection}.  Later, the memory space occupied by the object will
 be available to be used as part of a new object.
 
-You don't have to do anything to make garbage collection work,
-and in general you will not be aware of it.  But I thought you
-should know.
+You don't have to do anything to make garbage collection happen,
+and in general you will not be aware of it.  But you
+should know that it periodically runs in the background.
 
 
 \section {Objects and primitives}
@@ -6771,12 +6771,12 @@ reminds us of some of the differences between them:
 
 \item When you declare a primitive variable, you get storage
 space for a primitive value.  When you declare an object variable, you
-get a space for a reference to an object.  to get space for
+get a space for a reference to an object.  To get space for
 the object itself, you have to use {\tt new}.
 
 \item If you don't initialize a primitive type, it is given
 a default value that depends on the type.  For example,
-{\tt 0} for {\tt int}s and {\tt true} for {\tt boolean}s.
+{\tt 0} for {\tt int}s and {\tt false} for {\tt boolean}s.
 The default value for object types is {\tt null}, which indicates
 no object.
 
@@ -6804,7 +6804,7 @@ chapter.
 classes are organized in packages.
 
 \item[AWT:]  The Abstract Window Toolkit, one of the biggest
-and most commonly-used Java packages.
+and commonly-used Java packages.
 
 \item[instance:]  An example from a category.  My cat is an
 instance of the category ``feline things.''  Every object is
@@ -6923,7 +6923,7 @@ public static void main(String[] args) {
 \begin{exercise}
 The method {\tt grow} is part of the {\tt Rectangle} class.  Read the
 documentation at
-\url{http://download.oracle.com/javase/6/docs/api/java/awt/Rectangle.html#grow(int,int)}.
+\url{http://download.oracle.com/javase/6/docs/api/java/awt/Rectangle.html#grow(int, int)}.
 
 \begin{enumerate}
 
@@ -7437,9 +7437,10 @@ interact.
 \index{class definition}
 \index{user-defined type}
 
-Every time you write a class definition, you create a new
-object type with the same name as the class.  Way back in
-Section~\ref{hello}, when we defined the class named {\tt Hello},
+% Every time you write a class definition, you create a new
+% object type with the same name as the class.
+Way back in
+Section~\ref{hello} when we defined the class {\tt Hello},
 we also created an object type named {\tt Hello}.  We
 didn't create any variables with type {\tt Hello}, and we
 didn't use {\tt new} to create any {\tt Hello}
@@ -7510,7 +7511,7 @@ Rectangle}.
 
 Another example, which we will implement ourselves, is {\tt Time},
 which represents the time of day.  The data encapsulated in a Time
-object are an hour, a minute and a number of seconds.  Because every
+object are an hour, a minute, and a number of seconds.  Because every
 {\tt Time} object contains these data, we need instance
 variables to hold them.
 
@@ -7770,7 +7771,7 @@ a type of modifier.
 
 \end{description}
 
-Often it is possible to write a method as a pure function, modifier,
+Often it is possible to write a given method as a pure function, a modifier,
 or a fill-in method.  I will discuss the pros and cons of each.
 
 
@@ -8119,7 +8120,7 @@ each step follows from the last according to a simple set of rules.
 In my opinion, it is embarrassing that humans spend so much
 time in school learning to execute algorithms that,
 quite literally, require no intelligence.
-
+%
 On the other hand, the process of designing algorithms is
 interesting, intellectually challenging, and a central part
 of what we call programming.
@@ -8593,14 +8594,13 @@ To see a sample, run this loop:
 \end{verbatimtab}
 %
 To generate a random {\tt double} between 0.0 and an upper bound like
-{\tt high}, you can multiply {\tt x} by {\tt high}.  How would you
-generate a random number between {\tt low} and {\tt high}?  How would
-you generate a random integer?
+{\tt high}, you can multiply {\tt x} by {\tt high}.
 
 
 \section{Array of random numbers}
 \label{randarray}
 
+How would you generate a random integer between {\tt low} and {\tt high}?
 If your implementation of {\tt randomInt} is correct, then
 every value in the range from {\tt low} to {\tt high-1} should
 have the same probability.  If you generate a long series
@@ -8797,7 +8797,7 @@ we could increment the appropriate counter.
 In this example, that computation is trivial, because we
 can use the value itself as an index into the array of counters.
 
-Here is code that traverses an array of scores, once, and generates
+Here is code that traverses an array of scores once and generates
 a histogram.
 
 \begin{verbatimtab}
@@ -9185,8 +9185,8 @@ see which had higher rank or suit.
 \index{map to}
 
 An alternative is to use integers to {\bf encode} the ranks and
-suits.  By ``encode,'' I do not mean what some people think, which
-is to encrypt, or translate into a secret code.  What a computer
+suits.  By ``encode'' I do not mean what some people think, which
+is to encrypt or translate into a secret code.  What a computer
 scientist means by ``encode'' is something like ``define a mapping
 between a sequence of numbers and the things I want to represent.''
 For example,
@@ -9458,7 +9458,7 @@ with all the Clubs together, followed by all the Diamonds, and so on.
 So let's say that suit is more important.
 
 With that decided, we can write {\tt compareCard}.  It
-takes two {\tt Card}s as parameters and return 1 if
+takes two {\tt Card}s as parameters and returns 1 if
 the first card wins, -1 if the second card wins, and 0 if
 they are equivalent.
 
@@ -9546,7 +9546,7 @@ rank} of the ``zeroeth'' card in the deck.  This is another example of
 \index{loop!nested}
 
 The easiest way to populate the deck with {\tt Card} objects
-is to write a nested loop:
+is to write nested for loops (i.e., one loop inside the body of another):
 
 \begin{verbatimtab}
     int index = 0;
@@ -9722,8 +9722,8 @@ public static int findBisect(Card[] cards, Card card, int low, int high) {
 \end{verbatimtab}
 %
 This code contains the kernel of a bisection search, but it
-is still missing a piece, which is why I added a TODO comment.
-
+is still missing an important piece, which is why I added a TODO comment.
+%
 As written, the method recurses forever 
 if the card is not in the deck.  We
 need a base case to handle this condition.
@@ -9799,10 +9799,11 @@ compared to up to 52 times if we did a linear search.  In general,
 bisection is much faster than a linear search, and even more so for
 large arrays.
 
-Two common errors in recusive programs are forgetting to include a
+Two common errors in recursive programs are forgetting to include a
 base case and writing the recursive call so that the base case is never
 reached.  Either error causes infinite recursion, 
 which throws a {\tt StackOverflowException}.
+(Think of a stack diagram for a recursive method that never ends.)
 \index{recursion!infinite}
 \index{infinite recursion}
 \index{exception!StackOverflow}
@@ -9813,7 +9814,7 @@ which throws a {\tt StackOverflowException}.
 \index{subdeck}
 
 \index{prototype}
-Here is the prototype of {\tt findBisect}:
+Here is the prototype (see Section~\ref{documentation}) of {\tt findBisect}:
 
 \begin{verbatimtab}
 public static int findBisect(Card[] deck, Card card, int low, int high)
@@ -9822,10 +9823,10 @@ public static int findBisect(Card[] deck, Card card, int low, int high)
 \index{parameter!abstract}
 \index{abstract parameter}
 
-We can think of {\tt cards},
-{\tt low} and {\tt high} as a single parameter that specifies a {\bf
-subdeck}.  This way of thinking is common, and I sometimes think
-of it as an {\bf abstract parameter}.  What I mean by ``abstract,'' is
+We can think of {\tt cards}, {\tt low}, and {\tt high}
+as a single parameter that specifies a {\bf subdeck}.
+This way of thinking is common, and is sometimes referred
+to as an {\bf abstract parameter}.  What I mean by ``abstract'' is
 something that is not literally part of the program text, but which
 describes the function of the program at a higher level.
 
@@ -9834,12 +9835,12 @@ For example, when you invoke a method and pass an array and the bounds
 method from accessing parts of the array that are out of bounds.  So
 you are not literally sending a subset of the deck; you are really
 sending the whole deck.  But as long as the recipient plays by the
-rules, it makes sense to think of it, abstractly, as a subdeck.
+rules, it makes sense to think of it abstractly as a subdeck.
 
 This kind of thinking, in which a program takes on meaning beyond what
 is literally encoded, is an important part of thinking like a computer
 scientist.  The word ``abstract'' gets used so often and in so many
-contexts that it comes to lose its meaning.  Nevertheless, abstraction
+contexts that it comes to lose its meaning.  Nevertheless, {\bf abstraction}
 is a central idea in computer science (and many other fields).
 \index{abstraction}
 
@@ -9856,7 +9857,7 @@ suppress unnecessary details while capturing relevant behavior.''
 set of values, by constructing a mapping between them.
 
 \item[identity:]  Equality of references.  Two
-references that point to the same object.
+references that point to the same object in memory.
 
 \item[equivalence:]  Equality of values.  Two references
 that point to objects that contain the same data.
@@ -10231,7 +10232,7 @@ unthinkingly extend a metaphor past its breaking point.
 \index{mergesort}
 
 In Section~\ref{sorting}, we saw a simple sorting algorithm that turns
-out not to be very efficient.  to sort $n$ items, it has to
+out not to be very efficient.  To sort $n$ items, it has to
 traverse the array $n$ times, and each traversal takes an amount of
 time that is proportional to $n$.  The total time, therefore, is
 proportional to $n^2$.
@@ -10243,7 +10244,7 @@ difference between $n^2$ and $n \log n$ can be enormous.  Try out a
 few values of $n$ and see.
 
 The basic idea behind mergesort is this: if you have two subdecks,
-each of which has been sorted, it is easy(and fast) to merge them
+each of which has been sorted, it is easy (and fast) to merge them
 into a single, sorted deck.  Try this out with a deck of cards:
 
 \begin{enumerate}
@@ -10335,8 +10336,8 @@ public static Deck mergeSort(Deck deck) {
 %
 As usual, there are two ways to think about recursive programs:
 you can think through the entire flow of execution, or you
-can make the ``leap of faith.''  I have constructed
-this example to encourage you to make the leap of faith.
+can make the ``leap of faith'' (see Section~\ref{leap of faith}).
+I have constructed this example to encourage you to make the leap of faith.
 \index{leap of faith}
 
 When you use {\tt sortDeck} to sort the subdecks, you don't
@@ -10403,11 +10404,15 @@ rough drafts in a combination of English and Java.
 
 \item[helper method:]  Often a small method that does not
 do anything enormously useful by itself, but which helps
-another, more useful, method.
+another, more useful method.
+
+\item[class variable:]  A variable declared within a class as {\tt static};
+there is always exactly one copy of this variable in existence.
 
 \index{pseudocode}
 \index{helper method}
 \index{method!helper}
+\index{class variables}
 
 
 \end{description}
@@ -10421,7 +10426,7 @@ sorting algorithms from this chapter.
 \begin{enumerate}
 
 \item Download the code from this chapter from 
-\url{http://thinkapjava.com/code/Card2.java}.
+\url{http://thinkapjava.com/code/Card2.java}
 and import it into your development environment.  I have
 provided outlines for the methods you will write, so the
 program should compile.  But when it runs it prints messages
@@ -10445,7 +10450,7 @@ method from Exercise~\ref{ex.randint}.
 
 \item Write a method called {\tt indexLowestCard} that uses
 the {\tt compareCard} method to find the lowest card
-in a given range of the deck(from {\tt lowIndex} to {\tt highIndex},
+in a given range of the deck (from {\tt lowIndex} to {\tt highIndex},
 including both).
 
 \item Write a method called {\tt sortDeck} that arranges
@@ -10490,11 +10495,11 @@ deck = mergeSort(deck);      // replaces old deck with new
 There are many programming languages and almost as many
 programming styles (sometimes called paradigms).  
 The programs we have written so far are {\bf procedural}, 
-because the emphasis is on specifying computational procedures.
+because the emphasis has been on specifying computational procedures.
 
 Most Java programs are {\bf object-oriented}, which means that
 the focus is on objects and their interactions.
-Here are some of its characteristics of object-oriented programming:
+Here are some of the characteristics of object-oriented programming:
 
 \begin{itemize}
 
@@ -10518,9 +10523,9 @@ Here are some of its characteristics of object-oriented programming:
 \end{itemize}
 
 In this chapter I translate the {\tt Card} program from the
-previous chapter from procedural to object oriented style.  You
+previous chapter from procedural to object-oriented style.  You
 can download the code from this chapter from
-\url{http://thinkapjava.com/code/CardSoln3.java}.
+\url{http://thinkapjava.com/code/Card3.java}.
 
 
 \section{Object methods and class methods}
@@ -10585,7 +10590,7 @@ Here's how this method is invoked:
 
 When you invoke a method on an object, that object becomes the {\bf
 current object}, also known as {\tt this}.  Inside {\tt print},
-{\tt this} refers to the card the method was invoked on.
+the keyword {\tt this} refers to the card the method was invoked on.
 \index{current object}
 \index{object!current}
 \index{this}
@@ -10711,7 +10716,7 @@ which means that there is no ``current object'' when it is invoked.
 \index{this}
 \index{instance variable}
 \index{variable!instance}
-
+%
 Since there is no current object in a class method, it is an
 error to use the keyword {\tt this}.  If you try, you get
 an error message like: ``Undefined variable: this.''
@@ -10719,7 +10724,7 @@ an error message like: ``Undefined variable: this.''
 Also, you cannot refer to instance variables without using dot
 notation and providing an object name.  If you try, you get a message
 like ``non-static variable... cannot be referenced from a static
-context.''  By ``nonstatic variable'' it means ``instance variable.''
+context.''  By ``non-static variable'' it means ``instance variable.''
 
 
 \section{Inheritance}
@@ -10729,7 +10734,7 @@ The language feature most often associated with
 object-oriented programming is {\bf inheritance}.  Inheritance is the
 ability to define a new class that is a modified version of an
 existing class.
-
+%
 Extending the metaphor, the existing
 class is sometimes called the {\bf parent} class and the new
 class is called the {\bf child}.
@@ -10773,7 +10778,7 @@ which overrides the {\tt act} method from the parent.
 
 \end{itemize}
 
-And if you did the Graphics exercises in Appendix~\ref{graphics}, you
+If you did the Graphics exercises in Appendix~\ref{graphics}, you
 saw another example:
 
 \begin{verbatimtab}
@@ -10799,14 +10804,14 @@ If you didn't do either of those exercises, now is a good time!
 
 In Java, all classes extend some other class.  The most basic class is
 called {\tt Object}.  It contains no instance variables, but it
-provide the methods {\tt equals} and {\tt toString}, among others.
+provides the methods {\tt equals} and {\tt toString}, among others.
 
 Many classes extend {\tt Object}, including almost all of the classes
 we have written and many Java classes, like {\tt java.awt.Rectangle}.
 Any class that does not explicitly name a parent inherits from {\tt
   Object} by default.
 
-Some inheritance chains are longer, though.  For example, {\tt
+Some inheritance chains are much longer, though.  For example, {\tt
   javax.swing.JFrame} extends {\tt java.awt.Frame}, which extends {\tt
   Window}, which extends {\tt Container}, which extends {\tt
   Component}, which extends {\tt Object}.  No matter how long the
@@ -10848,9 +10853,10 @@ Patterns}, published by O'Reilly Media.
 \begin{description}
 
 \item[object method:]  A method that is invoked on an object,
-and that operates on that object, which is referred to by
-the keyword {\tt this} in Java or ``the current object'' in
-English.  Object methods do not have the keyword {\tt static}.
+and that operates on that object.
+%, which is referred to by the keyword {\tt this} in Java
+% or ``the current object'' in English.
+Object methods do not have the keyword {\tt static}.
 
 \item[class method:]  A method with the keyword {\tt static}.
 Class methods are not invoked on objects and they do not have
@@ -10860,11 +10866,11 @@ a current object.
 is invoked.  Inside the method,
 the current object is referred to by {\tt this}.
 
-\item[{\tt this}:]  The keyword that refers to the current object.
+%\item[{\tt this}:]  The keyword that refers to the current object.
 
 \item[implicit:]  Anything that is left unsaid or implied.  Within
 an object method, you can refer to the instance variables
-implicitly(without naming the object).
+implicitly (i.e., without naming the object).
 
 \item[explicit:]  Anything that is spelled out completely.  Within
 a class method, all references to the instance variables have to
@@ -10940,7 +10946,7 @@ changes in {\tt main}.
 \item Make a few mistakes.  Try invoking class methods as if
 they were object methods and vice-versa.  Try to get a sense for
 what is legal and what is not, and for the error messages that
-you get when you mess things up.
+you get when you mess up.
 
 \item Think about the pros and cons of
 class and object methods.  Which is more concise (usually)?
@@ -10961,7 +10967,7 @@ can read about it here
 
 \begin{enumerate}
 
-\item Start with \url{http://thinkapjava.com/code/CardSoln3.java}.
+\item Start with \url{http://thinkapjava.com/code/CardSoln3.java}
 and make sure you can compile and run it.
 
 \item Write a definition for a class named {\tt PokerHand}
@@ -11105,15 +11111,15 @@ import java.util.ArrayList;
 \section{Interfaces}
 \index{interface}
 
-GridWorld uses Java {\bf interfaces}, so I want to explain what
+GridWorld also uses Java {\bf interfaces}, so I want to explain what
 they are.  ``Interface'' means different things in different contexts,
 but in Java it refers to a specific language feature:
 an interface is a class definition where the methods have no bodies.
 
 In a normal class definition, each method has a prototype and a
 body (see Section~\ref{documentation}).  A prototype is also called a
-{\bf specification} because it specifies the name, parameters and
-return type of the method; the body is called the {\bf implementation}
+{\bf specification} because it specifies the name, parameters, and
+return type of the method. The body is called the {\bf implementation}
 because it implements the specification.
 
 In a Java interface the methods have no bodies, so it specifies 
@@ -11135,7 +11141,7 @@ implementations for the methods in {\tt Shape} and {\tt Serializable}.
 In GridWorld the Location class implements the {\tt
   java.lang.Comparable} interface by providing {\tt compareTo}, which
 is similar to {\tt compareCards} in Section~\ref{compare}.
-
+%
 GridWorld also defines a new interface, {\tt Grid}, that specifies
 the methods a {\tt Grid} should provide.  And it includes two
 implementations, {\tt BoundedGrid} and {\tt UnboundedGrid}.
@@ -11196,7 +11202,7 @@ GridWorld.  The game board is the grid, and the pieces are Rocks.
 The game proceeds in turns, or {\bf time steps}.  At the beginning
 of the time step, each Rock is either ``alive'' or ``dead''.  On the
 screen, the color of the Rock indicates its status.
-
+%
 The status of each Rock depends on the status of its
 {\bf neighbors}.  Each Rock has 8 neighbors, except the Rocks along
 the edge of the Grid.  Here are the rules:
@@ -11222,7 +11228,7 @@ starts with only 5 Rocks, runs for 1103 timesteps and ends in a stable
 configuration with 116 live Rocks (see
 \url{http://www.conwaylife.com/wiki/R-pentomino}).
 
-The following sections are my suggestions for implementing GoF
+The following sections are suggestions for implementing Game of Life
 in GridWorld.  You can download my solution at
 \url{http://thinkapjava.com/code/LifeRunner.java} and
 \url{http://thinkapjava.com/code/LifeRock.java}.
@@ -11342,11 +11348,11 @@ as expected.
 \section{Initial conditions}
 
 To change the initial conditions, you can use the GridWorld pop-up
-menus to change the status of the Rocks by invoking {\tt setAlive}.
+menus to set the status of the Rocks by invoking {\tt setAlive}.
 Or you can write methods to automate the process.
 
 In {\tt LifeRunner}, add a method called {\tt makeRow} that creates
-an initial configuration with {\tt n} live Rock in a row in the middle
+an initial configuration with {\tt n} live Rocks in a row in the middle
 of the grid.  What happens for different values of {\tt n}?
 
 Add a method called {\tt makePentomino} that creates
@@ -11357,7 +11363,7 @@ should look like this:
 
 If you run this configuration for more than a few steps, it reaches the
 end of the Grid.  The boundaries of the Grid change the behavior of
-the system; in order to see the fill evolution of the r-pentomino,
+the system; in order to see the full evolution of the r-pentomino,
 the Grid has to be big enough.  You might have to experiment to find
 the right size, and depending on the speed of your computer, it
 might take a while.
@@ -11451,7 +11457,7 @@ In {\tt main} we
 \begin{enumerate}
 
 \item Create a {\tt JFrame}, which is a window that can contain the
-  canvas, buttons, menus and other window components;
+  canvas, buttons, menus, and other window components;
 
 \item Create {\tt MyCanvas}, set its width and height, and add it
   to the frame; and
@@ -11691,12 +11697,12 @@ can create.
 The {\tt System} class provides
 methods and objects that get input from the keyboard,
 print text on the screen, and do file input and output (I/O).
-
+%
 {\tt System.out} is the object that displays
 on the screen.  When you invoke {\tt print} and {\tt println}, you
 invoke them on {\tt System.out}.
 
-You can use {\tt System.out} to print {\tt System.out}:
+You can even use {\tt System.out} to print {\tt System.out}:
 
 \begin{verbatimtab}
 System.out.println(System.out);
@@ -11709,10 +11715,10 @@ java.io.PrintStream@80cc0e5
 \end{verbatimtab}
 %
 When Java prints an object, it prints the type
-of the object, {\tt PrintStream}, the package
-where the type is defined, {\tt java.io}, and a
+of the object ({\tt PrintStream}), the package
+where the type is defined ({\tt java.io}), and a
 unique identifier for the object.  On my machine the identifier
-is {\tt 80cc0e5}, but if you run the same code, you
+is {\tt 80cc0e5}, but if you run the same code you will
 probably get something different.
 
 There is also an object named {\tt System.in} that makes it
@@ -11793,7 +11799,7 @@ public class Words {
 \end{verbatimtab}
 
 This first line imports {\tt java.io}, the package that contains
-{\tt FileReader}, {\tt BufferedReader} and the rest of
+{\tt FileReader}, {\tt BufferedReader}, and the rest of
 the elaborate class hierarchy Java uses to do
 common, simple things.  The {\tt *} means it imports all classes
 in the package.
@@ -11841,7 +11847,7 @@ is skipped.
 
 If the first branch causes an Exception, the flow of execution jumps
 to the second branch, which tries to deal with the exceptional
-condition (a polite way to say ``error'').  In this case it prints
+condition (by saying ``error'' in a polite way).  In this case it prints
 an error message and the stack trace.
 
 You can download this code from
@@ -11849,7 +11855,7 @@ You can download this code from
 and the word list from
 \url{http://thinkapjava.com/code/words.txt}.
 
-Now go do Exercises~\ref{palindrome}, \ref{abecedarian} and \ref{dupledrome}.
+Now go do Exercises~\ref{palindrome}, \ref{abecedarian}, and \ref{dupledrome}.
 
 
 
@@ -11860,7 +11866,7 @@ Now go do Exercises~\ref{palindrome}, \ref{abecedarian} and \ref{dupledrome}.
 
 I present different program development strategies throughout
 the book, so I wanted to pull them together here.
-
+%
 The foundation of all strategies is {\bf incremental development},
 which goes like this:
 
@@ -11882,7 +11888,7 @@ a lot of time.
 
 Because you only add a few lines of code at a time, it
 is easy to find syntax errors.  
-
+%
 And because each version of the
 program produces a visible result, you are constantly testing your
 mental model of how the program works.  If your mental model is
@@ -11892,7 +11898,7 @@ to correct it) before you write a lot of bad code.
 The challenge of incremental development is that is it not
 easy to figure out a path from the starting place
 to a complete and correct program.
-
+%
 To help with that, there are several strategies to choose from:
 
 \begin{description}
@@ -11900,7 +11906,7 @@ To help with that, there are several strategies to choose from:
 \item[Encapsulation and generalization:] If you don't know yet how
 to divide the computation into methods, start writing code in
 {\tt main}, then look for coherent chunks to encapsulate in
-a method, and generalize the appropriately.
+a method, and generalize them appropriately.
 
 \item[Rapid prototyping:] If you know what method to write, but not
 how to write it, start with a rough draft that handles the simplest
@@ -11915,7 +11921,7 @@ methods and replace the pseudocode with real code.
 
 \end{description}
 
-Along the way, you might need some scaffolding; for example, each
+Along the way, you might need some scaffolding. For example, each
 class should have a {\tt toString} method that lets you print the
 state of an object in human-readable form.  This method is useful
 for debugging, but usually not part of a finished program.
@@ -11923,9 +11929,8 @@ for debugging, but usually not part of a finished program.
 \section{Failure modes}
 
 If you are spending a lot of time debugging, it is probably
-because are using an ineffective development strategy.  Here
-are the failure modes I see most often (and occasionally fall
-into):
+because you are using an ineffective development strategy.  Here
+are the failure modes I see most often (and occasionally fall into):
 
 \begin{description}
 
@@ -11937,7 +11942,7 @@ into):
 
 \item[Attachment to bad code:] If you write more than a few lines of
   code without compiling and testing, you may not be able to debug it.
-  Ever.  Sometimes the only strategy is (gasp!)  to delete the bad
+  Ever.  Sometimes the only strategy is (gasp!)~to delete the bad
   code and start over (using an incremental strategy).  But beginners
   are often emotionally attached to their code, even if it doesn't
   work.  The only way out of this trap is to be ruthless.
@@ -11947,14 +11952,14 @@ into):
   program, get an error, make a change, run the program, etc.  The
   problem is that there is no apparent connection between the outcome
   of the program and the change.
-
+%
   If you get an error message, take the time to read it.
   More generally, take time to think.
 
 \item[Compiler submission:] Error messages are useful, but they
   are not always right.  For example, if the message says, ``Semi-colon
   expected on line 13,'' that means there is a syntax error near
-  line 13, but putting a semi-colon on line 13 is probably not the
+  line 13. But putting a semi-colon on line 13 is not always the
   solution.  Don't submit to the will of the compiler.
 
 \end{description}
@@ -11993,19 +11998,17 @@ you have:
 \index{error!run-time}
 \index{error!logic}
 
-The following sections are
-organized by error type, there are some techniques that are
-useful for more than one.
+The following sections are organized by error type;
+some techniques are useful for more than one type.
 
 
 \section{Syntax errors}
 
 The best kind of debugging is the kind you don't have to do
 because you avoid making errors in the first place.  In the
-previous section, I suggested a development strategies that
-minimizes errors and makes it easy
-to find them when you do.
-
+previous section, I suggested development strategies that
+minimize errors and makes it easy to find them when you do.
+%
 The key is to start with a working program and add small
 amounts of code at a time.  When there is an error, you will
 have a pretty good idea where it is.
@@ -12277,7 +12280,7 @@ When an exception occurs, Java prints
 a message that includes the name of the
 exception, the line of the program where the problem occurred, and a
 stack trace.
-
+%
 The stack trace includes the method that was running,
 the method that invoked it, the method that
 invoked {\em that}, and so on.
@@ -12293,7 +12296,7 @@ variable or invoke a method on an object that is currently
 and then figure out how it got to be that way.
 
 Remember that when you declare a variable with an object type,
-it is initially {\tt null}, until you assign a value to it.
+it is initially {\tt null} until you assign a value to it.
 For example, this code causes a NullPointerException:
 
 \begin{verbatimtab}
@@ -12380,7 +12383,7 @@ do, and only you know that it isn't doing it.
 The first step is to make a connection between the code and the
 behavior you get.  You need a hypothesis about what the program
 is actually doing.
-
+%
 Here are some questions to ask yourself:
 
 \begin{itemize}
@@ -12388,7 +12391,7 @@ Here are some questions to ask yourself:
 \item Is there something the program was supposed to do, but
 doesn't seem to be happening?  Find the section of the code
 that performs that function and make sure it is executing when
-you think it should.  See ``Flow of execution,'' above.
+you think it should.  See ``Flow of execution'' above.
 
 \item Is something happening that shouldn't?  Find code in
 your program that performs that function and see if it is
@@ -12426,13 +12429,13 @@ on perfect accuracy.
 \item More generally, use integers for countable things
 and floating-point numbers for measurable things.
 
-\item If you use the assignment operator,
-{\tt =}, instead of the equality operator, {\tt ==}, in the
-condition of an {\tt if}, {\tt while} or {\tt for} statement,
+\item If you use the assignment operator ({\tt =})
+instead of the equality operator ({\tt ==}) in the
+condition of an {\tt if}, {\tt while}, or {\tt for} statement,
 you might get an expression that is syntactically legal and
 semantically wrong.
 
-\item When you apply the equality operator, {\tt ==}, to an
+\item When you apply the equality operator ({\tt ==}) to an
 object, it checks identity.  If you meant to check
 equivalence, you should use the {\tt equals} method.
 
@@ -12442,7 +12445,7 @@ override it.
 
 \item Inheritance can lead to subtle logic errors,
 because you can run inherited code without realizing it.
-See ``Flow of Execution,'' above.
+See ``Flow of Execution'' above.
 
 \end{itemize}
 
@@ -12607,7 +12610,7 @@ them the information they need.
 
 \begin{itemize}
 
-\item What kind of bug is it?  Syntax, run-time or logic?
+\item What kind of bug is it?  Syntax, run-time, or logic?
 
 \item What was the last thing you did before this error occurred?
 What were the last lines of code that you wrote, or what is
