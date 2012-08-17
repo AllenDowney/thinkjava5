@@ -1795,7 +1795,7 @@ intermediate or temporary variables.
 
 
 
-\chapter{Methods}
+\chapter{Void methods}
 \label{chap03}
 
 \section{Floating-point}
@@ -2401,8 +2401,8 @@ syntax is {\tt printTime(hour, minute)}.
 
 
 \section {Methods with results}
-\index{fruitful method}
-\index{method!fruitful}
+\index{value method}
+\index{method!value}
 
 Some of the methods we are using,
 like the {\tt Math} methods, yield results.  Other methods,
@@ -3175,7 +3175,7 @@ would assign the value {\tt 8} to {\tt x}, because $2^3 = 8$.
 \end{exercise}
 
 
-\chapter{GridWorld: Part One}
+\chapter{GridWorld: Part 1}
 \label{gridworld}
 
 \section{Getting started}
@@ -3387,14 +3387,14 @@ to control the blue.
 
 
 
-\chapter{Fruitful methods}
+\chapter{Value methods}
 \label{chap05}
 
 \section{Return values}
 \index{return}
 \index{statement!return}
-\index{method!fruitful}
-\index{fruitful method}
+\index{value method}
+\index{method!value}
 \index{return value}
 \index{void}
 \index{method!void}
@@ -3420,7 +3420,7 @@ on a line by itself, with no assignment:
 \end{lstlisting}
 %
 In this chapter we write methods that return things, which I call 
-{\bf fruitful} methods.  The first example is {\tt area}, which takes a
+{\bf value} methods.  The first example is {\tt area}, which takes a
 {\tt double} as a parameter, and returns the area of a circle with the
 given radius:
 
@@ -4258,7 +4258,7 @@ depending on whether you can or cannot form a triangle from sticks
 with the given lengths.
 
 The point of this exercise is to use conditional statements to
-write a fruitful method.
+write a value method.
 
 \end{exercise}
 
@@ -4266,7 +4266,7 @@ write a fruitful method.
 \begin{exercise}
 What is the output of the following program?  The purpose of
 this exercise is to make sure you understand logical operators
-and the flow of execution through fruitful methods.
+and the flow of execution through value methods.
 
 \begin{lstlisting}
   public static void main(String[] args) {
@@ -4504,7 +4504,7 @@ common divisor of the two numbers.
 \end{exercise}
 
 
-\chapter{Iteration}
+\chapter{Iteration and loops}
 \label{chap06}
 
 \section{Multiple assignment}
@@ -4568,24 +4568,21 @@ with caution.  If the values of variables change often, it can make
 the code difficult to read and debug.
 
 
-\section{Iteration}
+\section{The {\tt while} statement}
+\index{statement!while}
+\index{while statement}
 \index{iteration}
 
 Computers are often used to automate repetitive tasks.  Repeating
 tasks without making errors is something that
 computers do well and people do poorly.
 
-We have already seen methods, like {\tt countdown} and {\tt factorial},
- that use recursion to perform repetition, also called
-{\bf iteration}.  Java provides language features that make
+We have already seen methods like {\tt countdown} and {\tt factorial}
+that use recursion to perform repetition. This process is also called
+{\bf iteration}. Java provides language features that make
 it easier to write these methods.
-
-The two features we are going to look at are the {\tt while}
-statement and the {\tt for} statement.
-
-\section{The {\tt while} statement}
-\index{statement!while}
-\index{while statement}
+In this chapter we are going to look at the {\tt while} statement.
+Later on (in Section~\ref{for}) will check out the {\tt for} statement.
 
 Using a {\tt while} statement, we can rewrite {\tt countdown}:
 
@@ -4934,12 +4931,13 @@ more control over the format of the output, but I'm not
 going to get into that here.
 
 
-\section{Methods}
+\section{Methods and encapsulation}
 \label{methods}
 \index{method}
+\index{encapsulation}
 
-In the Section~\ref{adding_methods} I listed some of the
-reasons methods are useful.  Here are more:
+In Section~\ref{adding_methods} I listed some of the
+reasons methods are useful.  Here are several more:
 
 \begin{itemize}
 
@@ -4956,10 +4954,6 @@ then compose them into a whole.
 Once you write and debug one, you can reuse it.
 
 \end{itemize}
-
-
-\section{More encapsulation}
-\index{encapsulation}
 
 To demonstrate encapsulation again, I'll take the code
 from the previous section and wrap it up in a method:
@@ -5337,7 +5331,7 @@ factorial} or {\tt pow}.
 \label{chap07}
 \label{strings}
 
-\section{Invoking methods on objects}
+\section{Characters}
 \index{method!string}
 \index{String method}
 \index{method!object}
@@ -6316,7 +6310,7 @@ times.  You can write this method recursively, or use a while loop.
 \index{object}
 
 
-\section{{\tt Point}s and {\tt Rectangle}s}
+%\section{{\tt Point}s and {\tt Rectangle}s}
 \index{String}
 \index{type!String}
 
@@ -8458,7 +8452,43 @@ one to the other.
 \end{lstlisting}
 
 
+\section{Arrays and objects}
+\index{object!compared to array}
+\index{array!compared to object}
+
+In many ways, arrays behave like objects:
+
+\begin{itemize}
+
+\item When you declare an array variable, you get a reference
+to an array.
+
+\item You have to use {\tt new} to create the array itself.
+
+\item When you pass an array as an argument, you pass a reference,
+which means that the invoked method can change the contents
+of the array.
+
+\end{itemize}
+
+Some of the objects we looked at, like {\tt Rectangles}, are
+similar to arrays in the sense that they are collections of
+values.  This raises the question, ``How is an array of 4 integers
+different from a Rectangle object?''
+\index{collection}
+
+If you go back to the definition of ``array'' at the beginning
+of the chapter, you see one difference: the
+elements of an array are identified by indices, and the
+elements of an object have names.
+
+Another difference is that the
+elements of an array have to be the same type.  Objects can
+have instance variables with different types.
+
+
 \section{{\tt for} loops}
+\label{for}
 
 The loops we have written have a number of elements
 in common.  All of them start by initializing a variable;
@@ -8511,46 +8541,11 @@ is equivalent to
 \end{lstlisting}
 
 
-\section{Arrays and objects}
-\index{object!compared to array}
-\index{array!compared to object}
-
-In many ways, arrays behave like objects:
-
-\begin{itemize}
-
-\item When you declare an array variable, you get a reference
-to an array.
-
-\item You have to use {\tt new} to create the array itself.
-
-\item When you pass an array as an argument, you pass a reference,
-which means that the invoked method can change the contents
-of the array.
-
-\end{itemize}
-
-Some of the objects we looked at, like {\tt Rectangles}, are
-similar to arrays in the sense that they are collections of
-values.  This raises the question, ``How is an array of 4 integers
-different from a Rectangle object?''
-\index{collection}
-
-If you go back to the definition of ``array'' at the beginning
-of the chapter, you see one difference: the
-elements of an array are identified by indices, and the
-elements of an object have names.
-
-Another difference is that the
-elements of an array have to be the same type.  Objects can
-have instance variables with different types.
-
-
 \section{Array length}
 \index{length!array}
 \index{array!length}
 
-Actually, arrays do have one named instance variable: {\tt length}.
+All arrays have one named instance variable: {\tt length}.
 Not surprisingly, it contains the length of the array (number
 of elements).  It is a good idea to use this value as the upper
 bound of a loop, rather than a constant value.  That way, if
@@ -12097,7 +12092,7 @@ else that you can assign a value to (like an element of an array).
 you provide are in the right order, and have right type, and that the
 object you are invoking the method on is the right type.
 
-\item If you are invoking a fruitful method, make sure you
+\item If you are invoking a value method, make sure you
 are doing something with the result.  If you are invoking a
 void method, make sure you are {\em not} trying to do something
 with the result.
