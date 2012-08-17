@@ -3149,8 +3149,8 @@ public class Narf {
 \begin{exercise}
 Fermat's Last Theorem says that there are no integers
 $a$, $b$, and $c$ such that
-
-\[a^n + b^n = c^n \]
+%
+\[ a^n + b^n = c^n \]
 %
 except in the case when $n=2$.
 
@@ -3523,10 +3523,10 @@ writing them.  I am going to suggest a method called {\bf incremental
 As an example, imagine you want to find the distance between
 two points, given by the coordinates $(x_1, y_1)$ and
 $(x_2, y_2)$.  By the usual definition,
-
-\begin{equation}
+%
+\begin{equation*}
 distance = \sqrt{(x_2 - x_1)^2 +(y_2 - y_1)^2}
-\end{equation}
+\end{equation*}
 %
 The first step is to consider what a {\tt distance} method
 should look like in Java.  In other words, what are the inputs
@@ -4307,11 +4307,10 @@ and the flow of execution through fruitful methods.
 
 
 \begin{exercise}
-The distance between two points $(x_1, y_1)$ and $(x_2, y_2)$
-is
-
-\[Distance = \sqrt{(x_2 - x_1)^2 +(y_2 - y_1)^2} \]
-
+The distance between two points $(x_1, y_1)$ and $(x_2, y_2)$ is
+%
+\[ Distance = \sqrt{(x_2 - x_1)^2 +(y_2 - y_1)^2} \]
+%
 Write a method named {\tt distance} that takes four
 doubles as parameters---{\tt x1}, {\tt y1}, {\tt x2} and {\tt
 y2}---and that prints the distance between the points.
@@ -4492,7 +4491,7 @@ to successively reduce the problem of computing a GCD to the
 problem of computing the GCD of smaller and smaller pairs of integers.
 For example,
 %
-\[ gcd(36, 20) = gcd(20, 16) = gcd(16, 4) = gcd(4, 0) = 4\]
+\[ gcd(36, 20) = gcd(20, 16) = gcd(16, 4) = gcd(4, 0) = 4 \]
 %
 implies that the GCD of 36 and 20 is 4.  It can be shown
 that for any two starting numbers, this repeated reduction eventually
@@ -4749,12 +4748,11 @@ method uses?
 
 Since powers of two are important
 in computer science, we often want logarithms with
-respect to base 2.  To compute them, we can use the following
-formula:
-
-\begin{equation}
+respect to base 2.  To compute them, we can use the formula:
+%
+\begin{equation*}
 \log_2 x = log_e x / log_e 2
-\end{equation}
+\end{equation*}
 %
 Changing the {\tt print} statement to
 
@@ -5220,11 +5218,11 @@ Let's say you are given a number, $a$, and you want to find
 its square root.  One way to do that is to start with a very
 rough guess about the answer, $x_0$, and then improve
 the guess using the following formula:
-
-\begin{equation}
+%
+\begin{equation*}
 x_1 =(x_0 + a/x_0) / 2
-\end{equation}
-
+\end{equation*}
+%
 For example, if we want to find the square root of 9, and
 we start with $x_0 = 6$, then $x_1 =(6 + 9/6) /2 = 15/4 = 3.75$,
 which is closer.
@@ -5262,11 +5260,11 @@ Write an iterative version of {\tt factorial}.
 
 \begin{exercise}
 One way to calculate $e^x$ is to use the infinite series expansion
-
-\begin{equation}
+%
+\begin{equation*}
 e^x = 1 + x + x^2 / 2! + x^3 / 3! + x^4 / 4! + ...
-\end{equation}
-
+\end{equation*}
+%
 If the loop variable is named {\tt i}, then the $i$th term is
 $x^i / i!$.
 
@@ -5322,11 +5320,11 @@ estimated values.
 
 \begin{exercise}
 One way to evaluate $e^{-x^2}$ is to use the infinite series expansion
-
-\begin{equation}
+%
+\begin{equation*}
 e^{-x^2} = 1 - x^2 + x^4/6 - x^6/24 + ...
-\end{equation}
-
+\end{equation*}
+%
 In other words, we need to add up a series of terms where the $i$th
 term is equal to $(-1)^i x^{2i} / i!$.  Write a method named {\tt gauss}
 that takes {\tt x} and {\tt n} as arguments and that returns the sum
