@@ -1,22 +1,13 @@
-LATEX = latex
-
-DVIPS = dvips
-
-PDFFLAGS = -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress  \
-           -dCompressPages=true -dUseFlateCompression=true  \
-           -dEmbedAllFonts=true -dSubsetFonts=true -dMaxSubsetPct=100
-
-DIR = /home/downey/public_html/greent/thinkapjava
-
 thinkapjava:	thinkapjava.tex
 	pdflatex thinkapjava
 	makeindex thinkapjava.idx
-	evince thinkapjava.pdf
+	pdflatex thinkapjava
 
 hevea:
 	sed 's/\(figs\/[^.]*\).pdf/\1.eps/' thinkapjava.tex > thinkjava.tex
 	rm -rf html
 	mkdir html
+	hevea -O -e latexonly htmlonly thinkjava
 	hevea -O -e latexonly htmlonly thinkjava
 	imagen -png thinkjava
 	hacha thinkjava.html
@@ -32,26 +23,23 @@ plastex:
 xxe:
 	~/Downloads/xxe-perso-4_8_0/bin/xxe xml/thinkapjava.xml
 
-
 epub:
 	cd html; ebook-convert thinkapjava.html thinkpython.epub
 
-
 DISTFILES = thinkapjava.pdf thinkapjava.tex.zip
+DIR = /home/downey/public_html/greent/thinkapjava
 
 distrib:
 	rm -rf thinkapjava
 	mkdir thinkapjava thinkapjava/figs
 	cp thinkapjava.tex latexonly htmlonly thinkapjava
-	cp Makefile.dist thinkapjava/Makefile
+	cp Makefile thinkapjava/Makefile
 	cp *.png *.html thinkapjava
-	cp figs/*.fig thinkapjava/figs
-	cp figs/*.eps thinkapjava/figs
-	cp figs/*.pdf thinkapjava/figs
+	cp figs/* thinkapjava/figs
 	zip -r thinkapjava.tex.zip thinkapjava
 	chmod 644 $(DISTFILES)
 	cp $(DISTFILES) $(DIR)
 	rsync -a html $(DIR)
 
 clean:
-	rm -f *~ *.aux *.log *.dvi *.idx *.ilg *.ind *.toc
+	rm -f *~ *.aux *.dvi *.idx *.ilg *.ind *.log *.out *.toc thinkjava.*
