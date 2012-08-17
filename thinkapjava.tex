@@ -2,7 +2,7 @@
 % Copyright (C) 2012  Allen B. Downey
 
 % Permission is granted to copy, distribute, transmit and adapt
-% this work under a Creative Commons 
+% this work under a Creative Commons
 % Attribution-NonCommercial-ShareAlike 3.0 Unported License:
 % http://creativecommons.org/licenses/by-nc-sa/3.0/
 
@@ -221,7 +221,7 @@ Copyright \copyright ~2012 Allen Downey.
 \vspace{0.25in}
 
 Permission is granted to copy, distribute, transmit and adapt
-this work under a Creative Commons 
+this work under a Creative Commons
 Attribution-NonCommercial-ShareAlike 3.0 Unported License:
 \url{http://creativecommons.org/licenses/by-nc-sa/3.0/}
 
@@ -293,7 +293,7 @@ Here are some of the ideas that make the book the way it is:
 
 \item Vocabulary is important.  Students need to be able to talk
 about programs and understand what I am saying.  I try to
-introduce the minimum number of terms, to define them carefully 
+introduce the minimum number of terms, to define them carefully
 when they are first used, and to organize them in glossaries
 at the end of each chapter.  In my class, I include vocabulary
 questions on quizzes and exams, and require students to use
@@ -958,7 +958,7 @@ definition, and the inner braces contain the definition of {\tt main}.
 \index{comment}
 \index{statement!comment}
 
-Line 3 begins with {\tt //}.  That means it's 
+Line 3 begins with {\tt //}.  That means it's
 a {\bf comment}, which is a bit of
 English text that you can put a program,
 usually to explain what it does.  When the compiler
@@ -1071,7 +1071,7 @@ comments are the same thing, but in programs they are different.
 
 The glossary at the end of each chapter is intended to highlight
 words and phrases that have special meanings in computer science.
-When you see familiar words, don't assume that you know what 
+When you see familiar words, don't assume that you know what
 they mean!
 
 \begin{enumerate}
@@ -1623,7 +1623,7 @@ side of an assignment statement:
 \end{lstlisting}
 %
 This ability may not seem impressive now, but we will see
-examples where composition 
+examples where composition
 expresses complex computations neatly and concisely.
 
 WARNING: The left side of an assignment
@@ -1666,7 +1666,7 @@ have types, as determined by their operators and operands.
 computation like addition, multiplication or string
 concatenation.
 
-\item[operand:] One of the values on which an operator operates. 
+\item[operand:] One of the values on which an operator operates.
 
 \item[precedence:] The order in which operations are evaluated.
 
@@ -1695,7 +1695,7 @@ to represent complex computations concisely.
 \begin{exercise}
 
 If you are using this book in a class, you might enjoy this exercise:
-find a partner and play "Stump the Chump'':  
+find a partner and play "Stump the Chump'':
 
 Start with a program that compiles and runs correctly.  One player
 turns away while the other player adds an error to the program.  Then
@@ -1932,7 +1932,7 @@ is 60.0, not 62.
     double pi = 3.14159;
     double x = (int) pi * 20.0;
 \end{lstlisting}
-% 
+%
 Converting to an integer always rounds down, even if the fraction
 part is 0.99999999.  These behaviors (precedence and rounding)
 can make typecasting error-prone.
@@ -2073,7 +2073,7 @@ Printing a {\tt String} with no letters in it may not seem all that
 useful, but {\tt println} skips to the next
 line after it prints, so this statement skips to the next line.
 
-In {\tt main} we invoke this new method the same way we invoke 
+In {\tt main} we invoke this new method the same way we invoke
 Java methods:
 
 \begin{lstlisting}
@@ -2108,7 +2108,7 @@ method repeatedly:
   }
 \end{lstlisting}
 %
-Or we could write a new method, named {\tt threeLine}, that 
+Or we could write a new method, named {\tt threeLine}, that
 prints three new lines:
 
 \begin{lstlisting}
@@ -2289,7 +2289,7 @@ indicates what arguments are required.
 
 For example, {\tt printTwice} specifies a single parameter,
 {\tt s}, that has type {\tt String}.  I called it {\tt s} to
-suggest that it is a {\tt String}, but I could have given it 
+suggest that it is a {\tt String}, but I could have given it
 any legal variable name.
 
 \begin{lstlisting}
@@ -2501,7 +2501,7 @@ the first time {\tt ping} is invoked.
 
 \begin{lstlisting}
   public static void zoop() {
-    baffle();    
+    baffle();
     System.out.print("You wugga ");
     baffle();
   }
@@ -3045,7 +3045,7 @@ public class Buzz {
             System.out.println("ik");
             baffle(quince);
             System.out.println("boo-wa-ha-ha");
-        } 
+        }
     }
 
     public static void main(String[] args) {
@@ -3157,7 +3157,7 @@ except in the case when $n=2$.
 Write a method named {\tt checkFermat} that takes four
 integers as parameters---{\tt a}, {\tt b}, {\tt c} and {\tt n}---and
 that checks to see if Fermat's theorem holds.  If
-$n$ is greater than 2 and it turns out to be true that 
+$n$ is greater than 2 and it turns out to be true that
 $a^n + b^n = c^n$,
 the program should print ``Holy smokes, Fermat was wrong!''
 Otherwise the program should print ``No, that doesn't work.''
@@ -3419,7 +3419,7 @@ on a line by itself, with no assignment:
     nLines(3);
 \end{lstlisting}
 %
-In this chapter we write methods that return things, which I call 
+In this chapter we write methods that return things, which I call
 {\bf value} methods.  The first example is {\tt area}, which takes a
 {\tt double} as a parameter, and returns the area of a circle with the
 given radius:
@@ -3688,7 +3688,7 @@ Wrapping that all up in a method, we get:
     double radius = distance(xc, yc, xp, yp);
     double area = area(radius);
     return area;
-  } 
+  }
 \end{lstlisting}
 %
 The temporary variables {\tt radius} and {\tt area} are
@@ -3700,7 +3700,7 @@ the method invocations:
   public static double circleArea
               (double xc, double yc, double xp, double yp) {
     return area(distance(xc, yc, xp, yp));
-  } 
+  }
 \end{lstlisting}
 
 
@@ -3715,7 +3715,7 @@ the area of a circle---but take different parameters.  For
 we provide two points.
 
 If two methods do the same thing, it is natural to give them
-the same name.  
+the same name.
 Having more than one method with the same name, which is called {\bf
 overloading}, is legal in Java {\em as long as each version takes
 different parameters}.  So we could rename {\tt circleArea}:
@@ -3724,7 +3724,7 @@ different parameters}.  So we could rename {\tt circleArea}:
   public static double area
               (double x1, double y1, double x2, double y2) {
     return area(distance(xc, yc, xp, yp));
-  } 
+  }
 \end{lstlisting}
 %
 When you invoke an overloaded method, Java knows which version you
@@ -4072,7 +4072,7 @@ works correctly and returns the appropriate value.
 
 In fact, you are already practicing this leap of faith
 when you use Java methods.  When you invoke {\tt Math.cos}
-or {\tt System.out.println}, you don't examine the implementations of 
+or {\tt System.out.println}, you don't examine the implementations of
 those methods.  You just assume that they work.
 
 You can apply the same logic to your own methods.
@@ -4376,11 +4376,11 @@ into a Java method.  The Ackerman function is defined for non-negative
 integers as follows:
 %
 \begin{eqnarray}
-A(m, n) = \begin{cases} 
-              n+1 & \mbox{if } m = 0 \\ 
-        A(m-1, 1) & \mbox{if } m > 0 \mbox{ and } n = 0 \\ 
+A(m, n) = \begin{cases}
+              n+1 & \mbox{if } m = 0 \\
+        A(m-1, 1) & \mbox{if } m > 0 \mbox{ and } n = 0 \\
 A(m-1, A(m, n-1)) & \mbox{if } m > 0 \mbox{ and } n > 0.
-\end{cases} 
+\end{cases}
 \end{eqnarray}
 %
 Write a method called {\tt ack} that takes two {\tt int}s as
@@ -4388,7 +4388,7 @@ parameters and that computes and returns the value
 of the Ackerman function.
 
 Test your implementation of Ackerman by invoking it
-from {\tt main} and printing the return value.  
+from {\tt main} and printing the return value.
 
 WARNING: the return value gets very big very quickly.  You should try it
 only for small values of $m$ and $n$ (not bigger than 2).
@@ -4624,7 +4624,7 @@ the {\bf body} of the loop.
 %
 If the condition is false the
 first time through the loop, the statements inside the loop are
-never executed.  
+never executed.
 
 \index{loop}
 \index{loop!body}
@@ -4829,7 +4829,7 @@ The first line initializes a variable named {\tt i}, which is going
 to act as a counter, or {\bf loop variable}.  As the loop executes,
 the value of {\tt i} increases from 1 to 6; when {\tt i} is 7, the
 loop terminates.  Each time through the loop, we print the value {\tt
-  2*i} and three spaces.  Since we use {\tt System.out.print}, 
+  2*i} and three spaces.  Since we use {\tt System.out.print},
 the output appears on a single line.
 
 \index{loop variable}
@@ -4874,7 +4874,7 @@ section and generalizes it to print multiples of {\tt n}.
     while (i <= 6) {
       System.out.print(n*i + "   ");
       i = i + 1;
-    }    
+    }
     System.out.println("");
   }
 \end{lstlisting}
@@ -4894,7 +4894,7 @@ output as before.  With argument 3, the output is:
 and with argument 4, the output is
 
 \begin{verbatimtab}
-4   8   12   16   20   24 
+4   8   12   16   20   24
 \end{verbatimtab}
 %
 By now you can probably guess how we are going to print a
@@ -4907,7 +4907,7 @@ iterate through the rows.
     while (i <= 6) {
       printMultiples(i);
       i = i + 1;
-    }    
+    }
 \end{lstlisting}
 %
 First of all, notice how similar this loop is to the one inside {\tt
@@ -4917,12 +4917,12 @@ method invocation.
 The output of this program is
 
 \begin{verbatimtab}
-1   2   3   4   5   6   
-2   4   6   8   10   12   
-3   6   9   12   15   18   
-4   8   12   16   20   24   
-5   10   15   20   25   30   
-6   12   18   24   30   36   
+1   2   3   4   5   6
+2   4   6   8   10   12
+3   6   9   12   15   18
+4   8   12   16   20   24
+5   10   15   20   25   30
+6   12   18   24   30   36
 \end{verbatimtab}
 %
 which is a (slightly sloppy) multiplication table.  If the
@@ -5038,13 +5038,13 @@ I replaced the value 6 with the parameter {\tt high}.  If I
 invoke {\tt printMultTable} with the argument 7, I get
 
 \begin{verbatimtab}
-1   2   3   4   5   6   
-2   4   6   8   10   12   
-3   6   9   12   15   18   
-4   8   12   16   20   24   
-5   10   15   20   25   30   
-6   12   18   24   30   36   
-7   14   21   28   35   42   
+1   2   3   4   5   6
+2   4   6   8   10   12
+3   6   9   12   15   18
+4   8   12   16   20   24
+5   10   15   20   25   30
+6   12   18   24   30   36
+7   14   21   28   35   42
 \end{verbatimtab}
 %
 which is fine, except that I probably want the table to
@@ -5062,7 +5062,7 @@ with the same name (just like local variables):
     while (i <= high) {
       System.out.print(n*i + "   ");
       i = i + 1;
-    }    
+    }
     System.out.println("");
   }
 
@@ -5081,12 +5081,12 @@ change the place where the method is invoked in {\tt printMultTable}.
 As expected, this program generates a square 7x7 table:
 
 \begin{verbatimtab}
-1   2   3   4   5   6   7   
-2   4   6   8   10   12   14   
-3   6   9   12   15   18   21   
-4   8   12   16   20   24   28   
-5   10   15   20   25   30   35   
-6   12   18   24   30   36   42   
+1   2   3   4   5   6   7
+2   4   6   8   10   12   14
+3   6   9   12   15   18   21
+4   8   12   16   20   24   28
+5   10   15   20   25   30   35
+6   12   18   24   30   36   42
 7   14   21   28   35   42   49
 \end{verbatimtab}
 %
@@ -5111,13 +5111,13 @@ to
 and you get
 
 \begin{verbatimtab}
-1   
-2   4   
-3   6   9   
-4   8   12   16   
-5   10   15   20   25   
-6   12   18   24   30   36   
-7   14   21   28   35   42   49  
+1
+2   4
+3   6   9
+4   8   12   16
+5   10   15   20   25
+6   12   18   24   30   36
+7   14   21   28   35   42   49
 \end{verbatimtab}
 %
 I'll leave it up to you to figure out how it works.
@@ -5201,7 +5201,7 @@ and {\tt n} during the execution of {\tt loop}.  The table should
 contain one column for each variable and one line for each
 iteration.
 
-\item What is the output of this program?  
+\item What is the output of this program?
 
 \end{enumerate}
 \end{exercise}
@@ -5393,7 +5393,7 @@ Here's how the {\tt charAt} method is used:
     System.out.println(letter);
 \end{lstlisting}
 %
-{\tt fruit.charAt()} means that I am 
+{\tt fruit.charAt()} means that I am
 invoking the {\tt charAt} method on the object named
 {\tt fruit}.
 I am passing the argument {\tt 1} to this method,
@@ -5582,7 +5582,7 @@ the explanations are redundant, but the documentation is
 supposed to fit a standard format.  The last line describes
 the exceptions this method might throw.
 
-It might take some time to get 
+It might take some time to get
 comfortable with this kind of documentation, but it is worth the effort.
 
 
@@ -5629,7 +5629,7 @@ answer.  So
     int index = fruit.indexOf('a', 5);
 \end{lstlisting}
 %
-returns 5.  
+returns 5.
 
 
 \section{Looping and counting}
@@ -6124,7 +6124,7 @@ public class Enigma {
             return;
         } else {
             enigma(x/2);
-        } 
+        }
 
         System.out.print(x%2);
     }
@@ -6345,7 +6345,7 @@ to perform computations.
 
 The Java libraries are divided into {\bf
 packages}, including {\tt java.lang}, which contains most of the
-classes we have used so far, and {\tt java.awt}, 
+classes we have used so far, and {\tt java.awt},
 the {\bf Abstract Window Toolkit} (AWT),
 which contains classes for windows, buttons, graphics, etc.
 
@@ -6387,7 +6387,7 @@ create a new point, you have to use {\tt new}:
     Point blank;
     blank = new Point(3, 4);
 \end{lstlisting}
-% 
+%
 The first line is a conventional variable declaration: {\tt blank}
 has type {\tt Point}.  The second line invokes {\tt new}, specifies
 the type of the new object, and provides arguments.  The arguments are
@@ -6488,7 +6488,7 @@ method for printing {\tt Points}.  If you invoke
 \begin{lstlisting}
 java.awt.Point[x=3,y=4]
 \end{lstlisting}
-% 
+%
 This is a standard format Java uses for printing objects.  It prints
 the name of the type, followed by the names and values of the instance
 variables.
@@ -6911,7 +6911,7 @@ public static Point findCenter(Rectangle box) {
     int x = box.x + box.width/2;
     int y = box.y + box.height/2;
     return new Point(x, y);
-}  
+}
 
 public static void main(String[] args) {
     Point blank = new Point(5, 8);
@@ -6957,7 +6957,7 @@ public static Point findCenter(Rectangle box) {
     int x = box.x + box.width/2;
     int y = box.y + box.height/2;
     return new Point(x, y);
-}  
+}
 
 public static void main(String[] args) {
 
@@ -7014,8 +7014,8 @@ add two BigIntegers, invoke {\tt add} on one
 and pass the other as an argument.  For example:
 
 \begin{lstlisting}
-    BigInteger small = BigInteger.valueOf(17); 
-    BigInteger big = BigInteger.valueOf(1700000000); 
+    BigInteger small = BigInteger.valueOf(17);
+    BigInteger big = BigInteger.valueOf(1700000000);
     BigInteger total = small.add(big);
 \end{lstlisting}
 
@@ -7208,7 +7208,7 @@ methods that {\tt Bug}s don't have.
 
     /**
      * Drops the flower in the termites current location.
-     * 
+     *
      * Note: only one Actor can occupy a grid cell, so the effect
      * of dropping a flower is delayed until the termite moves.
      */
@@ -7227,11 +7227,11 @@ methods that {\tt Bug}s don't have.
 \end{lstlisting}
 
 For some methods {\tt Bug} provides one definition and {\tt Termite}
-provides another.  In that case, the {\tt Termite} method 
+provides another.  In that case, the {\tt Termite} method
 {\bf overrides} the {\tt Bug} method.
 
 For example, {\tt Bug.canMove}
-returns {\tt true} if there is a flower in the next location, so 
+returns {\tt true} if there is a flower in the next location, so
 {\tt Bug}s can trample {\tt Flower}s.  {\tt Termite.canMove} returns
 {\tt false} if there is any object in the next location, so
 {\tt Termite} behavior is different.
@@ -7274,7 +7274,7 @@ Everything here should be familiar.  {\tt TermiteRunner} creates
 an {\tt ActorWorld} with 20 {\tt EternalFlowers} and two {\tt Termites}.
 
 An {\tt EternalFlower} is a {\tt Flower} that overrides {\tt act}
-so the flowers don't get darker. 
+so the flowers don't get darker.
 
 \begin{lstlisting}
 class EternalFlower extends Flower {
@@ -7317,7 +7317,7 @@ a flower, it drops it.
 
 \section{Langton's Termite}
 
-Langton's Ant is a simple model of ant behavior that 
+Langton's Ant is a simple model of ant behavior that
 displays surprisingly complex behavior.  The Ant lives on a grid
 like GridWorld where each cell is either white or black.  The
 Ant moves according to these rules:
@@ -7341,7 +7341,7 @@ before it settles into a repeating loop of 104 steps.
 You can read more about Langton's
 Ant at \url{http://en.wikipedia.org/wiki/Langton_ant}.
 
-It is not easy to implement 
+It is not easy to implement
 Langton's Ant in GridWorld because we can't set the color of
 the cells.  As an alternative, we can use Flowers to mark
 cells, but we can't have an Ant and a Flower in the same cell,
@@ -7649,7 +7649,7 @@ variables.
 
 Although constructors look like methods, you never invoke them
 directly.  Instead, when you invoke {\tt new}, the system
-allocates space for the new object and then 
+allocates space for the new object and then
 invokes your constructor.
 
 The following program demonstrates two ways to create and
@@ -8191,7 +8191,7 @@ problems by a mechanical process.
 \begin{exercise}
 In the board game Scrabble\footnote{Scrabble is a registered trademark
 owned in the U.S.A and Canada by Hasbro Inc., and in the rest of the world
-by J.W. Spear \& Sons Limited of Maidenhead, Berkshire, England, a subsidiary 
+by J.W. Spear \& Sons Limited of Maidenhead, Berkshire, England, a subsidiary
 of Mattel Inc.}, each tile contains a letter, which is used to spell
 words, and a score, which is used to determine the value of words.
 
@@ -8530,7 +8530,7 @@ For example:
     }
 \end{lstlisting}
 %
-is equivalent to 
+is equivalent to
 
 \begin{lstlisting}
     int i = 0;
@@ -8616,7 +8616,7 @@ have the same probability.  If you generate a long series
 of numbers, every value should appear, at least approximately,
 the same number of times.
 
-One way to test your method is to 
+One way to test your method is to
 generate a large number of random values,
 store them in an array, and count the number of times each
 value occurs.
@@ -9043,7 +9043,7 @@ sort} (see \url{http://en.wikipedia.org/wiki/Selection_sort}).
 
 \begin{enumerate}
 
-\item Write a method called {\tt indexOfMaxInRange} that 
+\item Write a method called {\tt indexOfMaxInRange} that
 takes an array of integers, finds the
 largest element in the given range, and returns its {\em index}.
 You can modify your recursive version of {\tt maxInRange} or
@@ -9228,11 +9228,11 @@ class Card
 {
     int suit, rank;
 
-    public Card() { 
+    public Card() {
         this.suit = 0;  this.rank = 0;
     }
 
-    public Card(int suit, int rank) { 
+    public Card(int suit, int rank) {
         this.suit = suit;  this.rank = rank;
     }
 }
@@ -9311,7 +9311,7 @@ Now we need another array of {\tt String}s to decode the ranks:
     String[] ranks = { "narf", "Ace", "2", "3", "4", "5", "6",
                "7", "8", "9", "10", "Jack", "Queen", "King" };
 \end{lstlisting}
-% 
+%
 The reason for the {\tt "narf"} is to act as a place-keeper for the
 zeroeth element of the array, which is never used (or shouldn't be).
 The only valid ranks are 1--13.  To avoid this wasted element,
@@ -9378,7 +9378,7 @@ the {\tt ==} operator.  For example:
         System.out.println("card1 and card2 are identical.");
     }
 \end{lstlisting}
-% 
+%
 References to
 the same object are {\bf identical}.  References
 to objects with same data are {\bf equivalent}.
@@ -9419,7 +9419,7 @@ What does it look like when
 {\tt card1} and {\tt card2} are identical?
 \index{aliasing}
 
-In Section~\ref{incomparable} I said that you should not use the 
+In Section~\ref{incomparable} I said that you should not use the
 {\tt ==} operator on {\tt String}s because it does not do what you
 expect.  Instead of comparing the contents of the {\tt String}
 (equivalence), it checks whether the two {\tt String}s are the same
@@ -9545,7 +9545,7 @@ non-existent {\tt Card}s, you get a {\tt NullPointerException}.
 \begin{lstlisting}
     cards[0].rank;             // NullPointerException
 \end{lstlisting}
-% 
+%
 But that is the correct syntax for accessing the {\tt
 rank} of the ``zeroeth'' card in the deck.  This is another example of
   composition, combining the syntax for accessing an element
@@ -9733,7 +9733,7 @@ public static int findBisect(Card[] cards, Card card, int low, int high) {
 This code contains the kernel of a bisection search, but it
 is still missing an important piece, which is why I added a TODO comment.
 %
-As written, the method recurses forever 
+As written, the method recurses forever
 if the card is not in the deck.  We
 need a base case to handle this condition.
 \index{recursion}
@@ -9810,7 +9810,7 @@ large arrays.
 
 Two common errors in recursive programs are forgetting to include a
 base case and writing the recursive call so that the base case is never
-reached.  Either error causes infinite recursion, 
+reached.  Either error causes infinite recursion,
 which throws a {\tt StackOverflowException}.
 (Think of a stack diagram for a recursive method that never ends.)
 \index{recursion!infinite}
@@ -10434,7 +10434,7 @@ sorting algorithms from this chapter.
 
 \begin{enumerate}
 
-\item Download the code from this chapter from 
+\item Download the code from this chapter from
 \url{http://thinkapjava.com/code/Card2.java}
 and import it into your development environment.  I have
 provided outlines for the methods you will write, so the
@@ -10502,8 +10502,8 @@ deck = mergeSort(deck);      // replaces old deck with new
 \index{programming!procedural}
 
 There are many programming languages and almost as many
-programming styles (sometimes called paradigms).  
-The programs we have written so far are {\bf procedural}, 
+programming styles (sometimes called paradigms).
+The programs we have written so far are {\bf procedural},
 because the emphasis has been on specifying computational procedures.
 
 Most Java programs are {\bf object-oriented}, which means that
@@ -10846,7 +10846,7 @@ you see a method invocation, it can be hard to figure out which method
 gets invoked.
 
 Also, many of the things that can be done with inheritance can
-be done as well or better without it.  
+be done as well or better without it.
 A common alternative is {\bf composition}, where new objects are
 composed of existing objects, adding new capability without
 inheritance.
@@ -10899,7 +10899,7 @@ be explicit.
 
 \begin{exercise}
 
-Download \url{http://thinkapjava.com/code/CardSoln2.java} and 
+Download \url{http://thinkapjava.com/code/CardSoln2.java} and
 \url{http://thinkapjava.com/code/CardSoln3.java}.
 
 {\tt CardSoln2.java} contains solutions to the exercises
@@ -10924,7 +10924,7 @@ Transform the following class method into an object method.
 \begin{lstlisting}
 public static double abs(Complex c) {
     return Math.sqrt(c.real * c.real + c.imag * c.imag);
-} 
+}
 \end{lstlisting}
 \end{exercise}
 
@@ -10994,7 +10994,7 @@ five cards each.  Did you get anything good?
 returns a boolean indicating whether the
 hand contains a flush.
 
-\item Write a method called {\tt hasThreeKind} that 
+\item Write a method called {\tt hasThreeKind} that
 indicates whether the hand contains
 Three of a Kind.
 
@@ -11130,7 +11130,7 @@ body (see Section~\ref{documentation}).  A prototype is also called a
 return type of the method. The body is called the {\bf implementation}
 because it implements the specification.
 
-In a Java interface the methods have no bodies, so it specifies 
+In a Java interface the methods have no bodies, so it specifies
 the methods without implementing them.
 
 For example, {\tt java.awt.Shape} is an interface with prototypes for
@@ -11279,17 +11279,17 @@ Either way, write methods with these prototypes:
     /**
      * Returns true if the Rock is alive.
      */
-    public boolean isAlive() 
+    public boolean isAlive()
 
     /**
      * Makes the Rock alive.
      */
-    public void setAlive() 
+    public void setAlive()
 
     /**
      * Makes the Rock dead.
      */
-    public void setDead() 
+    public void setDead()
 \end{lstlisting}
 
 Write a constructor that invokes {\tt setDead} and confirm that
@@ -11334,7 +11334,7 @@ And here are the prototypes for {\tt countLiveNeighbors} and
     /**
      * Counts the number of live neighbors.
      */
-    public int countLiveNeighbors() 
+    public int countLiveNeighbors()
 
     /**
      * Updates the status of the Rock (live or dead) based on
@@ -11460,7 +11460,7 @@ and {\tt javax.swing}.
 {\tt MyCanvas} object is a kind of {\tt Canvas} that provides
 methods for drawing graphical objects.
 
-In {\tt main} we 
+In {\tt main} we
 
 \begin{enumerate}
 
@@ -11497,7 +11497,7 @@ Here is the prototype for {\tt fillOval}:
 public void fillOval(int x, int y, int width, int height)
 \end{lstlisting}
 
-The parameters specify 
+The parameters specify
 a {\bf bounding box}, which is the rectangle
 in which the oval is drawn (as shown in the figure).  The
 bounding box itself is not drawn.
@@ -11508,7 +11508,7 @@ bounding box itself is not drawn.
 \includegraphics{figs/circle.pdf}
 
 {\tt x} and {\tt y} specify the
-the location of the upper-left corner 
+the location of the upper-left corner
 of the bounding box in the Graphics
 {\bf coordinate system}.
 
@@ -11551,7 +11551,7 @@ object:
     g.setColor(Color.red);
 \end{lstlisting}
 %
-{\tt setColor} changes the current color; everything that gets drawn 
+{\tt setColor} changes the current color; everything that gets drawn
 is the current color.
 
 {\tt Color.red} is a value provided by the {\tt Color}
@@ -11665,7 +11665,7 @@ You can download a solution from
 
 \item Download
 \url{http://thinkapjava.com/code/Moire.java} and import it into
-your development environment.  
+your development environment.
 
 \item Read the {\tt paint} method and draw a sketch of
 what you expect it to do.  Now run it.  Did you get what you
@@ -11752,7 +11752,7 @@ Then you use {\tt in} to create a new {\tt BufferedReader}:
     BufferedReader keyboard = new BufferedReader(in);
 \end{lstlisting}
 %
-Finally you can invoke {\tt readLine} on {\tt keyboard}, 
+Finally you can invoke {\tt readLine} on {\tt keyboard},
 to take input from the keyboard and convert it to a
 String.
 
@@ -11826,7 +11826,7 @@ I'm not kidding.  That's the whole program, and it does the same thing.
 
 \section{Catching exceptions}
 
-In the previous example, {\tt processFile} can throw 
+In the previous example, {\tt processFile} can throw
 {\tt FileNotFoundException} and {\tt IOException}.  And since
 {\tt main} calls {\tt processFile}, it has to declare the
 same exceptions.  In a larger program, {\tt main} might
@@ -11894,7 +11894,7 @@ that tests the new code.  This approach to programming can save
 a lot of time.
 
 Because you only add a few lines of code at a time, it
-is easy to find syntax errors.  
+is easy to find syntax errors.
 %
 And because each version of the
 program produces a visible result, you are constantly testing your
@@ -12174,7 +12174,7 @@ is to make sure {\tt Golfer} has a method called {\tt compareTo}
 that takes an {\tt Object} as a parameter.
 
 Don't let the compiler lead you by the nose.  Error
-messages give you evidence that something is wrong, but 
+messages give you evidence that something is wrong, but
 the remedies they suggest are unreliable.
 
 
@@ -12529,7 +12529,7 @@ returning.  Again, you can use a temporary variable.  For
 example, instead of
 
 \begin{lstlisting}
-public Rectangle intersection(Rectangle a, Rectangle b) { 
+public Rectangle intersection(Rectangle a, Rectangle b) {
     return new Rectangle(
         Math.min(a.x, b.x),
         Math.min(a.y, b.y),
@@ -12541,7 +12541,7 @@ public Rectangle intersection(Rectangle a, Rectangle b) {
 You could write
 
 \begin{lstlisting}
-public Rectangle intersection(Rectangle a, Rectangle b) { 
+public Rectangle intersection(Rectangle a, Rectangle b) {
     int x1 = Math.min(a.x, b.x);
     int y2 = Math.min(a.y, b.y);
     int x2 = Math.max(a.x+a.width, b.x+b.width);
@@ -12626,7 +12626,7 @@ the new test case that fails?
 \item If the bug occurs at compile-time or run-time, what is
 the error message, and what part of the program does it indicate?
 
-\item What have you tried, and what have you learned? 
+\item What have you tried, and what have you learned?
 
 \end{itemize}
 
