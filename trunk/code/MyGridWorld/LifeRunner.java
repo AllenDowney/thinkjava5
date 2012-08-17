@@ -26,7 +26,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 /**
- * This class runs a world that contains box bugs. <br />
+ * 
  * This class is not tested on the AP CS A and AB exams.
  */
 public class LifeRunner
@@ -77,6 +77,5 @@ public class LifeRunner
 	    LifeRock rock = (LifeRock) grid.get(loc);
 	    rock.setAlive();
 	}	 
-    }
-    
+    } 
 }
