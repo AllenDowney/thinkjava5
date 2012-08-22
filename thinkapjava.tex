@@ -2406,12 +2406,12 @@ as arguments.  The correct
 syntax is {\tt printTime(hour, minute)}.
 
 
-\section {Methods with results}
+\section {Methods that return values}
 \index{value method}
 \index{method!value}
 
 Some of the methods we are using,
-like the {\tt Math} methods, yield results.  Other methods,
+like the {\tt Math} methods, return values.  Other methods,
 like {\tt println} and {\tt newLine}, perform an action but
 they don't return a value.  That raises some questions:
 
@@ -2424,13 +2424,13 @@ a variable or use it as part of a larger expression)?
 \item What happens if you use a {\tt print} method as part
 of an expression, like {\tt System.out.println("boo!") + 7}?
 
-\item Can we write methods that yield results, or are we
+\item Can we write methods that return values, or are we
 stuck with things like {\tt newLine} and {\tt printTwice}?
 
 \end{itemize}
 
 The answer to the third question is ``yes, you can write methods that
-return values,'' and we'll do it in a couple of chapters.  I
+return values,'' and we'll see how in a couple of chapters.  I
 leave it up to you to answer the other two questions by trying them
 out.  In fact, any time you have a question about what is legal or
 illegal in Java, a good way to find out is to ask the compiler.
@@ -2454,7 +2454,7 @@ written classes named {\tt Hello} and {\tt NewLine}.
 
 \item[method:]  A named sequence of statements that performs a
 useful function.  Methods may or may not take parameters, and may
-or may not produce a result.
+or may not return a value.
 
 \item[parameter:]  A piece of information a method requires before
 it can run.  Parameters are variables: they contain values and have types.
