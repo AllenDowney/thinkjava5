@@ -11,10 +11,11 @@ MyGridWorld/CircleBugRunner.java  MyGridWorld/TermiteRunner.java \
 MyGridWorld/DiamondTermite.java   MyGridWorld/Termite.gif \
 MyGridWorld/BlueBug.java          MyGridWorld/LifeRock.java \
 MyGridWorld/BlueBugRunner.java    MyGridWorld/LifeRunner.java \
+MyGridWorld/EternalFlower.java   \
 Cards/Card1.java  Cards/Card3.java      Cards/CardSoln3.java \
 Cards/Card2.java  Cards/CardSoln2.java  FileIO/Words.java  FileIO/words.txt \
 
 DEST = /home/downey/public_html/greent/thinkapjava/code
 
 all:
-	rsync -avp $(FILES) $(DEST)
+	rsync -a $(FILES) $(DEST)

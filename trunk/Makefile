@@ -3,6 +3,9 @@ thinkapjava:	thinkapjava.tex
 	makeindex thinkapjava.idx
 	pdflatex thinkapjava
 
+code:
+	cd code; make
+
 hevea:
 	sed 's/\(figs\/[^.]*\).pdf/\1.eps/' thinkapjava.tex > thinkjava.tex
 	rm -rf html
@@ -40,6 +43,7 @@ distrib:
 	chmod 644 $(DISTFILES)
 	cp $(DISTFILES) $(DIR)
 	rsync -a html $(DIR)
+	echo 'pushd $(DIR)/..; sh back; popd'
 
 clean:
 	rm -f *~ *.aux *.dvi *.idx *.ilg *.ind *.log *.out *.toc thinkjava.*
